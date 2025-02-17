@@ -7,6 +7,6 @@ export class AppController {
 
   @Get()
   ping() {
-    return "pong"
+    return "Service is up and running"
   }
 }
