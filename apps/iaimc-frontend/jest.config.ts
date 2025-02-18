@@ -12,7 +12,6 @@ export default {
   },
   testEnvironment: 'jsdom',
   coverageDirectory: '../../coverage/apps/iaimc-frontend',
-  coverageReporters: ["text","html"],
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
