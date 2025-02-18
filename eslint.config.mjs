@@ -10,7 +10,7 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
     rules: {
-      // 🔹 Angular-Specific Rules
+      //  Angular-Specific Rules
       '@angular-eslint/component-selector': [
         'error',
         { type: 'element', prefix: 'app', style: 'kebab-case' },

@@ -2,7 +2,10 @@
   "name": "@igus-accelerator-injection-molding-configurator/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "nx run-many --target=lint",
+    "lint:fix": "nx run-many --target=lint -- --fix"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~19.1.0",
