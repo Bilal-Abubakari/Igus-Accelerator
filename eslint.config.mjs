@@ -1,4 +1,7 @@
 import nx from '@nx/eslint-plugin';
+import unicorn from 'eslint-plugin-unicorn';
+import rxjsPlugin from 'eslint-plugin-rxjs';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
 export default [
   ...nx.configs['flat/base'],
@@ -8,7 +11,27 @@ export default [
     ignores: ['**/dist', '**/node_modules'],
   },
   {
+    plugins: {
+      unicorn,
+      rxjs: rxjsPlugin,
+      'simple-import-sort': simpleImportSort,
+    },
+  },
+  {
     files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
+    languageOptions: {
+      parser: (await import('@typescript-eslint/parser')).default,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: [
+          'tsconfig.base.json',
+          'apps/*/tsconfig.json',
+          'libs/*/tsconfig.json',
+        ],
+        tsconfigRootDir: process.cwd(),
+      },
+    },
     rules: {
       //  Angular-Specific Rules
       '@angular-eslint/component-selector': [
@@ -28,17 +51,14 @@ export default [
       '@angular-eslint/no-output-on-prefix': 'error',
       '@angular-eslint/use-component-selector': 'error',
       '@angular-eslint/no-lifecycle-call': 'error',
-      '@angular-eslint/no-inline-styles': 'error',
+
       'linebreak-style': ['error', 'unix'],
 
       // NestJS-Specific Rules
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/no-return-await': 'error',
       '@typescript-eslint/prefer-nullish-coalescing': 'error',
-      '@typescript-eslint/curly': 'error',
-      '@typescript-eslint/prefer-const': 'error',
       'linebreak-style': ['error', 'unix'],
 
       // Access Modifier Rules (For Both Angular & NestJS)
@@ -51,19 +71,11 @@ export default [
           },
         },
       ],
-      '@typescript-eslint/no-public': 'error',
-      '@typescript-eslint/parameter-properties': [
-        'error',
-        {
-          prefer: 'readonly',
-        },
-      ],
+
       '@typescript-eslint/class-methods-use-this': 'warn',
 
       //  Import Order & Best Practices
       'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-      'prettier/prettier': 'error',
 
       // Additional Best Practices
       '@typescript-eslint/no-floating-promises': 'error',
@@ -73,7 +85,30 @@ export default [
       '@typescript-eslint/require-await': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
       'unicorn/prefer-ternary': 'warn',
-      'rxjs/no-ignored-subscription': 'error',
+    },
+  },
+  {
+    files: ['**/*.spec.ts', '**/jest.config.ts', '**/test/**/*.ts'],
+    languageOptions: {
+      parser: (await import('@typescript-eslint/parser')).default,
+      parserOptions: {
+        project: [
+          'tsconfig.base.json',
+          'apps/*/tsconfig.json',
+          'libs/*/tsconfig.json',
+        ],
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+    rules: {
+      '@typescript-eslint/prefer-readonly': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/switch-exhaustiveness-check': 'off',
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'rxjs/no-ignored-subscription': 'off',
     },
   },
 ];
