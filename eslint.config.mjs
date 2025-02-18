@@ -20,7 +20,6 @@ export default [
         { type: 'attribute', prefix: 'app', style: 'camelCase' },
       ],
       '@angular-eslint/no-conflicting-lifecycle': 'error',
-      '@angular-eslint/no-host-metadata-property': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@angular-eslint/no-empty-lifecycle-method': 'error',
       '@angular-eslint/use-injectable-provided-in': 'error',
