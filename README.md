@@ -23,8 +23,8 @@ To get started with this monorepo, ensure you have [node](https://nodejs.org/) (
 
 ### Key Directories Explained:
 
-*   **`apps/`**: Contains the source code for each application in the monorepo.  Each application has its own directory with its project-specific files.
-*   **`libs/`**: Contains shared libraries that can be used by multiple applications within the monorepo.
+- **`apps/`**: Contains the source code for each application in the monorepo. Each application has its own directory with its project-specific files.
+- **`libs/`**: Contains shared libraries that can be used by multiple applications within the monorepo.
 
 ## Development
 

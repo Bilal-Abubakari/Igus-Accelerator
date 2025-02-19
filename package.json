@@ -15,7 +15,9 @@
     "test:backend": " nx test iaimc-backend",
     "test:backend-c": " nx test iaimc-backend --coverage",
     "test:all": "nx run-many --target=test ",
-    "test:all-c": "nx run-many --target=test --coverage"
+    "test:all-c": "nx run-many --target=test --coverage",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "private": true,
   "dependencies": {
