@@ -1,2 +1,2 @@
-
+yarn run test:all-c
 yarn run lint --fix
