@@ -11,7 +11,8 @@
     "test:frontend-c": " nx test iaimc-frontend --coverage",
     "test:backend": " nx test iaimc-backend",
     "test:backend-c": " nx test iaimc-backend --coverage",
-    "test:all": "nx run-many --target=test --all"
+    "test:all": "nx run-many --target=test ",
+    "test:all-c": "nx run-many --target=test --coverage"
   },
   "private": true,
   "dependencies": {
