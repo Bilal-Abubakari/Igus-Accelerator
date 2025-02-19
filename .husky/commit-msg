@@ -1,9 +1,9 @@
-commit_regex='^([a-z]+)(\([a-z]+\))?: [a-z].*$'
+commit_regex='^([a-z]+)\([A-Z]+-[0-9]+\): .*$'
 # Read the commit message from the file
 commit_message=$(cat "$1")
 if ! echo "$commit_message" | grep -qE "$commit_regex"; then
     echo "ERROR: Commit message does not follow the required format."
-    echo "Please follow the format: <type>(<scope>): <subject>"
-    echo "Example: feat(parser): add ability to parse arrays"
+    echo "Please follow the format: <type>(<JIRA-TICKET>): <commit message>"
+    echo "Example: feat(PROJ-123): add ability to parse arrays"
     exit 1
 fi
