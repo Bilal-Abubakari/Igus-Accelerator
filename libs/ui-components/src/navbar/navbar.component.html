@@ -1,0 +1,30 @@
+<mat-toolbar class="navbar">
+  <nav>
+    <ul>
+      <li>
+        <a
+          [routerLink]="homeRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >home</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="configurationsRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >configurations</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="producibilityRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >producibility</a
+        >
+      </li>
+    </ul>
+  </nav>
+</mat-toolbar>
