@@ -1,0 +1,27 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lints-and-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+      - name: run lints
+        run: yarn lint
+      - name: check prettier formatting
+        run: yarn format
+      - name: run tests enforcing coverage threshold
+        run: yarn test:all-c
