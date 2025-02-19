@@ -1,0 +1,55 @@
+@use '@angular/material' as mat;
+
+.navbar {
+    @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary)));
+
+    & {
+        padding: 0.625rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 1.25rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        position: relative;
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 0.625rem;
+        position: relative;
+        text-transform: uppercase;
+    }
+
+    a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -0.125rem;
+        width: 0;
+        height: 0.125rem;
+        background-color: white;
+        transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    }
+
+    a.active::after {
+        width: 100%;
+        left: 0;
+    }
+
+    a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+}
