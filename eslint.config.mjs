@@ -51,6 +51,7 @@ export default [
       '@angular-eslint/no-output-on-prefix': 'error',
       '@angular-eslint/use-component-selector': 'error',
       '@angular-eslint/no-lifecycle-call': 'error',
+      '@typescript-eslint/prefer-readonly': 'error',
 
       'linebreak-style': ['error', 'unix'],
 
@@ -60,6 +61,34 @@ export default [
       '@typescript-eslint/prefer-readonly': 'error',
       '@typescript-eslint/prefer-nullish-coalescing': 'error',
       'linebreak-style': ['error', 'unix'],
+      // NestJS Dependency Injection
+      '@typescript-eslint/prefer-readonly': 'error',
+      '@typescript-eslint/no-extraneous-class': [
+        'error',
+        { allowWithDecorator: true },
+      ],
+
+      // NestJS Controller & Service Structure
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        {
+          allowExpressions: false,
+          allowTypedFunctionExpressions: true,
+        },
+      ],
+      '@typescript-eslint/explicit-module-boundary-types': 'error',
+
+      // Exception Handling & Promises
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/no-misused-promises': 'error',
+      'unicorn/error-message': 'error',
+
+      // Module & Provider Best Practices
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-explicit-any': 'error',
+
+      // Import Sorting
+      'simple-import-sort/imports': 'error',
 
       // Access Modifier Rules (For Both Angular & NestJS)
       '@typescript-eslint/explicit-member-accessibility': [
@@ -71,7 +100,6 @@ export default [
           },
         },
       ],
-
       '@typescript-eslint/class-methods-use-this': 'warn',
 
       //  Import Order & Best Practices
