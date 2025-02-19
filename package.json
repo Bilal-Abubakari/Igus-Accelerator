@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "lint": "nx run-many --target=lint",
-    "lint:fix": "nx run-many --target=lint -- --fix"
+    "lint:fix": "nx run-many --target=lint -- --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "private": true,
   "dependencies": {
