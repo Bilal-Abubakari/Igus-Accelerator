@@ -1,5 +1,6 @@
 <mat-toolbar class="navbar">
-  <nav>
+  <button class="menu_toggle" (click)="toggleMenu()">☰</button>
+  <nav [class.open]="isMenuOpened()">
     <ul>
       <li>
         <a

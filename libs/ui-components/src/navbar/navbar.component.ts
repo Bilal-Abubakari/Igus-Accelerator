@@ -27,8 +27,12 @@ export class NavbarComponent implements AfterViewInit {
   protected homeRoute = signal(NAVIGATION_ROUTES['HOME']);
   protected configurationsRoute = signal(NAVIGATION_ROUTES['CONFIGURATIONS']);
   protected producibilityRoute = signal(NAVIGATION_ROUTES['PRODUCIBILITY']);
-
   private observer?: MutationObserver;
+  protected isMenuOpened = signal(false);
+
+  protected toggleMenu(): void {
+    this.isMenuOpened.set(!this.isMenuOpened());
+  }
 
   ngAfterViewInit(): void {
     this.observer = new MutationObserver(() => {
