@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lints-formatting-and-tests:
+  code-quality-checks:
     runs-on: ubuntu-latest
 
     steps:
