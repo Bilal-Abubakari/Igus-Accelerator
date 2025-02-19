@@ -2,6 +2,7 @@ export default {
   displayName: 'iaimc-frontend',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  testEnvironment: 'jsdom',
   coverageDirectory: '../../coverage/apps/iaimc-frontend',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
