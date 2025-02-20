@@ -23,11 +23,11 @@ jobs:
       - name: install dependencies
         run: yarn install --frozen-lockfile
       - name: run lints
-        run: yarn lint 
+        run: yarn lint
       - name: check prettier formatting
         run: yarn format
       - name: run tests for frontend enforcing coverage threshold
-        run: yarn test:frontend-c 
+        run: yarn test:frontend-c
 
   deploy:
     runs-on: ubuntu-latest
