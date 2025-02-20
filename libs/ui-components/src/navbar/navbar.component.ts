@@ -24,9 +24,10 @@ export class NavbarComponent implements AfterViewInit {
   private producibilityTabRef = viewChild<ElementRef>('producibilityTab');
 
   protected isHomeRouteActive = signal(true);
-  protected homeRoute = signal(NAVIGATION_ROUTES['HOME']);
-  protected configurationsRoute = signal(NAVIGATION_ROUTES['CONFIGURATIONS']);
-  protected producibilityRoute = signal(NAVIGATION_ROUTES['PRODUCIBILITY']);
+  protected homeRoute = signal(NAVIGATION_ROUTES.HOME);
+  protected configurationsRoute = signal(NAVIGATION_ROUTES.CONFIGURATIONS);
+  protected producibilityRoute = signal(NAVIGATION_ROUTES.PRODUCIBILITY);
+
   private observer?: MutationObserver;
   protected isMenuOpened = signal(false);
 
