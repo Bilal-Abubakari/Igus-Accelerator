@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-
     "lint": "nx run-many --target=lint",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
@@ -18,7 +17,6 @@
     "test:backend-c": " nx test iaimc-backend --coverage",
     "test:all": "nx run-many --target=test ",
     "test:all-c": "nx run-many --target=test --coverage"
-
   },
   "private": true,
   "dependencies": {

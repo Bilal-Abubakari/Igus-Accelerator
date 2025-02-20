@@ -24,11 +24,7 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        project: [
-          'tsconfig.base.json',
-          'apps/*/tsconfig.json',
-          'libs/*/tsconfig.json',
-        ],
+        project: ['tsconfig.base.json', 'apps/*/tsconfig.json', 'libs/*/tsconfig.json'],
         tsconfigRootDir: process.cwd(),
       },
     },
@@ -63,10 +59,7 @@ export default [
       'linebreak-style': ['error', 'unix'],
       // NestJS Dependency Injection
       '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/no-extraneous-class': [
-        'error',
-        { allowWithDecorator: true },
-      ],
+      '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
 
       // NestJS Controller & Service Structure
       '@typescript-eslint/explicit-function-return-type': [
@@ -120,11 +113,7 @@ export default [
     languageOptions: {
       parser: (await import('@typescript-eslint/parser')).default,
       parserOptions: {
-        project: [
-          'tsconfig.base.json',
-          'apps/*/tsconfig.json',
-          'libs/*/tsconfig.json',
-        ],
+        project: ['tsconfig.base.json', 'apps/*/tsconfig.json', 'libs/*/tsconfig.json'],
         tsconfigRootDir: process.cwd(),
       },
     },
