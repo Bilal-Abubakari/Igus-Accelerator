@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { ConfigurationComponent } from '../configuration/configuration.component';
-import { ProducibilityComponent } from '../producibility/producibility.component';
+import { ConfigurationComponent } from './pages/configuration/configuration.component';
+import { ProducibilityComponent } from './pages/producibility/producibility.component';
 
 export const moldingConfigRoutes: Route[] = [
   {
