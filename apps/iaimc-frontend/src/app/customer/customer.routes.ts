@@ -10,7 +10,7 @@ export const customerRoutes: Route[] = [
     component: MoldingConfigurationComponent,
     loadChildren: () =>
       import('./pages/molding-configuration/molding-config.routes').then(
-        (m) => m.moldingConfigRoutes
+        (m) => m.moldingConfigRoutes,
       ),
   },
 ];
