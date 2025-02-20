@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "nx run-many --target=lint",
+    "lint": "nx run-many --target=lint --no-cloud --all",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
@@ -16,7 +16,8 @@
     "test:backend": " nx test iaimc-backend",
     "test:backend-c": " nx test iaimc-backend --coverage",
     "test:all": "nx run-many --target=test ",
-    "test:all-c": "nx run-many --target=test --coverage"
+    "test:all-c": "nx run-many --target=test --coverage --no-cloud --all",
+    "render:build": "npx yarn install --frozen-lockfile --ignore-scripts && npx yarn nx build iaimc-backend --parallel=1 --skip-nx-cache"
   },
   "private": true,
   "dependencies": {
