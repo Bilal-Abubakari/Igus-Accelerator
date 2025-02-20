@@ -1,0 +1,42 @@
+name: Backend CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - apps/iaimc-backend/**
+
+jobs:
+  code-quality-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+      - name: run lints
+        run: yarn lint 
+      - name: check prettier formatting
+        run: yarn format
+      - name: run tests for frontend enforcing coverage threshold
+        run: yarn test:frontend-c 
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: code-quality-checks
+    
+    steps:
+      - name: deploy to render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
+        
