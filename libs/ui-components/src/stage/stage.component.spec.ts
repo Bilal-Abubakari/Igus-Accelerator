@@ -35,5 +35,20 @@ describe('StageComponent', () => {
     expect(imageElement.nativeElement.alt).toBe('Injection molding mechanical part');
   });
 
+  it('should have correct structure', () => {
+    const containerElement = fixture.debugElement.query(By.css('.stage-container'));
+    const contentElement = fixture.debugElement.query(By.css('.stage-content'));
+
+    expect(containerElement).toBeTruthy();
+    expect(contentElement).toBeTruthy();
+
+    const textContainer = fixture.debugElement.query(By.css('.text-container'));
+    const imageContainer = fixture.debugElement.query(By.css('.image-container'));
+
+    expect(textContainer).toBeTruthy();
+    expect(imageContainer).toBeTruthy();
+  });
+
+
 
 });
