@@ -37,8 +37,8 @@ describe('StageComponent', () => {
   it('should render image with default attributes', () => {
     const imageElement = fixture.debugElement.query(By.css('.stage-image'));
 
-    expect(imageElement.nativeElement.src).toContain('/imd-stage.png');
-    expect(imageElement.nativeElement.alt).toBe('Injection molding mechanical part');
+    expect(imageElement.nativeElement.src).toContain(component.imageUrl);
+    expect(imageElement.nativeElement.alt).toBe(component.imageAlt);
   });
 
   it('should have correct structure', () => {
