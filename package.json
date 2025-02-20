@@ -7,8 +7,7 @@
     "lint": "nx run-many --target=lint",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
-    "format:fix": "prettier --write ."
-
+    "format:fix": "prettier --write .",
     "start:frontend": "nx serve frontend",
     "build:frontend": "nx build frontend",
     "start:backend": "nx serve backend",
