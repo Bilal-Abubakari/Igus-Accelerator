@@ -10,8 +10,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
-
 export class AppComponent {
   public title = 'Welcome iaimc-frontend';
 }
