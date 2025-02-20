@@ -24,16 +24,11 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        project: [
-          'tsconfig.base.json',
-          'apps/*/tsconfig.json',
-          'libs/*/tsconfig.json',
-        ],
+        project: ['tsconfig.base.json', 'apps/*/tsconfig.json', 'libs/*/tsconfig.json'],
         tsconfigRootDir: process.cwd(),
       },
     },
     rules: {
-      //  Angular-Specific Rules
       '@angular-eslint/component-selector': [
         'error',
         { type: 'element', prefix: 'app', style: 'kebab-case' },
@@ -55,20 +50,15 @@ export default [
 
       'linebreak-style': ['error', 'unix'],
 
-      // NestJS-Specific Rules
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
       '@typescript-eslint/prefer-nullish-coalescing': 'error',
       'linebreak-style': ['error', 'unix'],
-      // NestJS Dependency Injection
-      '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/no-extraneous-class': [
-        'error',
-        { allowWithDecorator: true },
-      ],
 
-      // NestJS Controller & Service Structure
+      '@typescript-eslint/prefer-readonly': 'error',
+      '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
+
       '@typescript-eslint/explicit-function-return-type': [
         'error',
         {
@@ -78,19 +68,15 @@ export default [
       ],
       '@typescript-eslint/explicit-module-boundary-types': 'error',
 
-      // Exception Handling & Promises
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       'unicorn/error-message': 'error',
 
-      // Module & Provider Best Practices
       '@typescript-eslint/no-unsafe-assignment': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
 
-      // Import Sorting
       'simple-import-sort/imports': 'error',
 
-      // Access Modifier Rules (For Both Angular & NestJS)
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
@@ -102,10 +88,8 @@ export default [
       ],
       '@typescript-eslint/class-methods-use-this': 'warn',
 
-      //  Import Order & Best Practices
       'simple-import-sort/imports': 'error',
 
-      // Additional Best Practices
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       '@typescript-eslint/no-unsafe-assignment': 'error',
@@ -120,11 +104,7 @@ export default [
     languageOptions: {
       parser: (await import('@typescript-eslint/parser')).default,
       parserOptions: {
-        project: [
-          'tsconfig.base.json',
-          'apps/*/tsconfig.json',
-          'libs/*/tsconfig.json',
-        ],
+        project: ['tsconfig.base.json', 'apps/*/tsconfig.json', 'libs/*/tsconfig.json'],
         tsconfigRootDir: process.cwd(),
       },
     },
