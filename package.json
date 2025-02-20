@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
     "lint": "nx run-many --target=lint",
     "lint:fix": "nx run-many --target=lint -- --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "start:frontend": "nx serve frontend",
     "build:frontend": "nx build frontend",
     "start:backend": "nx serve backend",
@@ -15,9 +16,7 @@
     "test:backend": " nx test iaimc-backend",
     "test:backend-c": " nx test iaimc-backend --coverage",
     "test:all": "nx run-many --target=test ",
-    "test:all-c": "nx run-many --target=test --coverage",
-    "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "test:all-c": "nx run-many --target=test --coverage"
   },
   "private": true,
   "dependencies": {
