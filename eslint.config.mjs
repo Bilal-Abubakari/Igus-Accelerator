@@ -24,7 +24,11 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        project: ['tsconfig.base.json', 'apps/*/tsconfig.json', 'libs/*/tsconfig.json'],
+        project: [
+          'tsconfig.base.json',
+          'apps/*/tsconfig.json',
+          'libs/*/tsconfig.json',
+        ],
         tsconfigRootDir: process.cwd(),
       },
     },
@@ -57,7 +61,10 @@ export default [
       'linebreak-style': ['error', 'unix'],
 
       '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
+      '@typescript-eslint/no-extraneous-class': [
+        'error',
+        { allowWithDecorator: true },
+      ],
 
       '@typescript-eslint/explicit-function-return-type': [
         'error',
@@ -104,7 +111,11 @@ export default [
     languageOptions: {
       parser: (await import('@typescript-eslint/parser')).default,
       parserOptions: {
-        project: ['tsconfig.base.json', 'apps/*/tsconfig.json', 'libs/*/tsconfig.json'],
+        project: [
+          'tsconfig.base.json',
+          'apps/*/tsconfig.json',
+          'libs/*/tsconfig.json',
+        ],
         tsconfigRootDir: process.cwd(),
       },
     },
