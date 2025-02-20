@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { StageComponent } from './stage.component';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 describe('StageComponent', () => {
   let component: StageComponent;
@@ -9,7 +10,12 @@ describe('StageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StageComponent],
-    }).compileComponents();
+    })
+      .overrideComponent(StageComponent, {
+        set: {
+          changeDetection: ChangeDetectionStrategy.Default
+        },
+      }).compileComponents();
 
     fixture = TestBed.createComponent(StageComponent);
     component = fixture.componentInstance;
@@ -49,6 +55,41 @@ describe('StageComponent', () => {
     expect(imageContainer).toBeTruthy();
   });
 
+  it('should update content when inputs change', () => {
+    component.title = 'Custom Title';
+    component.description = 'Custom description text';
+    component.imageUrl = '/custom-image.png';
+    component.imageAlt = 'Custom alt text';
 
+    fixture.detectChanges();
+
+    const titleElement = fixture.debugElement.query(By.css('.stage-title'));
+    const descriptionElement = fixture.debugElement.query(By.css('.stage-description'));
+    const imageElement = fixture.debugElement.query(By.css('.stage-image'));
+
+    expect(titleElement.nativeElement.textContent).toBe('Custom Title');
+    expect(descriptionElement.nativeElement.textContent).toBe('Custom description text');
+    expect(imageElement.nativeElement.src).toContain('/custom-image.png');
+    expect(imageElement.nativeElement.alt).toBe('Custom alt text');
+  });
+
+
+  it('should handle empty inputs gracefully', () => {
+    component.title = '';
+    component.description = '';
+    component.imageUrl = '';
+    component.imageAlt = '';
+
+    fixture.detectChanges();
+
+    const titleElement = fixture.debugElement.query(By.css('.stage-title'));
+    const descriptionElement = fixture.debugElement.query(By.css('.stage-description'));
+    const imageElement = fixture.debugElement.query(By.css('.stage-image'));
+
+    expect(titleElement.nativeElement.textContent).toBe('');
+    expect(descriptionElement.nativeElement.textContent).toBe('');
+    expect(imageElement.nativeElement.src).not.toContain('/imd-stage.png');
+    expect(imageElement.nativeElement.alt).toBe('');
+  });
 
 });
