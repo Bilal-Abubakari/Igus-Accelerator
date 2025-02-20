@@ -7,5 +7,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
- public title = 'Welcome iaimc-frontend';
+  public title = 'Welcome iaimc-frontend';
 }
