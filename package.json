@@ -2,7 +2,9 @@
   "name": "@igus-accelerator-injection-molding-configurator/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "render:build": "npx yarn install --frozen-lockfile --ignore-scripts && npx yarn nx build nx-nest-app --parallel=1 --skip-nx-cache"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~19.1.0",
