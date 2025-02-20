@@ -13,9 +13,10 @@ describe('StageComponent', () => {
     })
       .overrideComponent(StageComponent, {
         set: {
-          changeDetection: ChangeDetectionStrategy.Default
+          changeDetection: ChangeDetectionStrategy.Default,
         },
-      }).compileComponents();
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(StageComponent);
     component = fixture.componentInstance;
@@ -28,10 +29,14 @@ describe('StageComponent', () => {
 
   it('should display default title and description', () => {
     const titleElement = fixture.debugElement.query(By.css('.stage-title'));
-    const descriptionElement = fixture.debugElement.query(By.css('.stage-description'));
+    const descriptionElement = fixture.debugElement.query(
+      By.css('.stage-description'),
+    );
 
     expect(titleElement.nativeElement.textContent).toBe(component.title);
-    expect(descriptionElement.nativeElement.textContent).toBe(component.description);
+    expect(descriptionElement.nativeElement.textContent).toBe(
+      component.description,
+    );
   });
 
   it('should render image with default attributes', () => {
@@ -42,14 +47,18 @@ describe('StageComponent', () => {
   });
 
   it('should have correct structure', () => {
-    const containerElement = fixture.debugElement.query(By.css('.stage-container'));
+    const containerElement = fixture.debugElement.query(
+      By.css('.stage-container'),
+    );
     const contentElement = fixture.debugElement.query(By.css('.stage-content'));
 
     expect(containerElement).toBeTruthy();
     expect(contentElement).toBeTruthy();
 
     const textContainer = fixture.debugElement.query(By.css('.text-container'));
-    const imageContainer = fixture.debugElement.query(By.css('.image-container'));
+    const imageContainer = fixture.debugElement.query(
+      By.css('.image-container'),
+    );
 
     expect(textContainer).toBeTruthy();
     expect(imageContainer).toBeTruthy();
@@ -64,15 +73,18 @@ describe('StageComponent', () => {
     fixture.detectChanges();
 
     const titleElement = fixture.debugElement.query(By.css('.stage-title'));
-    const descriptionElement = fixture.debugElement.query(By.css('.stage-description'));
+    const descriptionElement = fixture.debugElement.query(
+      By.css('.stage-description'),
+    );
     const imageElement = fixture.debugElement.query(By.css('.stage-image'));
 
     expect(titleElement.nativeElement.textContent).toBe('Custom Title');
-    expect(descriptionElement.nativeElement.textContent).toBe('Custom description text');
+    expect(descriptionElement.nativeElement.textContent).toBe(
+      'Custom description text',
+    );
     expect(imageElement.nativeElement.src).toContain('/custom-image.png');
     expect(imageElement.nativeElement.alt).toBe('Custom alt text');
   });
-
 
   it('should handle empty inputs gracefully', () => {
     component.title = '';
@@ -83,7 +95,9 @@ describe('StageComponent', () => {
     fixture.detectChanges();
 
     const titleElement = fixture.debugElement.query(By.css('.stage-title'));
-    const descriptionElement = fixture.debugElement.query(By.css('.stage-description'));
+    const descriptionElement = fixture.debugElement.query(
+      By.css('.stage-description'),
+    );
     const imageElement = fixture.debugElement.query(By.css('.stage-image'));
 
     expect(titleElement.nativeElement.textContent).toBe('');
@@ -91,5 +105,4 @@ describe('StageComponent', () => {
     expect(imageElement.nativeElement.src).not.toContain('/imd-stage.png');
     expect(imageElement.nativeElement.alt).toBe('');
   });
-
 });

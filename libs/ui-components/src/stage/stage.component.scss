@@ -1,9 +1,9 @@
-$description-color:#555 ;
+$description-color: #555;
 $title-color: #333;
 
 .stage-container {
   width: 100%;
-  padding:4rem 5rem;
+  padding: 4rem 5rem;
   background-color: #f8f9fa;
   margin-bottom: 2rem;
 }
@@ -30,7 +30,7 @@ $title-color: #333;
 .stage-description {
   font-size: 1rem;
   line-height: 1.6;
-  color:  $description-color;
+  color: $description-color;
 }
 
 .image-container {
@@ -60,9 +60,9 @@ $title-color: #333;
       flex-direction: column;
       display: grid;
       grid-template-areas:
-      "title"
-      "image"
-      "description";
+        'title'
+        'image'
+        'description';
     }
   }
 

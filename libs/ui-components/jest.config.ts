@@ -1,7 +1,7 @@
 export default {
   displayName: 'ui-components',
   preset: '../../jest.preset.js',
-  testEnvironment:'jsdom',
+  testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/libs/ui-components',
   transform: {
