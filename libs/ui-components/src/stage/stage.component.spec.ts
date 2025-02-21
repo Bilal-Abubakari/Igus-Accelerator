@@ -10,13 +10,7 @@ describe('StageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StageComponent],
-    })
-      .overrideComponent(StageComponent, {
-        set: {
-          changeDetection: ChangeDetectionStrategy.Default,
-        },
-      })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StageComponent);
     component = fixture.componentInstance;
