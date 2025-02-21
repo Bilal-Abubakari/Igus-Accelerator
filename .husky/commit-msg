@@ -1,5 +1,5 @@
 commit_types="feat|fix|docs|style|refactor|test|chore"
-scopes="frontend|backend"
+scopes="frontend|backend|pipeline|config"
 commit_regex="^(${commit_types})\((${scopes})\): .*$"
 
 commit_message=$(cat "$1")
@@ -8,7 +8,7 @@ if ! echo "$commit_message" | grep -qE "$commit_regex"; then
     echo "ERROR: Commit message does not follow the required format."
     echo "Please follow the format: <type>(<scope>): <commit message>"
     echo "Allowed types: feat, fix, docs, style, refactor, test, chore"
-    echo "Allowed scopes: frontend, backend"
+    echo "Allowed scopes: frontend, backend pipeline, config"
     echo "Example: feat(frontend): add new user profile component"
     exit 1
 fi
