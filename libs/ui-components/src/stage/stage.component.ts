@@ -8,10 +8,4 @@ import { CommonModule } from '@angular/common';
   styleUrl: './stage.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StageComponent {
-  @Input() title = 'Injection Molding Designer';
-  @Input() description =
-    "The individual component is created in just a few steps: upload the CAD model, select a material and let us check the manufacturability - that's it. You will immediately see a provisional price and delivery time. After approval you can request a quote.";
-  @Input() imageUrl = '/imd-stage.png';
-  @Input() imageAlt = 'Injection molding mechanical part';
-}
+export class StageComponent {}
