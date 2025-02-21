@@ -5,9 +5,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'Welcome iaimc-frontend';
+  public title = 'Welcome iaimc-frontend';
 }

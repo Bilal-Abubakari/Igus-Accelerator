@@ -22,7 +22,7 @@
             "input": "apps/iaimc-frontend/public"
           }
         ],
-        "styles": ["apps/iaimc-frontend/src/styles.scss"],
+        "styles": ["apps/iaimc-frontend/src/styles/styles.scss"],
         "scripts": []
       },
       "configurations": {
