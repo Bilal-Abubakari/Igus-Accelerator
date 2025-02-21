@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: validate pr title
+        uses: seferov/pr-lint-action@master
+        with:
+          title-regex: '^(feat|fix|docs|style|refactor|test|chore)\([a-z]+(?:-[a-z]+)*\): [a-z].+$'
+          error-message: 'Refer to the confluence page for the rules on PR titles'
       - name: checkout repo
         uses: actions/checkout@v4
-      - name: pr lints
-        uses: joberstein/actions-commitlint-validation@v1-dist
-        with:
-          extra_config: '@joberstein12/commitlint-config'
       - name: setup Node
         uses: actions/setup-node@v4
         with:
