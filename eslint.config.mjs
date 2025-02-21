@@ -15,6 +15,11 @@ export default [
       unicorn,
       rxjs: rxjsPlugin,
       'simple-import-sort': simpleImportSort,
+      '@angular-eslint': (await import('@angular-eslint/eslint-plugin'))
+        .default,
+      '@angular-eslint/template': (
+        await import('@angular-eslint/eslint-plugin-template')
+      ).default,
     },
   },
   {
@@ -32,6 +37,7 @@ export default [
         tsconfigRootDir: process.cwd(),
       },
     },
+
     rules: {
       '@angular-eslint/component-selector': [
         'error',
@@ -47,7 +53,6 @@ export default [
       '@angular-eslint/use-injectable-provided-in': 'error',
       '@angular-eslint/no-input-rename': 'error',
       '@angular-eslint/no-output-native': 'error',
-      '@angular-eslint/no-output-on-prefix': 'error',
       '@angular-eslint/use-component-selector': 'error',
       '@angular-eslint/no-lifecycle-call': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
@@ -58,7 +63,6 @@ export default [
         'error',
         { allowWithDecorator: true },
       ],
-
       '@typescript-eslint/explicit-function-return-type': [
         'error',
         {
@@ -67,7 +71,6 @@ export default [
         },
       ],
       '@typescript-eslint/explicit-module-boundary-types': 'error',
-
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       'unicorn/error-message': 'error',
@@ -81,13 +84,18 @@ export default [
         },
       ],
       '@typescript-eslint/class-methods-use-this': 'warn',
-
       'simple-import-sort/imports': 'error',
       '@typescript-eslint/no-unsafe-assignment': 'error',
       '@typescript-eslint/switch-exhaustiveness-check': 'error',
       '@typescript-eslint/require-await': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
       'unicorn/prefer-ternary': 'warn',
+    },
+  },
+  {
+    files: ['**/*.html'],
+    rules: {
+      '@angular-eslint/template/prefer-control-flow': 'error',
     },
   },
   {
