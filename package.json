@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "nx run-many --target=lint",
+    "lint": "nx run-many --target=lint --no-cloud --all",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
@@ -11,16 +11,18 @@
     "build:frontend": "nx build frontend",
     "start:backend": "nx serve backend",
     "build:backend": "nx build backend",
-    "test:frontend": " nx test iaimc-frontend",
-    "test:frontend-c": " nx test iaimc-frontend --coverage",
-    "test:backend": " nx test iaimc-backend",
-    "test:backend-c": " nx test iaimc-backend --coverage",
-    "test:all": "nx run-many --target=test ",
-    "test:all-c": "nx run-many --target=test --coverage"
+    "test:frontend": " nx test iaimc-frontend --no-cloud",
+    "test:frontend-c": " nx test iaimc-frontend --coverage --no-cloud",
+    "test:backend": " nx test iaimc-backend --no-cloud",
+    "test:backend-c": " nx test iaimc-backend --coverage --no-cloud",
+    "test:all": "nx run-many --target=test --no-cloud --all",
+    "test:all-c": "nx run-many --target=test --coverage --no-cloud --all",
+    "render:build": "npx yarn install --frozen-lockfile --ignore-scripts && npx yarn nx build iaimc-backend --parallel=1 --skip-nx-cache"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~19.1.0",
+    "@angular/cdk": "^19.1.4",
     "@angular/common": "~19.1.0",
     "@angular/compiler": "~19.1.0",
     "@angular/core": "~19.1.0",
