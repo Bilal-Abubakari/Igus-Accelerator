@@ -56,6 +56,17 @@ describe('ContactFormComponent', () => {
     expect(component.contactForm.get('email')?.valid).toBeTruthy();
   });
 
+  it('should validate telephone format', () => {
+    component.contactForm.get('telephone')?.setValue('abc');
+    expect(component.contactForm.get('telephone')?.valid).toBeFalsy();
+
+    component.contactForm.get('telephone')?.setValue('1234567890');
+    expect(component.contactForm.get('telephone')?.valid).toBeTruthy();
+
+    component.contactForm.get('telephone')?.setValue('+1-234-567-8901');
+    expect(component.contactForm.get('telephone')?.valid).toBeTruthy();
+  });
+
   it('should handle form submission when valid', () => {
     const consoleSpy = jest.spyOn(console, 'log');
 
@@ -95,6 +106,18 @@ describe('ContactFormComponent', () => {
     expect(component.contactForm.get('file')?.value).toBe(mockFile);
   });
 
+  it('should handle empty file selection', () => {
+    const mockEvent = { target: { files: [] } } as unknown as Event;
+    component.onFileSelected(mockEvent);
+    expect(component.contactForm.get('file')?.value).toBeNull();
+  });
+
+  it('should handle null files property', () => {
+    const mockEvent = { target: { files: null } } as unknown as Event;
+    component.onFileSelected(mockEvent);
+    expect(component.contactForm.get('file')?.value).toBeNull();
+  });
+
   it('should reject invalid file types', () => {
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation();
     const mockFile = new File(['test'], 'test.txt', { type: 'text/plain' });
@@ -126,6 +149,20 @@ describe('ContactFormComponent', () => {
 
     component.contactForm.get('email')?.setValue('');
     expect(component.isFieldInvalid('email', 'required')).toBeTruthy();
+  });
+
+  it('should validate isFieldInvalid without errorType', () => {
+    component.contactForm.get('email')?.setValue('invalid');
+    component.contactForm.get('email')?.markAsTouched();
+    expect(component.isFieldInvalid('email')).toBeTruthy();
+
+    // Test with valid field
+    component.contactForm.get('email')?.setValue('valid@example.com');
+    expect(component.isFieldInvalid('email')).toBeFalsy();
+  });
+
+  it('should handle non-existent field in isFieldInvalid', () => {
+    expect(component.isFieldInvalid('nonExistentField')).toBeFalsy();
   });
 
   it('should display error messages for invalid fields', () => {
