@@ -51,16 +51,9 @@ export default [
       '@angular-eslint/use-component-selector': 'error',
       '@angular-eslint/no-lifecycle-call': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
-
-      'linebreak-style': ['error', 'unix'],
-
-      '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/prefer-readonly': 'error',
       '@typescript-eslint/prefer-nullish-coalescing': 'error',
       'linebreak-style': ['error', 'unix'],
-
-      '@typescript-eslint/prefer-readonly': 'error',
       '@typescript-eslint/no-extraneous-class': [
         'error',
         { allowWithDecorator: true },
@@ -78,12 +71,6 @@ export default [
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-misused-promises': 'error',
       'unicorn/error-message': 'error',
-
-      '@typescript-eslint/no-unsafe-assignment': 'error',
-      '@typescript-eslint/no-explicit-any': 'error',
-
-      'simple-import-sort/imports': 'error',
-
       '@typescript-eslint/explicit-member-accessibility': [
         'error',
         {
@@ -96,9 +83,6 @@ export default [
       '@typescript-eslint/class-methods-use-this': 'warn',
 
       'simple-import-sort/imports': 'error',
-
-      '@typescript-eslint/no-floating-promises': 'error',
-      '@typescript-eslint/no-misused-promises': 'error',
       '@typescript-eslint/no-unsafe-assignment': 'error',
       '@typescript-eslint/switch-exhaustiveness-check': 'error',
       '@typescript-eslint/require-await': 'error',
