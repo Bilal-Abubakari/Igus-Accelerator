@@ -40,7 +40,7 @@ export class ContactFormComponent {
       company: ['', Validators.required],
       postalCode: ['', Validators.required],
       country: ['', Validators.required],
-      telephone: [''],
+      telephone: ['', Validators.pattern(/^\+?[0-9\s\-()]{7,15}$/)],
       message: [''],
       agreement: [false, Validators.requiredTrue],
       file: [null as File | null],
@@ -61,7 +61,18 @@ export class ContactFormComponent {
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
-      this.contactForm.patchValue({ file: input.files[0] });
+      const file = input.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size exceeds 5MB');
+        this.contactForm.patchValue({ file: null });
+        return;
+      }
+      if (!['image/png', 'image/jpeg', 'application/pdf'].includes(file.type)) {
+        alert('Invalid file type. Only PNG, JPEG, and PDF are allowed.');
+        this.contactForm.patchValue({ file: null });
+        return;
+      }
+      this.contactForm.patchValue({ file });
     }
   }
 
