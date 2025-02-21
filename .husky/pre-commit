@@ -1,0 +1,3 @@
+yarn run format:fix
+yarn run test:all-c
+yarn run lint --fix

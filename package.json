@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky",
     "lint": "nx run-many --target=lint --no-cloud --all",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
