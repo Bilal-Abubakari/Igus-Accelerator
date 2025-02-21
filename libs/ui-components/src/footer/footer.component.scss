@@ -31,14 +31,15 @@ mat-toolbar {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    span {
-      font-size: 12px;
+    span,
+    p,
+    a {
+      font-size: 0.875rem;
     }
 
     .footer-container {
       width: 50%;
       @include flex-option(flex, space-between, left);
-
       .custom-button {
         color: var(--mat-sys-primary);
         width: 50%;
@@ -47,22 +48,22 @@ mat-toolbar {
         }
       }
       &__contact-us {
-        @include flex-option(flex, left, left);
-        flex-direction: column;
-        gap: 0.5rem;
-
-        a {
-          color: var(--mat-sys-primary-container);
-          text-decoration: none;
-          &:hover {
-            color: var(--mat-sys-primary);
+        .contact {
+          &__tel {
+            padding-left: 0.8rem;
+          }
+          a {
+            color: var(--mat-sys-primary-container);
+            text-decoration: none;
+            &:hover {
+              color: var(--mat-sys-primary);
+            }
           }
         }
 
         div {
           @include flex-option(flex, center, left);
           flex-direction: column;
-          gap: 1rem;
         }
       }
       .rating-container {
@@ -94,5 +95,13 @@ mat-toolbar {
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    @include flex-option(flex, left, center);
+    width: 100%;
+    flex-direction: column;
   }
 }

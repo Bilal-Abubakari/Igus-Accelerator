@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  currentYear = new Date().getFullYear();
   hoveredRating = 0;
   selectedRating = 0;
 

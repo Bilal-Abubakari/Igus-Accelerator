@@ -2,15 +2,17 @@
   <footer>
     <div class="footer-container">
       <section class="footer-container__contact-us">
-        <h1>Contact us</h1>
+        <h4>Contact us</h4>
         <div class="contact">
-          <p>accelerator modeling configurator® GmbH</p>
-          <a [href]="'tel:+4922039649145'">+49 2203 9649 145</a>
+          <div class="contact__tel">
+            <p>accelerator modeling configurator® GmbH</p>
+            <a [href]="'tel:+4922039649145'">+49 2203 9649 145</a>
+          </div>
           <button mat-button class="custom-button">Write a message</button>
         </div>
       </section>
       <section class="rating-container">
-        <h1>Please rate this configurator</h1>
+        <h4>Please rate this configurator</h4>
 
         <div class="rating-stars">
           <mat-icon
@@ -33,6 +35,8 @@
         <button mat-button disabled class="custom-button">Submit rating</button>
       </section>
     </div>
-    <span>© 2025 accelerator modeling configurator® GmbH</span>
+    <span
+      >&copy; {{ currentYear }} accelerator modeling configurator® GmbH</span
+    >
   </footer>
 </mat-toolbar>
