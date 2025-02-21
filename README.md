@@ -46,3 +46,7 @@ nx serve iaimc-backend // nx test (for testing), nx lint (for running lints)
 
 For a guide on the git conventions, go to:
 https://amali-tech.atlassian.net/wiki/spaces/~7120208a00231f088d4cb8926bdad8c2b2842d/pages/1484816386/Project+Setup
+
+### TODO
+
+Currently, NX cloud connectivity fails. Find a way to activate it to speed up builds and tests else remove it altogether from the project.
