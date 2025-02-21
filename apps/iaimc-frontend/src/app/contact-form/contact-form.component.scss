@@ -1,0 +1,135 @@
+@use '@angular/material' as mat;
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.form-wrapper {
+  width: 600px;
+  margin-block: 10px;
+}
+
+h1.contact {
+  color: #363636;
+  margin-bottom: 0;
+}
+
+p.intro {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  letter-spacing: normal;
+  margin-bottom: 32px;
+  color: #423e3a;
+}
+
+.attach-file-title {
+  color: #423e3a;
+  margin: 20px 0;
+}
+
+.name-fields-container,
+.email-company-container,
+.postal-country-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  flex: 1;
+  margin-bottom: 10px;
+
+  .mat-mdc-form-field-subscript-wrapper {
+    padding-top: 4px;
+    height: auto !important;
+  }
+}
+
+.telephone {
+  width: 320px;
+}
+
+textarea {
+  height: 70px !important;
+}
+
+::ng-deep .mat-mdc-form-field .mdc-floating-label {
+  font-size: 16px !important;
+}
+
+.mat-mdc-form-field-error {
+  font-size: 0.6rem !important;
+  line-height: 1rem !important;
+  display: block;
+  min-height: 0;
+  transition: min-height 0.2s ease;
+
+  &:empty {
+    min-height: 0 !important;
+  }
+}
+
+.upload-container {
+  margin-bottom: 20px;
+}
+
+.select-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select-file-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+p.agreement {
+  font-size: 14px;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.accept-error {
+  padding-left: 40px;
+}
+
+.form-btns {
+  padding-top: 30px;
+  display: flex;
+  gap: 18px;
+  justify-content: flex-end;
+  height: 55px;
+}
+
+.cancel-btn,
+.submit-btn {
+  width: 90px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+
+  &:hover {
+    color: #333;
+  }
+}

@@ -1,0 +1,160 @@
+<div *ngIf="isVisible" class="form-container">
+  <button class="close-btn" mat-icon-button (click)="closeForm()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="form-wrapper">
+    <h1 class="contact">Contact</h1>
+    <p class="intro">
+      Please enter your questions or suggestions. The data you enter into the
+      designer will be transmitted automatically.
+    </p>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="name-fields-container">
+        <mat-form-field>
+          <mat-label>First name (optional)</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" />
+          <mat-error
+            *ngIf="
+              contactForm.get('lastName')?.hasError('required') &&
+              (contactForm.get('lastName')?.touched ||
+                contactForm.get('lastName')?.dirty)
+            "
+          >
+            Last name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="email-company-container">
+        <mat-form-field>
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error
+            *ngIf="
+              contactForm.get('email')?.invalid &&
+              (contactForm.get('email')?.touched ||
+                contactForm.get('email')?.dirty)
+            "
+          >
+            <span *ngIf="contactForm.get('email')?.hasError('required')"
+              >Email is required</span
+            >
+            <span *ngIf="contactForm.get('email')?.hasError('email')"
+              >Invalid email format</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Company</mat-label>
+          <input matInput formControlName="company" />
+          <mat-error
+            *ngIf="
+              contactForm.get('company')?.hasError('required') &&
+              (contactForm.get('company')?.touched ||
+                contactForm.get('company')?.dirty)
+            "
+          >
+            Company is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="postal-country-container">
+        <mat-form-field class="postal-code">
+          <mat-label>Postal code</mat-label>
+          <input matInput formControlName="postalCode" />
+          <mat-error
+            *ngIf="
+              contactForm.get('postalCode')?.hasError('required') &&
+              (contactForm.get('postalCode')?.touched ||
+                contactForm.get('postalCode')?.dirty)
+            "
+          >
+            Postal code is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="country">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country" />
+          <mat-error
+            *ngIf="
+              contactForm.get('country')?.hasError('required') &&
+              (contactForm.get('country')?.touched ||
+                contactForm.get('country')?.dirty)
+            "
+          >
+            Country is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="telephone">
+        <mat-label>Telephone (optional)</mat-label>
+        <input matInput formControlName="telephone" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Message (optional)</mat-label>
+        <textarea matInput formControlName="message"></textarea>
+      </mat-form-field>
+
+      <p class="attach-file-title">File attachment (optional)</p>
+
+      <div class="upload-container">
+        <input
+          #fileInput
+          type="file"
+          hidden
+          (change)="onFileSelected($event)"
+        />
+        <button
+          class="select-file-btn"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="fileInput.click()"
+        >
+          <mat-icon>upload_file</mat-icon>
+          Select File
+        </button>
+      </div>
+
+      <div class="select-file-container">
+        <mat-checkbox
+          class="agreement"
+          formControlName="agreement"
+        ></mat-checkbox>
+        <p class="agreement">
+          I have read and understood the
+          <a href="" target="_blank">data protection regulations</a> of igus®
+          GmbH.
+        </p>
+      </div>
+
+      <mat-error
+        class="accept-error"
+        *ngIf="
+          contactForm.get('agreement')?.invalid &&
+          (contactForm.get('agreement')?.touched ||
+            contactForm.get('agreement')?.dirty)
+        "
+      >
+        You must accept the data protection regulations
+      </mat-error>
+
+      <div class="form-btns">
+        <button class="cancel-btn" mat-button type="button">Cancel</button>
+        <button class="submit-btn" mat-button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
