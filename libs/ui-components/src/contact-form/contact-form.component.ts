@@ -50,11 +50,11 @@ export class ContactFormComponent {
   isFieldInvalid(fieldName: string, errorType?: string): boolean {
     const field = this.contactForm.get(fieldName);
     if (!field) return false;
-    
+
     if (errorType) {
       return field.hasError(errorType) && (field.touched || field.dirty);
     }
-    
+
     return field.invalid && (field.touched || field.dirty);
   }
 
