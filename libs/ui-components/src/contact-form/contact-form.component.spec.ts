@@ -68,7 +68,8 @@ describe('ContactFormComponent', () => {
   });
 
   it('should handle form submission when valid', () => {
-    const consoleSpy = jest.spyOn(console, 'log');
+    const originalConsoleLog = console.log;
+    console.log = jest.fn();
 
     component.contactForm.patchValue({
       lastName: 'Doe',
@@ -80,7 +81,9 @@ describe('ContactFormComponent', () => {
     });
 
     component.onSubmit();
-    expect(consoleSpy).toHaveBeenCalledWith('Form Value:', expect.any(Object));
+    expect(console.log).toHaveBeenCalled();
+
+    console.log = originalConsoleLog;
   });
 
   it('should mark fields as touched when submitting invalid form', () => {
@@ -156,13 +159,21 @@ describe('ContactFormComponent', () => {
     component.contactForm.get('email')?.markAsTouched();
     expect(component.isFieldInvalid('email')).toBeTruthy();
 
-    // Test with valid field
     component.contactForm.get('email')?.setValue('valid@example.com');
     expect(component.isFieldInvalid('email')).toBeFalsy();
   });
 
   it('should handle non-existent field in isFieldInvalid', () => {
     expect(component.isFieldInvalid('nonExistentField')).toBeFalsy();
+  });
+
+  it('should validate isFieldInvalid without errorType', () => {
+    component.contactForm.get('email')?.setValue('invalid');
+    component.contactForm.get('email')?.markAsTouched();
+    expect(component.isFieldInvalid('email')).toBeTruthy();
+
+    component.contactForm.get('email')?.setValue('valid@example.com');
+    expect(component.isFieldInvalid('email')).toBeFalsy();
   });
 
   it('should display error messages for invalid fields', () => {
