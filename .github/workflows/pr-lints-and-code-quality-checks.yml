@@ -4,14 +4,23 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
-  code-quality-checks:
+  pr-lints-and-code-quality-checks:
+    name: PR Lints and Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
+      - name: pr lints
+        uses: joberstein/actions-commitlint-validation@v1-dist
+        with:
+          extra_config: '@joberstein12/commitlint-config'
       - name: setup Node
         uses: actions/setup-node@v4
         with:
