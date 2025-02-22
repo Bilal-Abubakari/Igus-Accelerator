@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { StageComponent } from './stage.component';
-import { ChangeDetectionStrategy } from '@angular/core';
 
 describe('StageComponent', () => {
   let component: StageComponent;
