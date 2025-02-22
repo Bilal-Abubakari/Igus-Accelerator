@@ -4,12 +4,23 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
-  code-quality-checks:
+  pr-lints-and-code-quality-checks:
+    name: PR Lints and Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
+      - name: validate pr title
+        uses: seferov/pr-lint-action@master
+        with:
+          title-regex: '^(feat|fix|docs|style|refactor|test|chore)\((frontend|backend|pipeline)\): [a-z].+$'
+          title-regex-flags: 'g'
+          error-message: 'Refer to the confluence page for the rules on PR titles'
       - name: checkout repo
         uses: actions/checkout@v4
       - name: setup Node
