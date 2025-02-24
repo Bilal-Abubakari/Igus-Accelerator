@@ -18,7 +18,7 @@ jobs:
       - name: validate pr title
         uses: seferov/pr-lint-action@master
         with:
-          title-regex: '^(feat|fix|docs|style|refactor|test|chore)\((frontend|backend|config|pipeline)\): [a-z].+$'
+          title-regex: '^(feat|fix|style|refactor|test|chore)\((frontend|backend|config|pipeline)\): [a-z].+$|^(docs): [a-z].+$'
           title-regex-flags: 'g'
           error-message: 'Refer to the confluence page for the rules on PR titles'
       - name: checkout repo
