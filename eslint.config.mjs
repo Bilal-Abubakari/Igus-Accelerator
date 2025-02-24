@@ -38,30 +38,12 @@ export default [
       },
     },
     rules: {
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        {
-          allowExpressions: false,
-          allowTypedFunctionExpressions: true,
-          allowHigherOrderFunctions: false,
-        },
-      ],
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unsafe-assignment': 'error',
       '@typescript-eslint/no-unsafe-member-access': 'error',
       '@typescript-eslint/no-unsafe-call': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
-
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        {
-          accessibility: 'explicit',
-          overrides: {
-            constructors: 'no-public',
-          },
-        },
-      ],
       '@typescript-eslint/member-ordering': [
         'error',
         {
@@ -84,27 +66,6 @@ export default [
         'error',
         { allowWithDecorator: true },
       ],
-
-      '@typescript-eslint/no-floating-promises': 'error',
-      '@typescript-eslint/no-misused-promises': 'error',
-      '@typescript-eslint/require-await': 'error',
-      '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-
-      '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/prefer-nullish-coalescing': 'error',
-      '@typescript-eslint/switch-exhaustiveness-check': 'error',
-      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-      '@typescript-eslint/consistent-type-assertions': [
-        'error',
-        { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
-      ],
-      '@typescript-eslint/no-unnecessary-condition': 'error',
-
-      'linebreak-style': ['error', 'unix'],
-      'simple-import-sort/imports': 'error',
-      'unicorn/error-message': 'error',
-      'unicorn/prefer-ternary': 'warn',
     },
   },
 
@@ -138,15 +99,6 @@ export default [
       '@angular-eslint/no-output-native': 'error',
       '@angular-eslint/use-component-selector': 'error',
       '@angular-eslint/no-lifecycle-call': 'error',
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        {
-          accessibility: 'explicit',
-          overrides: {
-            constructors: 'no-public',
-          },
-        },
-      ],
     },
   },
 
@@ -179,6 +131,7 @@ export default [
         tsconfigRootDir: process.cwd(),
       },
     },
+
     rules: {
       '@typescript-eslint/prefer-readonly': 'off',
       '@typescript-eslint/no-floating-promises': 'off',
@@ -188,6 +141,30 @@ export default [
       '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'rxjs/no-ignored-subscription': 'off',
+    },
+  },
+
+  {
+    files: ['**/*'],
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        {
+          allowExpressions: false,
+          allowTypedFunctionExpressions: true,
+          allowHigherOrderFunctions: false,
+        },
+      ],
+
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        {
+          accessibility: 'explicit',
+          overrides: {
+            constructors: 'no-public',
+          },
+        },
+      ],
     },
   },
 ];
