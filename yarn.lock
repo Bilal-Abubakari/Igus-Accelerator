@@ -4459,7 +4459,7 @@
     eslint-scope "^5.1.1"
     semver "^7.3.7"
 
-"@typescript-eslint/utils@8.24.0", "@typescript-eslint/utils@^8.0.0", "@typescript-eslint/utils@^8.19.0":
+"@typescript-eslint/utils@8.24.0", "@typescript-eslint/utils@^8.0.0":
   version "8.24.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-8.24.0.tgz#21cb1195ae79230af825bfeed59574f5cb70a749"
   integrity sha512-07rLuUBElvvEb1ICnafYWr4hk8/U7X9RDCOqd9JcAMtjh/9oRmcfN4yGzbPVirgMR0+HLVHehmu19CWeh7fsmQ==
@@ -4469,7 +4469,7 @@
     "@typescript-eslint/types" "8.24.0"
     "@typescript-eslint/typescript-estree" "8.24.0"
 
-"@typescript-eslint/utils@8.24.1":
+"@typescript-eslint/utils@8.24.1", "@typescript-eslint/utils@^8.24.1":
   version "8.24.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-8.24.1.tgz#08d14eac33cfb3456feeee5a275b8ad3349e52ed"
   integrity sha512-OOcg3PMMQx9EXspId5iktsI3eMaXVwlhC8BvNnX6B5w9a4dVgpkQZuU8Hy67TolKcl+iFWq0XX+jbDGN4xWxjQ==
