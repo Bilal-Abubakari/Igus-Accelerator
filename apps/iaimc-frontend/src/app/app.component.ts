@@ -1,26 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  OnChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'invalidSelector',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit, OnChanges {
-  title = 'Welcome iaimc-frontend';
-
-  @Input('renamedInput') someValue!: string;
-  @Output() clickEvent = new EventEmitter<void>();
-
-  ngOnInit() {}
-  ngOnChanges() {}
-
-  onClick() {
-    console.log('Button clicked');
-  }
-}
+export class AppComponent {}
