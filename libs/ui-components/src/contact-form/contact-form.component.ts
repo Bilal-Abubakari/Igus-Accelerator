@@ -1,15 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {
-  FormGroup,
   Validators,
   ReactiveFormsModule,
   FormBuilder,
+  FormGroup,
 } from '@angular/forms';
 
 @Component({
@@ -23,29 +24,27 @@ import {
     MatCheckboxModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
-  isVisible = true;
-  contactForm: FormGroup;
+  constructor(private dialogRef: MatDialogRef<ContactFormComponent>) {}
 
-  constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
-      firstName: [''],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      company: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      country: ['', Validators.required],
-      telephone: ['', Validators.pattern(/^\+?[0-9\s\-()]{7,15}$/)],
-      message: [''],
-      agreement: [false, Validators.requiredTrue],
-      file: [null as File | null],
-    });
-  }
+  contactForm:FormGroup = inject(FormBuilder).group({
+    firstName: [''],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    company: ['', Validators.required],
+    postalCode: ['', Validators.required],
+    country: ['', Validators.required],
+    telephone: ['', Validators.pattern(/^\+?[0-9\s\-()]{7,15}$/)],
+    message: [''],
+    agreement: [false, Validators.requiredTrue],
+    file: [null as File | null],
+  });
 
   isFieldInvalid(fieldName: string, errorType?: string): boolean {
     const field = this.contactForm.get(fieldName);
@@ -85,6 +84,6 @@ export class ContactFormComponent {
   }
 
   closeForm() {
-    this.isVisible = false;
+    this.dialogRef.close();
   }
 }

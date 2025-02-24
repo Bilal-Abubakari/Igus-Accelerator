@@ -1,75 +1,142 @@
 @use '@angular/material' as mat;
 
-.form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-}
+$full-screen-width: 100vw;
+$full-screen-height: 100vh;
+$max-form-wrapper-width: 650px;
 
-.form-wrapper {
-  width: 600px;
-  margin-block: 10px;
+$submit-btn-bg-color: #3f51b5;
+$submit-btn-text-color: #fff;
+$submit-btn-hover-bg: #303f9f;
+
+$color-contact: #363636;
+$color-intro: #423e3a;
+
+$font-size-intro: 16px;
+$line-height-intro: 24px;
+$margin-bottom-intro: 32px;
+$font-size-agreement: 14px;
+
+$gap-standard: 20px;
+$margin-bottom-field: 10px;
+$padding-left-error: 40px;
+$padding-top-form-btns: 30px;
+$gap-form-btns: 18px;
+$form-btns-height: 55px;
+$select-file-btn-gap: 8px;
+$select-file-container-gap: 10px;
+
+$select-file-btn-transition:
+  background 0.3s ease,
+  box-shadow 0.3s ease;
+
+$telephone-width: 320px;
+$textarea-height: 70px;
+$subscript-padding-top: 4px;
+$subscript-height: auto !important;
+$floating-label-font-size: 16px;
+
+$error-font-size: 0.6rem;
+$error-line-height: 1rem;
+$error-min-height-transition: min-height 0.2s ease;
+
+$btn-width: 85px;
+$btn-height: 50px;
+$close-btn-top: 50px;
+$close-btn-right: 200px;
+$close-btn-color: #666;
+$close-btn-hover-color: #333;
+$button-radius: 0;
+
+.full-screen-modal {
+  width: $full-screen-width;
+  height: $full-screen-height;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 250px;
+
+  .form-wrapper {
+    width: 100%;
+    max-width: $max-form-wrapper-width;
+    margin: 0 auto;
+  }
 }
 
 h1.contact {
-  color: #363636;
+  color: $color-contact;
   margin-bottom: 0;
 }
 
 p.intro {
-  font-size: 16px;
+  font-size: $font-size-intro;
   font-weight: 400;
-  line-height: 24px;
+  line-height: $line-height-intro;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   letter-spacing: normal;
-  margin-bottom: 32px;
-  color: #423e3a;
+  margin-bottom: $margin-bottom-intro;
+  color: $color-intro;
 }
 
 .attach-file-title {
-  color: #423e3a;
-  margin: 20px 0;
+  color: $color-intro;
+  margin: $gap-standard 0;
 }
 
-.name-fields-container,
-.email-company-container,
+.email-company-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: $gap-standard;
+}
+
+.name-fields-container {
+  display: flex;
+  justify-content: space-between;
+  gap: $gap-standard;
+}
+
 .postal-country-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: $gap-standard;
+}
+
+.postal-code {
+  flex: 1;
+}
+
+.country {
+  flex: 2;
 }
 
 mat-form-field {
   width: 100%;
   flex: 1;
-  margin-bottom: 10px;
+  margin-bottom: $margin-bottom-field;
 
   .mat-mdc-form-field-subscript-wrapper {
-    padding-top: 4px;
-    height: auto !important;
+    padding-top: $subscript-padding-top;
+    height: $subscript-height;
   }
 }
 
 .telephone {
-  width: 320px;
+  width: $telephone-width;
 }
 
 textarea {
-  height: 70px !important;
+  height: $textarea-height !important;
 }
 
 ::ng-deep .mat-mdc-form-field .mdc-floating-label {
-  font-size: 16px !important;
+  font-size: $floating-label-font-size !important;
 }
 
 .mat-mdc-form-field-error {
-  font-size: 0.6rem !important;
-  line-height: 1rem !important;
+  font-size: $error-font-size !important;
+  line-height: $error-line-height !important;
   display: block;
   min-height: 0;
-  transition: min-height 0.2s ease;
+  transition: $error-min-height-transition;
 
   &:empty {
     min-height: 0 !important;
@@ -77,27 +144,30 @@ textarea {
 }
 
 .upload-container {
-  margin-bottom: 20px;
+  margin-bottom: $gap-standard;
 }
 
 .select-file-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
+  gap: $select-file-btn-gap;
+  transition: $select-file-btn-transition;
 }
 
-.select-file-container {
+.mat-mdc-button {
+  padding: 25px 7px;
+  border-radius: $button-radius;
+}
+
+.terms-agreemnet {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: $select-file-container-gap;
   align-items: center;
 }
 
 p.agreement {
-  font-size: 14px;
+  font-size: $font-size-agreement;
 
   a {
     color: inherit;
@@ -106,32 +176,39 @@ p.agreement {
 }
 
 .accept-error {
-  padding-left: 40px;
+  padding-left: $padding-left-error;
 }
 
 .form-btns {
-  padding-top: 30px;
+  padding-top: $padding-top-form-btns;
   display: flex;
-  gap: 18px;
+  gap: $gap-form-btns;
   justify-content: flex-end;
-  height: 55px;
+  height: $form-btns-height;
 }
 
 .cancel-btn,
 .submit-btn {
-  width: 90px;
+  width: $btn-width;
+  height: $btn-height;
+  border-radius: $button-radius;
+}
+
+.submit-btn {
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-tertiary) !important;
 }
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: $close-btn-top;
+  right: $close-btn-right;
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #666;
+  color: $close-btn-color;
 
   &:hover {
-    color: #333;
+    color: $close-btn-hover-color;
   }
 }

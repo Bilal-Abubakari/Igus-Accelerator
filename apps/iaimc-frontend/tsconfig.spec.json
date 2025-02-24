@@ -11,7 +11,6 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts",
-    "contact-form.component.spec.ts"
+    "src/**/*.d.ts"
   ]
 }
