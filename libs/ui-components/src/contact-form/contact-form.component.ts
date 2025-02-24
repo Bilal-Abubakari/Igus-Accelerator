@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -31,59 +31,70 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
-  constructor(private dialogRef: MatDialogRef<ContactFormComponent>) {}
+  private static readonly ALLOWED_FILE_TYPES: string[] = [
+    'image/png',
+    'image/jpeg',
+    'application/pdf',
+  ];
 
-  contactForm:FormGroup = inject(FormBuilder).group({
-    firstName: [''],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    company: ['', Validators.required],
-    postalCode: ['', Validators.required],
-    country: ['', Validators.required],
-    telephone: ['', Validators.pattern(/^\+?[0-9\s\-()]{7,15}$/)],
-    message: [''],
-    agreement: [false, Validators.requiredTrue],
-    file: [null as File | null],
-  });
+  public contactForm: FormGroup;
+  public fileValidationError = '';
 
-  isFieldInvalid(fieldName: string, errorType?: string): boolean {
+  constructor(
+    private readonly dialogRef: MatDialogRef<ContactFormComponent>,
+    private readonly formBuilder: FormBuilder,
+  ) {
+    this.contactForm = this.initializeForm();
+  }
+
+  private initializeForm(): FormGroup {
+    return this.formBuilder.group({
+      firstName: [''],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      company: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      country: ['', Validators.required],
+      telephone: ['', Validators.pattern(/^[+]?\d{7,15}$/)],
+      message: [''],
+      agreement: [false, Validators.requiredTrue],
+      file: [null as File | null],
+    });
+  }
+
+  public isFieldInvalid(fieldName: string, errorType?: string): boolean {
     const field = this.contactForm.get(fieldName);
-    if (!field) return false;
-
-    if (errorType) {
-      return field.hasError(errorType) && (field.touched || field.dirty);
-    }
-
-    return field.invalid && (field.touched || field.dirty);
+    return field
+      ? field.invalid &&
+          (field.touched || field.dirty) &&
+          (!errorType || field.hasError(errorType))
+      : false;
   }
 
-  onFileSelected(event: Event) {
+  public handleFileSelection(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files?.length) {
-      const file = input.files[0];
-      if (file.size > 5 * 1024 * 1024) {
-        alert('File size exceeds 5MB');
-        this.contactForm.patchValue({ file: null });
-        return;
-      }
-      if (!['image/png', 'image/jpeg', 'application/pdf'].includes(file.type)) {
-        alert('Invalid file type. Only PNG, JPEG, and PDF are allowed.');
-        this.contactForm.patchValue({ file: null });
-        return;
-      }
-      this.contactForm.patchValue({ file });
+    if (!input.files?.length) return;
+
+    const file = input.files[0];
+    if (!ContactFormComponent.ALLOWED_FILE_TYPES.includes(file.type)) {
+      this.fileValidationError =
+        'Invalid file type. Only PNG, JPEG, and PDF are allowed.';
+      this.contactForm.patchValue({ file: null });
+      return;
     }
+
+    this.fileValidationError = '';
+    this.contactForm.patchValue({ file });
   }
 
-  onSubmit() {
-    if (this.contactForm.valid) {
-      console.log('Form Value:', this.contactForm.value);
-    } else {
+  public submitForm(): void {
+    if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
+      return;
     }
   }
 
-  closeForm() {
+  public closeDialog(): void {
     this.dialogRef.close();
   }
 }

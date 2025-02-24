@@ -1,5 +1,5 @@
 <div class="full-screen-modal">
-  <button class="close-btn" mat-icon-button (click)="closeForm()">
+  <button class="close-btn" mat-icon-button (click)="closeDialog()">
     <mat-icon>close</mat-icon>
   </button>
 
@@ -10,7 +10,7 @@
       designer will be transmitted automatically.
     </p>
 
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
       <div class="name-fields-container">
         <mat-form-field>
           <mat-label>First name (optional)</mat-label>
@@ -20,11 +20,9 @@
         <mat-form-field>
           <mat-label>Last name</mat-label>
           <input matInput formControlName="lastName" />
-          @if (contactForm.get('lastName')?.hasError('required') &&
-          (contactForm.get('lastName')?.touched ||
-          contactForm.get('lastName')?.dirty)) {
-          <mat-error>Last name is required</mat-error>
-          }
+          <mat-error *ngIf="contactForm.get('lastName')?.hasError('required') && contactForm.get('lastName')?.touched">
+            Last name is required
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -32,28 +30,18 @@
         <mat-form-field>
           <mat-label>E-mail</mat-label>
           <input matInput formControlName="email" />
-          @if (contactForm.get('email')?.invalid &&
-          (contactForm.get('email')?.touched || contactForm.get('email')?.dirty))
-          {
-          <mat-error>
-            @if (contactForm.get('email')?.hasError('required')) {
-            <span>Email is required</span>
-            }
-            @if (contactForm.get('email')?.hasError('email')) {
-            <span>Invalid email format</span>
-            }
+          <mat-error *ngIf="contactForm.get('email')?.touched">
+            <span *ngIf="contactForm.get('email')?.hasError('required')">Email is required</span>
+            <span *ngIf="contactForm.get('email')?.hasError('email')">Invalid email format</span>
           </mat-error>
-          }
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Company</mat-label>
           <input matInput formControlName="company" />
-          @if (contactForm.get('company')?.hasError('required') &&
-          (contactForm.get('company')?.touched ||
-          contactForm.get('company')?.dirty)) {
-          <mat-error>Company is required</mat-error>
-          }
+          <mat-error *ngIf="contactForm.get('company')?.hasError('required') && contactForm.get('company')?.touched">
+            Company is required
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -61,21 +49,17 @@
         <mat-form-field class="postal-code">
           <mat-label>Postal code</mat-label>
           <input matInput formControlName="postalCode" />
-          @if (contactForm.get('postalCode')?.hasError('required') &&
-          (contactForm.get('postalCode')?.touched ||
-          contactForm.get('postalCode')?.dirty)) {
-          <mat-error>Postal code is required</mat-error>
-          }
+          <mat-error *ngIf="contactForm.get('postalCode')?.hasError('required') && contactForm.get('postalCode')?.touched">
+            Postal code is required
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="country">
           <mat-label>Country</mat-label>
           <input matInput formControlName="country" />
-          @if (contactForm.get('country')?.hasError('required') &&
-          (contactForm.get('country')?.touched ||
-          contactForm.get('country')?.dirty)) {
-          <mat-error>Country is required</mat-error>
-          }
+          <mat-error *ngIf="contactForm.get('country')?.hasError('required') && contactForm.get('country')?.touched">
+            Country is required
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -90,24 +74,14 @@
       </mat-form-field>
 
       <p class="attach-file-title">File attachment (optional)</p>
-
       <div class="upload-container">
-        <input
-          #fileInput
-          type="file"
-          hidden
-          (change)="onFileSelected($event)"
-        />
-        <button
-          class="select-file-btn"
-          mat-button
-          color="primary"
-          type="button"
-          (click)="fileInput.click()"
-        >
+        <input #fileInput type="file" hidden (change)="handleFileSelection($event)" />
+        <button class="select-file-btn" mat-button color="primary" type="button" (click)="fileInput.click()">
           <mat-icon>upload_file</mat-icon>
           Select File
         </button>
+        <p *ngIf="contactForm.get('file')?.value" class="selected-file-name">{{ contactForm.get('file')?.value?.name }}</p>
+        <p *ngIf="fileValidationError" class="error-message">{{ fileValidationError }}</p>
       </div>
 
       <div class="terms-agreemnet">
@@ -129,7 +103,6 @@
         You must accept the data protection regulations
       </mat-error>
       }
-
       <div class="form-btns">
         <button class="cancel-btn" mat-stroked-button type="button">Cancel</button>
         <button class="submit-btn" mat-stroked-button type="submit">Submit</button>
