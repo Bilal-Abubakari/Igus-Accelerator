@@ -21,7 +21,7 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'yarn'
       - name: install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-scripts
       - name: run lints
         run: yarn lint
       - name: check prettier formatting
