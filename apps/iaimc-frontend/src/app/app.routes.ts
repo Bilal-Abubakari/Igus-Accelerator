@@ -1,3 +1,8 @@
 import { Route } from '@angular/router';
 
-export const appRoutes: Route[] = [];
+import { accountsRoutes } from './accounts.routes';
+
+export const appRoutes: Route[] = [
+  { path: '', redirectTo: 'customer/library', pathMatch: 'full' },
+  ...accountsRoutes,
+];
