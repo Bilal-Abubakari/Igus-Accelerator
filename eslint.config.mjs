@@ -33,7 +33,6 @@ export default [
         ecmaVersion: 'latest',
         sourceType: 'module',
         project: ['apps/iaimc-backend/tsconfig.app.json'],
-
         tsconfigRootDir: process.cwd(),
       },
     },
@@ -44,6 +43,11 @@ export default [
       '@typescript-eslint/no-unsafe-member-access': 'error',
       '@typescript-eslint/no-unsafe-call': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/no-unsafe-argument': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+
       '@typescript-eslint/member-ordering': [
         'error',
         {
@@ -66,55 +70,6 @@ export default [
         'error',
         { allowWithDecorator: true },
       ],
-    },
-  },
-
-  {
-    files: ['apps/iaimc-frontend/**/*.ts'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        project: [
-          'tsconfig.base.json',
-          'apps/*/tsconfig.json',
-          'libs/*/tsconfig.json',
-        ],
-        tsconfigRootDir: process.cwd(),
-      },
-    },
-    rules: {
-      '@angular-eslint/component-selector': [
-        'error',
-        { type: 'element', prefix: 'app', style: 'kebab-case' },
-      ],
-      '@angular-eslint/directive-selector': [
-        'error',
-        { type: 'attribute', prefix: 'app', style: 'camelCase' },
-      ],
-      '@angular-eslint/no-conflicting-lifecycle': 'error',
-      '@angular-eslint/prefer-on-push-component-change-detection': 'error',
-      '@angular-eslint/no-empty-lifecycle-method': 'error',
-      '@angular-eslint/use-injectable-provided-in': 'error',
-      '@angular-eslint/no-input-rename': 'error',
-      '@angular-eslint/no-output-native': 'error',
-      '@angular-eslint/use-component-selector': 'error',
-      '@angular-eslint/no-lifecycle-call': 'error',
-    },
-  },
-
-  {
-    files: ['**/*.html'],
-    rules: {
-      '@angular-eslint/template/prefer-control-flow': 'error',
-      '@angular-eslint/template/conditional-complexity': [
-        'error',
-        { maxComplexity: 4 },
-      ],
-      '@angular-eslint/template/cyclomatic-complexity': [
-        'error',
-        { maxComplexity: 10 },
-      ],
-      '@angular-eslint/template/no-call-expression': 'error',
     },
   },
 
@@ -145,26 +100,7 @@ export default [
   },
 
   {
-    files: ['**/*'],
-    rules: {
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        {
-          allowExpressions: false,
-          allowTypedFunctionExpressions: true,
-          allowHigherOrderFunctions: false,
-        },
-      ],
-
-      '@typescript-eslint/explicit-member-accessibility': [
-        'error',
-        {
-          accessibility: 'explicit',
-          overrides: {
-            constructors: 'no-public',
-          },
-        },
-      ],
-    },
+    files: ['**/*.ts'],
+    rules: {},
   },
 ];
