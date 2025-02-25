@@ -1,0 +1,79 @@
+<div class="region-container">
+  <div class="region">
+    <div class="header-container">
+      <h3>Select your country</h3>
+      <mat-icon (click)="close()">close</mat-icon>
+    </div>
+  </div>
+
+  <div>
+    <div class="region">
+      <h2>Africa, Middle East, and India</h2>
+      <div class="country-grid">
+        <div
+          *ngFor="let country of africaMiddleEastIndiaCountries"
+          class="country-item"
+        >
+          <div class="flag-container">
+            <img
+              [src]="
+                'https://flagsapi.com/' +
+                country.code.toUpperCase() +
+                '/flat/64.png'
+              "
+              [alt]="country.code"
+            />
+          </div>
+          <span class="country-name"
+            >{{ country.name }} ({{ country.language }})</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="region">
+    <h2>Asia-Pacific</h2>
+    <div class="country-grid">
+      <div *ngFor="let country of asiaPacificCountries" class="country-item">
+        <div class="flag-container">
+          <img
+            [src]="
+              'https://flagsapi.com/' +
+              country.code.toUpperCase() +
+              '/flat/64.png'
+            "
+            [alt]="country.code"
+          />
+        </div>
+        <span class="country-name"
+          >{{ country.name }} ({{ country.language }})</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="region">
+    <h2>Europe</h2>
+    <div class="country-grid">
+      <div *ngFor="let country of europeCountries" class="country-item">
+        <div class="flag-container">
+          <img
+            [src]="
+              'https://flagsapi.com/' +
+              country.code.toUpperCase() +
+              '/flat/64.png'
+            "
+            [alt]="country.code"
+          />
+        </div>
+        <span class="country-name"
+          >{{ country.name }} ({{ country.language }})</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-wrapper">
+    <button mat-flat-button color="primary" (click)="close()">Close</button>
+  </div>
+</div>
