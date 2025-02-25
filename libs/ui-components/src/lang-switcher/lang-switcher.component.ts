@@ -44,8 +44,4 @@ export class LangSwitcherComponent implements OnInit {
   public close() {
     this.dialogRef.close();
   }
-
-  public setLanguage(lang: string) {
-    lang
-  }
 }

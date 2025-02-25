@@ -242,10 +242,4 @@ describe('LangSwitcherComponent', () => {
     component.close();
     expect(mockDialogRef.close).toHaveBeenCalled();
   });
-
-  it('should set language when setLanguage() is called', () => {
-    const lang = 'en';
-    component.setLanguage(lang);
-    // expect(component.translocoService.setActiveLang).toHaveBeenCalledWith(lang);
-  });
 });
