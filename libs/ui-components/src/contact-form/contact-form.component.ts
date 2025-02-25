@@ -41,7 +41,7 @@ export class ContactFormComponent {
   public fileValidationError = '';
 
   constructor(
-    private readonly dialogRef: MatDialogRef<ContactFormComponent>,
+    public readonly dialogRef: MatDialogRef<ContactFormComponent>,
     private readonly formBuilder: FormBuilder,
   ) {
     this.contactForm = this.initializeForm();
