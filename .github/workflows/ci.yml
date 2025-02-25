@@ -51,8 +51,10 @@ jobs:
           cache: 'yarn'
       - name: install vercel cli
         run: yarn global add vercel
+      - name: link vercel project
+        run: vercel link --yes --project injection-molding-configurator --token=${{ secrets.VERCEL_TOKEN }}
       - name: pull vercel project settings
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }} --project injection-molding-configurator
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: build project
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: deploy to vercel
