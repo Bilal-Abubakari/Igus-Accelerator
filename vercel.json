@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/iaimc-backend/src/main.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apps/iaimc-backend/src/main.js"
+    }
+  ],
+  "buildCommand": "npx nx build iaimc-backend",
+  "installCommand": "npm install",
+  "outputDirectory": "dist/apps/iaimc-backend"
+}
