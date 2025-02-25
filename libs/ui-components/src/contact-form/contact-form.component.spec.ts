@@ -128,7 +128,7 @@ describe('ContactFormComponent', () => {
     component.handleFileSelection(mockEvent);
     expect(component.contactForm.get('file')?.value).toBeNull();
     expect(component.fileValidationError).toBe(
-      'Invalid file type. Only PNG, JPEG, and PDF are allowed.'
+      'Invalid file type. Only PNG, JPEG, and PDF are allowed.',
     );
   });
 
