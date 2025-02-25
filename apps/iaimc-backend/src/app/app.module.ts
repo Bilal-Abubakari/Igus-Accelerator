@@ -14,4 +14,4 @@ import envConfig from './configurations/env.config';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
