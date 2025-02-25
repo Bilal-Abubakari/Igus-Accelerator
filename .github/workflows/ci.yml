@@ -1,21 +1,29 @@
-name: Frontend CI/CD Pipeline
+name: Code Quality Checks
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-    paths:
-      - apps/iaimc-frontend/**
-      - libs/ui-components/**
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
-  code-quality-checks:
+  pr-lints-and-code-quality-checks:
+    name: PR Lints and Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
+      - name: validate pr title
+        uses: seferov/pr-lint-action@master
+        with:
+          title-regex: '^(feat|fix|style|refactor|test)\((frontend|backend|config|pipeline)\): [a-z].+$|^(docs|chore): [a-z].+$'
+          title-regex-flags: 'g'
+          error-message: 'Refer to the confluence page for the rules on PR titles'
       - name: checkout repo
         uses: actions/checkout@v4
-      - name: setup node
+      - name: setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
@@ -26,12 +34,12 @@ jobs:
         run: yarn lint
       - name: check prettier formatting
         run: yarn format
-      - name: run tests for frontend enforcing coverage threshold
-        run: yarn test:frontend-c
+      - name: run tests enforcing coverage threshold
+        run: yarn test:all-c
 
-  deploy:
+  deploy-frontend:
     runs-on: ubuntu-latest
-    needs: code-quality-checks
+    needs: pr-lints-and-code-quality-checks
 
     steps:
       - name: checkout repo
@@ -49,3 +57,15 @@ jobs:
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: deploy to vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+  deploy-backend:
+    runs-on: ubuntu-latest
+    needs: pr-lints-and-code-quality-checks
+
+    steps:
+      - name: deploy to render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
