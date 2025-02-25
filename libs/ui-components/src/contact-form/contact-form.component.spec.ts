@@ -76,13 +76,19 @@ describe('ContactFormComponent', () => {
       agreement: true,
     });
 
-    const markAllAsTouchedSpy = jest.spyOn(component.contactForm, 'markAllAsTouched');
+    const markAllAsTouchedSpy = jest.spyOn(
+      component.contactForm,
+      'markAllAsTouched',
+    );
     component.submitForm();
     expect(markAllAsTouchedSpy).toHaveBeenCalled();
   });
 
   it('should mark fields as touched when submitting invalid form', () => {
-    const markAllAsTouchedSpy = jest.spyOn(component.contactForm, 'markAllAsTouched');
+    const markAllAsTouchedSpy = jest.spyOn(
+      component.contactForm,
+      'markAllAsTouched',
+    );
     component.submitForm();
     expect(markAllAsTouchedSpy).toHaveBeenCalled();
   });
@@ -94,17 +100,23 @@ describe('ContactFormComponent', () => {
   });
 
   it('should handle valid file selection', () => {
-    const mockFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });
+    const mockFile = new File(['test'], 'test.pdf', {
+      type: 'application/pdf',
+    });
     const mockEvent = { target: { files: [mockFile] } } as unknown as Event;
     component.handleFileSelection(mockEvent);
     expect(component.contactForm.get('file')?.value).toBe(mockFile);
   });
 
   it('should handle invalid file selection', () => {
-    const mockFile = new File(['test'], 'test.exe', { type: 'application/x-msdownload' });
+    const mockFile = new File(['test'], 'test.exe', {
+      type: 'application/x-msdownload',
+    });
     const mockEvent = { target: { files: [mockFile] } } as unknown as Event;
     component.handleFileSelection(mockEvent);
-    expect(component.fileValidationError).toBe('Invalid file type. Only PNG, JPEG, and PDF are allowed.');
+    expect(component.fileValidationError).toBe(
+      'Invalid file type. Only PNG, JPEG, and PDF are allowed.',
+    );
     expect(component.contactForm.get('file')?.value).toBeNull();
   });
 });
