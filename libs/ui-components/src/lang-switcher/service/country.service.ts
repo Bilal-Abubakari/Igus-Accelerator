@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Country, RegionsData } from './interface';
-import region from '../assets/country/country.json';
+import region from '../../assets/country/country.json';
 import { catchError, map, shareReplay } from 'rxjs/operators';
+import { Country, RegionsData } from '../interface/country.interface';
 
 @Injectable({
   providedIn: 'root',

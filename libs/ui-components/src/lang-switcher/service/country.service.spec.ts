@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CountryService } from './country.service';
 import { firstValueFrom, of } from 'rxjs';
-import { Country, RegionsData } from './interface';
+import { Country, RegionsData } from '../interface/country.interface';
 
 describe('CountryService', () => {
   let service: CountryService;
