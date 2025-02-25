@@ -52,7 +52,7 @@ jobs:
       - name: install vercel cli
         run: yarn global add vercel
       - name: link vercel project
-        run: vercel link --yes --project injection-molding-configurator --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel link --yes --project injection-moulding-configurator --token=${{ secrets.VERCEL_TOKEN }}
       - name: pull vercel project settings
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: build project
