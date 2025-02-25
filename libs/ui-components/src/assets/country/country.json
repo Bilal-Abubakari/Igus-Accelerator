@@ -1,0 +1,36 @@
+{
+  "africaMiddleEastIndia": [
+    { "name": "Egypt", "language": "English", "code": "eg" },
+    { "name": "Ghana", "language": "Twi", "code": "gh" },
+    { "name": "India", "language": "English", "code": "in" },
+    { "name": "Israel", "language": "English", "code": "il" },
+    { "name": "South Africa", "language": "English", "code": "za" }
+  ],
+  "asiaPacific": [
+    { "name": "Australia", "language": "English", "code": "au" },
+    { "name": "中国", "language": "汉语", "code": "cn" },
+    { "name": "Indonesia", "language": "Bahasa", "code": "id" },
+    { "name": "日本", "language": "日本語", "code": "jp" },
+    { "name": "대한민국", "language": "한국어", "code": "kr" },
+    { "name": "Malaysia", "language": "English", "code": "my" },
+    { "name": "New Zealand", "language": "English", "code": "nz" },
+    { "name": "Singapore", "language": "English", "code": "sg" },
+    { "name": "Thailand", "language": "English", "code": "th" },
+    { "name": "台灣", "language": "繁體中文", "code": "tw" },
+    { "name": "Việt Nam", "language": "Tiếng Việt", "code": "vn" }
+  ],
+  "europe": [
+    { "name": "België", "language": "Nederlands", "code": "be" },
+    { "name": "Belgique", "language": "Français", "code": "be" },
+    { "name": "Belgien", "language": "Deutsch", "code": "be" },
+    { "name": "Bulgaria", "language": "English", "code": "bg" },
+    { "name": "Česká republika", "language": "čeština", "code": "cz" },
+    { "name": "Croatia", "language": "English", "code": "hr" },
+    { "name": "Danmark", "language": "Dansk", "code": "dk" },
+    { "name": "Deutschland", "language": "Deutsch", "code": "de" },
+    { "name": "España", "language": "Español", "code": "es" },
+    { "name": "Estonia", "language": "English", "code": "ee" },
+    { "name": "Finland", "language": "English", "code": "fi" },
+    { "name": "France", "language": "Français", "code": "fr" }
+  ]
+}
