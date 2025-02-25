@@ -1,7 +1,7 @@
 import { ConfigModuleOptions } from '@nestjs/config';
+import databaseConfig from './database.config';
 
 export default {
-  envFilePath: '../../.env',
   isGlobal: true,
-  load: [],
-} as ConfigModuleOptions;
+  load: [databaseConfig],
+} satisfies ConfigModuleOptions;
