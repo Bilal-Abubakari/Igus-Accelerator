@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:frontend": "nx serve frontend",
-    "start:backend": "nx serve backend",
+    "start:frontend": "yarn nx lint iaimc-frontend && yarn nx serve iaimc-frontend",
+    "start:backend": "yarn nx lint iaimc-backend && yarn nx serve iaimc-backend",
     "lint": "nx run-many --target=lint --no-cloud --all",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
