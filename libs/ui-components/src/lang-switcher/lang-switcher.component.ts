@@ -21,7 +21,6 @@ import { CountryService } from './service/country.service';
 export class LangSwitcherComponent implements OnInit {
   private dialogRef = inject(MatDialogRef<LangSwitcherComponent>);
   private countryService = inject(CountryService);
-  // private translocoService = inject(TranslocoService);
   public africaMiddleEastIndiaCountries: Country[] = [];
   public asiaPacificCountries: Country[] = [];
   public europeCountries: Country[] = [];
@@ -47,7 +46,6 @@ export class LangSwitcherComponent implements OnInit {
   }
 
   public setLanguage(lang: string) {
-    console.log(lang);
-    // this.translocoService.setActiveLang(lang);
+    lang
   }
 }
