@@ -6,11 +6,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Country } from './interface';
-
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { CountryService } from './country.service';
+import { Country } from './interface/country.interface';
+import { CountryService } from './service/country.service';
 
 @Component({
   selector: 'app-lang-switcher',

@@ -3,7 +3,7 @@ import { LangSwitcherComponent } from './lang-switcher.component';
 import { By } from '@angular/platform-browser';
 import { MatDialogRef } from '@angular/material/dialog';
 import { of, throwError } from 'rxjs';
-import { CountryService } from './country.service';
+import { CountryService } from './service/country.service';
 
 describe('LangSwitcherComponent', () => {
   let component: LangSwitcherComponent;
