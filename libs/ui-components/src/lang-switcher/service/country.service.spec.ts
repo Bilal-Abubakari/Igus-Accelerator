@@ -59,7 +59,6 @@ describe('CountryService', () => {
   });
 
   it('should return an empty array if region data is undefined', async () => {
-    // Mock regionsData$ with undefined region data
     service.regionsData$ = of({} as RegionsData);
 
     let africanCountries: Country[] = [];
@@ -77,7 +76,6 @@ describe('CountryService', () => {
   });
 
   it('should return an empty array if region data is null', async () => {
-    // Mock regionsData$ with null region data
     service.regionsData$ = of({
       africaMiddleEastIndia: null,
       asiaPacific: null,
