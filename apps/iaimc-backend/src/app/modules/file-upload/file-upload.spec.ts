@@ -60,7 +60,7 @@ fdescribe('FileUploadService', () => {
       InternalServerErrorException,
     );
 
-    expect(loggerSpy).toHaveBeenCalled()
+    expect(loggerSpy).toHaveBeenCalled();
   });
 
   it('should go through successfully if file upload succeeds', async () => {
