@@ -1,0 +1,40 @@
+<main class="feedback-container">
+  <ng-container *ngIf="!submitted; else successMessage">
+    <h4>Thank you for your feedback!</h4>
+    <p>We would like to learn more about your ideas. May we contact you?</p>
+    <form [formGroup]="contactForm">
+      <mat-form-field appearance="outline" class="email-input">
+        <input
+          matInput
+          type="email"
+          placeholder="E-mail"
+          formControlName="email"
+        />
+        <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+      <button mat-button [disabled]="!contactForm.valid" class="custom-button">
+        Submit
+      </button>
+    </form>
+    <p class="privacy-notice">
+      By clicking "Submit", you agree to the processing of your personal data.
+      You can withdraw this consent at any time. Read our
+      <a routerLink="#">Privacy Policy</a> for more information.
+    </p>
+  </ng-container>
+
+  <ng-template #successMessage>
+    <div class="success-container">
+      <h2>Thank you for your feedback!</h2>
+      <div class="feedback-image">
+        <img
+          src="assets/thank-you.png"
+          alt="Feedback submitted successfully"
+          class="success-image"
+        />
+      </div>
+    </div>
+  </ng-template>
+</main>
