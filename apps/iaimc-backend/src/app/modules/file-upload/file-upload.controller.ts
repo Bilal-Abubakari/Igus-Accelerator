@@ -29,7 +29,7 @@ export class FileUploadController {
       new FileTypeValidatorPipe(ALLOWED_MODEL_MIME_TYPES),
     )
     file: MulterFile,
-    @Body(ValidationPipe) body: FileStoreUploadDto,
+    @Body(ValidationPipe) {directory}: FileStoreUploadDto,
   ): Promise<ResponseObject> {
     return this.fileUploadService.uploadFile(file, body.directory);
   }
