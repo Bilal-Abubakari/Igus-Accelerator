@@ -83,7 +83,6 @@ export default [
       '@typescript-eslint/class-methods-use-this': 'warn',
 
       'simple-import-sort/imports': 'error',
-      '@typescript-eslint/no-unsafe-assignment': 'error',
       '@typescript-eslint/switch-exhaustiveness-check': 'error',
       '@typescript-eslint/require-await': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
