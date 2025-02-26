@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
+import { NAVIGATION_ROUTES } from 'libs/ui-components/src/navbar/constants';
 
 import { LibraryComponent } from './library/library.component';
 import { MoldingConfigurationComponent } from './molding-configuration/molding-configuration.component';
-import { NAVIGATION_ROUTES } from 'libs/ui-components/src/navbar/constants';
 
 export const customerRoutes: Route[] = [
   { path: '', redirectTo: NAVIGATION_ROUTES.LIBRARY, pathMatch: 'full' },
