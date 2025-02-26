@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FooterComponent } from './footer.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -44,7 +49,9 @@ describe('FooterComponent', () => {
   it('should have the proper structure', () => {
     expect(fixture.debugElement.query(By.css('footer'))).toBeTruthy();
     expect(fixture.debugElement.query(By.css('.contact-us'))).toBeTruthy();
-    expect(fixture.debugElement.query(By.css('.rating-container'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('.rating-container')),
+    ).toBeTruthy();
   });
 
   it('should display correct contact information', () => {
@@ -60,16 +67,22 @@ describe('FooterComponent', () => {
   it('should display correct section headers', () => {
     const headers = fixture.debugElement.queryAll(By.css('h4'));
     expect(headers[0].nativeElement.textContent).toBe('Contact us');
-    expect(headers[1].nativeElement.textContent).toBe('Please rate this configurator');
+    expect(headers[1].nativeElement.textContent).toBe(
+      'Please rate this configurator',
+    );
   });
 
   it('should display the correct copyright text', () => {
     fixture.detectChanges();
     const currentYear = new Date().getFullYear();
     const expectedText = `© ${currentYear} accelerator modeling configurator® GmbH`;
-    const copyrightElement = fixture.debugElement.query(By.css('footer > span'));
+    const copyrightElement = fixture.debugElement.query(
+      By.css('footer > span'),
+    );
     expect(copyrightElement).toBeTruthy();
-    expect(copyrightElement.nativeElement.textContent.trim()).toBe(expectedText);
+    expect(copyrightElement.nativeElement.textContent.trim()).toBe(
+      expectedText,
+    );
   });
 
   it('should render the rating stars', () => {
@@ -115,7 +128,6 @@ describe('FooterComponent', () => {
     expect(component.isFormValid()).toBeFalsy();
   });
 
-
   it('should not process submission when form is invalid', () => {
     component.ratingForm.patchValue({ rating: null, feedback: '' });
     component.onSubmit();
@@ -123,11 +135,12 @@ describe('FooterComponent', () => {
     expect(component.isSubmitted).toBeFalsy();
   });
 
-
   it('should show submit button when not loading', () => {
     component.isRattingLoading = false;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('button.custom-button'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('button.custom-button')),
+    ).toBeTruthy();
   });
 
   it('should maintain selected rating on clicking the same star twice', () => {
@@ -168,7 +181,9 @@ describe('FooterComponent', () => {
 
     try {
       component.onSubmit();
-    } catch (e) {}
+    } catch (e) {
+      expect(e).toBeInstanceOf(Error);
+    }
 
     fixture.detectChanges();
 
@@ -181,26 +196,40 @@ describe('FooterComponent', () => {
     component.isRattingLoading = true;
     fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.submit-rating-button'))).toBeFalsy();
-    expect(fixture.debugElement.query(By.css('.spinner-container'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('.submit-rating-button')),
+    ).toBeFalsy();
+    expect(
+      fixture.debugElement.query(By.css('.spinner-container')),
+    ).toBeTruthy();
   });
 
   it('should show loading spinner when submitting', () => {
     component.ratingForm.patchValue({ rating: 4, feedback: 'Great tool!' });
     component.onSubmit();
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.spinner-container'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('.spinner-container')),
+    ).toBeTruthy();
   });
 
   it('should show submit button when isRattingLoading is false', () => {
     component.isRattingLoading = false;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.submit-rating-button'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('.submit-rating-button')),
+    ).toBeTruthy();
   });
 
   it('should handle null form controls in isFormValid()', () => {
     const originalForm = component.ratingForm;
-    const mockForm = {
+    type FormControlValue = string | number | null | undefined;
+    type FormControlLike = { value: FormControlValue };
+    interface FormGroupLike {
+      get(name: string): FormControlLike | null;
+    }
+
+    const mockForm: FormGroupLike = {
       get: (controlName: string) => {
         if (controlName === 'rating') {
           return { value: null };
@@ -209,16 +238,25 @@ describe('FooterComponent', () => {
           return { value: '' };
         }
         return originalForm.get(controlName);
-      }
+      },
     };
-    component.ratingForm = mockForm as any;
+
+    component.ratingForm = mockForm as FormGroup;
     expect(component.isFormValid()).toBeFalsy();
     component.ratingForm = originalForm;
   });
 
   it('should handle undefined values in feedback control', () => {
-    const originalForm:FormGroup<string> = component.ratingForm;
-    const mockForm = {
+    const originalForm = component.ratingForm;
+
+    type FormControlValue = string | number | null | undefined;
+    type FormControlLike = { value: FormControlValue };
+    interface FormGroupLike {
+      get(name: string): FormControlLike | null;
+      patchValue(val: Record<string, FormControlValue>): void;
+    }
+
+    const mockForm: FormGroupLike = {
       get: (controlName: string) => {
         if (controlName === 'feedback') {
           return { value: undefined };
@@ -228,10 +266,10 @@ describe('FooterComponent', () => {
         }
         return originalForm.get(controlName);
       },
-      patchValue: jest.fn()
+      patchValue: jest.fn(),
     };
 
-    component.ratingForm = mockForm as any;
+    component.ratingForm = mockForm as FormGroup;
     expect(component.isFormValid()).toBeFalsy();
 
     component.ratingForm = originalForm;
@@ -243,8 +281,8 @@ describe('FooterComponent', () => {
     tick(100);
     fixture.detectChanges();
     expect(component.isSubmitted).toBe(true);
-    expect(fixture.debugElement.query(By.css('app-thank-you-feedback'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('app-thank-you-feedback')),
+    ).toBeTruthy();
   }));
-
-
 });

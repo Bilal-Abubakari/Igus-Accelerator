@@ -4,7 +4,7 @@ import {
   FormBuilder,
   FormGroup,
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
