@@ -9,7 +9,7 @@ import envConfig from './configurations/env.config';
 @Module({
   imports: [
     ConfigModule.forRoot(envConfig),
-    TypeOrmModule.forRoot(databaseConfig()),
+    TypeOrmModule.forRoot(databaseConfig().database),
   ],
   controllers: [AppController],
   providers: [AppService],
