@@ -2,12 +2,12 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { v2 as cloudinary } from 'cloudinary';
-import { MulterFile } from '../../common/types';
+import { FileStoreDirectory, MulterFile } from '../../common/types';
 import { FileUploadService } from './file-upload.service';
 
 jest.mock('cloudinary');
 
-fdescribe('FileUploadService', () => {
+describe('FileUploadService', () => {
   let service: FileUploadService;
   let loggerSpy: jest.SpyInstance;
 
@@ -48,7 +48,7 @@ fdescribe('FileUploadService', () => {
       originalname: 'test.txt',
       buffer: Buffer.from('test'),
     } as MulterFile;
-    const directory = 'test_directory';
+    const directory = FileStoreDirectory.MODELS;
 
     (cloudinary.uploader.upload_stream as jest.Mock).mockImplementation(
       (_, callback) => {
@@ -60,7 +60,7 @@ fdescribe('FileUploadService', () => {
       InternalServerErrorException,
     );
 
-    expect(loggerSpy).toHaveBeenCalled()
+    expect(loggerSpy).toHaveBeenCalled();
   });
 
   it('should go through successfully if file upload succeeds', async () => {
@@ -68,7 +68,7 @@ fdescribe('FileUploadService', () => {
       originalname: 'test.txt',
       buffer: Buffer.from('test'),
     } as MulterFile;
-    const directory = 'test_directory';
+    const directory = FileStoreDirectory.MODELS;
 
     const mockResult = { public_id: 'test_public_id', url: 'http://test.url' };
     (cloudinary.uploader.upload_stream as jest.Mock).mockImplementation(

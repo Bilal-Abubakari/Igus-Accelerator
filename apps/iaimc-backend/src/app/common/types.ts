@@ -28,6 +28,4 @@ export type MulterFile = Express.Multer.File;
 export interface ResponseObject<T = undefined> {
   message?: string;
   data?: T;
-};
-
-
+}
