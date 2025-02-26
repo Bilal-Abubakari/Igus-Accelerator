@@ -1,0 +1,34 @@
+<mat-toolbar class="navbar">
+  <button type="button" class="menu_toggle" (click)="toggleMenu()">☰</button>
+  <nav [class.open]="isMenuOpened()">
+    <ul>
+      <li>
+        <a
+          #homeTab
+          [routerLink]="homeRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >library</a
+        >
+      </li>
+      <li>
+        <a
+          #configurationsTab
+          [routerLink]="configurationsRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >configurations</a
+        >
+      </li>
+      <li>
+        <a
+          #producibilityTab
+          [routerLink]="producibilityRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >producibility</a
+        >
+      </li>
+    </ul>
+  </nav>
+</mat-toolbar>
