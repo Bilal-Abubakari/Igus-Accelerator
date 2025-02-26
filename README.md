@@ -2,7 +2,6 @@
 
 This repository contains an Angular frontend and a NestJS backend;
 
-
 ## Getting Started
 
 To get started with this monorepo, ensure you have [node](https://nodejs.org/) (ideally a version specified in `.nvmrc`, if present) and [yarn](https://yarnpkg.com/) installed on your machine.
