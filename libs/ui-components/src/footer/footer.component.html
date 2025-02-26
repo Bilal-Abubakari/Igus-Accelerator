@@ -1,0 +1,63 @@
+<mat-toolbar>
+  <footer>
+    <form [formGroup]="ratingForm" class="form-group">
+      <section class="contact-us">
+        <h4>Contact us</h4>
+        <div class="contact">
+          <div class="contact__tel">
+            <p>accelerator modeling configurator® GmbH</p>
+            <a [href]="'tel:+4922039649145'">+49 2203 9649 145</a>
+          </div>
+          <button mat-button class="custom-button">Write a message</button>
+        </div>
+      </section>
+
+      <section *ngIf="!isSubmitted" class="rating-container">
+        <div class="rating-container__wrapper">
+          <h4>Please rate this configurator</h4>
+          <div class="rating-stars">
+            <mat-icon
+              *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+              [class.filled]="i + 1 <= (hoveredRating || selectedRating)"
+              [class.hovered]="i + 1 <= hoveredRating"
+              (mouseenter)="onMouseEnter(i + 1)"
+              (mouseleave)="onMouseLeave()"
+              (click)="onClick(i + 1)"
+              (keydown)="onClick(i + 1)"
+              aria-hidden="false"
+              aria-label="Rate"
+              [title]="i + 1"
+            >
+              star
+            </mat-icon>
+          </div>
+          <mat-form-field class="form-input">
+            <textarea
+              formControlName="feedback"
+              matInput
+              placeholder="What can we improve?"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isRattingLoading" class="spinner-container">
+          <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+        </div>
+        <button
+          *ngIf="!isRattingLoading"
+          mat-button
+          [disabled]="!isFormValid()"
+          (click)="onSubmit()"
+          class="custom-button submit-rating-button"
+        >
+          Submit rating
+        </button>
+      </section>
+      <div *ngIf="isSubmitted">
+        <app-thank-you-feedback />
+      </div>
+    </form>
+    <span
+      >&copy; {{ currentYear }} accelerator modeling configurator® GmbH</span
+    >
+  </footer>
+</mat-toolbar>
