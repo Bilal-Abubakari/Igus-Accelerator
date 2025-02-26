@@ -30,16 +30,17 @@ mat-toolbar {
     @include flex-option();
     flex-direction: column;
     gap: 1rem;
-    padding: 1rem;
+    padding: 3rem 0 1rem 0;
     span,
     p,
     a {
       font-size: 0.875rem;
     }
 
-    .footer-container {
+    .form-group {
       width: 50%;
       @include flex-option(flex, space-between, left);
+      gap: 1.5rem;
       .custom-button {
         color: var(--mat-sys-primary);
         width: 50%;
@@ -47,7 +48,8 @@ mat-toolbar {
           color: var(--mat-sys-primary-container);
         }
       }
-      &__contact-us {
+      .contact-us {
+        width: 20rem;
         .contact {
           &__tel {
             padding-left: 0.8rem;
@@ -67,9 +69,19 @@ mat-toolbar {
         }
       }
       .rating-container {
-        @include flex-option(flex, center, center);
+        @include flex-option();
         flex-direction: column;
-        gap: 1rem;
+        &__wrapper {
+          width: 20rem;
+          @include flex-option(flex, left, left);
+          flex-direction: column;
+          gap: 1rem;
+        }
+        @include mat.progress-spinner-overrides(
+          (
+            active-indicator-color: var(--mat-sys-primary),
+          )
+        );
         .rating-stars {
           display: flex;
           gap: 0.5rem;
@@ -99,9 +111,8 @@ mat-toolbar {
 }
 
 @media (max-width: 768px) {
-  .footer-container {
+  .form-group {
     @include flex-option(flex, left, center);
-    width: 100%;
     flex-direction: column;
   }
 }
