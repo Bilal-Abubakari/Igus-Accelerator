@@ -52,7 +52,7 @@ export class FileUploadService {
       const results = await upload;
       return { data: results };
     } catch (error: unknown) {
-      this.logger.error(`File upload to failed: ${(error as Error).message}`);
+      this.logger.error(`File upload failed: ${(error as Error).message}`);
       throw new InternalServerErrorException('Could not upload file');
     }
   }
