@@ -1,3 +1,5 @@
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+
 export enum ReviewStatus {
   Unsubmitted = 'Unsubmitted',
   Unassigned = 'Unassigned',
@@ -10,3 +12,7 @@ export enum Role {
   Admin = 'Admin',
   Customer = 'Customer',
 }
+
+export type DatabaseConfig = {
+  database: TypeOrmModuleOptions;
+};

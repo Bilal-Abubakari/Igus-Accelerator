@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { DatabaseConfig } from '../common/types';
 
-export default () => ({
+export default (): DatabaseConfig => ({
   database: {
     type: 'postgres',
     host: process.env.POSTGRES_HOST,
