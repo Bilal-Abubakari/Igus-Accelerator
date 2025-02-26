@@ -2,6 +2,7 @@
 
 This repository contains an Angular frontend and a NestJS backend;
 
+
 ## Getting Started
 
 To get started with this monorepo, ensure you have [node](https://nodejs.org/) (ideally a version specified in `.nvmrc`, if present) and [yarn](https://yarnpkg.com/) installed on your machine.
@@ -46,3 +47,7 @@ nx serve iaimc-backend // nx test (for testing), nx lint (for running lints)
 
 For a guide on the git conventions, go to:
 https://amali-tech.atlassian.net/wiki/spaces/~7120208a00231f088d4cb8926bdad8c2b2842d/pages/1484816386/Project+Setup
+
+## Deployment Link
+
+https://injection-moulding-configurator.vercel.app/
