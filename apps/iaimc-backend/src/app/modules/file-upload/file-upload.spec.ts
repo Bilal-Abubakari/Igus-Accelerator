@@ -1,14 +1,15 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { FileUploadService } from './file-upload.service';
+import { InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { HttpStatus } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import { v2 as cloudinary } from 'cloudinary';
 import { MulterFile } from '../../common/types';
+import { FileUploadService } from './file-upload.service';
 
 jest.mock('cloudinary');
 
 fdescribe('FileUploadService', () => {
   let service: FileUploadService;
+  let loggerSpy: jest.SpyInstance;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -35,6 +36,7 @@ fdescribe('FileUploadService', () => {
     }).compile();
 
     service = module.get<FileUploadService>(FileUploadService);
+    loggerSpy = jest.spyOn(service['logger'], 'error');
   });
 
   it('should be defined', () => {
@@ -54,12 +56,11 @@ fdescribe('FileUploadService', () => {
       },
     );
 
-    const result = await service.uploadFile(file, directory);
+    await expect(service.uploadFile(file, directory)).rejects.toThrow(
+      InternalServerErrorException,
+    );
 
-    expect(result).toEqual({
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-      error: 'Could not upload file',
-    });
+    expect(loggerSpy).toHaveBeenCalled()
   });
 
   it('should go through successfully if file upload succeeds', async () => {
@@ -77,7 +78,6 @@ fdescribe('FileUploadService', () => {
     );
 
     const result = await service.uploadFile(file, directory);
-    console.log('rez', result);
 
     expect(result.data).toEqual(mockResult);
   });

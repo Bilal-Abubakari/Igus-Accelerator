@@ -1,4 +1,4 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { v2 as cloudinary, UploadApiOptions } from 'cloudinary';
 import { Readable } from 'typeorm/platform/PlatformTools';
@@ -6,7 +6,9 @@ import { MulterFile, ResponseObject } from '../../common/types';
 
 @Injectable()
 export class FileUploadService {
-  constructor(configService: ConfigService) {
+  private readonly logger = new Logger();
+
+  constructor(configService: ConfigService  ) {
     cloudinary.config({
       cloud_name: configService.get('CLOUDINARY_CLOUD_NAME'),
       api_key: configService.get('CLOUDINARY_API_KEY'),
@@ -17,7 +19,7 @@ export class FileUploadService {
   public async uploadFile(
     file: MulterFile,
     directory: string,
-  ): Promise<ResponseObject> {
+  ): Promise<ResponseObject<unknown>> {
     const uploadApiOptions = {
       folder: directory,
       resource_type: 'raw',
@@ -40,15 +42,10 @@ export class FileUploadService {
 
     try {
       const results = await upload;
-      return {
-        statusCode: HttpStatus.OK,
-        data: results,
-      } satisfies ResponseObject;
-    } catch {
-      return {
-        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-        error: 'Could not upload file',
-      } satisfies ResponseObject;
+      return { data: results }
+    } catch (error: unknown) {
+      this.logger.error(`File upload to failed: ${(error as Error).message}`);
+      throw new InternalServerErrorException('Could not upload file')
     }
   }
 }

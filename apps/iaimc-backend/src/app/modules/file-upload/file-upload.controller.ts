@@ -19,7 +19,7 @@ import { FileUploadService } from './file-upload.service';
 
 @Controller('upload')
 export class FileUploadController {
-  constructor(private readonly fileUploadService: FileUploadService) {}
+  constructor(private readonly fileUploadService: FileUploadService) { }
 
   @Post()
   @UseInterceptors(FileInterceptor('file', { limits: { files: 1 } }))
@@ -29,8 +29,8 @@ export class FileUploadController {
       new FileTypeValidatorPipe(ALLOWED_MODEL_MIME_TYPES),
     )
     file: MulterFile,
-    @Body(ValidationPipe) {directory}: FileStoreUploadDto,
-  ): Promise<ResponseObject> {
-    return this.fileUploadService.uploadFile(file, body.directory);
+    @Body(ValidationPipe) { directory }: FileStoreUploadDto,
+  ): Promise<ResponseObject<unknown>> {
+    return this.fileUploadService.uploadFile(file, directory);
   }
 }

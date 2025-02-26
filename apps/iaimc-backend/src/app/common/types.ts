@@ -15,15 +15,19 @@ export enum Role {
   Customer = 'Customer',
 }
 
+export enum FileStoreDirectory {
+  MODELS = 'models',
+}
+
 export type DatabaseConfig = {
   database: TypeOrmModuleOptions;
 };
 
 export type MulterFile = Express.Multer.File;
 
-export type ResponseObject = {
-  statusCode?: number;
+export interface ResponseObject<T = undefined> {
   message?: string;
-  error?: string;
-  data?: unknown;
+  data?: T;
 };
+
+
