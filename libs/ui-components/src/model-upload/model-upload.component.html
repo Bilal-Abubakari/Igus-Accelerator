@@ -1,0 +1,69 @@
+<div
+  class="upload_container"
+  (dragover)="onDragOver($event)"
+  (drop)="onFileDropped($event)"
+>
+  <input
+    type="file"
+    #fileInput
+    (change)="onFileSelected($event)"
+    accept=".stl,.step"
+    hidden
+  />
+
+  @if (uploadProgress() > 0 && uploadProgress() < 100) {
+    <div class="upload-loader">
+      <svg width="40" height="40" viewBox="0 0 50 50">
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          stroke-width="5"
+          stroke-dasharray="125"
+          [attr.stroke-dashoffset]="125 - uploadProgress() * 1.25"
+          stroke="currentColor"
+          stroke-linecap="round"
+        ></circle>
+      </svg>
+      <p>Uploading... {{ uploadProgress() }}%</p>
+    </div>
+  } @else {
+    <div class="upload-icon">
+      <svg
+        width="60"
+        height="60"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M9.5 6.5L12 4l2.5 2.5"></path>
+        <path d="M12 4v10"></path>
+        <path d="M20 13.5V16a2 2 0 0 1-2 2h-3m-6 0H6a2 2 0 0 1-2-2v-2.5"></path>
+        <path d="M2 13.5L12 7l10 6.5"></path>
+        <path d="M19 21H5"></path>
+      </svg>
+    </div>
+
+    <h3>
+      Drag & drop to upload CAD model or
+      <span
+        (click)="fileInput.click()"
+        (keyup.enter)="fileInput.click()"
+        tabindex="0"
+        >select file</span
+      >
+    </h3>
+    <p>File format: .stp or .step (max. 75MB)</p>
+  }
+
+  @if (currentFile()) {
+    <div class="file-info">
+      <p>Selected File: {{ currentFile()?.name }}</p>
+    </div>
+  }
+</div>

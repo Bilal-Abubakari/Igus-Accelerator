@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ModelsState, adapter } from './model-upload.state';
+
+import { adapter, ModelsState } from './model-upload.state';
 
 export const selectModelsState = createFeatureSelector<ModelsState>('models');
 
@@ -11,11 +12,15 @@ export const selectModelEntities = createSelector(
   selectEntities,
 );
 export const selectTotalModels = createSelector(selectModelsState, selectTotal);
-export const selectLoading = createSelector(
+export const selectModelState = createSelector(
   selectModelsState,
   (state) => state.loading,
 );
-export const selectError = createSelector(
+export const selectUploadError = createSelector(
   selectModelsState,
   (state) => state.error,
+);
+export const selectUploadedModel = createSelector(
+  selectModelsState,
+  (state) => state.uploadedModel,
 );

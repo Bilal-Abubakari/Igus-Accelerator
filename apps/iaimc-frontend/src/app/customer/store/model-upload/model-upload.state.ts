@@ -11,6 +11,7 @@ export interface Model {
 export interface ModelsState extends EntityState<Model> {
   loading: boolean;
   error: string | null;
+  uploadedModel: Model | null;
 }
 
 export const adapter = createEntityAdapter<Model>({
@@ -20,4 +21,5 @@ export const adapter = createEntityAdapter<Model>({
 export const initialState: ModelsState = adapter.getInitialState({
   loading: false,
   error: null,
+  uploadedModel: null,
 });

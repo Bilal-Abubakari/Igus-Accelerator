@@ -1,4 +1,5 @@
-import { createActionGroup, props, emptyProps } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
+
 import { Model } from './model-upload.state';
 
 export const ModelsActions = createActionGroup({

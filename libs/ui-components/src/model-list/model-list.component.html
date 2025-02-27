@@ -1,0 +1,16 @@
+<mat-grid-list cols="3" rowHeight="2:1" gutterSize="16">
+  @for (model of models(); track model.id) {
+    <mat-grid-tile>
+      <mat-card class="model-card">
+        <mat-card-header>
+          <mat-card-title>{{ model.name }}</mat-card-title>
+          <!-- <mat-card-subtitle>{{ model.description }}</mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-card-content>
+          <!-- Unique container for each model -->
+          <div class="canvas-container" #canvasContainer></div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  }
+</mat-grid-list>
