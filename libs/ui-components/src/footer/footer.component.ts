@@ -40,10 +40,12 @@ export class FooterComponent {
   public isRattingLoading = signal<boolean>(false);
   public isSubmitted = signal<boolean>(false);
 
-  public ratingForm!: FormGroup;
+  public ratingForm = this.initializeRatingForm();
 
-  constructor(private readonly fb: FormBuilder) {
-    this.ratingForm = this.fb.group(
+  constructor(private readonly fb: FormBuilder) {}
+
+  private initializeRatingForm(): FormGroup {
+  return this.fb.group(
       {
         feedback: [''],
         rating: [null],
