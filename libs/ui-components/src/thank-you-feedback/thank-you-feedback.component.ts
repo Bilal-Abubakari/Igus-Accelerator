@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
@@ -26,8 +26,8 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThankYouFeedbackComponent {
-  contactForm!: FormGroup;
-  @Input() submitted = true;
+  public contactForm!: FormGroup;
+  public submitted = signal(false);
 
   constructor(private readonly fb: FormBuilder) {
     this.contactForm = this.fb.group({

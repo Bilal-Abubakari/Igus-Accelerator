@@ -12,49 +12,56 @@
         </div>
       </section>
 
-      <section *ngIf="!isSubmitted" class="rating-container">
-        <div class="rating-container__wrapper">
-          <h4>Please rate this configurator</h4>
-          <div class="rating-stars">
-            <mat-icon
-              *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
-              [class.filled]="i + 1 <= (hoveredRating || selectedRating)"
-              [class.hovered]="i + 1 <= hoveredRating"
-              (mouseenter)="onMouseEnter(i + 1)"
-              (mouseleave)="onMouseLeave()"
-              (click)="onClick(i + 1)"
-              (keydown)="onClick(i + 1)"
-              aria-hidden="false"
-              aria-label="Rate"
-              [title]="i + 1"
-            >
-              star
-            </mat-icon>
+      @if (!isSubmitted()) {
+        <section class="rating-container">
+          <div class="rating-container__wrapper">
+            <h4>Please rate this configurator</h4>
+            <div class="rating-stars">
+              @for (star of [1, 2, 3, 4, 5]; track $index) {
+                <mat-icon
+                  [class.filled]="
+                    $index + 1 <= (hoveredRating() || selectedRating())
+                  "
+                  [class.hovered]="$index + 1 <= hoveredRating()"
+                  (mouseenter)="onMouseEnter($index + 1)"
+                  (mouseleave)="onMouseLeave()"
+                  (click)="onClick($index + 1)"
+                  (keydown)="onClick($index + 1)"
+                  aria-hidden="false"
+                  aria-label="Rate"
+                  [title]="$index + 1"
+                >
+                  star
+                </mat-icon>
+              }
+            </div>
+            <mat-form-field class="form-input">
+              <textarea
+                formControlName="feedback"
+                matInput
+                placeholder="What can we improve?"
+              ></textarea>
+            </mat-form-field>
           </div>
-          <mat-form-field class="form-input">
-            <textarea
-              formControlName="feedback"
-              matInput
-              placeholder="What can we improve?"
-            ></textarea>
-          </mat-form-field>
+          @if (isRattingLoading()) {
+            <div class="spinner-container">
+              <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+            </div>
+          } @else {
+            <button
+              mat-button
+              [disabled]="ratingForm.invalid"
+              class="custom-button submit-rating-button"
+            >
+              Submit rating
+            </button>
+          }
+        </section>
+      } @else {
+        <div>
+          <app-thank-you-feedback />
         </div>
-        <div *ngIf="isRattingLoading" class="spinner-container">
-          <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
-        </div>
-        <button
-          *ngIf="!isRattingLoading"
-          mat-button
-          [disabled]="!isFormValid()"
-          (click)="onSubmit()"
-          class="custom-button submit-rating-button"
-        >
-          Submit rating
-        </button>
-      </section>
-      <div *ngIf="isSubmitted">
-        <app-thank-you-feedback />
-      </div>
+      }
     </form>
     <span
       >&copy; {{ currentYear }} accelerator modeling configurator® GmbH</span

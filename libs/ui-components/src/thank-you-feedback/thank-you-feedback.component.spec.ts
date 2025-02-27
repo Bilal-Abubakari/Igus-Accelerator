@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ThankYouFeedbackComponent', () => {
   let component: ThankYouFeedbackComponent;
@@ -21,6 +22,7 @@ describe('ThankYouFeedbackComponent', () => {
         MatButtonModule,
         BrowserAnimationsModule,
       ],
+      providers: [{ provide: ActivatedRoute, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThankYouFeedbackComponent);
@@ -49,7 +51,7 @@ describe('ThankYouFeedbackComponent', () => {
   });
 
   it('should display success message when submitted is true', () => {
-    component.submitted = true;
+    component.submitted.set(true);
     fixture.detectChanges();
     const successMessage = fixture.debugElement.query(
       By.css('.success-container'),
