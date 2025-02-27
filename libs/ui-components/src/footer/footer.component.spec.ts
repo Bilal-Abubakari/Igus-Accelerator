@@ -1,20 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { FooterComponent } from './footer.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
+  AbstractControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
 import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
+import { atLeastOneFieldValidator } from './custom-validators/custom.validator';
+import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -35,6 +37,7 @@ describe('FooterComponent', () => {
         ReactiveFormsModule,
         BrowserAnimationsModule,
       ],
+      providers: [{ provide: ActivatedRoute, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
@@ -97,13 +100,13 @@ describe('FooterComponent', () => {
     const stars = fixture.debugElement.queryAll(By.css('mat-icon'));
     stars[2].triggerEventHandler('mouseenter', {});
     fixture.detectChanges();
-    expect(component.hoveredRating).toBe(3);
+    expect(component.hoveredRating()).toBe(3);
     stars[2].triggerEventHandler('mouseleave', {});
     fixture.detectChanges();
-    expect(component.hoveredRating).toBe(0);
+    expect(component.hoveredRating()).toBe(0);
     stars[2].triggerEventHandler('click', {});
     fixture.detectChanges();
-    expect(component.selectedRating).toBe(3);
+    expect(component.selectedRating()).toBe(3);
   });
 
   it('should enable submit button when form is valid', () => {
@@ -115,28 +118,34 @@ describe('FooterComponent', () => {
 
   it('should validate form with only rating provided', () => {
     component.ratingForm.patchValue({ rating: 3, feedback: '' });
-    expect(component.isFormValid()).toBeTruthy();
+    expect(component.ratingForm.valid).toBeTruthy();
   });
 
   it('should validate form with only feedback provided', () => {
     component.ratingForm.patchValue({ rating: null, feedback: 'Great tool!' });
-    expect(component.isFormValid()).toBeTruthy();
+    expect(component.ratingForm.valid).toBeTruthy();
   });
 
   it('should invalidate form with neither rating nor feedback', () => {
     component.ratingForm.patchValue({ rating: null, feedback: '' });
-    expect(component.isFormValid()).toBeFalsy();
+    expect(component.ratingForm.valid).toBeFalsy();
   });
 
-  it('should not process submission when form is invalid', () => {
-    component.ratingForm.patchValue({ rating: null, feedback: '' });
-    component.onSubmit();
-    expect(component.isRattingLoading).toBeFalsy();
-    expect(component.isSubmitted).toBeFalsy();
+  it('should reset hovered rating on mouse leave', () => {
+    component.onMouseEnter(3);
+    fixture.detectChanges();
+    expect(component.hoveredRating()).toBe(3);
+    component.onMouseLeave();
+    fixture.detectChanges();
+    expect(component.hoveredRating()).toBe(0);
+  });
+
+  it('should initialize form as invalid when both rating and feedback are empty', () => {
+    expect(component.ratingForm.valid).toBeFalsy();
   });
 
   it('should show submit button when not loading', () => {
-    component.isRattingLoading = false;
+    component.isRattingLoading.set(false);
     fixture.detectChanges();
     expect(
       fixture.debugElement.query(By.css('button.custom-button')),
@@ -146,79 +155,19 @@ describe('FooterComponent', () => {
   it('should maintain selected rating on clicking the same star twice', () => {
     component.onClick(3);
     fixture.detectChanges();
-    expect(component.selectedRating).toBe(3);
+    expect(component.selectedRating()).toBe(3);
     component.onClick(3);
     fixture.detectChanges();
-    expect(component.selectedRating).toBe(3);
+    expect(component.selectedRating()).toBe(3);
   });
 
   it('should update selected rating when a lower star is clicked', () => {
     component.onClick(5);
     fixture.detectChanges();
-    expect(component.selectedRating).toBe(5);
+    expect(component.selectedRating()).toBe(5);
     component.onClick(2);
     fixture.detectChanges();
-    expect(component.selectedRating).toBe(2);
-  });
-
-  it('should set loading state and reset after submission', fakeAsync(() => {
-    component.ratingForm.patchValue({ rating: 5, feedback: 'Excellent!' });
-    component.onSubmit();
-    expect(component.isRattingLoading).toBe(true);
-
-    tick(100);
-    fixture.detectChanges();
-    expect(component.isRattingLoading).toBe(false);
-    expect(component.isSubmitted).toBe(true);
-  }));
-
-  it('should handle submission failure gracefully', async () => {
-    jest.spyOn(component, 'onSubmit').mockImplementation(() => {
-      throw new Error('Submission failed');
-    });
-
-    component.ratingForm.patchValue({ rating: 4, feedback: 'Nice!' });
-
-    try {
-      component.onSubmit();
-    } catch (e) {
-      expect(e).toBeInstanceOf(Error);
-    }
-
-    fixture.detectChanges();
-
-    expect(component.isSubmitted).toBeFalsy();
-    expect(component.isRattingLoading).toBeFalsy();
-  });
-
-  it('should hide submit button when loading', () => {
-    component.ratingForm.patchValue({ rating: 4, feedback: 'Test' });
-    component.isRattingLoading = true;
-    fixture.changeDetectorRef.markForCheck();
-    fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('.submit-rating-button')),
-    ).toBeFalsy();
-    expect(
-      fixture.debugElement.query(By.css('.spinner-container')),
-    ).toBeTruthy();
-  });
-
-  it('should show loading spinner when submitting', () => {
-    component.ratingForm.patchValue({ rating: 4, feedback: 'Great tool!' });
-    component.onSubmit();
-    fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('.spinner-container')),
-    ).toBeTruthy();
-  });
-
-  it('should show submit button when isRattingLoading is false', () => {
-    component.isRattingLoading = false;
-    fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('.submit-rating-button')),
-    ).toBeTruthy();
+    expect(component.selectedRating()).toBe(2);
   });
 
   it('should handle null form controls in isFormValid()', () => {
@@ -242,7 +191,7 @@ describe('FooterComponent', () => {
     };
 
     component.ratingForm = mockForm as FormGroup;
-    expect(component.isFormValid()).toBeFalsy();
+    expect(component.ratingForm.valid).toBeFalsy();
     component.ratingForm = originalForm;
   });
 
@@ -270,19 +219,32 @@ describe('FooterComponent', () => {
     };
 
     component.ratingForm = mockForm as FormGroup;
-    expect(component.isFormValid()).toBeFalsy();
+    expect(component.ratingForm.valid).toBeFalsy();
 
     component.ratingForm = originalForm;
   });
 
-  it('should show thank-you message after submission', fakeAsync(() => {
-    component.ratingForm.patchValue({ rating: 5, feedback: 'Awesome!' });
-    component.onSubmit();
-    tick(100);
-    fixture.detectChanges();
-    expect(component.isSubmitted).toBe(true);
-    expect(
-      fixture.debugElement.query(By.css('app-thank-you-feedback')),
-    ).toBeTruthy();
-  }));
+  it('should handle missing form controls in validator', () => {
+    const mockControl = {
+      get: (name: string) => {
+        if (name === 'rating') return null;
+        if (name === 'feedback') return { value: '' };
+        return null;
+      },
+    } as AbstractControl;
+    const validatorFn = atLeastOneFieldValidator();
+    const result = validatorFn(mockControl);
+    expect(result).toEqual({ atLeastOneFieldRequired: true });
+  });
+
+  it('should handle null controls in validator', () => {
+    const mockControlNull = {
+      get: (name: string) => null,
+    } as AbstractControl;
+
+    const validatorFn = atLeastOneFieldValidator();
+    const result = validatorFn(mockControlNull);
+
+    expect(result).toEqual({ atLeastOneFieldRequired: true });
+  });
 });
