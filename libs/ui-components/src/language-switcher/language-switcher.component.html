@@ -1,0 +1,12 @@
+<button
+  *transloco="let t"
+  class="language-switcher"
+  (click)="toggleLanguageOverlay()"
+>
+  <div class="active-lang">
+    <img class="flag" [src]="activeLanguage().flag" alt="" />
+    <div>{{ t('languageSwitcher.languageLabel') }}</div>
+  </div>
+
+  <mat-icon>keyboard_arrow_right</mat-icon>
+</button>
