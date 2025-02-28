@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import {
   FormBuilder,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,25 +34,24 @@ import { atLeastOneFieldValidator } from './custom-validators/custom.validator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  private readonly fb = inject(FormBuilder)
+
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
   public isRattingLoading = signal<boolean>(false);
   public isSubmitted = signal<boolean>(false);
 
-  public ratingForm = this.initializeRatingForm();
 
-  constructor(private readonly fb: FormBuilder) {}
 
-  private initializeRatingForm(): FormGroup {
-  return this.fb.group(
-      {
-        feedback: [''],
-        rating: [null],
-      },
-      { validators: atLeastOneFieldValidator() },
-    );
-  }
+  public ratingForm = this.fb.group(
+    {
+      feedback: this.fb.control(''),
+      rating: this.fb.control<number | null>(null,[ Validators.min(1),
+        Validators.max(5)]),
+    },
+    { validators: atLeastOneFieldValidator() },
+  );
 
   public onMouseEnter(rating: number): void {
     this.hoveredRating.set(rating);
@@ -64,7 +63,6 @@ export class FooterComponent {
 
   public onClick(rating: number): void {
     this.selectedRating.set(rating);
-
     this.ratingForm.patchValue({ rating });
   }
 }
