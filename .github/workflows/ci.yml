@@ -8,6 +8,9 @@ on:
       - opened
       - edited
       - synchronize
+  push:
+    branches:
+      - main
 
 jobs:
   pr-lints-and-code-quality-checks:
