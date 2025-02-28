@@ -1,0 +1,21 @@
+{
+  "app": {
+    "company": "IGUS"
+  },
+  "toolbar": {
+    "main-title": "Accelerator Molding Configurator",
+    "sub-title": "motion plastics",
+    "contact": "Contact",
+    "cart": "Shopping cart",
+    "login": "Login"
+  },
+  "languageSwitcher": {
+    "pageTitle": "Select your country",
+    "languageLabel": "United States (English)",
+    "close": "Close"
+  },
+  "stage": {
+    "title": "Injection Molding Designer",
+    "description": "The individual component is created in just a few steps: upload the CAD model, select a material and let us check the manufacturability - that's it. You will immediately see a provisional price and delivery time. After approval you can request a quote."
+  }
+}
