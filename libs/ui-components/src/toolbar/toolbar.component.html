@@ -1,35 +1,44 @@
-<mat-toolbar class="header-toolbar">
+<mat-toolbar *transloco="let t" class="header-toolbar">
   <div class="header-toolbar__left">
     <div class="title-bar__logo">
-      <h1>IGUS</h1>
+      <h1>{{ t('app.company') }}</h1>
     </div>
     <div class="title-bar__titles">
-      <h1 class="main-title">Accelerator Molding Configurator</h1>
-      <p class="sub-title">motion plastics<sup>®</sup></p>
+      <h1 class="main-title">{{ t('toolbar.main-title') }}</h1>
+      <p class="sub-title">{{ t('toolbar.sub-title') }}<sup>®</sup></p>
     </div>
   </div>
   <div class="header-toolbar__right">
     <div class="header-toolbar__menu">
       <button class="">
         <mat-icon aria-hidden="false" fontIcon="mail"></mat-icon>
-        <span>Contact</span>
+        <span>{{ t('toolbar.contact') }}</span>
       </button>
       <button>
         <mat-icon aria-hidden="false" fontIcon="shopping_cart"></mat-icon>
-        <span>Shopping cart</span>
+        <span>{{ t('toolbar.cart') }}</span>
       </button>
       <button>
         <mat-icon aria-hidden="false" fontIcon="login"></mat-icon>
-        <span>Login</span>
+        <span>{{ t('toolbar.login') }}</span>
       </button>
-      <button>
+      <button (click)="toggleOverlay()">
         <mat-icon aria-hidden="false" fontIcon="more_vert"></mat-icon>
       </button>
     </div>
-    <div class="humberger__menu">
+    <div mat-button class="humberger__menu">
       <button>
         <mat-icon aria-hidden="false" fontIcon="menu"></mat-icon>
       </button>
     </div>
   </div>
 </mat-toolbar>
+
+<menu [class.visible]="showLangOverlayToggler()">
+  <app-lang-switcher
+    #langSwitcher
+    (langOverlayToggleEventEmitter)="toggleOverlay()"
+  />
+</menu>
+
+<app-lang-overlay />

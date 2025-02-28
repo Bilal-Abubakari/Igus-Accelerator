@@ -6,7 +6,7 @@ import {
 
 @Component({
   selector: 'app-root',
-  imports: [ToolbarComponent, StageComponent],
+  imports: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
