@@ -15,8 +15,8 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
-import { atLeastOneFieldValidator } from './custom-validators/custom.validator';
 import { FooterComponent } from './footer.component';
+import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -145,7 +145,7 @@ describe('FooterComponent', () => {
   });
 
   it('should show submit button when not loading', () => {
-    component.isRattingLoading.set(false);
+    component.isRatingLoading.set(false);
     fixture.detectChanges();
     expect(
       fixture.debugElement.query(By.css('button.custom-button')),

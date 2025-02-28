@@ -18,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
-import { atLeastOneFieldValidator } from './custom-validators/custom.validator';
+import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
 
 @Component({
   selector: 'app-footer',
@@ -44,7 +44,7 @@ export class FooterComponent {
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
-  public isRattingLoading = signal<boolean>(false);
+  public isRatingLoading = signal<boolean>(false);
   public isSubmitted = signal<boolean>(false);
 
   public ratingForm = this.fb.group(

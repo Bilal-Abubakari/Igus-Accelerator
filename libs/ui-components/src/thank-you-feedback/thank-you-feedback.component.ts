@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -26,12 +26,9 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThankYouFeedbackComponent {
-  public contactForm!: FormGroup;
+  private readonly fb = inject(FormBuilder);
   public submitted = signal(false);
-
-  constructor(private readonly fb: FormBuilder) {
-    this.contactForm = this.fb.group({
-      email: ['', [Validators.email, Validators.required]],
-    });
-  }
+  public contactForm = this.fb.group({
+    email: ['', [Validators.email, Validators.required]],
+  });
 }

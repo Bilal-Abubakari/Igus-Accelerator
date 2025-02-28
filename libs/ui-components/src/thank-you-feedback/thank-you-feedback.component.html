@@ -10,9 +10,9 @@
           placeholder="E-mail"
           formControlName="email"
         />
-        <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
-          Please enter a valid email address
-        </mat-error>
+        @if (contactForm.get('email')?.hasError('email')) {
+          <mat-error> Please enter a valid email address </mat-error>
+        }
       </mat-form-field>
       <button mat-button [disabled]="!contactForm.valid" class="custom-button">
         Submit
