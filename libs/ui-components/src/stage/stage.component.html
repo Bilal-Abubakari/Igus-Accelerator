@@ -1,13 +1,8 @@
-<section class="stage-container">
+<section class="stage-container" *transloco="let t">
   <div class="stage-content">
     <div class="text-container">
-      <h1 class="stage-title">Injection Molding Designer</h1>
-      <p class="stage-description">
-        The individual component is created in just a few steps: upload the CAD
-        model, select a material and let us check the manufacturability - that's
-        it. You will immediately see a provisional price and delivery time.
-        After approval you can request a quote.
-      </p>
+      <h1 class="stage-title">{{ t('stage.title') }}</h1>
+      <p class="stage-description">{{ t('stage.description') }}</p>
     </div>
     <div class="image-container">
       <img
