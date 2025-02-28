@@ -1,0 +1,62 @@
+<div class="upload_wrapper">
+  <mat-card class="upload_card">
+    <mat-card-header>
+      <mat-card-title>Upload 3D Model</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div
+        class="upload_container"
+        (drop)="onDrop($event)"
+        (dragover)="allowDrop($event)"
+      >
+        @if (uploading()) {
+          <div class="loading_overlay">
+            <mat-spinner diameter="50"></mat-spinner>
+            <p>Uploading...</p>
+            @for (progress of uploadProgress(); track progress.name) {
+              <div>{{ progress.name }}: {{ progress.progress }}%</div>
+            }
+          </div>
+        }
+
+        <input
+          type="file"
+          multiple
+          (change)="onFileSelected($event)"
+          accept=".stl"
+          title="Upload CAD model"
+        />
+
+        @if (!uploading()) {
+          <img src="upload.svg" alt="Upload" class="upload_icon" />
+
+          @if (previewImages().length === 0) {
+            <p class="upload_text">
+              Drag & drop to upload CAD model or
+              <span
+                (click)="triggerFileInput()"
+                (keydown.enter)="triggerFileInput()"
+                tabindex="0"
+                >select file</span
+              >
+            </p>
+          }
+
+          <button type="button" mat-raised-button (click)="triggerFileInput()">
+            Browse Files
+          </button>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <p class="sample_model">
+    You don’t have any CAD model at the moment?
+    <a
+      (click)="loadSampleModel()"
+      (keydown.enter)="loadSampleModel()"
+      tabindex="0"
+      >Load sample model</a
+    >
+  </p>
+</div>
