@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import {
   FormBuilder,
   FormsModule,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,7 +39,7 @@ import { atLeastOneFieldValidator } from './custom-validators/custom.validator';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  private readonly fb = inject(FormBuilder)
+  private readonly fb = inject(FormBuilder);
 
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
@@ -42,13 +47,13 @@ export class FooterComponent {
   public isRattingLoading = signal<boolean>(false);
   public isSubmitted = signal<boolean>(false);
 
-
-
   public ratingForm = this.fb.group(
     {
       feedback: this.fb.control(''),
-      rating: this.fb.control<number | null>(null,[ Validators.min(1),
-        Validators.max(5)]),
+      rating: this.fb.control<number | null>(null, [
+        Validators.min(1),
+        Validators.max(5),
+      ]),
     },
     { validators: atLeastOneFieldValidator() },
   );
