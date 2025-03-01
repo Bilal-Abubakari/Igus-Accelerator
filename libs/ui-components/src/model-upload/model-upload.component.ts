@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Output,
   signal,
   WritableSignal,
@@ -11,7 +12,9 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModelUploadService } from '../../../../apps/iaimc-frontend/src/app/services/model-upload.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-model-upload',
@@ -21,32 +24,35 @@ import { ModelUploadService } from '../../../../apps/iaimc-frontend/src/app/serv
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   templateUrl: './model-upload.component.html',
   styleUrl: './model-upload.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelUploadComponent {
-  @Output() modelUploaded = new EventEmitter<string>();
-  public uploadedModels = signal<File[]>([]);
+  @Output() modelUploaded = new EventEmitter<{
+    url: string;
+    imageUrl?: string;
+  }>();
+
   public files: WritableSignal<File[]> = signal([]);
   public uploading: WritableSignal<boolean> = signal(false);
   public uploadProgress: WritableSignal<{ name: string; progress: number }[]> =
     signal([]);
   previewImages: WritableSignal<{ name: string; url: string }[]> = signal([]);
+  private loadedModelNames = new Set<string>();
 
   private completedUploads = 0;
   private totalUploads = 0;
 
-  constructor(private uploadService: ModelUploadService) {}
+  private uploadService = inject(ModelUploadService);
+  private snackBar = inject(MatSnackBar);
 
   onFileSelected(event: Event) {
     const files = (event.target as HTMLInputElement).files;
     if (files) {
-      const fileArray = Array.from(files);
-      this.uploadedModels.update((prev) => [...prev, ...fileArray]);
-      this.addFiles(fileArray);
-      this.uploadFiles();
+      this.addFiles(Array.from(files));
     }
   }
 
@@ -54,7 +60,6 @@ export class ModelUploadComponent {
     event.preventDefault();
     if (event.dataTransfer?.files) {
       this.addFiles(Array.from(event.dataTransfer.files));
-      this.uploadFiles();
     }
   }
 
@@ -62,15 +67,32 @@ export class ModelUploadComponent {
     const validFiles = newFiles.filter((file) =>
       /\.(stl|step|stp)$/i.test(file.name),
     );
+    const invalidFiles = newFiles.filter(
+      (file) => !/\.(stl|step|stp)$/i.test(file.name),
+    );
 
-    this.files.set([...this.files(), ...validFiles]);
+    if (invalidFiles.length > 0) {
+      this.snackBar.open(
+        `Invalid file type(s). Please upload files with .stl, .step, or .stp extensions.`,
+        'Close',
+        { duration: 3000 },
+      );
+    }
+
+    const newValidFiles = validFiles.filter(
+      (file) => !this.loadedModelNames.has(file.name),
+    );
+    if (newValidFiles.length === 0) return;
+
+    newValidFiles.forEach((file) => this.loadedModelNames.add(file.name));
+    this.files.set([...this.files(), ...newValidFiles]);
 
     this.uploadProgress.update((current) => [
       ...current,
-      ...validFiles.map((file) => ({ name: file.name, progress: 0 })),
+      ...newValidFiles.map((file) => ({ name: file.name, progress: 0 })),
     ]);
 
-    validFiles.forEach((file) => {
+    newValidFiles.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const url = e.target?.result as string;
@@ -81,6 +103,8 @@ export class ModelUploadComponent {
       };
       reader.readAsDataURL(file);
     });
+
+    this.uploadFiles();
   }
 
   public uploadFiles(): void {
@@ -103,21 +127,28 @@ export class ModelUploadComponent {
 
           if ('data' in event) {
             this.completedUploads++;
-            this.modelUploaded.emit(event.data.url);
 
+            const previewImage = this.previewImages().find(
+              (p) => p.name === file.name,
+            );
+            this.modelUploaded.emit({
+              url: event.data.url,
+              imageUrl: previewImage?.url,
+            });
             if (this.completedUploads >= this.totalUploads) {
               this.finishUpload();
             }
           }
         }),
-        catchError((err) => {
-          console.error(`Upload failed for ${file.name}`, err);
-          this.completedUploads++;
+        catchError((err: HttpErrorResponse) => {
+          if (err.error?.message) {
+            this.snackBar.open(err.error.message, 'Close', { duration: 3000 });
+          }
 
+          this.completedUploads++;
           if (this.completedUploads >= this.totalUploads) {
             this.finishUpload();
           }
-
           return of({ error: true, name: file.name });
         }),
         finalize(() => {
@@ -153,7 +184,7 @@ export class ModelUploadComponent {
   }
 
   public loadSampleModel(): void {
-    console.log('Loading sample model...');
+    this.uploadFiles();
   }
 
   private clearUploadState(): void {
@@ -162,5 +193,6 @@ export class ModelUploadComponent {
     this.previewImages.set([]);
     this.completedUploads = 0;
     this.totalUploads = 0;
+    this.loadedModelNames.clear();
   }
 }
