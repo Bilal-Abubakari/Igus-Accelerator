@@ -37,7 +37,7 @@ export class ToolbarComponent {
     this.langOverlayService.isOverlayTogglerVisible(),
   );
 
-  protected toggleOverlay() {
+  public toggleOverlay() {
     this.langOverlayService.overlayTogglerStateToggle();
   }
 }

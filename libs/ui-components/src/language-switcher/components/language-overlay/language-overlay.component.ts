@@ -30,7 +30,7 @@ export class LanguageOverlayComponent {
 
   protected availableLanguages = signal(AVAILABLE_LANGUAGES);
 
-  protected toggleLanguageOverlay() {
+  public toggleLanguageOverlay() {
     this.langOverlayService.overlayStateToggle();
   }
 

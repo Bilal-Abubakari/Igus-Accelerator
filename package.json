@@ -17,7 +17,7 @@
     "test:backend": " nx test iaimc-backend --no-cloud",
     "test:backend-c": " nx test iaimc-backend --no-cloud --coverage ",
     "test:all": "nx run-many --target=test --no-cloud --all",
-    "test:all-c": "nx run-many --target=test --no-cloud --coverage  --all",
+    "test:all-c": "nx run-many --target=test --no-cloud --coverage --all --skip-nx-cache",
     "render:build": "npx yarn install --frozen-lockfile --ignore-scripts && npx yarn nx build iaimc-backend --parallel=1 --skip-nx-cache"
   },
   "private": true,
