@@ -27,7 +27,7 @@ export class ModelListComponent {
     return this.uploadedModels.map((m) => m.url);
   }
 
-  public onModelUploaded(data: { url: string; imageUrl?: string }): void {
+  public onModelUploaded(data: { url: string }): void {
     const modelName = this.extractFileNameFromUrl(data.url);
     const newModel: UploadedModel = {
       id: this.generateUniqueId(),
