@@ -5,11 +5,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import databaseConfig from './configurations/database.config';
 import envConfig from './configurations/env.config';
+import { FileUploadModule } from './modules/file-upload/file-upload.module';
 
 @Module({
   imports: [
+    FileUploadModule,
     ConfigModule.forRoot(envConfig),
-    TypeOrmModule.forRoot(databaseConfig()),
+    TypeOrmModule.forRoot(databaseConfig().database),
   ],
   controllers: [AppController],
   providers: [AppService],

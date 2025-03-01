@@ -6,10 +6,9 @@ import { ContactFormComponent } from '@igus-accelerator-injection-molding-config
   standalone: true,
   imports: [RouterOutlet],
   selector: 'app-root',
+  imports: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  public title = 'Welcome iaimc-frontend';
-}
+export class AppComponent {}

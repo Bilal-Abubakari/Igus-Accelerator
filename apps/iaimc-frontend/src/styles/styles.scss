@@ -1,6 +1,13 @@
 @use '@angular/material' as mat;
 @use 'stylestheme.scss';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 @include mat.all-component-densities(-3);
 
 .full-screen-dialog {
