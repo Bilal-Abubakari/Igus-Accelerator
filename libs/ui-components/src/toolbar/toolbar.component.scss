@@ -5,6 +5,10 @@ $navbar-horizontal-padding: 32px;
 $shadow-color: rgba(0, 0, 0, 0.2);
 
 .header-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-tertiary),
@@ -94,6 +98,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 menu {
   display: none;
   position: fixed;
+  z-index: 50;
   top: $navbar-height;
   right: $navbar-horizontal-padding;
   width: 260px;

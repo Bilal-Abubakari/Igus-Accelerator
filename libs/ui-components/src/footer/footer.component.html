@@ -1,0 +1,70 @@
+<mat-toolbar *transloco="let t">
+  <footer>
+    <form [formGroup]="ratingForm" class="form-group">
+      <section class="contact-us">
+        <h4>{{ t('footer.CONTACT_US') }}</h4>
+        <div class="contact">
+          <div class="contact__tel">
+            <p>{{ t('footer.APP') }}</p>
+            <a [href]="'tel:+4922039649145'">{{ t('footer.PHONE') }}</a>
+          </div>
+          <button mat-button class="custom-button">
+            {{ t('footer.WRITE_A_MESSAGE') }}
+          </button>
+        </div>
+      </section>
+
+      @if (!isSubmitted()) {
+        <section class="rating-container">
+          <div class="rating-container__wrapper">
+            <h4>{{ t('footer.RATE_CONFIGURATOR') }}</h4>
+            <div class="rating-stars">
+              @for (star of [1, 2, 3, 4, 5]; track $index) {
+                <mat-icon
+                  [class.filled]="
+                    $index + 1 <= (hoveredRating() || selectedRating())
+                  "
+                  [class.hovered]="$index + 1 <= hoveredRating()"
+                  (mouseenter)="onMouseEnter($index + 1)"
+                  (mouseleave)="onMouseLeave()"
+                  (click)="onClick($index + 1)"
+                  (keydown)="onClick($index + 1)"
+                  aria-hidden="false"
+                  aria-label="Rate"
+                  [title]="$index + 1"
+                >
+                  star
+                </mat-icon>
+              }
+            </div>
+            <mat-form-field class="form-input">
+              <textarea
+                formControlName="feedback"
+                matInput
+                [placeholder]="t('footer.IMPROVEMENT_SUGGESTIONS')"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          @if (isRatingLoading()) {
+            <div class="spinner-container">
+              <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+            </div>
+          } @else {
+            <button
+              mat-button
+              [disabled]="ratingForm.invalid"
+              class="custom-button submit-rating-button"
+            >
+              {{ t('footer.SUBMIT_RATING') }}
+            </button>
+          }
+        </section>
+      } @else {
+        <div>
+          <app-thank-you-feedback />
+        </div>
+      }
+    </form>
+    <span>&copy; {{ currentYear }} {{ t('footer.APP') }}</span>
+  </footer>
+</mat-toolbar>
