@@ -34,86 +34,29 @@ describe('ToolbarComponent', () => {
     expect(component).toBeDefined();
   });
 
-  //   it('should display the correct company name, main title, and subtitle depending on the active language', () => {
-  //     translocoService.setActiveLang('en');
-  //     fixture.detectChanges();
-  //     let companyElement = fixture.debugElement.query(
-  //       By.css('.title-bar__logo h1'),
-  //     ).nativeElement;
-  //     let mainTitleElement = fixture.debugElement.query(
-  //       By.css('.main-title'),
-  //     ).nativeElement;
-  //     let subTitleElement = fixture.debugElement.query(
-  //       By.css('.sub-title'),
-  //     ).nativeElement;
-  //     expect(companyElement.textContent).toBe('Company Name');
-  //     expect(mainTitleElement.textContent).toBe('Main Title');
-  //     expect(subTitleElement.textContent).toBe('Subtitle®');
-
-  //     translocoService.setActiveLang('es');
-  //     fixture.detectChanges();
-  //     companyElement = fixture.debugElement.query(
-  //       By.css('.title-bar__logo h1'),
-  //     ).nativeElement;
-  //     mainTitleElement = fixture.debugElement.query(
-  //       By.css('.main-title'),
-  //     ).nativeElement;
-  //     subTitleElement = fixture.debugElement.query(
-  //       By.css('.sub-title'),
-  //     ).nativeElement;
-  //     expect(companyElement.textContent).toBe('Nombre de la Empresa');
-  //     expect(mainTitleElement.textContent).toBe('Título Principal');
-  //     expect(subTitleElement.textContent).toBe('Subtítulo®');
-  //   });
-
-  //   it('should call the toggleOverlay method when the "more_vert" button is clicked', () => {
-  //     jest.spyOn(component, 'toggleOverlay');
-  //     const moreVertButton = fixture.debugElement.query(
-  //       By.css('button[aria-hidden="false"] mat-icon[fontIcon="more_vert"]'),
-  //     ).parent!.nativeElement;
-  //     moreVertButton.click();
-  //     expect(component.toggleOverlay).toHaveBeenCalled();
-  //   });
-
-  //   it('should display the language switcher menu when showLangOverlayToggler is true', () => {
-  //     jest
-  //       .spyOn(languageOverlayService, 'isOverlayTogglerVisible')
-  //       .mockReturnValue(true);
-  //     fixture.detectChanges();
-  //     const menuElement = fixture.debugElement.query(By.css('menu'));
-  //     expect(menuElement.classes).toContain('visible');
-  //   });
-
   it('should toggle the language overlay when toggleOverlay is called', () => {
-    // Spy on the service method
     jest.spyOn(languageOverlayService, 'overlayTogglerStateToggle');
 
-    // Call the component method
     component.toggleOverlay();
 
-    // Verify the service method was called
     expect(
       languageOverlayService.overlayTogglerStateToggle,
     ).toHaveBeenCalledTimes(1);
   });
 
   it('should initialize with the correct showLangOverlayToggler value', () => {
-    // Mock the service method
     jest
       .spyOn(languageOverlayService, 'isOverlayTogglerVisible')
       .mockReturnValue(false);
 
-    // Re-create the component to trigger initialization
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    // Test the computed property
     expect(component['showLangOverlayToggler']()).toBe(false);
   });
 
   it('should include the language switcher component when menu is visible', () => {
-    // Make menu visible
     jest
       .spyOn(languageOverlayService, 'isOverlayTogglerVisible')
       .mockReturnValue(true);

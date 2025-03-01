@@ -7,7 +7,13 @@ import { Observable, forkJoin, map } from 'rxjs';
 export class TranslocoHttpLoader implements TranslocoLoader {
   private readonly http = inject(HttpClient);
 
-  private readonly componentFiles = ['stage', 'toolbar', 'lang-switcher'];
+  private readonly componentFiles = [
+    'stage',
+    'toolbar',
+    'lang-switcher',
+    'feedback',
+    'footer',
+  ];
 
   public getTranslation(lang: string): Observable<Translation> {
     const requests = this.componentFiles.map((component) =>
