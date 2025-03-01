@@ -82,15 +82,33 @@ export class ModelUploadComponent {
     );
     if (newValidFiles.length === 0) return;
 
-    newValidFiles.forEach((file) => this.loadedModelNames.add(file.name));
-    this.files.set([...this.files(), ...newValidFiles]);
+    const alreadyUploadedFiles = newValidFiles.filter((file) =>
+      this.previewImages().some((img) => img.name === file.name),
+    );
+
+    if (alreadyUploadedFiles.length > 0) {
+      this.snackBar.open(
+        `Some files were already uploaded and won't be added again.`,
+        'Close',
+        { duration: 3000 },
+      );
+    }
+
+    const uniqueNewFiles = newValidFiles.filter(
+      (file) => !this.previewImages().some((img) => img.name === file.name),
+    );
+
+    if (uniqueNewFiles.length === 0) return;
+
+    uniqueNewFiles.forEach((file) => this.loadedModelNames.add(file.name));
+    this.files.set([...this.files(), ...uniqueNewFiles]);
 
     this.uploadProgress.update((current) => [
       ...current,
-      ...newValidFiles.map((file) => ({ name: file.name, progress: 0 })),
+      ...uniqueNewFiles.map((file) => ({ name: file.name, progress: 0 })),
     ]);
 
-    newValidFiles.forEach((file) => {
+    uniqueNewFiles.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const url = e.target?.result as string;
