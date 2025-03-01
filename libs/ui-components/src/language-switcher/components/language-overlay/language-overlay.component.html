@@ -1,11 +1,7 @@
-<main
-  *transloco="let t"
-  class="overlay"
-  [class.visible]="langOverlayService.isOverlayVisible()"
->
+<main class="overlay" [class.visible]="langOverlayService.isOverlayVisible()">
   <div class="overlay-content">
     <div class="page-title">
-      <h3>{{ t('langswitcher.PAGE_TITLE') }}</h3>
+      <h3>{{ 'langswitcher.PAGE_TITLE' | transloco }}</h3>
       <mat-icon class="close-overlay" (click)="toggleLanguageOverlay()"
         >close</mat-icon
       >
@@ -28,7 +24,7 @@
     </section>
 
     <button mat-button (click)="toggleLanguageOverlay()">
-      {{ t('langswitcher.CLOSE') }}
+      {{ 'langswitcher.CLOSE' | transloco }}
     </button>
   </div>
 </main>

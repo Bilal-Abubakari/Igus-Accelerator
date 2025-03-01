@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import {
   AVAILABLE_LANGUAGE_CODES,
   DEFAULT_LANGUAGE,
@@ -20,7 +20,7 @@ import { Language, LanguageCode } from './types';
 
 @Component({
   selector: 'app-lang-switcher',
-  imports: [MatIconModule, MatMenuModule, TranslocoDirective],
+  imports: [MatIconModule, MatMenuModule, TranslocoPipe],
   templateUrl: './language-switcher.component.html',
   styleUrl: './language-switcher.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

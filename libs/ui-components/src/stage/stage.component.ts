@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-stage',
-  imports: [TranslocoDirective],
+  imports: [TranslocoPipe],
   templateUrl: './stage.component.html',
   styleUrl: './stage.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

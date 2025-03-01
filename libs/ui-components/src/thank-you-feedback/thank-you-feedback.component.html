@@ -1,7 +1,7 @@
-<main class="feedback-container" *transloco="let t">
+<main class="feedback-container">
   @if (!submitted()) {
-    <h4>{{ t('feedback.THANKS') }}</h4>
-    <p>{{ t('feedback.REQUEST_TO_CONTACT_CUSTOMER') }}</p>
+    <h4>{{ 'feedback.THANKS' | transloco }}</h4>
+    <p>{{ 'feedback.REQUEST_TO_CONTACT_CUSTOMER' | transloco }}</p>
     <form [formGroup]="contactForm">
       <mat-form-field appearance="outline" class="email-input">
         <input
@@ -11,21 +11,21 @@
           formControlName="email"
         />
         @if (contactForm.get('email')?.hasError('email')) {
-          <mat-error>{{ t('feedback.ENTER_VALID_EMAIL') }}</mat-error>
+          <mat-error>{{ 'feedback.ENTER_VALID_EMAIL' | transloco }}</mat-error>
         }
       </mat-form-field>
       <button mat-button [disabled]="!contactForm.valid" class="custom-button">
-        {{ t('feedback.SUBMIT') }}
+        {{ 'feedback.SUBMIT' | transloco }}
       </button>
     </form>
     <p class="privacy-notice">
-      {{ t('feedback.PRIVACY_POLICY_FRAGMENT_1') }}
-      <a routerLink="#">{{ t('feedback.PRIVACY_POLICY_LINK') }}</a>
-      {{ t('feedback.PRIVACY_POLICY_FRAGMENT_2') }}
+      {{ 'feedback.PRIVACY_POLICY_FRAGMENT_1' | transloco }}
+      <a routerLink="#">{{ 'feedback.PRIVACY_POLICY_LINK' | transloco }}</a>
+      {{ 'feedback.PRIVACY_POLICY_FRAGMENT_2' | transloco }}
     </p>
   } @else {
     <div class="success-container">
-      <h2>{{ t('feedback.THANKS') }}</h2>
+      <h2>{{ 'feedback.THANKS' | transloco }}</h2>
       <div class="feedback-image">
         <img
           src="assets/thank-you.png"

@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-thank-you-feedback',
@@ -21,7 +21,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
     MatFormFieldModule,
     ReactiveFormsModule,
     RouterLink,
-    TranslocoDirective,
+    TranslocoPipe,
   ],
   templateUrl: './thank-you-feedback.component.html',
   styleUrl: './thank-you-feedback.component.scss',

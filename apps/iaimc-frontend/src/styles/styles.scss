@@ -21,9 +21,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--mat-sys-secondary);
+  background: var(--mat-sys-outline);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--mat-sys-outline);
+  background: var(--mat-sys-secondary);
 }

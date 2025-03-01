@@ -1,15 +1,17 @@
-<mat-toolbar *transloco="let t">
+<mat-toolbar>
   <footer>
     <form [formGroup]="ratingForm" class="form-group">
       <section class="contact-us">
-        <h4>{{ t('footer.CONTACT_US') }}</h4>
+        <h4>{{ 'footer.CONTACT_US' | transloco }}</h4>
         <div class="contact">
           <div class="contact__tel">
-            <p>{{ t('footer.APP') }}</p>
-            <a [href]="'tel:+4922039649145'">{{ t('footer.PHONE') }}</a>
+            <p>{{ 'footer.APP' | transloco }}</p>
+            <a [href]="'tel:+4922039649145'">{{
+              'footer.PHONE' | transloco
+            }}</a>
           </div>
           <button mat-button class="custom-button">
-            {{ t('footer.WRITE_A_MESSAGE') }}
+            {{ 'footer.WRITE_A_MESSAGE' | transloco }}
           </button>
         </div>
       </section>
@@ -17,7 +19,7 @@
       @if (!isSubmitted()) {
         <section class="rating-container">
           <div class="rating-container__wrapper">
-            <h4>{{ t('footer.RATE_CONFIGURATOR') }}</h4>
+            <h4>{{ 'footer.RATE_CONFIGURATOR' | transloco }}</h4>
             <div class="rating-stars">
               @for (star of [1, 2, 3, 4, 5]; track $index) {
                 <mat-icon
@@ -41,7 +43,7 @@
               <textarea
                 formControlName="feedback"
                 matInput
-                [placeholder]="t('footer.IMPROVEMENT_SUGGESTIONS')"
+                [placeholder]="'footer.IMPROVEMENT_SUGGESTIONS' | transloco"
               ></textarea>
             </mat-form-field>
           </div>
@@ -55,7 +57,7 @@
               [disabled]="ratingForm.invalid"
               class="custom-button submit-rating-button"
             >
-              {{ t('footer.SUBMIT_RATING') }}
+              {{ 'footer.SUBMIT_RATING' | transloco }}
             </button>
           }
         </section>
@@ -65,6 +67,6 @@
         </div>
       }
     </form>
-    <span>&copy; {{ currentYear }} {{ t('footer.APP') }}</span>
+    <span>&copy; {{ currentYear }} {{ 'footer.APP' | transloco }}</span>
   </footer>
 </mat-toolbar>
