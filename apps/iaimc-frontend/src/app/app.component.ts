@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { RouterOutlet } from '@angular/router';
-import { ContactFormComponent } from '@igus-accelerator-injection-molding-configurator/ui-components';
+import { FooterComponent } from '../../../../libs/ui-components/src/footer/footer.component';
+
 @Component({
   standalone: true,
-  imports: [RouterOutlet],
   selector: 'app-root',
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
