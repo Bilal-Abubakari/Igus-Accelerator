@@ -1,0 +1,46 @@
+<app-model-upload (modelUploaded)="onModelUploaded($event)"></app-model-upload>
+
+@if (uploadedModels.length) {
+  <div class="model_list">
+    @for (model of uploadedModels; track model.url) {
+      <mat-card class="model_card">
+        <app-model-viewer [modelUrl]="model.url"></app-model-viewer>
+        <mat-card-header>
+          <mat-card-title>{{ model.name | slice: -20 }}</mat-card-title>
+          <mat-card-subtitle>
+            <mat-icon class="status_icon">cloud_done</mat-icon>
+            Uploaded
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="card_footer">
+            <span class="material_badge">{{ model.material }}</span>
+            <span class="date">{{ model.uploadDate | date: 'short' }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+} @else {
+  <div class="placeholder_message">
+    <svg
+      width="150"
+      height="150"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+      class="empty-state-icon"
+    >
+      <path d="M9.5 6.5L12 4l2.5 2.5"></path>
+      <path d="M12 4v10"></path>
+      <path d="M20 13.5V16a2 2 0 0 1-2 2h-3m-6 0H6a2 2 0 0 1-2-2v-2.5"></path>
+      <path d="M2 13.5L12 7l10 6.5"></path>
+      <path d="M19 21H5"></path>
+    </svg>
+    <p>No model uploaded yet. Please upload a model to view it here.</p>
+  </div>
+}
