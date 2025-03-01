@@ -18,7 +18,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-model-upload',
-  standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
@@ -33,7 +32,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ModelUploadComponent {
   @Output() modelUploaded = new EventEmitter<{
     url: string;
-    imageUrl?: string;
   }>();
 
   public files: WritableSignal<File[]> = signal([]);
@@ -128,12 +126,8 @@ export class ModelUploadComponent {
           if ('data' in event) {
             this.completedUploads++;
 
-            const previewImage = this.previewImages().find(
-              (p) => p.name === file.name,
-            );
             this.modelUploaded.emit({
               url: event.data.url,
-              imageUrl: previewImage?.url,
             });
             if (this.completedUploads >= this.totalUploads) {
               this.finishUpload();
