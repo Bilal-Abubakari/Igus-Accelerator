@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   Input,
   OnChanges,
   SimpleChanges,
@@ -14,6 +15,7 @@ import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-model-viewer',
@@ -23,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelViewerComponent implements AfterViewInit, OnChanges {
-  @Input() modelUrls: string[] = [];
+  @Input() modelUrl = '';
   @ViewChild('viewer') viewerRef!: ElementRef;
 
   private scene!: THREE.Scene;
@@ -31,19 +33,23 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
   private renderer!: THREE.WebGLRenderer;
   private meshes: THREE.Mesh[] = [];
   private controls!: OrbitControls;
+  private snackBar = inject(MatSnackBar);
 
   ngAfterViewInit() {
     this.initThreeJS();
-    if (this.modelUrls.length > 0) {
-      this.modelUrls.forEach((url) => this.loadModel(url));
+    if (this.modelUrl.length > 0) {
+      this.loadModel(this.modelUrl);
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['modelUrls'] && this.modelUrls.length > 0) {
-      this.meshes.forEach((mesh) => this.scene.remove(mesh));
-      this.meshes = [];
-      this.modelUrls.forEach((url) => this.loadModel(url));
+    if (changes['modelUrls'] && this.modelUrl.length > 0) {
+      const newUrls = changes['modelUrls'].currentValue.filter(
+        (url: string) =>
+          !this.meshes.some((mesh) => mesh.userData['url'] === url),
+      );
+
+      newUrls.forEach((url: string) => this.loadModel(url));
     }
   }
 
@@ -148,6 +154,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
         });
 
         const mesh = new THREE.Mesh(geometry, material);
+        mesh.userData['url'] = url;
 
         geometry.computeBoundingBox();
         const boundingBox = geometry.boundingBox;
@@ -169,24 +176,43 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
         this.scene.add(mesh);
         this.meshes.push(mesh);
 
-        this.positionCameraForModel(boundingBox);
+        this.positionCameraForModel();
       },
       undefined,
-      (error) => {
-        console.error('An error happened when loading the model:', error);
+      () => {
+        this.snackBar.open(
+          'An error happened when loading the model.',
+          'Close',
+          { duration: 3000 },
+        );
       },
     );
   }
 
-  private positionCameraForModel(boundingBox: THREE.Box3 | null): void {
-    if (!boundingBox) return;
+  private positionCameraForModel(): void {
+    const boundingBox = new THREE.Box3();
+    this.meshes.forEach((mesh) => boundingBox.expandByObject(mesh));
 
+    const center = new THREE.Vector3();
+    boundingBox.getCenter(center);
     const size = new THREE.Vector3();
     boundingBox.getSize(size);
     const maxDim = Math.max(size.x, size.y, size.z);
 
-    this.camera.position.set(maxDim * 2, maxDim * 1.5, maxDim * 2);
-    this.camera.lookAt(0, 0, 0);
+    const fitDistance = maxDim * 2.5;
+
+    this.camera.position.set(
+      center.x + fitDistance,
+      center.y + fitDistance,
+      center.z + fitDistance,
+    );
+    this.camera.lookAt(center);
+
+    this.camera.near = fitDistance / 10;
+    this.camera.far = fitDistance * 10;
     this.camera.updateProjectionMatrix();
+
+    this.controls.target.copy(center);
+    this.controls.update();
   }
 }
