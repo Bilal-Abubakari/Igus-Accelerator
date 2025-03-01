@@ -11,17 +11,16 @@ export class FeedbackController {
   @Post()
   public async create(
     @Body() createFeedbackDto: CreateFeedbackDto,
-    @Session() session: SessionModel
+    @Session() session: SessionModel,
   ): Promise<void> {
-    return this.feedbackService.createFeedback(createFeedbackDto,session);
+    return this.feedbackService.createFeedback(createFeedbackDto, session);
   }
 
   @Put()
   public async sendEmail(
     @Body() emailDto: EmailDto,
-    @Session() session: SessionModel
+    @Session() session: SessionModel,
   ): Promise<void> {
     return this.feedbackService.sendEmail(emailDto, session);
   }
-  
 }

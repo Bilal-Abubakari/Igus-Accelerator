@@ -1,4 +1,3 @@
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { FeedbackController } from './feedback.controller';
 import { FeedbackService } from '../service/feedback.service';
@@ -11,20 +10,20 @@ describe('FeedbackController', () => {
   let feedbackService: FeedbackService;
   const mockCreateFeedbackDto: CreateFeedbackDto = {
     comment: 'Test feedback',
-    rating: 5
+    rating: 5,
   };
 
   const mockEmailDto: EmailDto = {
-    email: 'test@example.com'
+    email: 'test@example.com',
   };
 
   const mockSession: SessionModel = {
-    feedbackId: 'feedback123'
+    feedbackId: 'feedback123',
   };
 
   const mockFeedbackService = {
     createFeedback: jest.fn(),
-    sendEmail: jest.fn()
+    sendEmail: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -34,8 +33,8 @@ describe('FeedbackController', () => {
       providers: [
         {
           provide: FeedbackService,
-          useValue: mockFeedbackService
-        }
+          useValue: mockFeedbackService,
+        },
       ],
     }).compile();
 
@@ -56,22 +55,25 @@ describe('FeedbackController', () => {
       expect(feedbackService.createFeedback).toHaveBeenCalledTimes(1);
       expect(feedbackService.createFeedback).toHaveBeenCalledWith(
         mockCreateFeedbackDto,
-        mockSession
+        mockSession,
       );
     });
 
     it('should return the result from feedbackService.createFeedback', async () => {
       mockFeedbackService.createFeedback.mockResolvedValue(undefined);
-      const result = await controller.create(mockCreateFeedbackDto, mockSession);
+      const result = await controller.create(
+        mockCreateFeedbackDto,
+        mockSession,
+      );
       expect(result).toBeUndefined();
     });
 
     it('should handle errors from feedbackService.createFeedback', async () => {
       const error = new Error('Service error');
       mockFeedbackService.createFeedback.mockRejectedValue(error);
-      await expect(controller.create(mockCreateFeedbackDto, mockSession))
-        .rejects
-        .toThrow(error);
+      await expect(
+        controller.create(mockCreateFeedbackDto, mockSession),
+      ).rejects.toThrow(error);
     });
   });
 
@@ -82,7 +84,7 @@ describe('FeedbackController', () => {
       expect(feedbackService.sendEmail).toHaveBeenCalledTimes(1);
       expect(feedbackService.sendEmail).toHaveBeenCalledWith(
         mockEmailDto,
-        mockSession
+        mockSession,
       );
     });
 
@@ -95,9 +97,9 @@ describe('FeedbackController', () => {
     it('should handle errors from feedbackService.sendEmail', async () => {
       const error = new Error('Service error');
       mockFeedbackService.sendEmail.mockRejectedValue(error);
-      await expect(controller.sendEmail(mockEmailDto, mockSession))
-        .rejects
-        .toThrow(error);
+      await expect(
+        controller.sendEmail(mockEmailDto, mockSession),
+      ).rejects.toThrow(error);
     });
   });
 });

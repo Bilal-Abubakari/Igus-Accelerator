@@ -1,8 +1,6 @@
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { InternalServerErrorException } from '@nestjs/common';
 import { FeedbackService } from './feedback.service';
 import { FeedbackEntity } from '../feedback.entity';
 import { CreateFeedbackDto } from '../dtos/feedback.dto';
@@ -14,15 +12,15 @@ describe('FeedbackService', () => {
   let repository: Repository<FeedbackEntity>;
   const mockCreateFeedbackDto: CreateFeedbackDto = {
     comment: 'Test feedback',
-    rating: 5
+    rating: 5,
   };
 
   const mockEmailDto: EmailDto = {
-    email: 'test@example.com'
+    email: 'test@example.com',
   };
 
   const mockSession: SessionModel = {
-    feedbackId: ''
+    feedbackId: '',
   };
 
   const mockFeedbackEntity: FeedbackEntity = {
@@ -30,31 +28,33 @@ describe('FeedbackService', () => {
     rating: 5,
     comment: 'Test feedback',
     email: 'example@gmail.com',
-    createdAt: new Date()
+    createdAt: new Date(),
   };
 
   const mockRepository = {
     create: jest.fn(),
     save: jest.fn(),
     findOneBy: jest.fn(),
-    update: jest.fn()
+    update: jest.fn(),
   };
 
   beforeEach(async () => {
     jest.clearAllMocks();
-    
+
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         FeedbackService,
         {
           provide: getRepositoryToken(FeedbackEntity),
-          useValue: mockRepository
-        }
+          useValue: mockRepository,
+        },
       ],
     }).compile();
 
     service = module.get<FeedbackService>(FeedbackService);
-    repository = module.get<Repository<FeedbackEntity>>(getRepositoryToken(FeedbackEntity));
+    repository = module.get<Repository<FeedbackEntity>>(
+      getRepositoryToken(FeedbackEntity),
+    );
   });
 
   describe('constructor', () => {
@@ -76,10 +76,10 @@ describe('FeedbackService', () => {
     it('should throw InternalServerErrorException when create fails', async () => {
       mockRepository.create.mockReturnValue(mockFeedbackEntity);
       mockRepository.save.mockRejectedValue(new Error('Database error'));
-      await expect(service.createFeedback(mockCreateFeedbackDto, mockSession))
-        .rejects
-        .toThrow('Failed to create feedback');
-      
+      await expect(
+        service.createFeedback(mockCreateFeedbackDto, mockSession),
+      ).rejects.toThrow('Failed to create feedback');
+
       expect(repository.create).toHaveBeenCalledWith(mockCreateFeedbackDto);
       expect(repository.save).toHaveBeenCalledWith(mockFeedbackEntity);
     });
@@ -92,15 +92,18 @@ describe('FeedbackService', () => {
       mockRepository.update.mockResolvedValue({ affected: 1 });
       await service.sendEmail(mockEmailDto, mockSession);
       expect(repository.findOneBy).toHaveBeenCalledWith({ id: 'feedback123' });
-      expect(repository.update).toHaveBeenCalledWith('feedback123', mockEmailDto);
+      expect(repository.update).toHaveBeenCalledWith(
+        'feedback123',
+        mockEmailDto,
+      );
     });
 
     it('should throw InternalServerErrorException when no feedbackId in session', async () => {
       mockSession.feedbackId = '';
-      await expect(service.sendEmail(mockEmailDto, mockSession))
-        .rejects
-        .toThrow('Failed to send email');
-      
+      await expect(
+        service.sendEmail(mockEmailDto, mockSession),
+      ).rejects.toThrow('Failed to send email');
+
       expect(repository.findOneBy).not.toHaveBeenCalled();
       expect(repository.update).not.toHaveBeenCalled();
     });
@@ -108,10 +111,10 @@ describe('FeedbackService', () => {
     it('should throw InternalServerErrorException when feedback not found', async () => {
       mockSession.feedbackId = 'feedback123';
       mockRepository.findOneBy.mockResolvedValue(null);
-      await expect(service.sendEmail(mockEmailDto, mockSession))
-        .rejects
-        .toThrow('Failed to send email');
-      
+      await expect(
+        service.sendEmail(mockEmailDto, mockSession),
+      ).rejects.toThrow('Failed to send email');
+
       expect(repository.findOneBy).toHaveBeenCalledWith({ id: 'feedback123' });
       expect(repository.update).not.toHaveBeenCalled();
     });
@@ -121,12 +124,15 @@ describe('FeedbackService', () => {
       mockRepository.findOneBy.mockResolvedValue(mockFeedbackEntity);
       mockRepository.update.mockRejectedValue(new Error('Database error'));
 
-      await expect(service.sendEmail(mockEmailDto, mockSession))
-        .rejects
-        .toThrow('Failed to send email');
-      
+      await expect(
+        service.sendEmail(mockEmailDto, mockSession),
+      ).rejects.toThrow('Failed to send email');
+
       expect(repository.findOneBy).toHaveBeenCalledWith({ id: 'feedback123' });
-      expect(repository.update).toHaveBeenCalledWith('feedback123', mockEmailDto);
+      expect(repository.update).toHaveBeenCalledWith(
+        'feedback123',
+        mockEmailDto,
+      );
     });
   });
 });

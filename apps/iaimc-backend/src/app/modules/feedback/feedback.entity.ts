@@ -16,9 +16,9 @@ export class FeedbackEntity {
   @Column({ nullable: true, type: 'text' })
   public comment!: string;
 
-  @Column({ nullable: true ,unique: true})
+  @Column({ nullable: true, unique: true })
   public email!: string;
 
-  @CreateDateColumn({type: 'timestamp'})
+  @CreateDateColumn({ type: 'timestamp' })
   public createdAt!: Date;
 }
