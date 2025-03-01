@@ -10,7 +10,6 @@ export default (): DatabaseConfig => ({
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     entities: [],
-    url: process.env.POSTGRES_DATABASE_URL,
     synchronize: process.env.NODE_ENV === 'development',
   } satisfies TypeOrmModuleOptions,
 });
