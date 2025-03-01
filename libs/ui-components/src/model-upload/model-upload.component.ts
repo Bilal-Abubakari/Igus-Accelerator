@@ -125,21 +125,31 @@ export class ModelUploadComponent {
 
           if ('data' in event) {
             this.completedUploads++;
-
             this.modelUploaded.emit({
               url: event.data.url,
             });
+
+            this.snackBar.open(`${file.name} uploaded successfully!`, 'Close', {
+              duration: 3000,
+              panelClass: ['success-snackbar'],
+            });
+
             if (this.completedUploads >= this.totalUploads) {
               this.finishUpload();
             }
           }
         }),
         catchError((err: HttpErrorResponse) => {
-          if (err.error?.message) {
-            this.snackBar.open(err.error.message, 'Close', { duration: 3000 });
-          }
-
           this.completedUploads++;
+
+          const errorMessage =
+            err.error?.message || `Failed to upload ${file.name}.`;
+
+          this.snackBar.open(errorMessage, 'Close', {
+            duration: 4000,
+            panelClass: ['error-snackbar'],
+          });
+
           if (this.completedUploads >= this.totalUploads) {
             this.finishUpload();
           }
