@@ -4,7 +4,7 @@ import { ModelViewerComponent } from '../../../../libs/ui-components/src/model-v
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe, SlicePipe } from '@angular/common';
-import { UploadedModel } from 'apps/iaimc-frontend/src/app/services/types';
+import { UploadedModel } from '../../../../apps/iaimc-frontend/src/app/services/types';
 
 @Component({
   selector: 'app-model-list',
