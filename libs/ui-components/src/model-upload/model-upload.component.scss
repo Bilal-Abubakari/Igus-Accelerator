@@ -5,6 +5,7 @@
   align-items: center;
   padding-top: 3rem;
 
+
   .upload_card {
     width: 90%;
     border-radius: 0.5rem;
@@ -15,9 +16,10 @@
       padding: 1rem;
       border-bottom: 0.0625rem solid #eee;
 
-      .mat-card-title {
+
+      mat-card-title {
         font-size: 1.5rem;
-        font-weight: 500;
+        font-weight: 700;
         color: #333;
       }
     }
@@ -39,6 +41,12 @@
       margin-bottom: 1.25rem;
       width: 100%;
       min-height: 12.5rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+
+      &:hover {
+        background-color: #eef5ff;
+        border-color: #2563eb;
+      }
 
       input[type='file'] {
         display: none;
@@ -52,16 +60,17 @@
 
       .upload_text {
         font-size: 1rem;
-        color: #777;
+        color: #4B5563;
         text-align: center;
 
         span {
           color: #007bff;
           cursor: pointer;
-          text-decoration: underline;
+
 
           &:hover {
             color: darken(#007bff, 10%);
+            text-decoration: underline;
           }
         }
       }
@@ -104,7 +113,7 @@
           p {
             font-size: 0.75rem;
             text-align: center;
-            color: #555;
+            color: #4B5563;
           }
         }
       }
@@ -129,26 +138,10 @@
         p {
           font-size: 1rem;
           font-weight: 500;
-          color: #333;
+          color: #4B5563;
         }
       }
     }
   }
 
-  .sample_model {
-    font-size: 1rem;
-    padding-top: 2rem;
-    color: #555;
-    text-align: center;
-
-    a {
-      color: #007bff;
-      cursor: pointer;
-      text-decoration: underline;
-
-      &:hover {
-        color: darken(#007bff, 10%);
-      }
-    }
-  }
 }
