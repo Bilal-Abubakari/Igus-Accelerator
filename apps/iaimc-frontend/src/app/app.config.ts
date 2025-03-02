@@ -13,7 +13,7 @@ import { AvailableLangs, provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoLocale } from '@jsverse/transloco-locale';
 import { provideTranslocoPersistLang } from '@jsverse/transloco-persist-lang';
 import { appRoutes } from './app.routes';
-import { TranslocoHttpLoader } from './transloco-loader';
+import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
-      loader: TranslocoHttpLoader,
+      loader: PrebuiltTranslocoLoader,
     }),
     provideTranslocoPersistLang({
       storage: {

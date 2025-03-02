@@ -1,37 +1,38 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
-import { Observable, forkJoin, map } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import * as feedbackTranslations from './../../public/i18n/feedback.i18n.json';
+import * as footerTranslations from './../../public/i18n/footer.i18n.json';
+import * as langSwitcherTranslations from './../../public/i18n/lang-switcher.i18n.json';
+import * as stageTranslations from './../../public/i18n/stage.i18n.json';
+import * as toolbarTranslations from './../../public/i18n/toolbar.i18n.json';
+
+const componentTranslations = {
+  stage: stageTranslations,
+  toolbar: toolbarTranslations,
+  'lang-switcher': langSwitcherTranslations,
+  feedback: feedbackTranslations,
+  footer: footerTranslations,
+};
 
 @Injectable({ providedIn: 'root' })
-export class TranslocoHttpLoader implements TranslocoLoader {
-  private readonly http = inject(HttpClient);
-
-  private readonly componentFiles = [
-    'stage',
-    'toolbar',
-    'lang-switcher',
-    'feedback',
-    'footer',
-  ];
+export class PrebuiltTranslocoLoader implements TranslocoLoader {
+  private readonly translationCache: Record<string, Translation> = {};
 
   public getTranslation(lang: string): Observable<Translation> {
-    const requests = this.componentFiles.map((component) =>
-      this.http.get<Translation>(`/i18n/${component}.i18n.json`),
-    );
+    if (this.translationCache[lang]) {
+      return of(this.translationCache[lang]);
+    }
 
-    // Combine all requests
-    return forkJoin(requests).pipe(
-      map((responses) => {
-        const result: Translation = {};
+    const result: Translation = {};
 
-        responses.forEach((componentTranslation, index) => {
-          this.extractTranslationsForLang(componentTranslation, lang, result);
-        });
+    Object.entries(componentTranslations).forEach(([_, translations]) => {
+      this.extractTranslationsForLang(translations, lang, result);
+    });
 
-        return result;
-      }),
-    );
+    this.translationCache[lang] = result;
+
+    return of(result);
   }
 
   private extractTranslationsForLang(
@@ -41,7 +42,6 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     prefix = '',
   ): void {
     Object.entries(componentTranslation).forEach(([key, value]) => {
-      console.log(componentTranslation);
       const currentPath = prefix ? `${prefix}.${key}` : key;
 
       if (typeof value === 'object' && value !== null) {
