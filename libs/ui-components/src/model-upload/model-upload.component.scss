@@ -5,7 +5,6 @@
   align-items: center;
   padding-top: 3rem;
 
-
   .upload_card {
     width: 90%;
     border-radius: 0.5rem;
@@ -15,7 +14,6 @@
     mat-card-header {
       padding: 1rem;
       border-bottom: 0.0625rem solid #eee;
-
 
       mat-card-title {
         font-size: 1.5rem;
@@ -41,7 +39,9 @@
       margin-bottom: 1.25rem;
       width: 100%;
       min-height: 12.5rem;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 
       &:hover {
         background-color: #eef5ff;
@@ -60,13 +60,12 @@
 
       .upload_text {
         font-size: 1rem;
-        color: #4B5563;
+        color: #4b5563;
         text-align: center;
 
         span {
           color: #007bff;
           cursor: pointer;
-
 
           &:hover {
             color: darken(#007bff, 10%);
@@ -113,7 +112,7 @@
           p {
             font-size: 0.75rem;
             text-align: center;
-            color: #4B5563;
+            color: #4b5563;
           }
         }
       }
@@ -138,10 +137,9 @@
         p {
           font-size: 1rem;
           font-weight: 500;
-          color: #4B5563;
+          color: #4b5563;
         }
       }
     }
   }
-
 }

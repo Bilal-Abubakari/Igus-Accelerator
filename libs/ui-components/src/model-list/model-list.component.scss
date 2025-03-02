@@ -1,85 +1,83 @@
 main {
+  .model_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 1.5rem;
+  }
 
-    .model_list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        width: 100%;
-        max-width: 1000px;
-        margin-top: 1.5rem;
+  .model_card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    margin-left: 4rem;
+    margin-bottom: 4rem;
+    margin-top: 3rem;
+
+    mat-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
     }
 
-    .model_card {
+    mat-card-title {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    mat-card-subtitle {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #4caf50;
+
+      .status_icon {
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+        margin-right: 0.3rem;
+        color: #4caf50;
+      }
+    }
+
+    mat-card-content {
+      padding: 1rem;
+
+      .card_footer {
         display: flex;
-        flex-direction: column;
-        border-radius: 12px;
-        overflow: hidden;
-        transition: transform 0.2s ease-in-out;
-        margin-left: 4rem;
-        margin-bottom: 4rem;
-        margin-top: 3rem;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #666;
 
-
-        mat-card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
+        .material_badge {
+          background: #007bff;
+          color: white;
+          padding: 0.4rem 0.8rem;
+          border-radius: 16px;
+          font-size: 0.75rem;
+          font-weight: bold;
         }
+      }
+    }
+  }
 
-        mat-card-title {
-            font-size: 1rem;
-            font-weight: bold;
-        }
+  .placeholder_message {
+    text-align: center;
+    margin-top: 2rem;
+    color: #777;
 
-        mat-card-subtitle {
-            display: flex;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #4caf50;
-
-            .status_icon {
-                font-size: 1.2rem;
-                margin-top: 0.5rem;
-                margin-right: 0.3rem;
-                color: #4caf50;
-            }
-        }
-
-        mat-card-content {
-            padding: 1rem;
-
-            .card_footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 0.9rem;
-                color: #666;
-
-                .material_badge {
-                    background: #007bff;
-                    color: white;
-                    padding: 0.4rem 0.8rem;
-                    border-radius: 16px;
-                    font-size: 0.75rem;
-                    font-weight: bold;
-                }
-            }
-        }
+    img {
+      width: 170px;
+      height: 170px;
     }
 
-    .placeholder_message {
-        text-align: center;
-        margin-top: 2rem;
-        color: #777;
-
-        img {
-            width: 170px;
-            height: 170px;
-        }
-
-        p {
-            font-size: 0.8rem;
-            margin-top: -2rem;
-        }
+    p {
+      font-size: 0.8rem;
+      margin-top: -2rem;
     }
+  }
 }

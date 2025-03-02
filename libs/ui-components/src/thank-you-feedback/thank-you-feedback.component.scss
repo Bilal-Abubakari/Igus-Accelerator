@@ -1,0 +1,52 @@
+@mixin flex-option(
+  $display: flex,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+.feedback-container {
+  p,
+  a {
+    font-size: 0.875rem;
+  }
+
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+  gap: 1rem;
+  width: 20rem;
+  form {
+    flex-direction: column;
+    @include flex-option();
+    .custom-button {
+      color: var(--mat-sys-primary);
+      width: 50%;
+      &:disabled {
+        color: var(--mat-sys-on-primary);
+      }
+    }
+    mat-form-field {
+      width: 100%;
+      input {
+        color: var(--mat-sys-on-primary);
+      }
+    }
+  }
+  .privacy-notice {
+    a {
+      color: var(--mat-sys-on-primary);
+      &:hover {
+        color: var(--mat-sys-primary);
+      }
+    }
+  }
+  .success-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
