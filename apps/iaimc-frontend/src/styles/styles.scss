@@ -1,6 +1,8 @@
 @use '@angular/material' as mat;
 @use 'stylestheme.scss';
 
+$floating-label-font-size: 14px !default;
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +11,10 @@
 }
 
 @include mat.all-component-densities(-3);
+
+.mat-mdc-form-field .mdc-floating-label {
+  font-size: $floating-label-font-size !important;
+}
 
 .full-screen-dialog {
   &,

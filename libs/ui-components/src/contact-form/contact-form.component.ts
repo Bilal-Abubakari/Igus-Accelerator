@@ -12,6 +12,10 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
+import { finalize } from 'rxjs';
+import { ContactFormService } from './service/contact-form.service';
+import { TextOnlyValidators } from '../custom-validators/text-only.validator';
+import { FeatureFlagService } from './service/feature-flag.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -39,26 +43,29 @@ export class ContactFormComponent {
 
   public contactForm: FormGroup;
   public fileValidationError = '';
+  public isSubmitting = false;
 
   constructor(
     public readonly dialogRef: MatDialogRef<ContactFormComponent>,
     private readonly formBuilder: FormBuilder,
+    private readonly contactFormService: ContactFormService,
+    public readonly featureFlagService: FeatureFlagService,
   ) {
     this.contactForm = this.initializeForm();
   }
 
   private initializeForm(): FormGroup {
     return this.formBuilder.group({
-      firstName: [''],
-      lastName: ['', Validators.required],
+      firstName: ['', TextOnlyValidators.textOnly()],
+      lastName: ['', [Validators.required, TextOnlyValidators.textOnly()]],
       email: ['', [Validators.required, Validators.email]],
-      company: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      country: ['', Validators.required],
-      telephone: ['', Validators.pattern(/^[+]?\d{7,15}$/)],
+      company: ['', [Validators.required, TextOnlyValidators.companyName()]],
+      postalCode: ['', [Validators.required, TextOnlyValidators.postalCode()]],
+      country: ['', [Validators.required, TextOnlyValidators.textOnly()]],
+      telephone: ['', [Validators.required, TextOnlyValidators.phoneNumber()]],
       message: [''],
       agreement: [false, Validators.requiredTrue],
-      file: [null as File | null],
+      file: [null],
     });
   }
 
@@ -69,6 +76,26 @@ export class ContactFormComponent {
           (field.touched || field.dirty) &&
           (!errorType || field.hasError(errorType))
       : false;
+  }
+
+  public getErrorMessage(fieldName: string): string {
+    const field = this.contactForm.get(fieldName);
+    if (!field || !field.errors) return '';
+
+    if (field.errors['required']) return 'This field is required';
+    if (field.errors['email']) return 'Please enter a valid email address';
+    if (field.errors['textOnly'])
+      return 'Please enter text only (no numbers or special characters)';
+    if (field.errors['invalidPostalCode'])
+      return 'Please enter a valid postal code';
+    if (field.errors['invalidPhone'])
+      return 'Please enter a valid phone number';
+    if (field.errors['invalidCompanyName'])
+      return 'Please enter a valid company name';
+    if (field.errors['invalidFileType'])
+      return 'Invalid file type. Only PNG, JPEG, and PDF are allowed.';
+
+    return 'Invalid input';
   }
 
   public handleFileSelection(event: Event): void {
@@ -92,6 +119,19 @@ export class ContactFormComponent {
       this.contactForm.markAllAsTouched();
       return;
     }
+
+    this.isSubmitting = true;
+
+    this.contactFormService
+      .submitContactForm(this.contactForm.value)
+      .pipe(finalize(() => (this.isSubmitting = false)))
+      .subscribe({
+        next: () => {
+          alert('Form submitted successfully!');
+          this.dialogRef.close();
+        },
+        error: (error) => alert(error.message),
+      });
   }
 
   public closeDialog(): void {
