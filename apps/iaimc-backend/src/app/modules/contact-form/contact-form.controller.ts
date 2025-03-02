@@ -8,7 +8,6 @@ import {
 import { ContactFormService } from './contact-form.service';
 import { ContactFormDto } from './dto/contact-form.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
 import { ContactFormEntity } from './entity/contact-form.entity';
 
 @Controller('contact-forms')
@@ -16,7 +15,7 @@ export class ContactFormController {
   constructor(private readonly contactFormService: ContactFormService) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor('file', { storage: diskStorage({}) }))
+  @UseInterceptors(FileInterceptor('file'))
   public async submitForm(
     @Body() dto: ContactFormDto,
     @UploadedFile() file?: Express.Multer.File,

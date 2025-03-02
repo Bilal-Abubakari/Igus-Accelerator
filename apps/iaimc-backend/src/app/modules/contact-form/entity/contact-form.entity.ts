@@ -7,7 +7,7 @@ import {
 
 @Entity('contact_forms')
 export class ContactFormEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   public id!: number;
 
   @Column()
