@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Put, Session } from '@nestjs/common';
+import { Body, Controller, Patch, Post, Session } from '@nestjs/common';
 import { EmailDto } from '../dtos/email.dto';
 import { CreateFeedbackDto } from '../dtos/feedback.dto';
 import { SessionModel } from '../feedback.model';
@@ -16,7 +16,7 @@ export class FeedbackController {
     return this.feedbackService.createFeedback(createFeedbackDto, session);
   }
 
-  @Put()
+  @Patch()
   public async sendEmail(
     @Body() emailDto: EmailDto,
     @Session() session: SessionModel,
