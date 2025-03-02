@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { Observable, of } from 'rxjs';
-import * as feedbackTranslations from './../../public/i18n/feedback.i18n.json';
-import * as footerTranslations from './../../public/i18n/footer.i18n.json';
-import * as langSwitcherTranslations from './../../public/i18n/lang-switcher.i18n.json';
-import * as stageTranslations from './../../public/i18n/stage.i18n.json';
-import * as toolbarTranslations from './../../public/i18n/toolbar.i18n.json';
+
+import {
+  stageI18n,
+  footerI18n,
+  toolbarI18n,
+  langSwticherI18n,
+  feedBackI18n,
+} from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 const componentTranslations = {
-  stage: stageTranslations,
-  toolbar: toolbarTranslations,
-  'lang-switcher': langSwitcherTranslations,
-  feedback: feedbackTranslations,
-  footer: footerTranslations,
+  stage: stageI18n,
+  toolbar: toolbarI18n,
+  'lang-switcher': langSwticherI18n,
+  feedback: feedBackI18n,
+  footer: footerI18n,
 };
 
 @Injectable({ providedIn: 'root' })
