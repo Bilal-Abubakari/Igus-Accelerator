@@ -18,7 +18,8 @@
     "paths": {
       "@igus-accelerator-injection-molding-configurator/ui-components": [
         "libs/ui-components/src/index.ts"
-      ]
+      ],
+      "@services/*": ["apps/iaimc-frontend/src/app/services/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

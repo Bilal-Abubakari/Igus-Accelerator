@@ -43,7 +43,10 @@ export class ModelListComponent {
     return Math.random().toString(36).substring(2, 11);
   }
 
-  private extractFileNameFromUrl(url: string): string {
+  private extractFileNameFromUrl(url: string | undefined): string {
+    if (!url) {
+      return 'Unnamed Model';
+    }
     return url.split('/').pop() || 'Unnamed Model';
   }
 }
