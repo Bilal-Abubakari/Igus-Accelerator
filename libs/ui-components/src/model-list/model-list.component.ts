@@ -4,7 +4,18 @@ import { ModelViewerComponent } from '../../../../libs/ui-components/src/model-v
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe, SlicePipe } from '@angular/common';
-import { UploadedModel } from '../../../../apps/iaimc-frontend/src/app/services/types';
+
+interface UploadedModel {
+  id: string;
+  url: string;
+  name: string;
+  material: string;
+  uploadDate: string;
+}
+
+export interface FetchModelsResponse {
+  data: UploadedModel[];
+}
 
 @Component({
   selector: 'app-model-list',
