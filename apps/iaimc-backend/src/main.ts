@@ -8,7 +8,7 @@ async function bootstrap(): Promise<void> {
   app.enableCors({
     origin: 'http://localhost:4200',
     credentials: true,
-  })
+  });
   const sessionSecret = process.env.SESSION_SECRET;
   if (!sessionSecret) {
     throw new Error('Unauthorized');

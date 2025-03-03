@@ -7,8 +7,7 @@ export class CreateFeedbackDto {
   @Max(5)
   public readonly rating?: number;
 
-@IsOptional()
-@IsString()
-public readonly comment?: string;
-
+  @IsOptional()
+  @IsString()
+  public readonly comment?: string;
 }

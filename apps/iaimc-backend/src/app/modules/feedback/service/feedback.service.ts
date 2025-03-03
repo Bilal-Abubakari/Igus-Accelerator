@@ -5,7 +5,6 @@ import { EmailDto } from '../dtos/email.dto';
 import { CreateFeedbackDto } from '../dtos/feedback.dto';
 import { FeedbackEntity } from '../feedback.entity';
 
-
 @Injectable()
 export class FeedbackService {
   constructor(
@@ -27,7 +26,7 @@ export class FeedbackService {
 
   public async sendEmail(
     emailDto: EmailDto,
-    feedbackId: string
+    feedbackId: string,
   ): Promise<void> {
     try {
       if (!feedbackId) {
@@ -40,9 +39,11 @@ export class FeedbackService {
         throw new InternalServerErrorException('Feedback not found');
       }
       await this.feedbackRepository.update(feedbackId, emailDto);
-    } catch(error) {
+    } catch (error) {
       if (error instanceof Error) {
-        throw new InternalServerErrorException(error.message || 'Failed to send email');
+        throw new InternalServerErrorException(
+          error.message || 'Failed to send email',
+        );
       }
       throw new InternalServerErrorException('Failed to send email');
     }

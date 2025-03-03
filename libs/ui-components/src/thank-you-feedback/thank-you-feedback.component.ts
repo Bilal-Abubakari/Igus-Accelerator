@@ -33,7 +33,7 @@ export class ThankYouFeedbackComponent {
   private readonly fb = inject(FormBuilder);
   public readonly footerService = inject(FooterService);
   public isSubmitted = signal(false);
-  private  readonly unsubscription = new Subject<void>();
+  private readonly unsubscription = new Subject<void>();
   public contactForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
   });
@@ -42,19 +42,21 @@ export class ThankYouFeedbackComponent {
     return formField(field, this.contactForm);
   }
 
-  public  onSubmitEmail(){
+  public onSubmitEmail() {
     if (this.contactForm.invalid) {
       return;
     }
-    this.footerService.updateFeedback(this.contactForm.value).pipe(takeUntil(this.unsubscription)
-    ).subscribe({
-      next: () => {
-        this.isSubmitted.set(true);
-      },
-     error:()=>{
-       this.isSubmitted.set(false);
-     }
-    })
+    this.footerService
+      .updateFeedback(this.contactForm.value)
+      .pipe(takeUntil(this.unsubscription))
+      .subscribe({
+        next: () => {
+          this.isSubmitted.set(true);
+        },
+        error: () => {
+          this.isSubmitted.set(false);
+        },
+      });
   }
 
   public get contactFormValues(): FeedbackInterface {

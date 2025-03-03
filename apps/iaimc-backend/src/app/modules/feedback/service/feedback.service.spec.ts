@@ -75,8 +75,9 @@ describe('FeedbackService', () => {
       mockRepository.create.mockReturnValue(mockFeedbackEntity);
       mockRepository.save.mockRejectedValue(new Error('Database error'));
 
-      await expect(service.createFeedback(mockCreateFeedbackDto))
-        .rejects.toThrow('Failed to create feedback');
+      await expect(
+        service.createFeedback(mockCreateFeedbackDto),
+      ).rejects.toThrow('Failed to create feedback');
 
       expect(repository.create).toHaveBeenCalledWith(mockCreateFeedbackDto);
       expect(repository.save).toHaveBeenCalledWith(mockFeedbackEntity);
@@ -91,12 +92,16 @@ describe('FeedbackService', () => {
       await service.sendEmail(mockEmailDto, 'feedback123');
 
       expect(repository.findOneBy).toHaveBeenCalledWith({ id: 'feedback123' });
-      expect(repository.update).toHaveBeenCalledWith('feedback123', mockEmailDto);
+      expect(repository.update).toHaveBeenCalledWith(
+        'feedback123',
+        mockEmailDto,
+      );
     });
 
     it('should throw InternalServerErrorException when no feedbackId is provided', async () => {
-      await expect(service.sendEmail(mockEmailDto, ''))
-        .rejects.toThrow('Feedback ID is required');
+      await expect(service.sendEmail(mockEmailDto, '')).rejects.toThrow(
+        'Feedback ID is required',
+      );
 
       expect(repository.findOneBy).not.toHaveBeenCalled();
       expect(repository.update).not.toHaveBeenCalled();
@@ -105,8 +110,9 @@ describe('FeedbackService', () => {
     it('should throw InternalServerErrorException when feedback not found', async () => {
       mockRepository.findOneBy.mockResolvedValue(null);
 
-      await expect(service.sendEmail(mockEmailDto, 'feedback123'))
-        .rejects.toThrow('Feedback not found');
+      await expect(
+        service.sendEmail(mockEmailDto, 'feedback123'),
+      ).rejects.toThrow('Feedback not found');
 
       expect(repository.findOneBy).toHaveBeenCalledWith({ id: 'feedback123' });
       expect(repository.update).not.toHaveBeenCalled();
@@ -116,11 +122,15 @@ describe('FeedbackService', () => {
       mockRepository.findOneBy.mockResolvedValue(mockFeedbackEntity);
       mockRepository.update.mockRejectedValue(new Error('Database error'));
 
-      await expect(service.sendEmail(mockEmailDto, 'feedback123'))
-        .rejects.toThrow('Database error');
+      await expect(
+        service.sendEmail(mockEmailDto, 'feedback123'),
+      ).rejects.toThrow('Database error');
 
       expect(repository.findOneBy).toHaveBeenCalledWith({ id: 'feedback123' });
-      expect(repository.update).toHaveBeenCalledWith('feedback123', mockEmailDto);
+      expect(repository.update).toHaveBeenCalledWith(
+        'feedback123',
+        mockEmailDto,
+      );
     });
   });
 });

@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  inject, OnDestroy, OnInit,
+  inject,
+  OnDestroy,
+  OnInit,
   signal,
 } from '@angular/core';
 import {
@@ -43,10 +45,10 @@ import { formField } from '../utilities/helper-function';
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent implements  OnDestroy {
+export class FooterComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly footerService = inject(FooterService);
-  private  readonly  unsubscription = new Subject<void>();
+  private readonly unsubscription = new Subject<void>();
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
@@ -61,13 +63,13 @@ export class FooterComponent implements  OnDestroy {
         Validators.max(5),
       ]),
     },
-    { validators: atLeastOneFieldValidator(['rating', 'comment']) }
+    { validators: atLeastOneFieldValidator(['rating', 'comment']) },
   );
 
   ngOnDestroy() {
-  this.unsubscription.next();
-  this.unsubscription.complete();
-}
+    this.unsubscription.next();
+    this.unsubscription.complete();
+  }
 
   public onMouseEnter(rating: number): void {
     this.hoveredRating.set(rating);
@@ -87,10 +89,11 @@ export class FooterComponent implements  OnDestroy {
       return;
     }
     this.isRatingLoading.set(true);
-    this.footerService.submitFeedback(this.ratingFormValues)
+    this.footerService
+      .submitFeedback(this.ratingFormValues)
       .pipe(
         takeUntil(this.unsubscription),
-        finalize(() => this.isRatingLoading.set(false))
+        finalize(() => this.isRatingLoading.set(false)),
       )
       .subscribe({
         next: () => {
@@ -99,12 +102,11 @@ export class FooterComponent implements  OnDestroy {
           this.ratingForm.reset();
           this.selectedRating.set(0);
         },
-        error: err => {
+        error: (err) => {
           this.isRatingLoading.set(false);
-        }
+        },
       });
   }
-
 
   public getField(field: string) {
     return formField(field, this.ratingForm);
@@ -113,8 +115,7 @@ export class FooterComponent implements  OnDestroy {
   public get ratingFormValues(): FeedbackInterface {
     return {
       rating: this.ratingForm.get('rating')?.value,
-      comment: this.ratingForm.get('comment')?.value
+      comment: this.ratingForm.get('comment')?.value,
     };
   }
-
 }

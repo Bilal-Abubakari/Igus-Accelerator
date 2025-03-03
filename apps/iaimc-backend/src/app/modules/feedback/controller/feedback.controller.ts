@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Patch, Post} from '@nestjs/common';
+import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { EmailDto } from '../dtos/email.dto';
 import { CreateFeedbackDto } from '../dtos/feedback.dto';
 import { FeedbackService } from '../service/feedback.service';
@@ -9,7 +9,7 @@ export class FeedbackController {
 
   @Post()
   public async create(
-    @Body() createFeedbackDto: CreateFeedbackDto
+    @Body() createFeedbackDto: CreateFeedbackDto,
   ): Promise<{ id: string }> {
     return this.feedbackService.createFeedback(createFeedbackDto);
   }

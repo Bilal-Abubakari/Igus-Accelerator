@@ -14,8 +14,11 @@
           <mat-error> Please enter a valid email address </mat-error>
         }
       </mat-form-field>
-      <button mat-button [disabled]="!contactForm.valid" class="custom-button"
-      (click)="onSubmitEmail()"
+      <button
+        mat-button
+        [disabled]="!contactForm.valid"
+        class="custom-button"
+        (click)="onSubmitEmail()"
       >
         Submit
       </button>
@@ -29,11 +32,7 @@
     <div class="success-container">
       <h2>Thank you for your feedback!</h2>
       <div class="feedback-image">
-        <img
-          src="thank-you.png"
-          alt="thank you"
-          class="success-image"
-        />
+        <img src="thank-you.png" alt="thank you" class="success-image" />
       </div>
     </div>
   }

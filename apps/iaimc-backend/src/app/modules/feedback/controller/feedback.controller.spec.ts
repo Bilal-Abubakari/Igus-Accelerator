@@ -50,14 +50,18 @@ describe('FeedbackController', () => {
       mockFeedbackService.createFeedback.mockResolvedValue(mockResponse);
       const result = await controller.create(mockCreateFeedbackDto);
       expect(feedbackService.createFeedback).toHaveBeenCalledTimes(1);
-      expect(feedbackService.createFeedback).toHaveBeenCalledWith(mockCreateFeedbackDto);
+      expect(feedbackService.createFeedback).toHaveBeenCalledWith(
+        mockCreateFeedbackDto,
+      );
       expect(result).toEqual(mockResponse);
     });
 
     it('should handle errors from feedbackService.createFeedback', async () => {
       const error = new Error('Service error');
       mockFeedbackService.createFeedback.mockRejectedValue(error);
-      await expect(controller.create(mockCreateFeedbackDto)).rejects.toThrow(error);
+      await expect(controller.create(mockCreateFeedbackDto)).rejects.toThrow(
+        error,
+      );
     });
   });
 
@@ -66,13 +70,18 @@ describe('FeedbackController', () => {
       mockFeedbackService.sendEmail.mockResolvedValue(undefined);
       await controller.sendEmail(mockEmailDto, 'feedback123');
       expect(feedbackService.sendEmail).toHaveBeenCalledTimes(1);
-      expect(feedbackService.sendEmail).toHaveBeenCalledWith(mockEmailDto, 'feedback123');
+      expect(feedbackService.sendEmail).toHaveBeenCalledWith(
+        mockEmailDto,
+        'feedback123',
+      );
     });
 
     it('should handle errors from feedbackService.sendEmail', async () => {
       const error = new Error('Service error');
       mockFeedbackService.sendEmail.mockRejectedValue(error);
-      await expect(controller.sendEmail(mockEmailDto, 'feedback123')).rejects.toThrow(error);
+      await expect(
+        controller.sendEmail(mockEmailDto, 'feedback123'),
+      ).rejects.toThrow(error);
     });
   });
 });

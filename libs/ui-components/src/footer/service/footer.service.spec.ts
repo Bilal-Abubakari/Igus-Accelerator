@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { FooterService } from './footer.service';
 import { FeedbackInterface } from '../footer.interface';
 
@@ -35,7 +38,7 @@ describe('FooterService', () => {
     it('should submit feedback and store feedback ID in localStorage', () => {
       const mockResponse = { id: '12345' };
 
-      service.submitFeedback(mockFeedback).subscribe(response => {
+      service.submitFeedback(mockFeedback).subscribe((response) => {
         expect(response).toEqual(mockResponse);
         expect(localStorage.getItem('feedback_id')).toBe(mockResponse.id);
       });
@@ -49,7 +52,7 @@ describe('FooterService', () => {
     it('should not store feedback ID if response has no ID', () => {
       const mockResponse = {};
 
-      service.submitFeedback(mockFeedback).subscribe(response => {
+      service.submitFeedback(mockFeedback).subscribe((response) => {
         expect(response).toEqual(mockResponse);
         expect(localStorage.getItem('feedback_id')).toBeNull();
       });

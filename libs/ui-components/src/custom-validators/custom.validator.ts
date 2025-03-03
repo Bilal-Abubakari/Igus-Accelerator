@@ -1,5 +1,9 @@
-
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 
 /**
  * A reusable validator function that checks if at least one of the specified fields is filled.
@@ -11,11 +15,12 @@ export function atLeastOneFieldValidator(fields: string[]): ValidatorFn {
     if (!(control instanceof FormGroup)) {
       return null;
     }
-    const isAtLeastOneFilled = fields.some(field => control.get(field)?.value);
+    const isAtLeastOneFilled = fields.some(
+      (field) => control.get(field)?.value,
+    );
     if (!isAtLeastOneFilled) {
       return { atLeastOneFieldRequired: true };
     }
     return null;
   };
 }
-
