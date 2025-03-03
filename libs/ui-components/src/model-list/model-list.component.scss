@@ -7,59 +7,63 @@ main {
     margin-top: 1.5rem;
   }
 
-  .model_card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-    margin-left: 4.5rem;
-    margin-bottom: 4rem;
-    margin-top: 3rem;
+  .card_container {
+    padding: 0 20rem;
 
-    mat-card-header {
+    .model_card {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-    }
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s ease-in-out;
 
-    mat-card-title {
-      font-size: 1rem;
-      font-weight: bold;
-    }
+      margin-bottom: 4rem;
+      margin-top: 3rem;
 
-    mat-card-subtitle {
-      display: flex;
-      align-items: center;
-      font-size: 0.85rem;
-      color: #4caf50;
-
-      .status_icon {
-        font-size: 1.2rem;
-        margin-top: 0.5rem;
-        margin-right: 0.3rem;
-        color: #4caf50;
-      }
-    }
-
-    mat-card-content {
-      padding: 1rem;
-
-      .card_footer {
+      mat-card-header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        font-size: 0.9rem;
-        color: #666;
+        justify-content: space-between;
+        padding: 1rem;
+      }
 
-        .material_badge {
-          background: #007bff;
-          color: white;
-          padding: 0.4rem 0.8rem;
-          border-radius: 16px;
-          font-size: 0.75rem;
-          font-weight: bold;
+      mat-card-title {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      mat-card-subtitle {
+        display: flex;
+        align-items: center;
+        font-size: 0.85rem;
+        color: #4caf50;
+
+        .status_icon {
+          font-size: 1.2rem;
+          margin-top: 0.5rem;
+          margin-right: 0.3rem;
+          color: #4caf50;
+        }
+      }
+
+      mat-card-content {
+        padding: 1rem;
+
+        .card_footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.9rem;
+          color: #666;
+
+          .material_badge {
+            background: #007bff;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: bold;
+          }
         }
       }
     }

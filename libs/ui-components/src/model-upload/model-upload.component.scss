@@ -68,7 +68,6 @@
           cursor: pointer;
 
           &:hover {
-            color: darken(#007bff, 10%);
             text-decoration: underline;
           }
         }
@@ -85,7 +84,7 @@
         margin-top: 0.625rem;
 
         &:hover {
-          background-color: darken(#2563eb, 10%);
+          background-color: #1c4fc6;
         }
       }
 
