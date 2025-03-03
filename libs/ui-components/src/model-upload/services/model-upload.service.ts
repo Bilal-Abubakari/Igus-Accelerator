@@ -1,16 +1,15 @@
-import { inject, Injectable } from '@angular/core';
+import { Inject, inject, Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../../../apps/iaimc-frontend/environments/environment';
-import { UploadProgress, UploadResponse } from './types';
+import { UploadProgress, UploadResponse } from '../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModelUploadService {
-  private apiUrl = `${environment.apiBaseUrl}/upload`;
   private readonly http = inject(HttpClient);
+  constructor(@Inject('BASE_API_URL') private readonly baseUrl: string) {}
 
   public uploadFile(
     file: File,
@@ -21,7 +20,7 @@ export class ModelUploadService {
     formData.append('directory', directory);
 
     return this.http
-      .post<UploadResponse>(this.apiUrl, formData, {
+      .post<UploadResponse>(`${this.baseUrl}/upload`, formData, {
         reportProgress: true,
         observe: 'events',
         withCredentials: true,

@@ -16,9 +16,12 @@ import { provideTranslocoPersistLang } from '@jsverse/transloco-persist-lang';
 import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { environment } from '@apps/iaimc-frontend/environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: 'BASE_API_URL', useValue: environment.apiUrl },
+
     provideHttpClient(),
     provideAnimations(),
     provideAnimationsAsync(),

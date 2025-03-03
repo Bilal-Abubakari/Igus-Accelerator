@@ -9,7 +9,7 @@ import { ModelViewerComponent } from '../../../../libs/ui-components/src/model-v
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe, SlicePipe } from '@angular/common';
-import { LocalStorageService } from '../model-upload/local-storage.service';
+import { LocalStorageService } from '../model-upload/services/local-storage.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 interface UploadedModel {
