@@ -1,7 +1,7 @@
 <main class="feedback-container">
   @if (!submitted()) {
-    <h4>Thank you for your feedback!</h4>
-    <p>We would like to learn more about your ideas. May we contact you?</p>
+    <h4>{{ 'feedback.THANKS' | transloco }}</h4>
+    <p>{{ 'feedback.REQUEST_TO_CONTACT_CUSTOMER' | transloco }}</p>
     <form [formGroup]="contactForm">
       <mat-form-field appearance="outline" class="email-input">
         <input
@@ -11,21 +11,21 @@
           formControlName="email"
         />
         @if (contactForm.get('email')?.hasError('email')) {
-          <mat-error> Please enter a valid email address </mat-error>
+          <mat-error>{{ 'feedback.ENTER_VALID_EMAIL' | transloco }}</mat-error>
         }
       </mat-form-field>
       <button mat-button [disabled]="!contactForm.valid" class="custom-button">
-        Submit
+        {{ 'feedback.SUBMIT' | transloco }}
       </button>
     </form>
     <p class="privacy-notice">
-      By clicking "Submit", you agree to the processing of your personal data.
-      You can withdraw this consent at any time. Read our
-      <a routerLink="#">Privacy Policy</a> for more information.
+      {{ 'feedback.PRIVACY_POLICY_FRAGMENT_1' | transloco }}
+      <a routerLink="#">{{ 'feedback.PRIVACY_POLICY_LINK' | transloco }}</a>
+      {{ 'feedback.PRIVACY_POLICY_FRAGMENT_2' | transloco }}
     </p>
   } @else {
     <div class="success-container">
-      <h2>Thank you for your feedback!</h2>
+      <h2>{{ 'feedback.THANKS' | transloco }}</h2>
       <div class="feedback-image">
         <img
           src="assets/thank-you.png"

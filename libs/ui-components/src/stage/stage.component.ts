@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-stage',
-  imports: [CommonModule],
+  imports: [TranslocoPipe],
   templateUrl: './stage.component.html',
   styleUrl: './stage.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
