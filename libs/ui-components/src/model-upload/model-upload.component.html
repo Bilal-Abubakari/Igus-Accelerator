@@ -8,6 +8,9 @@
     <mat-card-content>
       <div
         class="upload_container"
+        [class.dragging]="isDragging()"
+        (dragover)="allowDrop($event)"
+        (dragleave)="onDragLeave($event)"
         (drop)="onDrop($event)"
         (dragover)="allowDrop($event)"
       >

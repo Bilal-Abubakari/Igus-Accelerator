@@ -16,6 +16,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModelUploadService } from './services/model-upload.service';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { UploadDirectory } from './types';
 
 @Component({
   selector: 'app-model-upload',
@@ -40,6 +41,7 @@ export class ModelUploadComponent {
   public uploading: WritableSignal<boolean> = signal(false);
   public uploadProgress: WritableSignal<{ name: string; progress: number }[]> =
     signal([]);
+  public isDragging: WritableSignal<boolean> = signal(false);
   previewImages: WritableSignal<{ name: string; url: string }[]> = signal([]);
   private loadedModelNames = new Set<string>();
 
@@ -58,6 +60,7 @@ export class ModelUploadComponent {
 
   public onDrop(event: DragEvent): void {
     event.preventDefault();
+    this.isDragging.set(false);
     if (event.dataTransfer?.files) {
       this.addFiles(Array.from(event.dataTransfer.files));
     }
@@ -133,7 +136,7 @@ export class ModelUploadComponent {
     this.totalUploads = this.files().length;
 
     const uploadObservables = this.files().map((file) =>
-      this.uploadService.uploadFile(file, 'models').pipe(
+      this.uploadService.uploadFile(file, 'models' as UploadDirectory).pipe(
         tap((event) => {
           if ('progress' in event) {
             this.uploadProgress.update((progressList) =>
@@ -198,6 +201,15 @@ export class ModelUploadComponent {
 
   public allowDrop(event: DragEvent): void {
     event.preventDefault();
+    if (event.dataTransfer) {
+      event.dataTransfer.dropEffect = 'copy';
+    }
+    this.isDragging.set(true);
+  }
+
+  public onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging.set(false);
   }
 
   public triggerFileInput(): void {
