@@ -5,7 +5,9 @@ import {
   ToolbarComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 import { ModelListComponent } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { FooterComponent } from '../../../../libs/ui-components/src/footer/footer.component';
+import { FooterComponent,  FooterComponent,
+  StageComponent,
+  ToolbarComponent, } from '../../../../libs/ui-components/src/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,8 @@ import { FooterComponent } from '../../../../libs/ui-components/src/footer/foote
     ModelListComponent,
     FooterComponent,
     StageComponent,
-  ],
+  ], 
+} from '@igus-accelerator-injection-molding-configurator/ui-components';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

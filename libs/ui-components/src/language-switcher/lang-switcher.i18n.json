@@ -1,0 +1,37 @@
+{
+  "langswitcher": {
+    "LANGUAGE_LABEL": {
+      "ar": "المملكة العربية السعودية (عربي)",
+      "de": "Deutschland (Deutsch)",
+      "en": "United States (English)",
+      "es": "España (español)",
+      "fr": "France (français)",
+      "jp": "日本（日本語）",
+      "pt": "Brazil (Portuguese)",
+      "ru": "Россия (русский язык)",
+      "zh": "中国（中文）"
+    },
+    "PAGE_TITLE": {
+      "ar": "اختر بلدك",
+      "de": "Wählen Sie Ihr Land",
+      "en": "Select your country",
+      "es": "Seleccione su país",
+      "fr": "Sélectionnez votre pays",
+      "jp": "国を選択してください",
+      "pt": "Selecione seu país",
+      "ru": "Выберите страну",
+      "zh": "选择您的国家"
+    },
+    "CLOSE": {
+      "ar": "إغلاق",
+      "de": "Schließen Sie",
+      "en": "Close",
+      "es": "Cerrar",
+      "fr": "Fermer",
+      "jp": "閉じる",
+      "pt": "próximo",
+      "ru": "закрыть",
+      "zh": "关闭"
+    }
+  }
+}

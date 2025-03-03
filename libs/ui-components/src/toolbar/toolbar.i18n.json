@@ -1,0 +1,70 @@
+{
+  "toolbar": {
+    "COMPANY": {
+      "ar": "إيغوس",
+      "de": "IGUS",
+      "en": "IGUS",
+      "es": "IGUS",
+      "fr": "IGUS",
+      "jp": "イグス",
+      "pt": "IGUS",
+      "ru": "Игус",
+      "zh": "伊格斯"
+    },
+    "MAIN_TITLE": {
+      "ar": "مهيئ قوالب التسريع",
+      "de": "Konfigurator für Beschleunigerformteile",
+      "en": "Accelerator Molding Configurator",
+      "es": "Configurador de moldeo por aceleración",
+      "fr": "Configurateur de moulage par accélérateur",
+      "jp": "アクセラレーター成形コンフィギュレーター",
+      "pt": "Configurador de moldagem do acelerador",
+      "ru": "Конфигуратор ускорительного формования",
+      "zh": "加速器成型配置器"
+    },
+    "SUB_TITLE": {
+      "ar": "بلاستيك الحركة",
+      "de": "motion plastics",
+      "en": "motion plastics",
+      "es": "plásticos de movimiento",
+      "fr": "plastiques de mouvement",
+      "jp": "モーション・プラスチック",
+      "pt": "plásticos de movimento",
+      "ru": "пластики движения",
+      "zh": "运动塑料"
+    },
+    "CONTACT": {
+      "ar": "اتصل بنا",
+      "de": "Kontakt",
+      "en": "Contact",
+      "es": "Póngase en contacto con",
+      "fr": "Contacter",
+      "jp": "連絡先",
+      "pt": "Contato",
+      "ru": "Связаться с",
+      "zh": "联系方式"
+    },
+    "CART": {
+      "ar": "عربة التسوق",
+      "de": "Einkaufswagen",
+      "en": "Shopping cart",
+      "es": "Cesta de la compra",
+      "fr": "Panier d'achat",
+      "jp": "ショッピングカート",
+      "pt": "Carrinho de compras",
+      "ru": "Корзина",
+      "zh": "购物车"
+    },
+    "LOGIN": {
+      "ar": "تسجيل الدخول",
+      "de": "Anmeldung",
+      "en": "Login",
+      "es": "Inicio de sesión",
+      "fr": "Connexion",
+      "jp": "ログイン",
+      "pt": "Login",
+      "ru": "Вход в систему",
+      "zh": "登录"
+    }
+  }
+}
