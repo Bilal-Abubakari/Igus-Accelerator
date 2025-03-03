@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { NAVIGATION_ROUTES } from './constants';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,7 @@ import { NAVIGATION_ROUTES } from './constants';
     MatToolbarModule,
     MatTabsModule,
     MatButtonModule,
+    TranslocoPipe,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

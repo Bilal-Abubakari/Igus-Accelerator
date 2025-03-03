@@ -19,3 +19,5 @@ export { feedBackI18n };
 export * from './footer/footer.component';
 import * as footerI18n from './footer/footer.i18n.json';
 export { footerI18n };
+import * as navBarI18n from './navbar/navbar.i18n.json';
+export { navBarI18n };
