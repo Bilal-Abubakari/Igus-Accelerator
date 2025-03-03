@@ -1,7 +1,11 @@
 @use '@angular/material' as mat;
 
 .navbar {
-  @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary)));
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-primary),
+    )
+  );
 
   & {
     display: flex;
@@ -24,13 +28,16 @@
 }
 
 div {
-  @include mat.tabs-overrides((divider-color:var(--mat-sys-primary)));
+  @include mat.tabs-overrides(
+    (
+      divider-color: var(--mat-sys-primary),
+    )
+  );
 
   & {
     display: flex;
     justify-content: center;
     width: auto;
-
   }
 
   .mat-tab-nav-bar {

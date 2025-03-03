@@ -8,7 +8,7 @@ import { NavbarComponent } from '@igus-accelerator-injection-molding-configurato
 
 @Component({
   selector: 'app-root',
-  imports: [FooterComponent, ToolbarComponent, StageComponentNavbarComponent],
+  imports: [FooterComponent, ToolbarComponent, StageComponent, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
