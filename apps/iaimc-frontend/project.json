@@ -39,6 +39,12 @@
               "maximumError": "8kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/iaimc-frontend/environments/environment.ts",
+              "with": "apps/iaimc-frontend/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all"
         },
         "development": {
