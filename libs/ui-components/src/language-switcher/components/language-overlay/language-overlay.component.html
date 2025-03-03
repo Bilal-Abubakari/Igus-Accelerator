@@ -1,0 +1,30 @@
+<main class="overlay" [class.visible]="langOverlayService.isOverlayVisible()">
+  <div class="overlay-content">
+    <div class="page-title">
+      <h3>{{ 'langswitcher.PAGE_TITLE' | transloco }}</h3>
+      <mat-icon class="close-overlay" (click)="toggleLanguageOverlay()"
+        >close</mat-icon
+      >
+    </div>
+
+    <section fxLayout="row wrap" fxLayoutGap="auto">
+      @for (lang of availableLanguages(); track $index) {
+        <button
+          (click)="switchLanguage(lang.code)"
+          class="lang-option"
+          fxFlex.md="25%"
+          fxFlex.lt-lg="33.33%"
+          fxFlex.lt-md="50%"
+          fxFlex.lt-sm="100%"
+        >
+          <img class="flag" [src]="lang.flag" alt="flag" />
+          <p>{{ lang.label }}</p>
+        </button>
+      }
+    </section>
+
+    <button mat-button (click)="toggleLanguageOverlay()">
+      {{ 'langswitcher.CLOSE' | transloco }}
+    </button>
+  </div>
+</main>
