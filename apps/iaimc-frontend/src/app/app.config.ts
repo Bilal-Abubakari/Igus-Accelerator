@@ -14,8 +14,8 @@ import { provideTranslocoPersistLang } from '@jsverse/transloco-persist-lang';
 import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { environment } from '../environments/environment';
 import { provideHttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment.prod';
 
 export const appConfig: ApplicationConfig = {
   providers: [
