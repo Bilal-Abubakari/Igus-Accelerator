@@ -97,7 +97,10 @@ describe('ContactFormController', () => {
 
     const result = await controller.submitForm(baseDto, file);
 
-    expect(mockContactFormService.createForm).toHaveBeenCalledWith(baseDto, file);
+    expect(mockContactFormService.createForm).toHaveBeenCalledWith(
+      baseDto,
+      file,
+    );
     expect(result).toEqual(expectedResult);
   });
 

@@ -17,8 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
+import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
 
 @Component({
   selector: 'app-footer',
@@ -33,6 +34,7 @@ import { atLeastOneFieldValidator } from '../custom-validators/custom.validator'
     FormsModule,
     ReactiveFormsModule,
     ThankYouFeedbackComponent,
+    TranslocoPipe,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',

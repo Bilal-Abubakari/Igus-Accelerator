@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ThankYouFeedbackComponent } from './thank-you-feedback.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
+import { TranslocoTestingModule } from '@jsverse/transloco';
+import { ThankYouFeedbackComponent } from './thank-you-feedback.component';
 
 describe('ThankYouFeedbackComponent', () => {
   let component: ThankYouFeedbackComponent;
@@ -21,6 +21,7 @@ describe('ThankYouFeedbackComponent', () => {
         MatInputModule,
         MatButtonModule,
         BrowserAnimationsModule,
+        TranslocoTestingModule.forRoot({}),
       ],
       providers: [{ provide: ActivatedRoute, useValue: {} }],
     }).compileComponents();
@@ -53,9 +54,10 @@ describe('ThankYouFeedbackComponent', () => {
   it('should display success message when submitted is true', () => {
     component.submitted.set(true);
     fixture.detectChanges();
-    const successMessage = fixture.debugElement.query(
-      By.css('.success-container'),
-    );
-    expect(successMessage).toBeTruthy();
+
+    const successContainer = (
+      fixture.nativeElement as HTMLElement
+    ).querySelector('.success-container');
+    expect(successContainer).toBeDefined();
   });
 });

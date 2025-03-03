@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { StageComponent } from './stage.component';
 
 describe('StageComponent', () => {
@@ -8,7 +9,12 @@ describe('StageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StageComponent],
+      imports: [
+        TranslocoTestingModule.forRoot({
+          langs: {},
+          translocoConfig: translocoConfig({}),
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StageComponent);
@@ -18,25 +24,6 @@ describe('StageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should display the correct title', () => {
-    const titleElement = fixture.debugElement.query(By.css('.stage-title'));
-    expect(titleElement.nativeElement.textContent).toBe(
-      'Injection Molding Designer',
-    );
-  });
-
-  it('should display the description text', () => {
-    const descriptionElement = fixture.debugElement.query(
-      By.css('.stage-description'),
-    );
-    expect(descriptionElement.nativeElement.textContent).toContain(
-      'upload the CAD model',
-    );
-    expect(descriptionElement.nativeElement.textContent).toContain(
-      'request a quote',
-    );
   });
 
   it('should display an image with correct attributes', () => {

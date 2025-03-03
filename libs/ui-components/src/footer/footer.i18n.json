@@ -1,0 +1,81 @@
+{
+  "footer": {
+    "CONTACT_US": {
+      "ar": "اتصل بنا",
+      "de": "Kontakt",
+      "en": "Contact us",
+      "es": "Póngase en contacto con nosotros",
+      "fr": "Contactez nous",
+      "jp": "お問い合わせ",
+      "pt": "Entre em contato conosco",
+      "ru": "Свяжитесь с нами",
+      "zh": "联系我们"
+    },
+    "APP": {
+      "ar": "مُكوِّن النمذجة المُسرِّع ®GmbH",
+      "de": "Beschleunigermodellierungskonfigurator® GmbH",
+      "en": "accelerator modeling configurator® GmbH",
+      "es": "accelerator modeling configurator® GmbH",
+      "fr": "accelerator modeling configurator® GmbH",
+      "jp": "アクセラレータ・モデリング・コンフィギュレータ",
+      "pt": "accelerator modeling configurator® GmbH",
+      "ru": "ускоритель моделирования configurator® GmbH",
+      "zh": "加速器建模配置器® GmbH"
+    },
+    "PHONE": {
+      "ar": "+49 2203 9649 145",
+      "de": "+49 2203 9649 145",
+      "en": "+49 2203 9649 145",
+      "es": "+49 2203 9649 145",
+      "fr": "+49 2203 9649 145",
+      "jp": "+49 2203 9649 145",
+      "pt": "+49 2203 9649 145",
+      "ru": "+49 2203 9649 145",
+      "zh": "+49 2203 9649 145"
+    },
+    "WRITE_A_MESSAGE": {
+      "ar": "اكتب رسالة",
+      "de": "Schreiben Sie eine Nachricht",
+      "en": "Write a message",
+      "es": "Escribir un mensaje",
+      "fr": "Rédiger un message",
+      "jp": "メッセージを書く",
+      "pt": "Escreva uma mensagem",
+      "ru": "Написать сообщение",
+      "zh": "写留言"
+    },
+    "RATE_CONFIGURATOR": {
+      "ar": "يُرجى تقييم هذا المهيئ",
+      "de": "Bitte bewerten Sie diesen Konfigurator",
+      "en": "Please rate this configurator",
+      "es": "Valore este configurador",
+      "fr": "Veuillez évaluer ce configurateur",
+      "jp": "このコンフィギュレーターを評価してください",
+      "pt": "Avalie este configurador",
+      "ru": "Пожалуйста, оцените этот конфигуратор",
+      "zh": "请为该配置器评分"
+    },
+    "IMPROVEMENT_SUGGESTIONS": {
+      "ar": "ما الذي يمكننا تحسينه؟",
+      "de": "Was können wir verbessern?",
+      "en": "What can we improve?",
+      "es": "¿Qué podemos mejorar?",
+      "fr": "Que pouvons-nous améliorer ?",
+      "jp": "何を改善できるか？",
+      "pt": "O que podemos melhorar?",
+      "ru": "Что мы можем улучшить?",
+      "zh": "我们可以改进什么？"
+    },
+    "SUBMIT_RATING": {
+      "ar": "تقديم التقييم",
+      "de": "Bewertung abgeben",
+      "en": "Submit rating",
+      "es": "Enviar valoración",
+      "fr": "Soumettre une note",
+      "jp": "評価を投稿する",
+      "pt": "Enviar classificação",
+      "ru": "Отправить рейтинг",
+      "zh": "提交评级"
+    }
+  }
+}
