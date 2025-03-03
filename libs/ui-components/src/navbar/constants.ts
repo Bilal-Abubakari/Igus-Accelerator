@@ -1,8 +1,8 @@
 export const NAVIGATION_ROUTES = {
-  HOME: 'customer/library',
-  CONFIGURATIONS: 'customer/molding-configuration/configurations',
-  PRODUCIBILITY: 'customer/molding-configuration/producibility',
+  MOLDING_CONFIGRATION_CONFIGURATIONS: 'molding-configuration/configurations',
+  MOLDING_CONFIGRATION_PRODUCIBILITY: 'molding-configuration/producibility',
   LIBRARY: 'library',
   MOLDING_CONFIGURATION: 'molding-configuration',
-  CUSTOMER: 'customer',
+  CONFIGURATIONS: 'configurations',
+  PRODUCIBILITY: 'producibility',
 } as const;

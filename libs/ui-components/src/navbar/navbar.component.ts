@@ -22,9 +22,13 @@ import { NAVIGATION_ROUTES } from './constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  public homeRoute = signal(NAVIGATION_ROUTES.HOME);
-  public configurationsRoute = signal(NAVIGATION_ROUTES.CONFIGURATIONS);
-  public producibilityRoute = signal(NAVIGATION_ROUTES.PRODUCIBILITY);
+  public homeRoute = signal(NAVIGATION_ROUTES.LIBRARY);
+  public configurationsRoute = signal(
+    `${NAVIGATION_ROUTES.MOLDING_CONFIGURATION}/${NAVIGATION_ROUTES.CONFIGURATIONS}`,
+  );
+  public producibilityRoute = signal(
+    `${NAVIGATION_ROUTES.MOLDING_CONFIGURATION}/${NAVIGATION_ROUTES.PRODUCIBILITY}`,
+  );
 
   public isMenuOpened = signal(false);
 
