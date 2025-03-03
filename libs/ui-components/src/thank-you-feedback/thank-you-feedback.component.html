@@ -1,7 +1,5 @@
 <main class="feedback-container">
   @if (!isSubmitted()) {
-    <h4>Thank you for your feedback!</h4>
-    <p>We would like to learn more about your ideas. May we contact you?</p>
     <h4>{{ 'feedback.THANKS' | transloco }}</h4>
     <p>{{ 'feedback.REQUEST_TO_CONTACT_CUSTOMER' | transloco }}</p>
     <form [formGroup]="contactForm">
