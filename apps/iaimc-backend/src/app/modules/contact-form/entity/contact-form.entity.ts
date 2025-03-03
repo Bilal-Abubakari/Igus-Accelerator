@@ -38,7 +38,7 @@ export class ContactFormEntity {
   public agreement!: boolean;
 
   @Column({ nullable: true })
-  public fileId!: string;
+  public fileUrl!: string;
 
   @CreateDateColumn()
   public createdAt!: Date;

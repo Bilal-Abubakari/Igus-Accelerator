@@ -9,6 +9,16 @@ const mockContactFormService = {
   createForm: jest.fn(),
 };
 
+const baseDto: ContactFormDto = {
+  firstName: 'Jane',
+  lastName: 'Doe',
+  email: 'jane@example.com',
+  company: 'Acme Inc.',
+  postalCode: '54321',
+  country: 'USA',
+  agreement: true,
+};
+
 describe('ContactFormController', () => {
   let controller: ContactFormController;
 
@@ -33,19 +43,17 @@ describe('ContactFormController', () => {
 
   it('should submit a contact form without file', async () => {
     const dto: ContactFormDto = {
+      ...baseDto,
       firstName: 'John',
       lastName: 'Doe',
       email: 'john@example.com',
-      company: 'Acme Inc.',
       postalCode: '12345',
-      country: 'USA',
-      agreement: true,
     };
 
     const expectedResult: ContactFormEntity = {
       id: 1,
       ...dto,
-      fileId: 'file.example.stp',
+      fileUrl: 'file.example.stp',
       createdAt: new Date('2023-01-01'),
     };
 
@@ -63,16 +71,6 @@ describe('ContactFormController', () => {
   });
 
   it('should submit a contact form with file', async () => {
-    const dto: ContactFormDto = {
-      firstName: 'Jane',
-      lastName: 'Doe',
-      email: 'jane@example.com',
-      company: 'Acme Inc.',
-      postalCode: '54321',
-      country: 'USA',
-      agreement: true,
-    };
-
     const file: Express.Multer.File = {
       fieldname: 'file',
       originalname: 'dummy.txt',
@@ -88,8 +86,8 @@ describe('ContactFormController', () => {
 
     const expectedResult: ContactFormEntity = {
       id: 2,
-      ...dto,
-      fileId: 'https://cloudinary.com/fake-url',
+      ...baseDto,
+      fileUrl: 'https://cloudinary.com/fake-url',
       createdAt: new Date('2023-01-01'),
     };
 
@@ -97,21 +95,19 @@ describe('ContactFormController', () => {
       expectedResult,
     );
 
-    const result = await controller.submitForm(dto, file);
+    const result = await controller.submitForm(baseDto, file);
 
-    expect(mockContactFormService.createForm).toHaveBeenCalledWith(dto, file);
+    expect(mockContactFormService.createForm).toHaveBeenCalledWith(baseDto, file);
     expect(result).toEqual(expectedResult);
   });
 
   it('should propagate errors from the service', async () => {
     const dto: ContactFormDto = {
+      ...baseDto,
       firstName: 'Error',
       lastName: 'Case',
       email: 'error@example.com',
-      company: 'Acme Inc.',
       postalCode: '00000',
-      country: 'USA',
-      agreement: true,
     };
 
     const error = new Error('Service error');

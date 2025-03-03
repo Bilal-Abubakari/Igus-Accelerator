@@ -30,7 +30,7 @@ export class ContactFormService {
         FileStoreDirectory.CONTACT_FORMS,
       );
       const uploadResult = response.data as CloudinaryUploadResult;
-      contactForm.fileId = uploadResult.secure_url;
+      contactForm.fileUrl = uploadResult.secure_url;
     }
 
     return this.contactFormRepository.save(contactForm);

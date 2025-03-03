@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContactFormController } from './contact-form.controller';
 import { ContactFormService } from './contact-form.service';
 import { ContactFormEntity } from './entity/contact-form.entity';
-import { FileUploadModule } from '../file-upload/file-upload.module'; // adjust the path if needed
+import { FileUploadModule } from '../file-upload/file-upload.module';
 
 @Module({
   imports: [FileUploadModule, TypeOrmModule.forFeature([ContactFormEntity])],
