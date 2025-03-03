@@ -8,3 +8,7 @@ export interface UploadResponse {
 export interface UploadProgress {
   progress: number;
 }
+
+export enum UploadDirectory {
+  Models = 'models',
+}

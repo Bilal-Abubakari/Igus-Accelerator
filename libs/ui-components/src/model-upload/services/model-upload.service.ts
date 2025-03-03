@@ -2,7 +2,7 @@ import { Inject, inject, Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UploadProgress, UploadResponse } from '../types';
+import { UploadDirectory, UploadProgress, UploadResponse } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class ModelUploadService {
 
   public uploadFile(
     file: File,
-    directory: string,
+    directory: UploadDirectory,
   ): Observable<UploadProgress | UploadResponse> {
     const formData = new FormData();
     formData.append('file', file);
