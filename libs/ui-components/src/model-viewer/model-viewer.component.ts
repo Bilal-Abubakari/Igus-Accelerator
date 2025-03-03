@@ -5,8 +5,6 @@ import {
   ElementRef,
   inject,
   Input,
-  OnChanges,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./model-viewer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModelViewerComponent implements AfterViewInit, OnChanges {
+export class ModelViewerComponent implements AfterViewInit {
   @Input() modelUrl = '';
   @ViewChild('viewer') viewerRef!: ElementRef;
 
@@ -39,17 +37,6 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
     this.initThreeJS();
     if (this.modelUrl.length > 0) {
       this.loadModel(this.modelUrl);
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['modelUrls'] && this.modelUrl.length > 0) {
-      const newUrls = changes['modelUrls'].currentValue.filter(
-        (url: string) =>
-          !this.meshes.some((mesh) => mesh.userData['url'] === url),
-      );
-
-      newUrls.forEach((url: string) => this.loadModel(url));
     }
   }
 
@@ -137,6 +124,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
   }
 
   private loadModel(url: string): void {
+    this.clearScene();
     if (!this.scene || !this.renderer) return;
 
     const loader = new STLLoader();
@@ -187,6 +175,19 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
         );
       },
     );
+  }
+
+  private clearScene(): void {
+    this.meshes.forEach((mesh) => {
+      this.scene.remove(mesh);
+      mesh.geometry.dispose();
+      if (Array.isArray(mesh.material)) {
+        mesh.material.forEach((m) => m.dispose());
+      } else {
+        mesh.material.dispose();
+      }
+    });
+    this.meshes = [];
   }
 
   private positionCameraForModel(): void {
