@@ -14,8 +14,7 @@ $rate-hover: #ffdd44;
 
 mat-toolbar {
   height: auto;
-  position: sticky;
-  bottom: 0;
+
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-on-secondary-fixed),

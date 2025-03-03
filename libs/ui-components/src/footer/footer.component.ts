@@ -4,13 +4,13 @@ import {
   Component,
   inject,
   OnDestroy,
-  signal
+  signal,
 } from '@angular/core';
 import {
   FormBuilder,
   FormsModule,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,7 +25,6 @@ import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedb
 import { formField } from '../utilities/helper-function';
 import { FeedbackInterface } from './footer.interface';
 import { FooterService } from './service/footer.service';
-
 
 @Component({
   selector: 'app-footer',

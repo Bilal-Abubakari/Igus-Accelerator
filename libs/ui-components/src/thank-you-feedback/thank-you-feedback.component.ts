@@ -17,7 +17,6 @@ import { FeedbackInterface } from '../footer/footer.interface';
 import { FooterService } from '../footer/service/footer.service';
 import { formField } from '../utilities/helper-function';
 
-
 @Component({
   selector: 'app-thank-you-feedback',
   imports: [

@@ -16,8 +16,12 @@
           <mat-error>{{ 'feedback.ENTER_VALID_EMAIL' | transloco }}</mat-error>
         }
       </mat-form-field>
-      <button mat-button [disabled]="!contactForm.valid" class="custom-button"
-      (click)="onSubmitEmail()">
+      <button
+        mat-button
+        [disabled]="!contactForm.valid"
+        class="custom-button"
+        (click)="onSubmitEmail()"
+      >
         {{ 'feedback.SUBMIT' | transloco }}
       </button>
     </form>
