@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe, SlicePipe } from '@angular/common';
 import { LocalStorageService } from '../model-upload/local-storage.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 interface UploadedModel {
   id: string;
@@ -32,6 +33,7 @@ export interface FetchModelsResponse {
     SlicePipe,
     ModelViewerComponent,
     DatePipe,
+    TranslocoPipe,
   ],
   templateUrl: './model-list.component.html',
   styleUrl: './model-list.component.scss',

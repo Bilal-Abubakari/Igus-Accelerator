@@ -1,7 +1,9 @@
 <div class="upload_wrapper">
   <mat-card class="upload_card">
     <mat-card-header>
-      <mat-card-title>Upload 3D Model</mat-card-title>
+      <mat-card-title>{{
+        'modeluploads.HERO_TEXT' | transloco
+      }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div
@@ -12,7 +14,7 @@
         @if (uploading()) {
           <div class="loading_overlay">
             <mat-spinner diameter="50"></mat-spinner>
-            <p>Uploading...</p>
+            <p>{{ 'modeluploads.LOADER' | transloco }}</p>
             @for (progress of uploadProgress(); track progress.name) {
               <div>{{ progress.name }}: {{ progress.progress }}%</div>
             }
@@ -32,18 +34,18 @@
 
           @if (previewImages().length === 0) {
             <p class="upload_text">
-              Drag & drop to upload CAD model or
+              {{ 'modeluploads.DRAG_DROP' | transloco }}
               <span
                 (click)="triggerFileInput()"
                 (keydown.enter)="triggerFileInput()"
                 tabindex="0"
-                >select file</span
+                >{{ 'modeluploads.FILE_SELECT' | transloco }}</span
               >
             </p>
           }
 
           <button type="button" mat-raised-button (click)="triggerFileInput()">
-            Browse Files
+            {{ 'modeluploads.BROWSE' | transloco }}
           </button>
         }
       </div>

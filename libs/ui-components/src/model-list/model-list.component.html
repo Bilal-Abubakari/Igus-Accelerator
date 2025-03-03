@@ -12,7 +12,7 @@
             <mat-card-title>{{ model.name | slice: -20 }}</mat-card-title>
             <mat-card-subtitle>
               <mat-icon class="status_icon">cloud_done</mat-icon>
-              <span>Uploaded</span>
+              <span>{{ 'modellist.UPLOADED' | transloco }}</span>
             </mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
@@ -28,8 +28,7 @@
     <div class="placeholder_message">
       <img src="empty_state.svg" alt="empty state" />
       <p>
-        No model uploaded yet.<br />
-        Please upload a model to view it here.
+        {{ 'modellist.NO_UPLOADS' | transloco }}
       </p>
     </div>
   }

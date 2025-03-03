@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
+  FooterComponent,
+  ModelListComponent,
   StageComponent,
   ToolbarComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { ModelListComponent } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { FooterComponent,  FooterComponent,
-  StageComponent,
-  ToolbarComponent, } from '../../../../libs/ui-components/src/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +15,7 @@ import { FooterComponent,  FooterComponent,
     ModelListComponent,
     FooterComponent,
     StageComponent,
-  ], 
-} from '@igus-accelerator-injection-molding-configurator/ui-components';
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

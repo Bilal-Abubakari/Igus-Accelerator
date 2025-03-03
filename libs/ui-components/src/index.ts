@@ -17,4 +17,7 @@ export { feedBackI18n };
 export * from './footer/footer.component';
 import * as footerI18n from './footer/footer.i18n.json';
 export { footerI18n };
-
+import * as modelUploadI18n from './model-upload/model-upload.i18n.json';
+import * as modelListI18n from './model-list/model-list.i18n.json';
+export { modelUploadI18n };
+export { modelListI18n };

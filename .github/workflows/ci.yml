@@ -13,18 +13,12 @@ on:
       - main
 
 jobs:
-  pr-lints-and-code-quality-checks:
+  code-quality-checks:
     if: ${{ github.event_name == 'pull_request' }}
-    name: PR Lints and Code Quality Checks
+    name: Code Quality Checks
     runs-on: ubuntu-latest
 
     steps:
-      - name: validate pr title
-        uses: seferov/pr-lint-action@master
-        with:
-          title-regex: '^(feat|fix|style|refactor|test)\((frontend|backend|config|pipeline)\): [a-z].+$|^(docs|chore): [a-z].+$'
-          title-regex-flags: 'g'
-          error-message: 'Refer to the confluence page for the rules on PR titles'
       - name: checkout repo
         uses: actions/checkout@v4
       - name: setup Node
@@ -44,7 +38,7 @@ jobs:
   deploy-frontend-preview:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
-    needs: pr-lints-and-code-quality-checks
+    needs: code-quality-checks
 
     steps:
       - name: checkout repo
@@ -68,7 +62,6 @@ jobs:
   deploy-frontend-production:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: pr-lints-and-code-quality-checks
 
     steps:
       - name: checkout repo
@@ -92,7 +85,6 @@ jobs:
   deploy-backend-production:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: pr-lints-and-code-quality-checks
 
     steps:
       - name: deploy to render

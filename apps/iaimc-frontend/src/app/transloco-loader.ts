@@ -8,6 +8,8 @@ import {
   toolbarI18n,
   langSwticherI18n,
   feedBackI18n,
+  modelListI18n,
+  modelUploadI18n,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 const componentTranslations = {
@@ -16,6 +18,8 @@ const componentTranslations = {
   'lang-switcher': langSwticherI18n,
   feedback: feedBackI18n,
   footer: footerI18n,
+  'model-list': modelListI18n,
+  'model-upload': modelUploadI18n,
 };
 
 @Injectable({ providedIn: 'root' })

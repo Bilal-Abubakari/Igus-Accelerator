@@ -15,6 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModelUploadService } from './model-upload.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-model-upload',
@@ -24,6 +25,7 @@ import { ModelUploadService } from './model-upload.service';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    TranslocoPipe,
   ],
   templateUrl: './model-upload.component.html',
   styleUrl: './model-upload.component.scss',
