@@ -1,0 +1,81 @@
+{
+  "feedback": {
+    "THANKS": {
+      "ar": "شكراً لك على ملاحظاتك!",
+      "de": "Vielen Dank für Ihr Feedback!",
+      "en": "Thank you for your feedback!",
+      "es": "Gracias por sus comentarios.",
+      "fr": "Merci pour vos commentaires !",
+      "jp": "ご意見ありがとう！",
+      "pt": "Obrigado por seu feedback!",
+      "ru": "Спасибо за ваш отзыв!",
+      "zh": "感谢您的反馈！"
+    },
+    "REQUEST_TO_CONTACT_CUSTOMER": {
+      "ar": "نود معرفة المزيد عن أفكارك. هل يمكننا الاتصال بك؟",
+      "de": "Wir würden gerne mehr über Ihre Ideen erfahren. Dürfen wir Sie kontaktieren?",
+      "en": "We would like to learn more about your ideas. May we contact you?",
+      "es": "Nos gustaría conocer mejor sus ideas. ¿Podemos ponernos en contacto con usted?",
+      "fr": "Nous aimerions en savoir plus sur vos idées. Pouvons-nous vous contacter ?",
+      "jp": "あなたのアイデアについてもっと知りたいのです。ご連絡させていただいてもよろしいでしょうか？",
+      "pt": "Gostaríamos de saber mais sobre suas ideias. Podemos entrar em contato com você?",
+      "ru": "Мы хотели бы узнать больше о ваших идеях. Можем ли мы связаться с вами?",
+      "zh": "我们希望进一步了解您的想法。我们可以与您联系吗？"
+    },
+    "ENTER_VALID_EMAIL": {
+      "ar": "الرجاء إدخال عنوان بريد إلكتروني صحيح",
+      "de": "Bitte geben Sie eine gültige E-Mail Adresse ein",
+      "en": "Please enter a valid email address",
+      "es": "Introduzca una dirección de correo electrónico válida",
+      "fr": "Veuillez saisir une adresse électronique valide",
+      "jp": "有効なEメールアドレスを入力してください。",
+      "pt": "Digite um endereço de e-mail válido",
+      "ru": "Пожалуйста, введите действительный адрес электронной почты",
+      "zh": "请输入有效的电子邮件地址"
+    },
+    "SUBMIT": {
+      "ar": "إرسال",
+      "de": "Einreichen",
+      "en": "Submit",
+      "es": "Enviar",
+      "fr": "Soumettre",
+      "jp": "投稿する",
+      "pt": "Enviar",
+      "ru": "Отправить",
+      "zh": "提交"
+    },
+    "PRIVACY_POLICY_FRAGMENT_1": {
+      "ar": "بالنقر على ”إرسال“، فإنك توافق على معالجة بياناتك الشخصية. يمكنك سحب هذه الموافقة في أي وقت. اقرأ ما يلي",
+      "de": "Indem Sie auf „Absenden“ klicken, erklären Sie sich mit der Verarbeitung Ihrer personenbezogenen Daten einverstanden. Sie können diese Zustimmung jederzeit widerrufen. Lesen Sie unser",
+      "en": "By clicking \"Submit\", you agree to the processing of your personal data. You can withdraw this consent at any time. Read our",
+      "es": "Al hacer clic en «Enviar», acepta el tratamiento de sus datos personales. Puede retirar este consentimiento en cualquier momento. Lea nuestra",
+      "fr": "En cliquant sur « Soumettre », vous acceptez le traitement de vos données personnelles. Vous pouvez retirer ce consentement à tout moment. Lire notre",
+      "jp": "送信」をクリックすると、個人データの処理に同意したことになります。この同意はいつでも撤回することができます。当社の",
+      "pt": "Ao clicar em “Enviar”, você concorda com o processamento de seus dados pessoais. Você pode retirar esse consentimento a qualquer momento. Leia nossos",
+      "ru": "Нажимая кнопку «Отправить», вы соглашаетесь на обработку своих персональных данных. Вы можете отозвать это согласие в любое время. Читайте наш",
+      "zh": "点击 “提交”，即表示您同意处理您的个人数据。您可以随时撤销同意。阅读我们的"
+    },
+    "PRIVACY_POLICY_LINK": {
+      "ar": "سياسة الخصوصية",
+      "de": "Datenschutzbestimmungen",
+      "en": "Privacy Policy",
+      "es": "Política de privacidad",
+      "fr": "Politique de confidentialité",
+      "jp": "プライバシーポリシー",
+      "pt": "Política de privacidade",
+      "ru": "Политика конфиденциальности",
+      "zh": "隐私政策"
+    },
+    "PRIVACY_POLICY_FRAGMENT_2": {
+      "ar": "للمزيد من المعلومات",
+      "de": "für weitere Informationen.",
+      "en": "for more information.",
+      "es": "para más información.",
+      "fr": "pour plus d'informations.",
+      "jp": "をご覧ください。",
+      "pt": "para obter mais informações.",
+      "ru": "для получения дополнительной информации.",
+      "zh": "了解更多信息。"
+    }
+  }
+}

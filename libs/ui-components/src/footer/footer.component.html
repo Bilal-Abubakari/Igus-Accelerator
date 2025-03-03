@@ -2,20 +2,24 @@
   <footer>
     <form [formGroup]="ratingForm" class="form-group">
       <section class="contact-us">
-        <h4>Contact us</h4>
+        <h4>{{ 'footer.CONTACT_US' | transloco }}</h4>
         <div class="contact">
           <div class="contact__tel">
-            <p>accelerator modeling configurator® GmbH</p>
-            <a [href]="'tel:+4922039649145'">+49 2203 9649 145</a>
+            <p>{{ 'footer.APP' | transloco }}</p>
+            <a [href]="'tel:+4922039649145'">{{
+              'footer.PHONE' | transloco
+            }}</a>
           </div>
-          <button mat-button class="custom-button">Write a message</button>
+          <button mat-button class="custom-button">
+            {{ 'footer.WRITE_A_MESSAGE' | transloco }}
+          </button>
         </div>
       </section>
 
       @if (!isSubmitted()) {
         <section class="rating-container">
           <div class="rating-container__wrapper">
-            <h4>Please rate this configurator</h4>
+            <h4>{{ 'footer.RATE_CONFIGURATOR' | transloco }}</h4>
             <div class="rating-stars">
               @for (star of [1, 2, 3, 4, 5]; track $index) {
                 <mat-icon
@@ -39,7 +43,7 @@
               <textarea
                 [formControl]="getField('comment')"
                 matInput
-                placeholder="What can we improve?"
+                [placeholder]="'footer.IMPROVEMENT_SUGGESTIONS' | transloco"
               ></textarea>
             </mat-form-field>
           </div>
@@ -54,7 +58,7 @@
               class="custom-button submit-rating-button"
               (click)="submitFeedback()"
             >
-              Submit rating
+              {{ 'footer.SUBMIT_RATING' | transloco }}
             </button>
           }
         </section>
@@ -64,8 +68,6 @@
         </div>
       }
     </form>
-    <span
-      >&copy; {{ currentYear }} accelerator modeling configurator® GmbH</span
-    >
+    <span>&copy; {{ currentYear }} {{ 'footer.APP' | transloco }}</span>
   </footer>
 </mat-toolbar>

@@ -4,15 +4,13 @@ import {
   Component,
   inject,
   OnDestroy,
-  OnInit,
-  signal,
+  signal
 } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormsModule,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,12 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
-import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
-import { FooterService } from './service/footer.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 import { finalize, Subject, takeUntil } from 'rxjs';
-import { FeedbackInterface } from './footer.interface';
+import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
+import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
 import { formField } from '../utilities/helper-function';
+import { FeedbackInterface } from './footer.interface';
+import { FooterService } from './service/footer.service';
+
 
 @Component({
   selector: 'app-footer',
@@ -40,6 +40,7 @@ import { formField } from '../utilities/helper-function';
     FormsModule,
     ReactiveFormsModule,
     ThankYouFeedbackComponent,
+    TranslocoPipe,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
@@ -48,7 +49,7 @@ import { formField } from '../utilities/helper-function';
 export class FooterComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly footerService = inject(FooterService);
-  private readonly unsubscription = new Subject<void>();
+  private readonly subscription = new Subject<void>();
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
@@ -67,8 +68,8 @@ export class FooterComponent implements OnDestroy {
   );
 
   ngOnDestroy() {
-    this.unsubscription.next();
-    this.unsubscription.complete();
+    this.subscription.next();
+    this.subscription.complete();
   }
 
   public onMouseEnter(rating: number): void {
@@ -92,17 +93,16 @@ export class FooterComponent implements OnDestroy {
     this.footerService
       .submitFeedback(this.ratingFormValues)
       .pipe(
-        takeUntil(this.unsubscription),
+        takeUntil(this.subscription),
         finalize(() => this.isRatingLoading.set(false)),
       )
       .subscribe({
         next: () => {
           this.isSubmitted.set(true);
-          console.log(this.isSubmitted());
           this.ratingForm.reset();
           this.selectedRating.set(0);
         },
-        error: (err) => {
+        error: () => {
           this.isRatingLoading.set(false);
         },
       });
