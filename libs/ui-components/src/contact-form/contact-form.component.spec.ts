@@ -4,35 +4,47 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { ContactFormComponent } from './contact-form.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ContactFormService } from './service/contact-form.service';
 import { FeatureFlagService } from './service/feature-flag.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ContactFormData } from './contact-form.interface';
 
 describe('ContactFormComponent', () => {
   let component: ContactFormComponent;
   let fixture: ComponentFixture<ContactFormComponent>;
-  let mockDialogRef: Partial<MatDialogRef<ContactFormComponent>>;
-  let mockContactFormService: Partial<ContactFormService>;
-  let mockFeatureFlagService: Partial<FeatureFlagService>;
+  let dialogRef: MatDialogRef<ContactFormComponent>;
+  let contactFormService: ContactFormService;
+
+  const validFormData: ContactFormData = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    company: 'Test Company Ltd',
+    postalCode: '12345',
+    country: 'United States',
+    telephone: '+1-234-567-8900',
+    message: 'Test message',
+    agreement: true,
+    file: null,
+  };
+
+  const mockFile = (name: string, type: string, size: number): File => {
+    const file = new File([], name, { type });
+    Object.defineProperty(file, 'size', { value: size });
+    return file;
+  };
 
   beforeEach(async () => {
-    mockDialogRef = {
-      close: jest.fn(),
-    };
-
-    mockContactFormService = {
-      submitContactForm: jest.fn(),
-    };
-
-    mockFeatureFlagService = {
-      isFeatureEnabled: jest.fn().mockReturnValue(() => true),
-    };
-
     await TestBed.configureTestingModule({
       imports: [
         ContactFormComponent,
@@ -40,250 +52,249 @@ describe('ContactFormComponent', () => {
         NoopAnimationsModule,
       ],
       providers: [
-        { provide: MatDialogRef, useValue: mockDialogRef },
-        { provide: ContactFormService, useValue: mockContactFormService },
-        { provide: FeatureFlagService, useValue: mockFeatureFlagService },
+        { provide: MatDialogRef, useValue: { close: jest.fn() } },
+        {
+          provide: ContactFormService,
+          useValue: {
+            submitContactForm: jest.fn(() => of(validFormData)),
+          },
+        },
+        {
+          provide: FeatureFlagService,
+          useValue: { isFeatureEnabled: () => true },
+        },
+        {
+          provide: MatSnackBar,
+          useValue: { open: jest.fn() },
+        },
         FormBuilder,
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContactFormComponent);
     component = fixture.componentInstance;
+    dialogRef = TestBed.inject(MatDialogRef);
+    contactFormService = TestBed.inject(ContactFormService);
     fixture.detectChanges();
   });
 
-  it('should create the component and initialize the form', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-    const controls = component.contactForm.controls;
-    expect(controls['firstName']).toBeDefined();
-    expect(controls['lastName']).toBeDefined();
-    expect(controls['email']).toBeDefined();
-    expect(controls['company']).toBeDefined();
-    expect(controls['postalCode']).toBeDefined();
-    expect(controls['country']).toBeDefined();
-    expect(controls['telephone']).toBeDefined();
-    expect(controls['message']).toBeDefined();
-    expect(controls['agreement']).toBeDefined();
-    expect(controls['file']).toBeDefined();
   });
 
-  describe('isFieldInvalid', () => {
-    it('should return false if the field does not exist', () => {
-      expect(component.isFieldInvalid('nonexistent')).toBe(false);
-    });
-    it('should return false if field is valid', () => {
-      const control = component.contactForm.get('lastName');
-      control?.setErrors(null);
-      control?.markAsUntouched();
-      expect(component.isFieldInvalid('lastName')).toBe(false);
-    });
-    it('should return true if field is invalid and touched', () => {
-      const control = component.contactForm.get('lastName');
-      control?.setErrors({ required: true });
-      control?.markAsTouched();
-      expect(component.isFieldInvalid('lastName')).toBe(true);
-    });
-    it('should return true if field is invalid and dirty', () => {
-      const control = component.contactForm.get('lastName');
-      control?.setErrors({ required: true });
-      control?.markAsDirty();
-      expect(component.isFieldInvalid('lastName')).toBe(true);
-    });
-    it('should return true if errorType is specified and field has that error', () => {
-      const control = component.contactForm.get('email');
-      control?.setErrors({ email: true });
-      control?.markAsTouched();
-      expect(component.isFieldInvalid('email', 'email')).toBe(true);
-    });
-    it('should return false if errorType is specified but field does not have that error', () => {
-      const control = component.contactForm.get('email');
-      control?.setErrors({ required: true });
-      control?.markAsTouched();
-      expect(component.isFieldInvalid('email', 'email')).toBe(false);
+  describe('Form Initialization', () => {
+    it('should initialize form with correct controls and validators', () => {
+      expect(component.contactForm.get('firstName')?.validator).toBeTruthy();
+      expect(
+        component.contactForm
+          .get('lastName')
+          ?.hasValidator(Validators.required),
+      ).toBe(true);
+      expect(
+        component.contactForm.get('email')?.hasValidator(Validators.email),
+      ).toBe(true);
+      expect(
+        component.contactForm.get('company')?.hasValidator(Validators.required),
+      ).toBe(true);
+      expect(
+        component.contactForm
+          .get('agreement')
+          ?.hasValidator(Validators.requiredTrue),
+      ).toBe(true);
     });
   });
 
-  describe('getErrorMessage', () => {
-    it('should return an empty string if the field does not exist or has no errors', () => {
-      expect(component.getErrorMessage('nonexistent')).toBe('');
-      const control = component.contactForm.get('email');
-      control?.setErrors(null);
-      expect(component.getErrorMessage('email')).toBe('');
-    });
-    it('should return "This field is required" for required error', () => {
-      const control = component.contactForm.get('email');
-      control?.setErrors({ required: true });
-      expect(component.getErrorMessage('email')).toBe('This field is required');
-    });
-    it('should return "Please enter a valid email address" for email error', () => {
-      const control = component.contactForm.get('email');
-      control?.setErrors({ email: true });
-      expect(component.getErrorMessage('email')).toBe(
-        'Please enter a valid email address',
-      );
-    });
-    it('should return text-only error message', () => {
-      const control = component.contactForm.get('firstName');
-      control?.setErrors({ textOnly: true });
-      expect(component.getErrorMessage('firstName')).toBe(
-        'Please enter text only (no numbers or special characters)',
-      );
-    });
-    it('should return postal code error message', () => {
+  describe('Form Validations', () => {
+    it('should validate postal code format', () => {
       const control = component.contactForm.get('postalCode');
-      control?.setErrors({ invalidPostalCode: true });
-      expect(component.getErrorMessage('postalCode')).toBe(
-        'Please enter a valid postal code',
-      );
+      control?.setValue('1234');
+      expect(control?.errors).toEqual({ invalidPostalCode: true });
+      control?.setValue('12345');
+      expect(control?.valid).toBeTruthy();
     });
-    it('should return phone number error message', () => {
+
+    it('should validate phone number format', () => {
       const control = component.contactForm.get('telephone');
-      control?.setErrors({ invalidPhone: true });
-      expect(component.getErrorMessage('telephone')).toBe(
-        'Please enter a valid phone number',
-      );
+      control?.setValue('invalid');
+      expect(control?.errors).toEqual({ invalidPhone: true });
+      control?.setValue('+1-234-567-8900');
+      expect(control?.valid).toBeTruthy();
     });
-    it('should return company name error message', () => {
+
+    it('should validate text-only fields', () => {
+      const controls = ['firstName', 'lastName', 'country'];
+      controls.forEach((controlName) => {
+        const control = component.contactForm.get(controlName);
+        control?.setValue('Invalid123');
+        expect(control?.errors).toEqual({ textOnly: true });
+        control?.setValue('Valid Name');
+        expect(control?.valid).toBeTruthy();
+      });
+    });
+
+    it('should validate company name format', () => {
       const control = component.contactForm.get('company');
-      control?.setErrors({ invalidCompanyName: true });
-      expect(component.getErrorMessage('company')).toBe(
-        'Please enter a valid company name',
-      );
+
+      control?.setValue('Invalid Company!');
+      expect(control?.errors).toEqual({ invalidCompanyName: true });
+
+      control?.setValue('Valid Company Ltd');
+      expect(control?.valid).toBeTruthy();
+
+      control?.setValue('Company 123 Inc');
+      expect(control?.valid).toBeTruthy();
     });
-    it('should return file type error message', () => {
-      const control = component.contactForm.get('file');
-      control?.setErrors({ invalidFileType: true });
-      expect(component.getErrorMessage('file')).toBe(
-        'Invalid file type. Only PNG, JPEG, and PDF are allowed.',
-      );
+
+    it('should validate required fields', () => {
+      const requiredControls = [
+        'lastName',
+        'email',
+        'company',
+        'postalCode',
+        'country',
+        'agreement',
+      ];
+      requiredControls.forEach((controlName) => {
+        const control = component.contactForm.get(controlName);
+        control?.setValue(null);
+        expect(control?.hasError('required')).toBeTruthy();
+      });
     });
-    it('should return default invalid input message for unknown errors', () => {
-      const control = component.contactForm.get('firstName');
-      control?.setErrors({ unknown: true });
-      expect(component.getErrorMessage('firstName')).toBe('Invalid input');
+
+    it('should validate form as a whole', () => {
+      component.contactForm.setValue(validFormData);
+      expect(component.contactForm.valid).toBeTruthy();
     });
   });
 
-  describe('handleFileSelection', () => {
-    const createFileEvent = (files: File[] | null): Event => {
-      const inputElement = document.createElement('input');
-      Object.defineProperty(inputElement, 'files', {
-        value: files,
-        writable: true,
-      });
-      return { target: inputElement } as unknown as Event;
-    };
+  describe('File Validation', () => {
+    it('should validate file type', () => {
+      const control = new FormControl();
+      const invalidFile = mockFile('test.txt', 'text/plain', 1024);
+      control.setValue(invalidFile);
+      const result = component.validateFileType(control);
+      expect(result).toEqual({ invalidFileType: true });
 
-    it('should do nothing if no files are selected', () => {
-      const event = createFileEvent(null);
-      component.handleFileSelection(event);
-      expect(component.fileValidationError).toBe('');
-      expect(component.contactForm.get('file')?.value).toBeNull();
+      const validFile = mockFile('test.pdf', 'application/pdf', 1024);
+      control.setValue(validFile);
+      expect(component.validateFileType(control)).toBeNull();
     });
 
-    it('should set the file when a valid file is selected', () => {
-      const validFile = new File(['content'], 'test.png', {
-        type: 'image/png',
-      });
-      const event = createFileEvent([validFile]);
-      component.handleFileSelection(event);
-      expect(component.fileValidationError).toBe('');
-      expect(component.contactForm.get('file')?.value).toEqual(validFile);
-    });
-
-    it('should set a validation error when an invalid file is selected', () => {
-      const invalidFile = new File(['content'], 'test.txt', {
-        type: 'text/plain',
-      });
-      const event = createFileEvent([invalidFile]);
-      component.handleFileSelection(event);
-      expect(component.fileValidationError).toBe(
-        'Invalid file type. Only PNG, JPEG, and PDF are allowed.',
+    it('should validate file size', () => {
+      const control = new FormControl();
+      const oversizedFile = mockFile(
+        'big.stp',
+        'application/step',
+        11 * 1024 * 1024,
       );
-      expect(component.contactForm.get('file')?.value).toBeNull();
+      control.setValue(oversizedFile);
+      const result = component.validateFileSize(control);
+      expect(result).toEqual({ fileSize: true });
+
+      const validFile = mockFile(
+        'valid.stp',
+        'application/step',
+        9 * 1024 * 1024,
+      );
+      control.setValue(validFile);
+      expect(component.validateFileSize(control)).toBeNull();
+    });
+
+    it('should handle file selection', () => {
+      const file = mockFile('test.jpg', 'image/jpeg', 1024);
+      const event = { target: { files: [file] } } as unknown as Event;
+      component.handleFileSelection(event);
+      expect(component.contactForm.get('file')?.value).toEqual(file);
     });
   });
 
-  describe('submitForm', () => {
-    let alertSpy: jest.SpyInstance;
-
-    beforeEach(() => {
-      alertSpy = jest
-        .spyOn(window, 'alert')
-        .mockImplementation(() => undefined);
-    });
-
-    afterEach(() => {
-      alertSpy.mockRestore();
-    });
-
-    it('should mark all fields as touched and not submit if the form is invalid', () => {
-      const markAllAsTouchedSpy = jest.spyOn(
-        component.contactForm,
-        'markAllAsTouched',
-      );
-      component.contactForm.get('lastName')?.setErrors({ required: true });
+  describe('Form Submission', () => {
+    it('should handle invalid form submission', () => {
+      jest.spyOn(component.contactForm, 'markAllAsTouched');
+      component.contactForm.setErrors({ invalid: true });
       component.submitForm();
-      expect(markAllAsTouchedSpy).toHaveBeenCalled();
-      expect(mockContactFormService.submitContactForm).not.toHaveBeenCalled();
+      expect(component.contactForm.markAllAsTouched).toHaveBeenCalled();
     });
 
-    it('should submit the form successfully', fakeAsync(() => {
-      component.contactForm.patchValue({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        company: 'TestCompany',
-        postalCode: '12345',
-        country: 'Testland',
-        telephone: '1234567890',
-        message: 'Hello',
-        agreement: true,
-      });
-      expect(component.contactForm.valid).toBe(true);
+    it('should submit valid form', fakeAsync(() => {
+      const completeFormData = {
+        ...validFormData,
+      };
 
-      (mockContactFormService.submitContactForm as jest.Mock).mockReturnValue(
-        of({}).pipe(delay(10)),
-      );
+      component.contactForm.setValue(completeFormData);
+      component.contactForm.updateValueAndValidity();
 
       component.submitForm();
-      expect(component.isSubmitting).toBe(true);
-      tick(10);
-      expect(window.alert).toHaveBeenCalledWith('Form submitted successfully!');
-      expect(mockDialogRef.close).toHaveBeenCalled();
+
+      expect(component.isSubmitting).toBe(false);
+      expect(contactFormService.submitContactForm).toHaveBeenCalledWith(
+        expect.objectContaining(validFormData),
+      );
+
+      tick();
+
+      expect(dialogRef.close).toHaveBeenCalled();
       expect(component.isSubmitting).toBe(false);
     }));
 
-    it('should handle form submission errors', fakeAsync(() => {
-      component.contactForm.patchValue({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        company: 'TestCompany',
-        postalCode: '12345',
-        country: 'Testland',
-        telephone: '1234567890',
-        message: 'Hello',
-        agreement: true,
-      });
-      expect(component.contactForm.valid).toBe(true);
-
-      const errorResponse = { message: 'Submission failed' };
-      (mockContactFormService.submitContactForm as jest.Mock).mockReturnValue(
-        throwError(() => errorResponse).pipe(delay(10)),
-      );
-
+    it('should handle submission error', fakeAsync(() => {
+      const error = new Error('Test Error');
+      jest
+        .spyOn(contactFormService, 'submitContactForm')
+        .mockReturnValue(throwError(() => error));
+      component.contactForm.setValue(validFormData);
       component.submitForm();
-      tick(10);
-      expect(window.alert).toHaveBeenCalledWith('Submission failed');
+
+      tick();
+
       expect(component.isSubmitting).toBe(false);
     }));
   });
 
-  describe('closeDialog', () => {
-    it('should close the dialog', () => {
+  describe('Error Messages', () => {
+    it('should get correct error messages for different errors', () => {
+      const tests = [
+        {
+          control: 'email',
+          error: 'required',
+          message: 'This field is required',
+        },
+        {
+          control: 'email',
+          error: 'email',
+          message: 'Please enter a valid email address',
+        },
+        {
+          control: 'firstName',
+          error: 'textOnly',
+          message: 'Please enter text only (no numbers or special characters)',
+        },
+        {
+          control: 'file',
+          error: 'invalidFileType',
+          message:
+            'Invalid file type. Only application/step, application/stp, application/pdf, image/jpeg, image/png allowed.',
+        },
+        {
+          control: 'file',
+          error: 'fileSize',
+          message: 'File size must be less than 10MB',
+        },
+      ];
+
+      tests.forEach(({ control, error, message }) => {
+        const formControl = component.contactForm.get(control);
+        formControl?.setErrors({ [error]: true });
+        formControl?.markAsTouched();
+        expect(component.getErrorMessage(control)).toBe(message);
+      });
+    });
+  });
+
+  describe('UI Interactions', () => {
+    it('should close dialog', () => {
       component.closeDialog();
-      expect(mockDialogRef.close).toHaveBeenCalled();
+      expect(dialogRef.close).toHaveBeenCalled();
     });
   });
 });

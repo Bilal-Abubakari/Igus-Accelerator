@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,11 +16,15 @@ import {
   ReactiveFormsModule,
   FormBuilder,
   FormGroup,
+  AbstractControl,
 } from '@angular/forms';
-import { finalize } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { ContactFormService } from './service/contact-form.service';
 import { TextOnlyValidators } from '../custom-validators/text-only.validator';
 import { FeatureFlagService } from './service/feature-flag.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ContactFormData } from './contact-form.interface';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-contact-form',
@@ -29,19 +38,34 @@ import { FeatureFlagService } from './service/feature-flag.service';
     MatButtonModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatSnackBarModule,
   ],
   templateUrl: './contact-form.component.html',
-  styleUrl: './contact-form.component.scss',
+  styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactFormComponent {
-  private static readonly ALLOWED_FILE_TYPES: string[] = [
-    'image/png',
-    'image/jpeg',
+export class ContactFormComponent implements OnInit {
+  private static readonly ALLOWED_FILE_TYPES = [
+    'application/step',
+    'application/stp',
     'application/pdf',
+    'image/jpeg',
+    'image/png',
   ];
 
-  public contactForm: FormGroup;
+  private static readonly MAX_FILE_SIZE_MB = 10;
+  private static readonly ERROR_MESSAGES: { [key: string]: string } = {
+    required: 'This field is required',
+    email: 'Please enter a valid email address',
+    textOnly: 'Please enter text only (no numbers or special characters)',
+    invalidPostalCode: 'Please enter a valid postal code',
+    invalidPhone: 'Please enter a valid phone number',
+    invalidCompanyName: 'Please enter a valid company name',
+    invalidFileType: `Invalid file type. Only ${ContactFormComponent.ALLOWED_FILE_TYPES.join(', ')} allowed.`,
+    fileSize: `File size must be less than ${ContactFormComponent.MAX_FILE_SIZE_MB}MB`,
+  };
+
+  public contactForm!: FormGroup;
   public fileValidationError = '';
   public isSubmitting = false;
 
@@ -50,68 +74,59 @@ export class ContactFormComponent {
     private readonly formBuilder: FormBuilder,
     private readonly contactFormService: ContactFormService,
     public readonly featureFlagService: FeatureFlagService,
-  ) {
-    this.contactForm = this.initializeForm();
+    private readonly destroyRef: DestroyRef,
+    private readonly snackBar: MatSnackBar,
+  ) {}
+
+  ngOnInit(): void {
+    this.initializeForm();
   }
 
-  private initializeForm(): FormGroup {
-    return this.formBuilder.group({
+  private initializeForm(): void {
+    this.contactForm = this.formBuilder.group({
       firstName: ['', TextOnlyValidators.textOnly()],
       lastName: ['', [Validators.required, TextOnlyValidators.textOnly()]],
       email: ['', [Validators.required, Validators.email]],
       company: ['', [Validators.required, TextOnlyValidators.companyName()]],
       postalCode: ['', [Validators.required, TextOnlyValidators.postalCode()]],
       country: ['', [Validators.required, TextOnlyValidators.textOnly()]],
-      telephone: ['', [Validators.required, TextOnlyValidators.phoneNumber()]],
+      telephone: ['', TextOnlyValidators.phoneNumber()],
       message: [''],
       agreement: [false, Validators.requiredTrue],
-      file: [null],
+      file: [
+        null,
+        [this.validateFileType.bind(this), this.validateFileSize.bind(this)],
+      ],
     });
   }
 
-  public isFieldInvalid(fieldName: string, errorType?: string): boolean {
-    const field = this.contactForm.get(fieldName);
-    return field
-      ? field.invalid &&
-          (field.touched || field.dirty) &&
-          (!errorType || field.hasError(errorType))
-      : false;
+  public validateFileType(
+    control: AbstractControl,
+  ): { [key: string]: boolean } | null {
+    const file = control.value;
+    if (!file) return null;
+    const isValidType = ContactFormComponent.ALLOWED_FILE_TYPES.includes(
+      file.type,
+    );
+    return isValidType ? null : { invalidFileType: true };
   }
 
-  public getErrorMessage(fieldName: string): string {
-    const field = this.contactForm.get(fieldName);
-    if (!field || !field.errors) return '';
-
-    if (field.errors['required']) return 'This field is required';
-    if (field.errors['email']) return 'Please enter a valid email address';
-    if (field.errors['textOnly'])
-      return 'Please enter text only (no numbers or special characters)';
-    if (field.errors['invalidPostalCode'])
-      return 'Please enter a valid postal code';
-    if (field.errors['invalidPhone'])
-      return 'Please enter a valid phone number';
-    if (field.errors['invalidCompanyName'])
-      return 'Please enter a valid company name';
-    if (field.errors['invalidFileType'])
-      return 'Invalid file type. Only PNG, JPEG, and PDF are allowed.';
-
-    return 'Invalid input';
+  public validateFileSize(
+    control: AbstractControl,
+  ): { [key: string]: boolean } | null {
+    const file = control.value;
+    if (!file) return null;
+    const isValidSize =
+      file.size <= ContactFormComponent.MAX_FILE_SIZE_MB * 1024 * 1024;
+    return isValidSize ? null : { fileSize: true };
   }
 
   public handleFileSelection(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (!input.files?.length) return;
-
     const file = input.files[0];
-    if (!ContactFormComponent.ALLOWED_FILE_TYPES.includes(file.type)) {
-      this.fileValidationError =
-        'Invalid file type. Only PNG, JPEG, and PDF are allowed.';
-      this.contactForm.patchValue({ file: null });
-      return;
-    }
-
-    this.fileValidationError = '';
     this.contactForm.patchValue({ file });
+    this.contactForm.get('file')?.updateValueAndValidity();
   }
 
   public submitForm(): void {
@@ -121,20 +136,41 @@ export class ContactFormComponent {
     }
 
     this.isSubmitting = true;
+    const formData = this.contactForm.value as ContactFormData;
 
     this.contactFormService
-      .submitContactForm(this.contactForm.value)
-      .pipe(finalize(() => (this.isSubmitting = false)))
+      .submitContactForm(formData)
+      .pipe(
+        finalize(() => (this.isSubmitting = false)),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe({
-        next: () => {
-          alert('Form submitted successfully!');
-          this.dialogRef.close();
-        },
-        error: (error) => alert(error.message),
+        next: () => this.handleSuccess(),
+        error: (error) => this.handleError(error),
       });
+  }
+
+  public handleSuccess(): void {
+    this.snackBar.open('Form submitted successfully!', 'Close', {
+      duration: 3000,
+    });
+    this.dialogRef.close();
+  }
+
+  public handleError(error: Error): void {
+    this.snackBar.open(`Submission failed: ${error.message}`, 'Close', {
+      duration: 3000,
+    });
   }
 
   public closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  public getErrorMessage(controlName: string): string {
+    const control = this.contactForm.get(controlName);
+    if (!control?.errors) return '';
+    const errorKey = Object.keys(control.errors)[0];
+    return ContactFormComponent.ERROR_MESSAGES[errorKey] || 'Invalid input';
   }
 }

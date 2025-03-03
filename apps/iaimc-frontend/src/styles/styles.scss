@@ -1,48 +1,38 @@
 @use '@angular/material' as mat;
 @use 'stylestheme.scss';
 
-$floating-label-font-size: 14px !default;
+.mat-mdc-snack-bar-container {
+  &.notification-success {
+    --mdc-snackbar-container-color: var(--mat-sys-primary);
+    --mat-mdc-snack-bar-button-color: var(--mat-sys-on-primary);
+    --mdc-snackbar-supporting-text-color: var(--mat-sys-on-primary);
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  &.notification-error {
+    --mdc-snackbar-container-color: var(--mat-sys-error);
+    --mat-mdc-snack-bar-button-color: var(--mat-sys-on-error);
+    --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error);
+  }
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
+@media (max-width: 600px) {
+  .full-screen-modal {
+    .form-wrapper {
+      padding: 10px;
+    }
 
-::-webkit-scrollbar-track {
-  background: var(--mat-sys-tertiary);
-}
+    .close-btn {
+      right: 20px;
+    }
 
-::-webkit-scrollbar-thumb {
-  background: var(--mat-sys-outline);
-}
+    .form-btns {
+      flex-direction: column;
+      height: auto;
+    }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--mat-sys-secondary);
-}
-
-@include mat.all-component-densities(-3);
-
-.mat-mdc-form-field .mdc-floating-label {
-  font-size: $floating-label-font-size !important;
-}
-
-.full-screen-dialog {
-  &,
-  .mdc-dialog__surface {
-    border-radius: 0;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: none;
-    max-height: none;
-    box-shadow: none;
-    overflow-x: hidden;
+    .cancel-btn,
+    .submit-btn {
+      width: 100%;
+    }
   }
 }
