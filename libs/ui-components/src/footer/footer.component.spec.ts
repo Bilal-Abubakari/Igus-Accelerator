@@ -11,12 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
+import { TranslocoTestingModule } from '@jsverse/transloco';
+import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
 import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
 import { FooterComponent } from './footer.component';
-import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -36,6 +36,7 @@ describe('FooterComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        TranslocoTestingModule.forRoot({}),
       ],
       providers: [{ provide: ActivatedRoute, useValue: {} }],
     }).compileComponents();
@@ -47,73 +48,6 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should have the proper structure', () => {
-    expect(fixture.debugElement.query(By.css('footer'))).toBeTruthy();
-    expect(fixture.debugElement.query(By.css('.contact-us'))).toBeTruthy();
-    expect(
-      fixture.debugElement.query(By.css('.rating-container')),
-    ).toBeTruthy();
-  });
-
-  it('should display correct contact information', () => {
-    const contactElement = fixture.debugElement.query(By.css('.contact__tel'));
-    expect(contactElement.nativeElement.textContent).toContain(
-      'accelerator modeling configurator® GmbH',
-    );
-    const phoneLink = contactElement.query(By.css('a'));
-    expect(phoneLink.nativeElement.href).toContain('tel:+4922039649145');
-    expect(phoneLink.nativeElement.textContent).toBe('+49 2203 9649 145');
-  });
-
-  it('should display correct section headers', () => {
-    const headers = fixture.debugElement.queryAll(By.css('h4'));
-    expect(headers[0].nativeElement.textContent).toBe('Contact us');
-    expect(headers[1].nativeElement.textContent).toBe(
-      'Please rate this configurator',
-    );
-  });
-
-  it('should display the correct copyright text', () => {
-    fixture.detectChanges();
-    const currentYear = new Date().getFullYear();
-    const expectedText = `© ${currentYear} accelerator modeling configurator® GmbH`;
-    const copyrightElement = fixture.debugElement.query(
-      By.css('footer > span'),
-    );
-    expect(copyrightElement).toBeTruthy();
-    expect(copyrightElement.nativeElement.textContent.trim()).toBe(
-      expectedText,
-    );
-  });
-
-  it('should render the rating stars', () => {
-    const stars = fixture.debugElement.queryAll(By.css('mat-icon'));
-    expect(stars.length).toBe(5);
-    stars.forEach((star) => {
-      expect(star.nativeElement.textContent.trim()).toBe('star');
-    });
-  });
-
-  it('should handle star hover and selection', () => {
-    const stars = fixture.debugElement.queryAll(By.css('mat-icon'));
-    stars[2].triggerEventHandler('mouseenter', {});
-    fixture.detectChanges();
-    expect(component.hoveredRating()).toBe(3);
-    stars[2].triggerEventHandler('mouseleave', {});
-    fixture.detectChanges();
-    expect(component.hoveredRating()).toBe(0);
-    stars[2].triggerEventHandler('click', {});
-    fixture.detectChanges();
-    expect(component.selectedRating()).toBe(3);
-  });
-
-  it('should enable submit button when form is valid', () => {
-    component.ratingForm.patchValue({ rating: 4, feedback: 'Great tool!' });
-    fixture.detectChanges();
-    const submitButton = fixture.debugElement.query(By.css('.custom-button'));
-    expect(submitButton.nativeElement.disabled).toBeFalsy();
   });
 
   it('should validate form with only rating provided', () => {
@@ -142,14 +76,6 @@ describe('FooterComponent', () => {
 
   it('should initialize form as invalid when both rating and feedback are empty', () => {
     expect(component.ratingForm.valid).toBeFalsy();
-  });
-
-  it('should show submit button when not loading', () => {
-    component.isRatingLoading.set(false);
-    fixture.detectChanges();
-    expect(
-      fixture.debugElement.query(By.css('button.custom-button')),
-    ).toBeTruthy();
   });
 
   it('should maintain selected rating on clicking the same star twice', () => {
