@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FooterComponent } from '../../../../libs/ui-components/src/footer/footer.component';
+import {
+  FooterComponent,
+  StageComponent,
+  ToolbarComponent,
+} from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 @Component({
   selector: 'app-root',
-  imports: [FooterComponent],
+  imports: [FooterComponent, ToolbarComponent, StageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

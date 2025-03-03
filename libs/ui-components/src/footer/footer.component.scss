@@ -13,12 +13,8 @@ $rate-hover: #ffdd44;
 }
 
 mat-toolbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
   height: auto;
+
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-on-secondary-fixed),
