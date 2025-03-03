@@ -11,10 +11,10 @@ on:
 
 jobs:
   pr-lints:
-     name: Code Quality Checks
-     runs-on: ubuntu-latest
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
 
-     steps:
+    steps:
       - name: validate pr title
         uses: seferov/pr-lint-action@master
         with:
