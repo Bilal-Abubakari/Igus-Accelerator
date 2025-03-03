@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { EmailDto } from '../dtos/email.dto';
 import { CreateFeedbackDto } from '../dtos/feedback.dto';
 import { FeedbackEntity } from '../feedback.entity';
-import { SessionModel } from '../feedback.model';
+
 
 @Injectable()
 export class FeedbackService {
@@ -15,12 +15,11 @@ export class FeedbackService {
 
   public async createFeedback(
     createFeedbackDto: CreateFeedbackDto,
-    session: SessionModel,
-  ): Promise<void> {
+  ): Promise<{ id: string }> {
     try {
       const feedback = this.feedbackRepository.create(createFeedbackDto);
       const savedFeedback = await this.feedbackRepository.save(feedback);
-      session.feedbackId = savedFeedback.id;
+      return { id: savedFeedback.id };
     } catch {
       throw new InternalServerErrorException('Failed to create feedback');
     }
@@ -28,12 +27,11 @@ export class FeedbackService {
 
   public async sendEmail(
     emailDto: EmailDto,
-    session: SessionModel,
+    feedbackId: string
   ): Promise<void> {
     try {
-      const feedbackId = session.feedbackId;
       if (!feedbackId) {
-        throw new InternalServerErrorException('No feedback  found ');
+        throw new InternalServerErrorException('Feedback ID is required');
       }
       const feedback = await this.feedbackRepository.findOneBy({
         id: feedbackId,
@@ -42,7 +40,10 @@ export class FeedbackService {
         throw new InternalServerErrorException('Feedback not found');
       }
       await this.feedbackRepository.update(feedbackId, emailDto);
-    } catch {
+    } catch(error) {
+      if (error instanceof Error) {
+        throw new InternalServerErrorException(error.message || 'Failed to send email');
+      }
       throw new InternalServerErrorException('Failed to send email');
     }
   }

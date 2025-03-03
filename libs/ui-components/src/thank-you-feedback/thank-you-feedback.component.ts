@@ -10,6 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
+import { FeedbackInterface } from '../footer/footer.interface';
+import { formField } from '../utilities/helper-function';
+import { FooterService } from '../footer/service/footer.service';
+import { finalize, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-thank-you-feedback',
@@ -27,8 +31,35 @@ import { RouterLink } from '@angular/router';
 })
 export class ThankYouFeedbackComponent {
   private readonly fb = inject(FormBuilder);
-  public submitted = signal(false);
+  public readonly footerService = inject(FooterService);
+  public isSubmitted = signal(false);
+  private  readonly unsubscription = new Subject<void>();
   public contactForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
   });
+
+  public getField(field: string) {
+    return formField(field, this.contactForm);
+  }
+
+  public  onSubmitEmail(){
+    if (this.contactForm.invalid) {
+      return;
+    }
+    this.footerService.updateFeedback(this.contactForm.value).pipe(takeUntil(this.unsubscription)
+    ).subscribe({
+      next: () => {
+        this.isSubmitted.set(true);
+      },
+     error:()=>{
+       this.isSubmitted.set(false);
+     }
+    })
+  }
+
+  public get contactFormValues(): FeedbackInterface {
+    return {
+      email: this.contactForm.get('email')?.value,
+    };
+  }
 }

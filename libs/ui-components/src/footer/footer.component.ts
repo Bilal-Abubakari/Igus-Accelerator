@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
+  inject, OnDestroy, OnInit,
   signal,
 } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -19,6 +20,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ThankYouFeedbackComponent } from '../thank-you-feedback/thank-you-feedback.component';
 import { atLeastOneFieldValidator } from '../custom-validators/custom.validator';
+import { FooterService } from './service/footer.service';
+import { finalize, Subject, takeUntil } from 'rxjs';
+import { FeedbackInterface } from './footer.interface';
+import { formField } from '../utilities/helper-function';
 
 @Component({
   selector: 'app-footer',
@@ -38,9 +43,10 @@ import { atLeastOneFieldValidator } from '../custom-validators/custom.validator'
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent {
+export class FooterComponent implements  OnDestroy {
   private readonly fb = inject(FormBuilder);
-
+  private readonly footerService = inject(FooterService);
+  private  readonly  unsubscription = new Subject<void>();
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
@@ -49,14 +55,19 @@ export class FooterComponent {
 
   public ratingForm = this.fb.group(
     {
-      feedback: this.fb.control(''),
+      comment: this.fb.control<string>(''),
       rating: this.fb.control<number | null>(null, [
         Validators.min(1),
         Validators.max(5),
       ]),
     },
-    { validators: atLeastOneFieldValidator() },
+    { validators: atLeastOneFieldValidator(['rating', 'comment']) }
   );
+
+  ngOnDestroy() {
+  this.unsubscription.next();
+  this.unsubscription.complete();
+}
 
   public onMouseEnter(rating: number): void {
     this.hoveredRating.set(rating);
@@ -70,4 +81,40 @@ export class FooterComponent {
     this.selectedRating.set(rating);
     this.ratingForm.patchValue({ rating });
   }
+
+  public submitFeedback(): void {
+    if (this.ratingForm.invalid) {
+      return;
+    }
+    this.isRatingLoading.set(true);
+    this.footerService.submitFeedback(this.ratingFormValues)
+      .pipe(
+        takeUntil(this.unsubscription),
+        finalize(() => this.isRatingLoading.set(false))
+      )
+      .subscribe({
+        next: () => {
+          this.isSubmitted.set(true);
+          console.log(this.isSubmitted());
+          this.ratingForm.reset();
+          this.selectedRating.set(0);
+        },
+        error: err => {
+          this.isRatingLoading.set(false);
+        }
+      });
+  }
+
+
+  public getField(field: string) {
+    return formField(field, this.ratingForm);
+  }
+
+  public get ratingFormValues(): FeedbackInterface {
+    return {
+      rating: this.ratingForm.get('rating')?.value,
+      comment: this.ratingForm.get('comment')?.value
+    };
+  }
+
 }

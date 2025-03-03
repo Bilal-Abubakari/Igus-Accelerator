@@ -37,7 +37,7 @@
             </div>
             <mat-form-field class="form-input">
               <textarea
-                formControlName="feedback"
+              [formControl]="getField('comment')"
                 matInput
                 placeholder="What can we improve?"
               ></textarea>
@@ -52,6 +52,7 @@
               mat-button
               [disabled]="ratingForm.invalid"
               class="custom-button submit-rating-button"
+              (click)="submitFeedback()"
             >
               Submit rating
             </button>

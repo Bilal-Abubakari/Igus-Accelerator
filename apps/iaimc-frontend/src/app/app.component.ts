@@ -3,7 +3,9 @@ import { FooterComponent } from '../../../../libs/ui-components/src/footer/foote
 
 @Component({
   selector: 'app-root',
-  imports: [FooterComponent],
+  imports: [
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

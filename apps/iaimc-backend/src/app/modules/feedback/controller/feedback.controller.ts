@@ -1,7 +1,6 @@
-import { Body, Controller, Patch, Post, Session } from '@nestjs/common';
+import { Body, Controller, Param, Patch, Post} from '@nestjs/common';
 import { EmailDto } from '../dtos/email.dto';
 import { CreateFeedbackDto } from '../dtos/feedback.dto';
-import { SessionModel } from '../feedback.model';
 import { FeedbackService } from '../service/feedback.service';
 
 @Controller('user-feedback')
@@ -10,17 +9,16 @@ export class FeedbackController {
 
   @Post()
   public async create(
-    @Body() createFeedbackDto: CreateFeedbackDto,
-    @Session() session: SessionModel,
-  ): Promise<void> {
-    return this.feedbackService.createFeedback(createFeedbackDto, session);
+    @Body() createFeedbackDto: CreateFeedbackDto
+  ): Promise<{ id: string }> {
+    return this.feedbackService.createFeedback(createFeedbackDto);
   }
 
-  @Patch()
+  @Patch(':id')
   public async sendEmail(
     @Body() emailDto: EmailDto,
-    @Session() session: SessionModel,
+    @Param('id') feedbackId: string,
   ): Promise<void> {
-    return this.feedbackService.sendEmail(emailDto, session);
+    return this.feedbackService.sendEmail(emailDto, feedbackId);
   }
 }
