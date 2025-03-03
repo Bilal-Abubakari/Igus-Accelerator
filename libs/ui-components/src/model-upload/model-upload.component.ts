@@ -13,8 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ModelUploadService } from '../../../../apps/iaimc-frontend/src/app/services/model-upload.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ModelUploadService } from './model-upload.service';
 
 @Component({
   selector: 'app-model-upload',
