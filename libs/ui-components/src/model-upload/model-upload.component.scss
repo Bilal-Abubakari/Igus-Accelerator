@@ -58,17 +58,21 @@
         margin-bottom: 0.625rem;
       }
 
-      .upload_text {
-        font-size: 1rem;
-        color: #4b5563;
-        text-align: center;
+      .no_uploads_container {
+        margin-bottom: 2rem;
 
-        span {
-          color: #007bff;
-          cursor: pointer;
+        .upload_text {
+          font-size: 1rem;
+          color: #4b5563;
+          text-align: center;
 
-          &:hover {
-            text-decoration: underline;
+          span {
+            color: #007bff;
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }

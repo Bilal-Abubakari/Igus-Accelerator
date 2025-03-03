@@ -49,7 +49,7 @@ export class ModelUploadComponent {
   private uploadService = inject(ModelUploadService);
   private snackBar = inject(MatSnackBar);
 
-  onFileSelected(event: Event) {
+  public onFileSelected(event: Event) {
     const files = (event.target as HTMLInputElement).files;
     if (files) {
       this.addFiles(Array.from(files));

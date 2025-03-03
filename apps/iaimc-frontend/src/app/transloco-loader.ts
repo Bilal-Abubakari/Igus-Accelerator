@@ -3,13 +3,13 @@ import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { Observable, of } from 'rxjs';
 
 import {
-  stageI18n,
-  footerI18n,
   toolbarI18n,
   langSwticherI18n,
   feedBackI18n,
   modelListI18n,
   modelUploadI18n,
+  stageI18n,
+  footerI18n,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 const componentTranslations = {
