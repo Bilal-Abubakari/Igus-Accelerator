@@ -85,7 +85,6 @@ jobs:
   deploy-backend-production:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: pr-lints-and-code-quality-checks
 
     steps:
       - name: deploy to render
