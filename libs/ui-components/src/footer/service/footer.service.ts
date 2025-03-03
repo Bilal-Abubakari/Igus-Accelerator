@@ -18,7 +18,7 @@ export class FooterService {
     feedback: FeedbackInterface,
   ): Observable<{ id: string }> {
     return this.http
-      .post<{ id: string }>(`${this.baseUrl}/user-feedback`, feedback)
+      .post<{ id: string }>(`${this.baseUrl}user-feedback`, feedback)
       .pipe(
         tap((response: { id: string }) => {
           if (response.id) {
@@ -31,7 +31,7 @@ export class FooterService {
   public updateFeedback(feedback: FeedbackInterface): Observable<void> {
     const feedbackId = localStorage.getItem(this.FEEDBACK_ID_KEY);
     return this.http.patch<void>(
-      `${this.baseUrl}/user-feedback/${feedbackId}`,
+      `${this.baseUrl}user-feedback/${feedbackId}`,
       feedback,
     );
   }
