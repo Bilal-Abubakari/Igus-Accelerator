@@ -14,6 +14,7 @@ on:
 
 jobs:
   pr-lints-and-code-quality-checks:
+    if: ${{ github.event_name == 'pull_request' }}
     name: PR Lints and Code Quality Checks
     runs-on: ubuntu-latest
 
