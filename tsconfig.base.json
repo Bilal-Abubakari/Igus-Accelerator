@@ -16,9 +16,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@igus-accelerator-injection-molding-configurator/services": [
+        "apps/iaimc-frontend/src/app/services/index.ts"
+      ],
+      "@igus-accelerator-injection-molding-configurator/shared-services": [
+        "apps/iaimc-backend/src/app/modules/shared-services/src/index.ts"
+      ],
       "@igus-accelerator-injection-molding-configurator/ui-components": [
         "libs/ui-components/src/index.ts"
-      ]
+      ],
+      "@services/*": ["apps/iaimc-frontend/src/app/services/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
