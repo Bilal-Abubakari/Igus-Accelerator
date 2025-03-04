@@ -6,6 +6,8 @@ import {
   Output,
   signal,
   WritableSignal,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { merge, tap, catchError, of, finalize } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -36,6 +38,8 @@ export class ModelUploadComponent {
   @Output() modelUploaded = new EventEmitter<{
     url: string;
   }>();
+
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   public files: WritableSignal<File[]> = signal([]);
   public uploading: WritableSignal<boolean> = signal(false);
@@ -198,6 +202,7 @@ export class ModelUploadComponent {
   private finishUpload(): void {
     this.clearUploadState();
     this.uploading.set(false);
+    this.clearFileInput();
   }
 
   public allowDrop(event: DragEvent): void {
@@ -214,10 +219,7 @@ export class ModelUploadComponent {
   }
 
   public triggerFileInput(): void {
-    const fileInput = document.querySelector(
-      'input[type="file"]',
-    ) as HTMLInputElement;
-    fileInput?.click();
+    this.fileInput.nativeElement.click();
   }
 
   public loadSampleModel(): void {
@@ -231,5 +233,11 @@ export class ModelUploadComponent {
     this.completedUploads = 0;
     this.totalUploads = 0;
     this.loadedModelNames.clear();
+  }
+
+  private clearFileInput(): void {
+    if (this.fileInput) {
+      this.fileInput.nativeElement.value = '';
+    }
   }
 }
