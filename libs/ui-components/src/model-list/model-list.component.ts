@@ -9,7 +9,10 @@ import { ModelViewerComponent } from '../../../../libs/ui-components/src/model-v
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { DatePipe, SlicePipe } from '@angular/common';
-import { LocalStorageService } from '../model-upload/services/local-storage.service';
+import {
+  LocalStorageService,
+  LocalStorageKeys,
+} from '../model-upload/services/local-storage.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 interface UploadedModel {
@@ -40,9 +43,7 @@ export interface FetchModelsResponse {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelListComponent implements OnInit {
-  private readonly STORAGE_KEY = 'uploadedModels';
   private storageService = inject(LocalStorageService);
-
   public uploadedModels: UploadedModel[] = [];
 
   ngOnInit(): void {
@@ -75,14 +76,19 @@ export class ModelListComponent implements OnInit {
   }
 
   private loadModelsFromStorage(): void {
-    const storedModels = this.storageService.getLocalItem(this.STORAGE_KEY);
+    const storedModels = this.storageService.getLocalItem<UploadedModel[]>(
+      LocalStorageKeys.UPLOADED_MODELS,
+    );
     if (storedModels && Array.isArray(storedModels)) {
       this.uploadedModels = storedModels;
     }
   }
 
   private saveModelsToStorage(): void {
-    this.storageService.setLocalItem(this.STORAGE_KEY, this.uploadedModels);
+    this.storageService.setLocalItem(
+      LocalStorageKeys.UPLOADED_MODELS,
+      this.uploadedModels,
+    );
   }
 
   private generateUniqueId(): string {
@@ -90,9 +96,6 @@ export class ModelListComponent implements OnInit {
   }
 
   private extractFileNameFromUrl(url: string | undefined): string {
-    if (!url) {
-      return 'Unnamed Model';
-    }
-    return url.split('/').pop() || 'Unnamed Model';
+    return url ? url.split('/').pop() || 'Unnamed Model' : 'Unnamed Model';
   }
 }

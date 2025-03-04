@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 
+export enum LocalStorageKeys {
+  UPLOADED_MODELS = 'uploadedModels',
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
-  public getLocalItem(key: string) {
+  public getLocalItem<T>(key: LocalStorageKeys): T | null {
     const item = globalThis.localStorage?.getItem(key);
-    if (item) return JSON.parse(item);
-    return null;
+    return item ? (JSON.parse(item) as T) : null;
   }
 
-  public setLocalItem(key: string, data: unknown) {
+  public setLocalItem(key: LocalStorageKeys, data: unknown): void {
     globalThis.localStorage?.setItem(key, JSON.stringify(data));
   }
 
-  public removeItem(key: string) {
+  public removeItem(key: LocalStorageKeys): void {
     globalThis.localStorage?.removeItem(key);
   }
 }
