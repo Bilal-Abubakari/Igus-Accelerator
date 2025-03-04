@@ -15,7 +15,7 @@ const setupCors: (app: INestApplication) => void = (app: INestApplication) => {
   const allowedOrigins = [
     'https://injection-moulding-configurator.vercel.app',
     process.env.NODE_ENV === 'development'
-      ? `http://localhost:${process.env.PORT}`
+      ? `http://localhost:${process.env.CLIENT_PORT}`
       : '',
   ];
 
