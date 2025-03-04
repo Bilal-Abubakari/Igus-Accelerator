@@ -169,7 +169,6 @@ main {
   }
 }
 
-
 @media (max-height: 700px) {
   main {
     .model_list {
@@ -181,7 +180,7 @@ main {
 @media only screen and (max-height: 700px) {
   main {
     .model_list {
-      margin: 40px auto
+      margin: 40px auto;
     }
   }
 }
