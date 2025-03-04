@@ -7,7 +7,7 @@ import { ContactFormData } from '../contact-form.interface';
   providedIn: 'root',
 })
 export class ContactFormService {
-  private readonly apiUrl = 'http://localhost:3000/contact-forms';
+  private readonly apiUrl = 'http://localhost:3000/contact_forms';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -20,8 +20,7 @@ export class ContactFormService {
     });
 
     return this.http.post<ContactFormData>(this.apiUrl, formData).pipe(
-      catchError((error) => {
-        console.error('Form submission error:', error);
+      catchError(() => {
         return throwError(() => new Error('Failed to submit form. Try again.'));
       }),
     );

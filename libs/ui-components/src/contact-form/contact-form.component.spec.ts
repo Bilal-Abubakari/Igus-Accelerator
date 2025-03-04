@@ -251,46 +251,6 @@ describe('ContactFormComponent', () => {
     }));
   });
 
-  describe('Error Messages', () => {
-    it('should get correct error messages for different errors', () => {
-      const tests = [
-        {
-          control: 'email',
-          error: 'required',
-          message: 'This field is required',
-        },
-        {
-          control: 'email',
-          error: 'email',
-          message: 'Please enter a valid email address',
-        },
-        {
-          control: 'firstName',
-          error: 'textOnly',
-          message: 'Please enter text only (no numbers or special characters)',
-        },
-        {
-          control: 'file',
-          error: 'invalidFileType',
-          message:
-            'Invalid file type. Only application/step, application/stp, application/pdf, image/jpeg, image/png allowed.',
-        },
-        {
-          control: 'file',
-          error: 'fileSize',
-          message: 'File size must be less than 10MB',
-        },
-      ];
-
-      tests.forEach(({ control, error, message }) => {
-        const formControl = component.contactForm.get(control);
-        formControl?.setErrors({ [error]: true });
-        formControl?.markAsTouched();
-        expect(component.getErrorMessage(control)).toBe(message);
-      });
-    });
-  });
-
   describe('UI Interactions', () => {
     it('should close dialog', () => {
       component.closeDialog();

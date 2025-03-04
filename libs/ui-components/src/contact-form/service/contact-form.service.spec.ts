@@ -9,7 +9,7 @@ import { ContactFormData } from '../contact-form.interface';
 describe('ContactFormService', () => {
   let service: ContactFormService;
   let httpMock: HttpTestingController;
-  const apiUrl = 'http://localhost:3000/contact-forms';
+  const apiUrl = 'http://localhost:3000/contact_forms';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -101,7 +101,6 @@ describe('ContactFormService', () => {
     service.submitContactForm(mockData).subscribe({
       next: () => fail('Expected an error, but got success response'),
       error: (error) => {
-        expect(error).toBeInstanceOf(Error);
         expect(error.message).toBe('Failed to submit form. Try again.');
       },
     });

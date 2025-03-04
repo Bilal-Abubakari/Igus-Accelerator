@@ -54,16 +54,6 @@ export class ContactFormComponent implements OnInit {
   ];
 
   private static readonly MAX_FILE_SIZE_MB = 10;
-  private static readonly ERROR_MESSAGES: { [key: string]: string } = {
-    required: 'This field is required',
-    email: 'Please enter a valid email address',
-    textOnly: 'Please enter text only (no numbers or special characters)',
-    invalidPostalCode: 'Please enter a valid postal code',
-    invalidPhone: 'Please enter a valid phone number',
-    invalidCompanyName: 'Please enter a valid company name',
-    invalidFileType: `Invalid file type. Only ${ContactFormComponent.ALLOWED_FILE_TYPES.join(', ')} allowed.`,
-    fileSize: `File size must be less than ${ContactFormComponent.MAX_FILE_SIZE_MB}MB`,
-  };
 
   public contactForm!: FormGroup;
   public fileValidationError = '';
@@ -165,12 +155,5 @@ export class ContactFormComponent implements OnInit {
 
   public closeDialog(): void {
     this.dialogRef.close();
-  }
-
-  public getErrorMessage(controlName: string): string {
-    const control = this.contactForm.get(controlName);
-    if (!control?.errors) return '';
-    const errorKey = Object.keys(control.errors)[0];
-    return ContactFormComponent.ERROR_MESSAGES[errorKey] || 'Invalid input';
   }
 }
