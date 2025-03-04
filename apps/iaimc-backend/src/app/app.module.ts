@@ -7,6 +7,7 @@ import databaseConfig from './configurations/database.config';
 import envConfig from './configurations/env.config';
 import { FileUploadModule } from './modules/file-upload/file-upload.module';
 import { FeedbackModule } from './modules/feedback/feedback.module';
+import { ContactFormModule } from './modules/contact-form/contact-form.module';
 
 @Module({
   imports: [
