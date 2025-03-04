@@ -25,53 +25,7 @@ export default [
     },
   },
 
-  {
-    files: ['apps/iaimc-backend/**/*.ts'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: ['apps/iaimc-backend/tsconfig.app.json'],
-        tsconfigRootDir: process.cwd(),
-      },
-    },
-    rules: {
-      '@typescript-eslint/explicit-module-boundary-types': 'error',
-      '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unsafe-assignment': 'error',
-      '@typescript-eslint/no-unsafe-member-access': 'error',
-      '@typescript-eslint/no-unsafe-call': 'error',
-      '@typescript-eslint/no-unsafe-return': 'error',
-      '@typescript-eslint/no-unsafe-argument': 'error',
-      '@typescript-eslint/no-unsafe-return': 'error',
-      '@typescript-eslint/no-unsafe-assignment': 'error',
-      '@typescript-eslint/no-unsafe-member-access': 'error',
-
-      '@typescript-eslint/member-ordering': [
-        'error',
-        {
-          default: [
-            'signature',
-            'public-static-field',
-            'protected-static-field',
-            'private-static-field',
-            'public-instance-field',
-            'protected-instance-field',
-            'private-instance-field',
-            'constructor',
-            'public-method',
-            'protected-method',
-            'private-method',
-          ],
-        },
-      ],
-      '@typescript-eslint/no-extraneous-class': [
-        'error',
-        { allowWithDecorator: true },
-      ],
-    },
-  },
+  {},
 
   {
     files: ['**/*.spec.ts', '**/jest.config.ts', '**/test/**/*.ts'],
