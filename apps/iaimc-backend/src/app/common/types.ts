@@ -4,6 +4,7 @@ import { Multer } from 'multer';
 
 export enum FileStoreDirectory {
   MODELS = 'models',
+  CONTACT_FORMS = 'contact_forms',
 }
 
 export type DatabaseConfig = {

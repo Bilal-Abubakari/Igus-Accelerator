@@ -13,5 +13,11 @@ export default (): DatabaseConfig => ({
     entities: [FeedbackEntity],
     url: process.env.POSTGRES_DATABASE_URL,
     synchronize: process.env.NODE_ENV === 'development',
+    ssl: false,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
   } satisfies TypeOrmModuleOptions,
 });

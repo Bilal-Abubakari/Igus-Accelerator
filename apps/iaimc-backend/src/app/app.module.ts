@@ -14,6 +14,7 @@ import { FeedbackModule } from './modules/feedback/feedback.module';
     FeedbackModule,
     ConfigModule.forRoot(envConfig),
     TypeOrmModule.forRoot(databaseConfig().database),
+    ContactFormModule,
   ],
   controllers: [AppController],
   providers: [AppService],
