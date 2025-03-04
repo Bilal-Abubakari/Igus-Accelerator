@@ -6,6 +6,7 @@ import {
   FooterComponent,
   NavbarComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
+import { ModelListComponent } from '../../../../../../libs/ui-components/src/model-list/model-list.component';
 
 @Component({
   selector: 'app-library',
@@ -15,6 +16,7 @@ import {
     NavbarComponent,
     StageComponent,
     FooterComponent,
+    ModelListComponent,
   ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
