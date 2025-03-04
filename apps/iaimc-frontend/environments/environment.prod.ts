@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://test-dkef.onrender.com',
+  apiUrl: 'https://igus-accelerator.onrender.com',
 };
