@@ -12,5 +12,11 @@ export default (): DatabaseConfig => ({
     database: process.env.POSTGRES_DB,
     entities: [ContactFormEntity],
     synchronize: process.env.NODE_ENV === 'development',
+    ssl: false,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
   } satisfies TypeOrmModuleOptions,
 });
