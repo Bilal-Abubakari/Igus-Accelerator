@@ -45,6 +45,7 @@ export class ThankYouFeedbackComponent implements OnDestroy {
     this.subscription.next();
     this.subscription.complete();
   }
+
   public getField(field: string) {
     return formField(field, this.contactForm);
   }
@@ -54,7 +55,7 @@ export class ThankYouFeedbackComponent implements OnDestroy {
       return;
     }
     this.footerService
-      .updateFeedback(this.contactForm.value)
+      .updateFeedback(this.contactFormValues)
       .pipe(takeUntil(this.subscription))
       .subscribe({
         next: () => {

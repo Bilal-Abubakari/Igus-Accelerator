@@ -6,7 +6,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 3000;
   app.enableCors({
-    origin: 'http://localhost:4200',
+    origin: '*',
     credentials: true,
   });
   const sessionSecret = process.env.SESSION_SECRET;
