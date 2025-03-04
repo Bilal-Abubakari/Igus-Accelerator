@@ -7,7 +7,7 @@ import { UploadStateService } from '../../../../../libs/ui-components/src/navbar
 })
 export class UploadGuard implements CanActivate {
   private readonly uploadState = inject(UploadStateService);
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
   public canActivate(): boolean {
     if (!this.uploadState.hasUploadedFile()) {
