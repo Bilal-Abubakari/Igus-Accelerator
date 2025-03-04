@@ -15,8 +15,8 @@ export default (): DatabaseConfig => ({
     ssl: false,
     extra: {
       ssl: {
-        rejectUnauthorized: false
-      }
-    }
+        rejectUnauthorized: false,
+      },
+    },
   } satisfies TypeOrmModuleOptions,
 });
