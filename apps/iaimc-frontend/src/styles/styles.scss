@@ -1,29 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
 @use 'stylestheme.scss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+.mat-mdc-snack-bar-container {
+  &.notification-success {
+    --mdc-snackbar-container-color: var(--mat-sys-primary);
+    --mat-mdc-snack-bar-button-color: var(--mat-sys-on-primary);
+    --mdc-snackbar-supporting-text-color: var(--mat-sys-on-primary);
+  }
+
+  &.notification-error {
+    --mdc-snackbar-container-color: var(--mat-sys-error);
+    --mat-mdc-snack-bar-button-color: var(--mat-sys-on-error);
+    --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error);
+  }
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
+@media (max-width: 600px) {
+  .full-screen-modal {
+    .form-wrapper {
+      padding: 10px;
+    }
 
-::-webkit-scrollbar-track {
-  background: var(--mat-sys-tertiary);
-}
+    .close-btn {
+      right: 20px;
+    }
 
-::-webkit-scrollbar-thumb {
-  background: var(--mat-sys-outline);
-}
+    .form-btns {
+      flex-direction: column;
+      height: auto;
+    }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--mat-sys-secondary);
+    .cancel-btn,
+    .submit-btn {
+      width: 100%;
+    }
+  }
 }

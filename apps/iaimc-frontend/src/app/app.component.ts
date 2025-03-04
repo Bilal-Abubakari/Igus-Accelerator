@@ -4,6 +4,7 @@ import { NavbarComponent } from '@igus-accelerator-injection-molding-configurato
 import { ToolbarComponent } from '../../../../libs/ui-components/src/toolbar/toolbar.component';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent, ToolbarComponent],
   templateUrl: './app.component.html',

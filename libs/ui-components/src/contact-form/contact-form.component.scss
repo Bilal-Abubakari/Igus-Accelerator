@@ -1,0 +1,224 @@
+@use '@angular/material' as mat;
+
+$full-screen-width: 100vw;
+$full-screen-height: 100vh;
+$max-form-wrapper-width: 650px;
+
+$submit-btn-bg-color: #3f51b5;
+$submit-btn-text-color: #fff;
+$submit-btn-hover-bg: #303f9f;
+
+$color-contact: #363636;
+$color-intro: #423e3a;
+
+$font-size-intro: 16px;
+$line-height-intro: 24px;
+$margin-bottom-intro: 32px;
+$font-size-agreement: 14px;
+
+$gap-standard: 20px;
+$margin-bottom-field: 10px;
+$padding-left-error: 40px;
+$padding-top-form-btns: 30px;
+$gap-form-btns: 18px;
+$form-btns-height: 55px;
+$select-file-btn-gap: 8px;
+$select-file-container-gap: 10px;
+
+$select-file-btn-transition:
+  background 0.3s ease,
+  box-shadow 0.3s ease;
+
+$telephone-width: 320px;
+$textarea-height: 70px;
+$subscript-padding-top: 4px;
+$subscript-height: auto !important;
+$floating-label-font-size: 16px;
+
+$error-font-size: 0.6rem;
+$error-line-height: 1rem;
+$error-min-height-transition: min-height 0.2s ease;
+
+$btn-width: 85px;
+$btn-height: 50px;
+$close-btn-top: 30px;
+$close-btn-right: 420px;
+$close-btn-color: #666;
+$close-btn-hover-color: #333;
+$button-radius: 0;
+
+.full-screen-modal {
+  width: $full-screen-width;
+  height: $full-screen-height;
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: 350px;
+
+  .form-wrapper {
+    width: 100%;
+    max-width: $max-form-wrapper-width;
+    margin: 0 auto;
+    padding: 20px;
+  }
+}
+
+h1.contact {
+  color: $color-contact;
+  margin-bottom: 0;
+}
+
+p.intro {
+  font-size: $font-size-intro;
+  font-weight: 400;
+  line-height: $line-height-intro;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  letter-spacing: normal;
+  margin-bottom: $margin-bottom-intro;
+  color: $color-intro;
+}
+
+.attach-file-title {
+  color: $color-intro;
+  margin: $gap-standard 0;
+}
+
+.email-company-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: $gap-standard;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.name-fields-container {
+  display: flex;
+  justify-content: space-between;
+  gap: $gap-standard;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.postal-country-container {
+  display: flex;
+  justify-content: space-between;
+  gap: $gap-standard;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.postal-code {
+  flex: 1;
+}
+
+.country {
+  flex: 2;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: $margin-bottom-field;
+
+  .mat-mdc-form-field-subscript-wrapper {
+    padding-top: $subscript-padding-top;
+    height: $subscript-height;
+  }
+}
+
+.telephone {
+  width: $telephone-width;
+}
+
+textarea {
+  height: $textarea-height !important;
+}
+
+.mat-mdc-form-field-error {
+  font-size: $error-font-size !important;
+  line-height: $error-line-height !important;
+  display: block;
+  min-height: 0;
+  transition: $error-min-height-transition;
+
+  &:empty {
+    min-height: 0 !important;
+  }
+}
+
+.upload-container {
+  margin-bottom: $gap-standard;
+}
+
+.select-file-btn {
+  display: flex;
+  align-items: center;
+  gap: $select-file-btn-gap;
+  transition: $select-file-btn-transition;
+}
+
+.mat-mdc-button {
+  padding: 25px 7px;
+  border-radius: $button-radius;
+}
+
+.terms-agreemnet {
+  display: flex;
+  flex-direction: row;
+  gap: $select-file-container-gap;
+  align-items: center;
+}
+
+p.agreement {
+  font-size: $font-size-agreement;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.accept-error {
+  padding-left: $padding-left-error;
+}
+
+.form-btns {
+  padding-top: $padding-top-form-btns;
+  display: flex;
+  gap: $gap-form-btns;
+  justify-content: flex-end;
+  height: $form-btns-height;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.cancel-btn,
+.submit-btn {
+  width: $btn-width;
+  height: $btn-height;
+  border-radius: $button-radius;
+}
+
+.submit-btn {
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-tertiary) !important;
+}
+
+.close-btn {
+  position: absolute;
+  top: $close-btn-top;
+  right: $close-btn-right;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $close-btn-color;
+
+  &:hover {
+    color: $close-btn-hover-color;
+  }
+}
