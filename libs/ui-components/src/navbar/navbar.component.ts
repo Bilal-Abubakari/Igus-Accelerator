@@ -25,12 +25,16 @@ import { TranslocoPipe } from '@jsverse/transloco';
 })
 export class NavbarComponent {
   public homeRoute = signal(NAVIGATION_ROUTES.LIBRARY);
-  public configurationsRoute = signal(
-    `${NAVIGATION_ROUTES.MOLDING_CONFIGURATION}/${NAVIGATION_ROUTES.CONFIGURATIONS}`,
-  );
-  public producibilityRoute = signal(
-    `${NAVIGATION_ROUTES.MOLDING_CONFIGURATION}/${NAVIGATION_ROUTES.PRODUCIBILITY}`,
-  );
+
+  public configurationsRoute = signal([
+    NAVIGATION_ROUTES.MOLDING_CONFIGURATION,
+    NAVIGATION_ROUTES.CONFIGURATIONS,
+  ]);
+
+  public producibilityRoute = signal([
+    NAVIGATION_ROUTES.MOLDING_CONFIGURATION,
+    NAVIGATION_ROUTES.PRODUCIBILITY,
+  ]);
 
   public isMenuOpened = signal(false);
 

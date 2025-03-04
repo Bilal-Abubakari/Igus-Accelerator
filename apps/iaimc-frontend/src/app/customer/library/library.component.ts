@@ -1,9 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ToolbarComponent,
+  StageComponent,
+  FooterComponent,
+  NavbarComponent,
+} from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 @Component({
   selector: 'app-library',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ToolbarComponent,
+    NavbarComponent,
+    StageComponent,
+    FooterComponent,
+  ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,6 +1,6 @@
 export const NAVIGATION_ROUTES = {
-  MOLDING_CONFIGRATION_CONFIGURATIONS: 'molding-configuration/configurations',
-  MOLDING_CONFIGRATION_PRODUCIBILITY: 'molding-configuration/producibility',
+  MOLDING_CONFIGRATION_CONFIGURATIONS: 'configurations',
+  MOLDING_CONFIGRATION_PRODUCIBILITY: 'producibility',
   LIBRARY: 'library',
   MOLDING_CONFIGURATION: 'molding-configuration',
   CONFIGURATIONS: 'configurations',

@@ -30,6 +30,13 @@
 div {
   @include mat.tabs-overrides(
     (
+      active-label-text-color: white,
+      inactive-label-text-color: white,
+      active-hover-label-text-color: white,
+      inactive-hover-label-text-color: white,
+      inactive-focus-label-text-color: white,
+      active-focus-label-text-color: white,
+      active-indicator-color: white,
       divider-color: var(--mat-sys-on-secondary-fixed),
     )
   );
@@ -38,7 +45,6 @@ div {
     display: flex;
     justify-content: center;
     width: auto;
-    color: #fff;
   }
 
   .mat-tab-nav-bar {
@@ -48,17 +54,12 @@ div {
     width: auto;
   }
 
-  .mat-tab-nav-bar {
+  .mat-tab-link {
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 600;
     padding: 0.5rem;
     text-transform: uppercase;
-    color: #fff;
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 
   a.active {

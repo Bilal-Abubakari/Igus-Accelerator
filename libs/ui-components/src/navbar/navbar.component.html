@@ -2,10 +2,10 @@
   <button mat-icon-button class="menu_toggle" (click)="toggleMenu()">☰</button>
 
   <div [class.open]="isMenuOpened()">
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
       <a
         mat-tab-link
-        [routerLink]="homeRoute()"
+        [routerLink]="['/', homeRoute()]"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
@@ -13,7 +13,7 @@
       </a>
       <a
         mat-tab-link
-        [routerLink]="configurationsRoute()"
+        [routerLink]="['/', configurationsRoute()]"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
@@ -21,12 +21,13 @@
       </a>
       <a
         mat-tab-link
-        [routerLink]="producibilityRoute()"
+        [routerLink]="['/', producibilityRoute()]"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         {{ 'nav.PRODUCIBILITY' | transloco }}
       </a>
     </nav>
+    <mat-tab-nav-panel #tabPanel> </mat-tab-nav-panel>
   </div>
 </mat-toolbar>
