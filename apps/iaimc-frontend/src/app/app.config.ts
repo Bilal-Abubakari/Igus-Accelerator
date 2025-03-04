@@ -26,11 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline', hideRequiredMarker: true },
-    },
-    provideHttpClient(),
     provideTransloco({
       config: {
         availableLangs: AVAILABLE_LANGUAGE_CODES as unknown as AvailableLangs,
@@ -40,6 +35,10 @@ export const appConfig: ApplicationConfig = {
       },
       loader: PrebuiltTranslocoLoader,
     }),
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline', hideRequiredMarker: true },
+    },
     provideTranslocoPersistLang({
       storage: {
         useValue: localStorage,

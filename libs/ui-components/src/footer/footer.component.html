@@ -41,7 +41,7 @@
             </div>
             <mat-form-field class="form-input">
               <textarea
-                formControlName="feedback"
+                [formControl]="getField('comment')"
                 matInput
                 [placeholder]="'footer.IMPROVEMENT_SUGGESTIONS' | transloco"
               ></textarea>
@@ -56,6 +56,7 @@
               mat-button
               [disabled]="ratingForm.invalid"
               class="custom-button submit-rating-button"
+              (click)="submitFeedback()"
             >
               {{ 'footer.SUBMIT_RATING' | transloco }}
             </button>
