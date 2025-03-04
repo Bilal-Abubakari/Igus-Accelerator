@@ -12,5 +12,6 @@ export default (): DatabaseConfig => ({
     entities: [],
     url: process.env.POSTGRES_DATABASE_URL,
     synchronize: process.env.NODE_ENV === 'development',
+    ssl: { rejectUnauthorized: false },
   } satisfies TypeOrmModuleOptions,
 });
