@@ -1,0 +1,18 @@
+.viewer_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  width: 100%;
+  height: 150px;
+  padding: 1rem;
+}
+
+.viewer_content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}

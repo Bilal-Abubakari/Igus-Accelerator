@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "LIBRARY": {
+      "ar": "المكتبة",
+      "de": "Bibliothek",
+      "en": "Library",
+      "es": "Biblioteca",
+      "fr": "Bibliothèque",
+      "jp": "図書館",
+      "pt": "Biblioteca",
+      "ru": "Библиотека",
+      "zh": "圖書館"
+    },
+    "CONFIGURATIONS": {
+      "ar": "التكوينات",
+      "de": "Konfigurationen",
+      "en": "Configurations",
+      "es": "Configuraciones",
+      "fr": "Configurations",
+      "jp": "構成",
+      "pt": "Configurações",
+      "ru": "Конфигурации",
+      "zh": "配置"
+    },
+    "PRODUCIBILITY": {
+      "ar": "القابلية للتصنيع",
+      "de": "Herstellbarkeit",
+      "en": "Producibility",
+      "es": "Fabricabilidad",
+      "fr": "Fabricabilité",
+      "jp": "製造可能性",
+      "pt": "Fabricabilidade",
+      "ru": "Технологичность",
+      "zh": "可制造性"
+    }
+  }
+}

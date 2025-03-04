@@ -17,3 +17,9 @@ export interface ResponseObject<T = undefined> {
   message?: string;
   data?: T;
 }
+
+declare module 'express' {
+  interface Request {
+    anonymousSession?: { sessionId: string };
+  }
+}
