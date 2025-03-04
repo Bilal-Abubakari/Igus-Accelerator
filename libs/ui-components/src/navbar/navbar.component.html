@@ -2,32 +2,34 @@
   <button mat-icon-button class="menu_toggle" (click)="toggleMenu()">☰</button>
 
   <div [class.open]="isMenuOpened()">
-    <nav mat-tab-nav-bar [tabPanel]="tabPanel">
-      <a
-        mat-tab-link
-        [routerLink]="['/', homeRoute()]"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        {{ 'nav.LIBRARY' | transloco }}
-      </a>
-      <a
-        mat-tab-link
-        [routerLink]="configurationsRoute()"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        {{ 'nav.CONFIGURATIONS' | transloco }}
-      </a>
-      <a
-        mat-tab-link
-        [routerLink]="producibilityRoute()"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        {{ 'nav.PRODUCIBILITY' | transloco }}
-      </a>
-    </nav>
-    <mat-tab-nav-panel #tabPanel> </mat-tab-nav-panel>
+    @if (hasUploadedFile()) {
+      <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+        <a
+          mat-tab-link
+          [routerLink]="['/', homeRoute()]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ 'nav.LIBRARY' | transloco }}
+        </a>
+        <a
+          mat-tab-link
+          [routerLink]="configurationsRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ 'nav.CONFIGURATIONS' | transloco }}
+        </a>
+        <a
+          mat-tab-link
+          [routerLink]="producibilityRoute()"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ 'nav.PRODUCIBILITY' | transloco }}
+        </a>
+      </nav>
+      <mat-tab-nav-panel #tabPanel> </mat-tab-nav-panel>
+    }
   </div>
 </mat-toolbar>

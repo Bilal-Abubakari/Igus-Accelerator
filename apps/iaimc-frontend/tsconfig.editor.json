@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "include": [
     "src/**/*.ts",
-    "../../libs/ui-components/src/shared-services/index.ts"
+    "../../libs/ui-components/src/shared-services/index.ts",
+    "../../libs/ui-components/src/navbar/service/upload-state.service.ts"
   ],
   "compilerOptions": {},
   "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
