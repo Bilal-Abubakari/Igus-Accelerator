@@ -3,9 +3,11 @@
 $rate-active: #ffcc00;
 $rate-hover: #ffdd44;
 
-@mixin flex-option($display: flex,
+@mixin flex-option(
+  $display: flex,
   $justify-content: center,
-  $align-items: center) {
+  $align-items: center
+) {
   display: $display;
   justify-content: $justify-content;
   align-items: $align-items;
@@ -14,9 +16,12 @@ $rate-hover: #ffdd44;
 mat-toolbar {
   height: auto;
 
-  @include mat.toolbar-overrides((container-background-color: var(--mat-sys-on-secondary-fixed),
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-on-secondary-fixed),
       container-text-color: var(--mat-sys-primary-container),
-    ));
+    )
+  );
 
   footer {
     width: 100%;
@@ -80,8 +85,11 @@ mat-toolbar {
           gap: 1rem;
         }
 
-        @include mat.progress-spinner-overrides((active-indicator-color: var(--mat-sys-primary),
-          ));
+        @include mat.progress-spinner-overrides(
+          (
+            active-indicator-color: var(--mat-sys-primary),
+          )
+        );
 
         .rating-stars {
           display: flex;

@@ -7,18 +7,15 @@ $grid-gap-medium: 1rem;
 $grid-gap-small: 0.5rem;
 $grid-margin-top: 80px;
 
-
 $breakpoint-large: 1024px;
 $breakpoint-medium: 768px;
 $breakpoint-small: 480px;
-
 
 $title-font-size: 1rem;
 $subtitle-font-size: 0.85rem;
 $footer-font-size: 0.9rem;
 $badge-font-size: 0.75rem;
 $placeholder-font-size: 0.8rem;
-
 
 $color-primary: #42008a;
 $color-success: #4caf50;
@@ -59,7 +56,6 @@ main {
     border-radius: $card-border-radius;
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
-
 
     mat-card-header {
       display: flex;
