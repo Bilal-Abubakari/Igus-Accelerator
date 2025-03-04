@@ -12,7 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { NAVIGATION_ROUTES } from './constants';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { UploadStateService } from 'apps/iaimc-frontend/src/app/service/upload-state.service';
+import { UploadStateService } from './service/upload-state.service';
 
 @Component({
   selector: 'app-navbar',
