@@ -8,6 +8,7 @@ import {
   toolbarI18n,
   langSwticherI18n,
   feedBackI18n,
+  navBarI18n,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 const componentTranslations = {
@@ -16,6 +17,7 @@ const componentTranslations = {
   'lang-switcher': langSwticherI18n,
   feedback: feedBackI18n,
   footer: footerI18n,
+  navbar: navBarI18n,
 };
 
 @Injectable({ providedIn: 'root' })

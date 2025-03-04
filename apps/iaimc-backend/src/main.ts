@@ -1,18 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
+
+  setupCors(app);
+
   const port = process.env.PORT || 3000;
-  app.enableCors({
-    origin: '*',
-    credentials: true,
-  });
-  const sessionSecret = process.env.SESSION_SECRET;
-  if (!sessionSecret) {
-    throw new Error('Unauthorized');
-  }
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -22,5 +18,21 @@ async function bootstrap(): Promise<void> {
   );
   await app.listen(port);
 }
+
+const setupCors: (app: INestApplication) => void = (app: INestApplication) => {
+  const allowedOrigins = [
+    'https://injection-moulding-configurator.vercel.app',
+    process.env.NODE_ENV === 'development'
+      ? `http://localhost:${process.env.PORT}`
+      : '',
+  ];
+
+  app.enableCors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
+};
 
 bootstrap();
