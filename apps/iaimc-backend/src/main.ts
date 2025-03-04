@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
+import { ValidationPipe } from '@nestjs/common';
 import { INestApplication } from '@nestjs/common';
 
 async function bootstrap(): Promise<void> {
@@ -8,6 +9,13 @@ async function bootstrap(): Promise<void> {
   setupCors(app);
 
   const port = process.env.PORT || 3000;
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
   await app.listen(port);
 }
 

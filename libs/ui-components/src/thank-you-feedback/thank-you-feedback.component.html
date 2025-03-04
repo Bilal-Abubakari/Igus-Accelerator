@@ -1,5 +1,5 @@
 <main class="feedback-container">
-  @if (!submitted()) {
+  @if (!isSubmitted()) {
     <h4>{{ 'feedback.THANKS' | transloco }}</h4>
     <p>{{ 'feedback.REQUEST_TO_CONTACT_CUSTOMER' | transloco }}</p>
     <form [formGroup]="contactForm">
@@ -8,13 +8,18 @@
           matInput
           type="email"
           placeholder="E-mail"
-          formControlName="email"
+          [formControl]="getField('email')"
         />
         @if (contactForm.get('email')?.hasError('email')) {
           <mat-error>{{ 'feedback.ENTER_VALID_EMAIL' | transloco }}</mat-error>
         }
       </mat-form-field>
-      <button mat-button [disabled]="!contactForm.valid" class="custom-button">
+      <button
+        mat-button
+        [disabled]="!contactForm.valid"
+        class="custom-button"
+        (click)="onSubmitEmail()"
+      >
         {{ 'feedback.SUBMIT' | transloco }}
       </button>
     </form>
@@ -27,11 +32,7 @@
     <div class="success-container">
       <h2>{{ 'feedback.THANKS' | transloco }}</h2>
       <div class="feedback-image">
-        <img
-          src="assets/thank-you.png"
-          alt="Feedback submitted successfully"
-          class="success-image"
-        />
+        <img src="thank-you.png" alt="thank you" class="success-image" />
       </div>
     </div>
   }

@@ -23,8 +23,11 @@ export const appConfig: ApplicationConfig = {
 
     provideHttpClient(),
     provideAnimationsAsync(),
+    provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
+
+    { provide: 'BASE_API_URL', useValue: environment.apiUrl },
     provideHttpClient(),
     provideTransloco({
       config: {
