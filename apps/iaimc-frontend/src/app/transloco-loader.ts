@@ -6,6 +6,7 @@ import {
   toolbarI18n,
   langSwticherI18n,
   feedBackI18n,
+  navBarI18n,
   modelListI18n,
   modelUploadI18n,
   stageI18n,
@@ -18,6 +19,7 @@ const componentTranslations = {
   'lang-switcher': langSwticherI18n,
   feedback: feedBackI18n,
   footer: footerI18n,
+  navbar: navBarI18n,
   'model-list': modelListI18n,
   'model-upload': modelUploadI18n,
 };
