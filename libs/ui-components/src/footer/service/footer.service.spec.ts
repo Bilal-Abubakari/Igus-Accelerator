@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { FooterService } from './footer.service';
 import { FeedbackInterface } from '../footer.interface';
 import { provideHttpClient } from '@angular/common/http';
@@ -82,6 +85,9 @@ describe('FooterService', () => {
 
     const req = httpMock.expectOne(`${BASE_API_URL}user-feedback/null`);
     expect(req.request.method).toBe('PATCH');
-    req.flush('Feedback ID not found', { status: 404, statusText: 'Not Found' });
+    req.flush('Feedback ID not found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
   });
 });
