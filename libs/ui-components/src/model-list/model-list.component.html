@@ -5,9 +5,9 @@
 
   @if (uploadedModels.length) {
     <div class="model_list">
-      @for (model of uploadedModels; track model.url) {
+      @for (model of uploadedModels; track model.secure_url) {
         <mat-card class="model_card">
-          <app-model-viewer [modelUrl]="model.url"></app-model-viewer>
+          <app-model-viewer [modelUrl]="model.secure_url"></app-model-viewer>
           <mat-card-header>
             <mat-card-title>{{ model.name | slice: -20 }}</mat-card-title>
             <mat-card-subtitle>

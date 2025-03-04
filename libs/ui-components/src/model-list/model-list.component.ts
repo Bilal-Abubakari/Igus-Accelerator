@@ -17,7 +17,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 interface UploadedModel {
   id: string;
-  url: string;
+  secure_url: string;
   name: string;
   material: string;
   uploadDate: string;
@@ -51,14 +51,14 @@ export class ModelListComponent implements OnInit {
   }
 
   public get modelUrls(): string[] {
-    return this.uploadedModels.map((m) => m.url);
+    return this.uploadedModels.map((m) => m.secure_url);
   }
 
-  public onModelUploaded(data: { url: string }): void {
-    const modelName = this.extractFileNameFromUrl(data.url);
+  public onModelUploaded(data: { secure_url: string }): void {
+    const modelName = this.extractFileNameFromUrl(data.secure_url);
     const newModel: UploadedModel = {
       id: this.generateUniqueId(),
-      url: data.url,
+      secure_url: data.secure_url,
       name: modelName,
       material: 'iglidur® P210',
       uploadDate: new Date().toISOString(),

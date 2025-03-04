@@ -35,9 +35,7 @@ import { UploadDirectory } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelUploadComponent {
-  @Output() modelUploaded = new EventEmitter<{
-    url: string;
-  }>();
+  @Output() modelUploaded = new EventEmitter<{ secure_url: string }>();
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
@@ -154,7 +152,7 @@ export class ModelUploadComponent {
           if ('data' in event) {
             this.completedUploads++;
             this.modelUploaded.emit({
-              url: event.data.url,
+              secure_url: event.data.url,
             });
 
             this.snackBar.open(`${file.name} uploaded successfully!`, 'Close', {
