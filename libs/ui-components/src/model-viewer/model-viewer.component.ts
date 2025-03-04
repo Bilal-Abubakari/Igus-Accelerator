@@ -154,7 +154,7 @@ export class ModelViewerComponent implements AfterViewInit {
           const size = new THREE.Vector3();
           boundingBox.getSize(size);
           const maxDim = Math.max(size.x, size.y, size.z);
-          const scale = 2.5 / maxDim;
+          const scale = 10.0 / maxDim;
           mesh.scale.set(scale, scale, scale);
         }
 
@@ -200,7 +200,7 @@ export class ModelViewerComponent implements AfterViewInit {
     boundingBox.getSize(size);
     const maxDim = Math.max(size.x, size.y, size.z);
 
-    const fitDistance = maxDim * 2.5;
+    const fitDistance = maxDim * 1;
 
     this.camera.position.set(
       center.x + fitDistance,
