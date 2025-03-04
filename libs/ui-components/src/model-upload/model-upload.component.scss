@@ -1,15 +1,16 @@
 @use '@angular/material' as mat;
 
 .upload_wrapper {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  align-items: center;
-  padding-top: 3rem;
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  max-width: 90vw;
 
   .upload_card {
-    width: 63%;
+    width: 100%;
+    max-width: 75rem;
     border-radius: 0.5rem;
     border: 0.0625rem solid #ddd;
     background-color: #fff;
@@ -19,7 +20,7 @@
       border-bottom: 0.0625rem solid #eee;
 
       mat-card-title {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 700;
         color: #333;
       }
@@ -42,16 +43,15 @@
       margin-bottom: 1.25rem;
       width: 100%;
       min-height: 12.5rem;
-      transition:
-        background-color 0.3s ease,
-        border-color 0.3s ease;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      text-align: center;
 
       &:hover {
         background-color: #eef5ff;
         border-color: var(--mat-sys-on-secondary-fixed);
       }
 
-      .dragging {
+      &.dragging {
         border: 2px dashed #1976d2;
         background-color: rgba(25, 118, 210, 0.1);
       }
@@ -66,21 +66,17 @@
         margin-bottom: 0.625rem;
       }
 
-      .no_uploads_container {
-        margin-bottom: 2rem;
+      .upload_text {
+        font-size: 1rem;
+        color: #4b5563;
+        text-align: center;
 
-        .upload_text {
-          font-size: 1rem;
-          color: #4b5563;
-          text-align: center;
+        span {
+          color: #007bff;
+          cursor: pointer;
 
-          span {
-            color: #007bff;
-            cursor: pointer;
-
-            &:hover {
-              text-decoration: underline;
-            }
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
@@ -101,20 +97,22 @@
       }
 
       .preview_container {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+        gap: 0.75rem;
         justify-content: center;
         margin-top: 1.25rem;
+        width: 100%;
 
         .preview_item {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin: 0.625rem;
-          width: 6.25rem;
+          text-align: center;
 
           .preview-image {
             width: 100%;
+            max-width: 6rem;
             height: auto;
             border-radius: 0.3125rem;
             margin-bottom: 0.3125rem;
@@ -122,7 +120,6 @@
 
           p {
             font-size: 0.75rem;
-            text-align: center;
             color: #4b5563;
           }
         }
@@ -140,6 +137,7 @@
         align-items: center;
         justify-content: center;
         z-index: 10;
+        padding: 1rem;
 
         mat-spinner {
           margin-bottom: 0.625rem;
@@ -151,6 +149,34 @@
           color: #4b5563;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .upload_wrapper {
+    padding: 1rem;
+  }
+
+  .upload_card {
+    width: 100%;
+    max-width: 90vw;
+  }
+
+  .upload_container {
+    min-height: 10rem;
+    padding: 1rem;
+  }
+
+  .preview_container {
+    grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  .upload_wrapper {
+    .upload_card {
+      width: 87%;
     }
   }
 }

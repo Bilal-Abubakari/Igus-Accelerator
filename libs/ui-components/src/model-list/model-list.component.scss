@@ -122,3 +122,66 @@ main {
     margin-top: -2rem;
   }
 }
+
+@media (max-width: $breakpoint-large) {
+  main {
+    .model_list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $grid-gap-medium;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-medium) {
+  main {
+    .model_list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $grid-gap-medium;
+    }
+
+    .model_card {
+      max-width: 90%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  main {
+    .model_list {
+      grid-template-columns: 1fr;
+      gap: $grid-gap-small;
+    }
+
+    .model_card {
+      max-width: 100%;
+    }
+
+    .placeholder_message {
+      img {
+        width: 120px;
+        height: 120px;
+      }
+
+      p {
+        font-size: $placeholder-font-size * 0.9;
+      }
+    }
+  }
+}
+
+
+@media (max-height: 700px) {
+  main {
+    .model_list {
+      margin: 40px auto;
+    }
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  main {
+    .model_list {
+      margin: 40px auto
+    }
+  }
+}
