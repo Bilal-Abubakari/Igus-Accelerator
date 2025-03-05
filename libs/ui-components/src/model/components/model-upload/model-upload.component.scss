@@ -23,6 +23,7 @@
         font-size: 1.25rem;
         font-weight: 700;
         color: #333;
+        font-family: 'Roboto', sans-serif;
       }
     }
 
@@ -178,7 +179,7 @@
 @media only screen and (max-height: 700px) {
   .upload_wrapper {
     .upload_card {
-      width: 87%;
+      width: 100%;
     }
   }
 }
