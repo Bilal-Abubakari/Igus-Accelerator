@@ -1,11 +1,15 @@
 @use '@angular/material' as mat;
 
+$navbar-height: 64px;
+
 .navbar {
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-on-secondary-fixed),
     )
   );
+
+  height: $navbar-height;
 
   & {
     display: flex;

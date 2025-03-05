@@ -13,16 +13,16 @@ import {
   footerI18n,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
-const componentTranslations = {
-  stage: stageI18n,
-  toolbar: toolbarI18n,
-  'lang-switcher': langSwticherI18n,
-  feedback: feedBackI18n,
-  footer: footerI18n,
-  navbar: navBarI18n,
-  'model-list': modelListI18n,
-  'model-upload': modelUploadI18n,
-};
+const componentTranslations = [
+  toolbarI18n,
+  langSwticherI18n,
+  feedBackI18n,
+  navBarI18n,
+  modelListI18n,
+  modelUploadI18n,
+  stageI18n,
+  footerI18n,
+];
 
 @Injectable({ providedIn: 'root' })
 export class PrebuiltTranslocoLoader implements TranslocoLoader {
@@ -35,8 +35,8 @@ export class PrebuiltTranslocoLoader implements TranslocoLoader {
 
     const result: Translation = {};
 
-    Object.entries(componentTranslations).forEach(([_, translations]) => {
-      this.extractTranslationsForLang(translations, lang, result);
+    componentTranslations.forEach((translation) => {
+      this.extractTranslationsForLang(translation, lang, result);
     });
 
     this.translationCache[lang] = result;

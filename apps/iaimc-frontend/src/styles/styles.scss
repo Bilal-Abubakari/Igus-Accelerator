@@ -8,6 +8,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+html,
+body {
+  overflow: hidden;
+}
+
 .mat-mdc-snack-bar-container {
   &.notification-success {
     --mdc-snackbar-container-color: var(--mat-sys-primary);
