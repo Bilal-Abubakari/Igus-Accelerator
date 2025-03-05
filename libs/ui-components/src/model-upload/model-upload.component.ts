@@ -20,6 +20,8 @@ import { ModelUploadService } from './services/model-upload.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { UploadDirectory } from './types';
 
+type UploadEvent = { progress: number } | { data: { url: string } };
+
 @Component({
   selector: 'app-model-upload',
   imports: [
@@ -150,7 +152,7 @@ export class ModelUploadComponent {
     merge(...uploadObservables).subscribe();
   }
 
-  private handleUploadProgress(file: File, event: any): void {
+  private handleUploadProgress(file: File, event: UploadEvent): void {
     if ('progress' in event) {
       this.uploadProgress.update((progressList) =>
         progressList.map((p) =>
