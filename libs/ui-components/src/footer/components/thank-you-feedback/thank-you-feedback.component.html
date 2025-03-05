@@ -14,6 +14,11 @@
           <mat-error>{{ 'feedback.ENTER_VALID_EMAIL' | transloco }}</mat-error>
         }
       </mat-form-field>
+      @if (isSubmitLoading()) {
+        <div class="spinner-container">
+          <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+        </div>
+      } @else {
       <button
         mat-button
         [disabled]="!contactForm.valid"
@@ -22,6 +27,7 @@
       >
         {{ 'feedback.SUBMIT' | transloco }}
       </button>
+    }
     </form>
     <p class="privacy-notice">
       {{ 'feedback.PRIVACY_POLICY_FRAGMENT_1' | transloco }}

@@ -42,7 +42,7 @@ describe('FooterService', () => {
       expect(localStorage.getItem(FEEDBACK_ID_KEY)).toBe('12345');
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback`);
+    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(feedback);
     req.flush(mockResponse);
@@ -54,7 +54,7 @@ describe('FooterService', () => {
 
     service.submitFeedback(feedback).subscribe();
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback`);
+    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback`);
     req.flush(mockResponse);
 
     expect(localStorage.getItem(FEEDBACK_ID_KEY)).toBeNull();
@@ -68,7 +68,7 @@ describe('FooterService', () => {
       expect(response).toBeUndefined();
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback/12345`);
+    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback/12345`);
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual(feedback);
     req.flush(null);
@@ -83,7 +83,7 @@ describe('FooterService', () => {
       },
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback/null`);
+    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback/null`);
     expect(req.request.method).toBe('PATCH');
     req.flush('Feedback ID not found', {
       status: 404,
