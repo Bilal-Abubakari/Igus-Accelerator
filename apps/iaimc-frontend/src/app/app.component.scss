@@ -1,0 +1,4 @@
+.outlet {
+  height: calc(100vh - var(--toolbar-height) - var(--navbar-height));
+  overflow-y: scroll;
+}
