@@ -14,7 +14,7 @@ export * from './language-switcher/language-switcher.component';
 export * from './language-switcher/constants';
 import * as langSwticherI18n from './language-switcher/lang-switcher.i18n.json';
 export { langSwticherI18n };
-import * as feedBackI18n from './thank-you-feedback/feedback.i18n.json';
+import * as feedBackI18n from './footer/components/thank-you-feedback/feedback.i18n.json';
 export { feedBackI18n };
 export * from './footer/footer.component';
 import * as footerI18n from './footer/footer.i18n.json';
