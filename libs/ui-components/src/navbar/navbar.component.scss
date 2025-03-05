@@ -1,7 +1,5 @@
 @use '@angular/material' as mat;
 
-$navbar-height: 64px;
-
 .navbar {
   @include mat.toolbar-overrides(
     (
@@ -9,7 +7,7 @@ $navbar-height: 64px;
     )
   );
 
-  height: $navbar-height;
+  height: var(--navbar-height);
 
   & {
     display: flex;
