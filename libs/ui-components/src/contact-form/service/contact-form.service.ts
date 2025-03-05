@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { ContactFormData } from '../contact-form.interface';
@@ -7,9 +7,10 @@ import { ContactFormData } from '../contact-form.interface';
   providedIn: 'root',
 })
 export class ContactFormService {
-  private readonly apiUrl = 'http://localhost:3000/contact_forms';
-
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    @Inject('BASE_API_URL') private readonly baseUrl: string,
+  ) {}
 
   submitContactForm(data: ContactFormData): Observable<ContactFormData> {
     const formData = new FormData();
@@ -19,10 +20,14 @@ export class ContactFormService {
       }
     });
 
-    return this.http.post<ContactFormData>(this.apiUrl, formData).pipe(
-      catchError(() => {
-        return throwError(() => new Error('Failed to submit form. Try again.'));
-      }),
-    );
+    return this.http
+      .post<ContactFormData>(`${this.baseUrl}/contact_forms`, formData)
+      .pipe(
+        catchError(() => {
+          return throwError(
+            () => new Error('Failed to submit form. Try again.'),
+          );
+        }),
+      );
   }
 }

@@ -5,6 +5,7 @@
   "scripts": {
     "start:frontend": "yarn nx lint iaimc-frontend && yarn nx serve iaimc-frontend",
     "start:backend": "yarn nx lint iaimc-backend && yarn nx serve iaimc-backend",
+    "start:all": "nx run-many --target=serve --projects=iaimc-frontend,iaimc-backend --parallel",
     "lint": "nx run-many --target=lint --no-cloud --all",
     "lint:fix": "nx run-many --target=lint -- --fix",
     "format": "prettier --check .",
