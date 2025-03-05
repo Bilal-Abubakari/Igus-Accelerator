@@ -20,7 +20,7 @@ import {
 } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { ContactFormService } from './service/contact-form.service';
-import { TextOnlyValidators } from '../custom-validators/text-only.validator';
+import { TextOnlyValidators } from '../validators/custom-validators/text-only.validator';
 import { FeatureFlagService } from './service/feature-flag.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ContactFormData } from './contact-form.interface';

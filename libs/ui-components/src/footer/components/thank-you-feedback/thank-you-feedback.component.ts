@@ -13,9 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Subject, takeUntil } from 'rxjs';
-import { FeedbackInterface } from '../footer/footer.interface';
-import { FooterService } from '../footer/service/footer.service';
-import { formField } from '../utilities/helper-function';
+import { FeedbackInterface } from '../../footer.interface';
+import { FooterService } from '../../service/footer.service';
+import { formField } from '../../../utilities/helper-function';
 
 @Component({
   selector: 'app-thank-you-feedback',

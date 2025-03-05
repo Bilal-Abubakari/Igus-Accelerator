@@ -3,5 +3,5 @@ $navbar-height: 64px;
 
 .outlet {
   height: calc(100vh - $toolbar-height - $navbar-height);
-  overflow-y: scroll !important;
+  overflow-y: scroll;
 }
