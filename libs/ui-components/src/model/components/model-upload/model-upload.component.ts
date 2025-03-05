@@ -18,9 +18,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModelUploadService } from './services/model-upload.service';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { UploadDirectory } from './types';
-
-type UploadEvent = { progress: number } | { data: { url: string } };
+import { UploadDirectory, UploadEvent } from './types';
+import { ModelUploadEvent } from '../model-list/types';
 
 @Component({
   selector: 'app-model-upload',
@@ -37,7 +36,8 @@ type UploadEvent = { progress: number } | { data: { url: string } };
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelUploadComponent {
-  @Output() modelUploaded = new EventEmitter<{ secure_url: string }>();
+  @Output() modelUploaded = new EventEmitter<ModelUploadEvent>();
+
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   private uploadService = inject(ModelUploadService);
@@ -163,8 +163,16 @@ export class ModelUploadComponent {
 
     if ('data' in event) {
       this.completedUploads++;
-      this.modelUploaded.emit({ secure_url: event.data.url });
-
+      const uploadEvent: ModelUploadEvent = {
+        public_id: event.data.public_id,
+        secure_url: event.data.secure_url,
+        created_at: event.data.created_at ?? '',
+        display_name: event.data.display_name,
+        original_filename: event.data.original_filename,
+        material: event.data.material ?? '',
+        name: event.data.display_name,
+      };
+      this.modelUploaded.emit(uploadEvent);
       this.showSnackbar(
         `${file.name} uploaded successfully!`,
         'success-snackbar',
