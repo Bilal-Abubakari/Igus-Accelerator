@@ -1,6 +1,13 @@
 @use '@angular/material' as mat;
 @use 'stylestheme.scss';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
 .mat-mdc-snack-bar-container {
   &.notification-success {
     --mdc-snackbar-container-color: var(--mat-sys-primary);
