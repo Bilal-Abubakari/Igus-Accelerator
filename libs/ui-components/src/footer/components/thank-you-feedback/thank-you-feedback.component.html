@@ -19,15 +19,15 @@
           <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
         </div>
       } @else {
-      <button
-        mat-button
-        [disabled]="!contactForm.valid"
-        class="custom-button"
-        (click)="onSubmitEmail()"
-      >
-        {{ 'feedback.SUBMIT' | transloco }}
-      </button>
-    }
+        <button
+          mat-button
+          [disabled]="!contactForm.valid"
+          class="custom-button"
+          (click)="onSubmitEmail()"
+        >
+          {{ 'feedback.SUBMIT' | transloco }}
+        </button>
+      }
     </form>
     <p class="privacy-notice">
       {{ 'feedback.PRIVACY_POLICY_FRAGMENT_1' | transloco }}

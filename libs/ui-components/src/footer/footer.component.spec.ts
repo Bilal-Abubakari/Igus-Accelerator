@@ -1,7 +1,16 @@
-
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,7 +31,7 @@ describe('FooterComponent', () => {
   let formBuilder: FormBuilder;
 
   const mockFooterService = {
-    submitFeedback: jest.fn()
+    submitFeedback: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -80,12 +89,17 @@ describe('FooterComponent', () => {
   });
 
   it('returns correct form control with getField', () => {
-    expect(component.getField('comment')).toBe(component.ratingForm.get('comment'));
+    expect(component.getField('comment')).toBe(
+      component.ratingForm.get('comment'),
+    );
   });
 
   it('returns correct ratingFormValues', () => {
     component.ratingForm.patchValue({ rating: 2, comment: 'test comment' });
-    expect(component.ratingFormValues).toEqual({ rating: 2, comment: 'test comment' });
+    expect(component.ratingFormValues).toEqual({
+      rating: 2,
+      comment: 'test comment',
+    });
   });
 
   it('does not submit feedback if form is invalid', () => {
@@ -98,12 +112,15 @@ describe('FooterComponent', () => {
   });
 
   it('submits feedback successfully and resets form', () => {
-    component.ratingForm.patchValue({ rating: 5, comment: 'Excellent service' });
+    component.ratingForm.patchValue({
+      rating: 5,
+      comment: 'Excellent service',
+    });
     component.submitFeedback();
 
     expect(footerService.submitFeedback).toHaveBeenCalledWith({
       rating: 5,
-      comment: 'Excellent service'
+      comment: 'Excellent service',
     });
     expect(component.isSubmitted()).toBeTruthy();
     expect(component.ratingForm.get('rating')?.value).toBeNull();
@@ -115,7 +132,7 @@ describe('FooterComponent', () => {
   it('handles error during feedback submission', fakeAsync(() => {
     const errorSpy = jest.spyOn(console, 'error').mockImplementation();
     mockFooterService.submitFeedback.mockReturnValue(
-      throwError(() => new Error('Submission failed'))
+      throwError(() => new Error('Submission failed')),
     );
 
     component.ratingForm.patchValue({ rating: 4, comment: 'Error test' });
@@ -134,7 +151,7 @@ describe('FooterComponent', () => {
 
   it('shows loading spinner during delayed feedback submission', fakeAsync(() => {
     mockFooterService.submitFeedback.mockReturnValue(
-      of({ id: '123' }).pipe(delay(100))
+      of({ id: '123' }).pipe(delay(100)),
     );
 
     component.ratingForm.patchValue({ rating: 4, comment: 'Loading test' });
@@ -163,7 +180,9 @@ describe('FooterComponent', () => {
     component.ratingForm.patchValue({ rating: null, comment: '' });
     fixture.detectChanges();
 
-    const submitButton = fixture.debugElement.query(By.css('.submit-rating-button'));
+    const submitButton = fixture.debugElement.query(
+      By.css('.submit-rating-button'),
+    );
     expect(submitButton.nativeElement.disabled).toBeTruthy();
   });
 
@@ -172,7 +191,9 @@ describe('FooterComponent', () => {
     component.ratingForm.patchValue({ rating: 5, comment: 'Great!' });
     fixture.detectChanges();
 
-    const submitButton = fixture.debugElement.query(By.css('.submit-rating-button')).nativeElement;
+    const submitButton = fixture.debugElement.query(
+      By.css('.submit-rating-button'),
+    ).nativeElement;
     submitButton.click();
 
     expect(component.submitFeedback).toHaveBeenCalled();
@@ -181,7 +202,7 @@ describe('FooterComponent', () => {
   it('handles submission error correctly', fakeAsync(() => {
     const errorSpy = jest.spyOn(console, 'error').mockImplementation();
     mockFooterService.submitFeedback.mockReturnValue(
-      throwError(() => new Error('Submission failed'))
+      throwError(() => new Error('Submission failed')),
     );
     component.ratingForm.patchValue({ rating: 4, comment: 'Error test' });
     component.submitFeedback();
@@ -193,24 +214,23 @@ describe('FooterComponent', () => {
     errorSpy.mockRestore();
   }));
 
-
   it('should handle form value retrieval with existing form controls', () => {
     component.ratingForm = formBuilder.group(
       {
         comment: new FormControl<string | null>('Test comment'),
         rating: new FormControl<number | null>(4, [
           Validators.min(1),
-          Validators.max(5)
+          Validators.max(5),
         ]),
       },
-      { validators: atLeastOneFieldValidator(['rating', 'comment']) }
+      { validators: atLeastOneFieldValidator(['rating', 'comment']) },
     );
 
     const formValues = component.ratingFormValues;
 
     expect(formValues).toEqual({
       rating: 4,
-      comment: 'Test comment'
+      comment: 'Test comment',
     });
   });
 
@@ -220,16 +240,16 @@ describe('FooterComponent', () => {
         comment: new FormControl<string | null>(null),
         rating: new FormControl<number | null>(null, [
           Validators.min(1),
-          Validators.max(5)
+          Validators.max(5),
         ]),
       },
-      { validators: atLeastOneFieldValidator(['rating', 'comment']) }
+      { validators: atLeastOneFieldValidator(['rating', 'comment']) },
     );
     const formValues = component.ratingFormValues;
 
     expect(formValues).toEqual({
       rating: null,
-      comment: null
+      comment: null,
     });
   });
 
@@ -237,7 +257,9 @@ describe('FooterComponent', () => {
     component.isSubmitted.set(true);
     fixture.detectChanges();
 
-    const thankYou = fixture.debugElement.query(By.css('app-thank-you-feedback'));
+    const thankYou = fixture.debugElement.query(
+      By.css('app-thank-you-feedback'),
+    );
     expect(thankYou).toBeTruthy();
   });
 });

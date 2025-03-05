@@ -30,7 +30,7 @@ describe('atLeastOneFieldValidator', () => {
 
   it('should return null if at least one field is filled (non-null number)', () => {
     const formGroup = new FormGroup({
-      a: new FormControl(0), 
+      a: new FormControl(0),
       b: new FormControl(5),
     });
     const validator = atLeastOneFieldValidator(['a', 'b']);

@@ -1,4 +1,9 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { formField } from '../utilities/helper-function';
 
 describe('formField Helper Function', () => {
@@ -11,7 +16,7 @@ describe('formField Helper Function', () => {
     testForm = formBuilder.group({
       username: new FormControl('testuser', [Validators.required]),
       email: new FormControl('test@example.com', [Validators.email]),
-      age: new FormControl(30, [Validators.min(18)])
+      age: new FormControl(30, [Validators.min(18)]),
     });
   });
 
@@ -40,9 +45,9 @@ describe('formField Helper Function', () => {
     const complexForm = formBuilder.group({
       user: formBuilder.group({
         name: ['John'],
-        details: ['Additional info']
+        details: ['Additional info'],
       }),
-      email: new FormControl('test@example.com')
+      email: new FormControl('test@example.com'),
     });
 
     const userGroup = formField('user', complexForm);

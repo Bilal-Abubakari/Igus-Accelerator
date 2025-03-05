@@ -71,13 +71,10 @@ export class ThankYouFeedbackComponent implements OnDestroy {
           this.isSubmitLoading.set(false);
         },
       });
-    }
-     public get contactFormValues(): FeedbackInterface {
+  }
+  public get contactFormValues(): FeedbackInterface {
     return {
       email: this.contactForm.get('email')?.value,
     };
   }
-  }
-
-
-
+}

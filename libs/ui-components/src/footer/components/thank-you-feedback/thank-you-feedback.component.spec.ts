@@ -1,4 +1,3 @@
-
 import { TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { ThankYouFeedbackComponent } from './thank-you-feedback.component';
@@ -64,7 +63,9 @@ describe('ThankYouFeedbackComponent', () => {
   });
 
   it('should call updateFeedback and handle error response', () => {
-    footerService.updateFeedback.mockReturnValue(throwError(() => new Error('Failed')));
+    footerService.updateFeedback.mockReturnValue(
+      throwError(() => new Error('Failed')),
+    );
     component.contactForm.setValue({ email: 'valid@example.com' });
 
     component.onSubmitEmail();
@@ -76,7 +77,6 @@ describe('ThankYouFeedbackComponent', () => {
     component.contactForm.get('email')?.setValue(null);
     expect(component.contactFormValues).toEqual({ email: null });
   });
-
 
   it('should clean up subscriptions on destroy', () => {
     const subscriptionSpy = jest.spyOn(component['subscription'], 'next');
