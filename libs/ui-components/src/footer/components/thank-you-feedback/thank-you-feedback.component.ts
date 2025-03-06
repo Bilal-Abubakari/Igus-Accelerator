@@ -1,22 +1,21 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnDestroy,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { Subject, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { formField } from '../../../utilities/helper-function';
 import { FeedbackInterface } from '../../footer.interface';
 import { FooterService } from '../../service/footer.service';
-import { formField } from '../../../utilities/helper-function';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { beginUpdateFeedback } from '../../store/footer.actions';
+import {
+  selectFeedbackLoading,
+  selectIsEmailUpdated,
+} from '../../store/footer.selectors';
 
 @Component({
   selector: 'app-thank-you-feedback',
@@ -34,20 +33,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './thank-you-feedback.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ThankYouFeedbackComponent implements OnDestroy {
+export class ThankYouFeedbackComponent {
   private readonly fb = inject(FormBuilder);
+  private readonly store = inject(Store);
   public readonly footerService = inject(FooterService);
-  public isSubmitted = signal(false);
-  public isSubmitLoading = signal<boolean>(false);
-  private readonly subscription = new Subject<void>();
+  public isSubmitted = this.store.selectSignal(selectIsEmailUpdated);
+  public isSubmitLoading = this.store.selectSignal(selectFeedbackLoading);
   public contactForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
   });
-
-  ngOnDestroy(): void {
-    this.subscription.next();
-    this.subscription.complete();
-  }
 
   public getField(field: string) {
     return formField(field, this.contactForm);
@@ -57,20 +51,7 @@ export class ThankYouFeedbackComponent implements OnDestroy {
     if (this.contactForm.invalid) {
       return;
     }
-    this.isSubmitLoading.set(true);
-    this.footerService
-      .updateFeedback(this.contactFormValues)
-      .pipe(takeUntil(this.subscription))
-      .subscribe({
-        next: () => {
-          this.isSubmitted.set(true);
-          this.isSubmitLoading.set(false);
-        },
-        error: () => {
-          this.isSubmitted.set(false);
-          this.isSubmitLoading.set(false);
-        },
-      });
+    this.store.dispatch(beginUpdateFeedback({ email: this.contactFormValues }));
   }
   public get contactFormValues(): FeedbackInterface {
     return {

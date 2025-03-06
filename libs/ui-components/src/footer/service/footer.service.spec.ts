@@ -6,19 +6,24 @@ import {
 import { FooterService } from './footer.service';
 import { FeedbackInterface } from '../footer.interface';
 import { provideHttpClient } from '@angular/common/http';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { selectFeedbackId } from '../store/footer.selectors';
 
 describe('FooterService', () => {
   let service: FooterService;
   let httpMock: HttpTestingController;
+  let store: MockStore;
   const BASE_API_URL = 'https://api.example.com/';
-  const FEEDBACK_ID_KEY = 'feedback_id';
+  const mockFeedbackId = '12345';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideMockStore({
+          selectors: [{ selector: selectFeedbackId, value: mockFeedbackId }],
+        }),
         FooterService,
         { provide: 'BASE_API_URL', useValue: BASE_API_URL },
       ],
@@ -26,20 +31,19 @@ describe('FooterService', () => {
 
     service = TestBed.inject(FooterService);
     httpMock = TestBed.inject(HttpTestingController);
-    localStorage.clear();
+    store = TestBed.inject(MockStore);
   });
 
   afterEach(() => {
     httpMock.verify();
   });
 
-  it('should send feedback via POST and store feedback_id', () => {
+  it('should send feedback via POST', () => {
     const feedback: FeedbackInterface = { email: 'test@example.com' };
     const mockResponse = { id: '12345' };
 
     service.submitFeedback(feedback).subscribe((response) => {
       expect(response).toEqual(mockResponse);
-      expect(localStorage.getItem(FEEDBACK_ID_KEY)).toBe('12345');
     });
 
     const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback`);
@@ -48,38 +52,42 @@ describe('FooterService', () => {
     req.flush(mockResponse);
   });
 
-  it('should not store feedback_id if response does not contain an id', () => {
-    const feedback: FeedbackInterface = { email: 'test@example.com' };
-    const mockResponse = {};
-
-    service.submitFeedback(feedback).subscribe();
-
-    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback`);
-    req.flush(mockResponse);
-
-    expect(localStorage.getItem(FEEDBACK_ID_KEY)).toBeNull();
-  });
-
-  it('should send a PATCH request to update feedback', () => {
+  it('should send a PATCH request to update feedback using store feedbackId', () => {
     const feedback: FeedbackInterface = { email: 'updated@example.com' };
-    localStorage.setItem(FEEDBACK_ID_KEY, '12345');
 
     service.updateFeedback(feedback).subscribe((response) => {
       expect(response).toBeUndefined();
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback/12345`);
+    const req = httpMock.expectOne(
+      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`,
+    );
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual(feedback);
     req.flush(null);
   });
 
-  it('should fail to update feedback if no feedback_id is stored', () => {
+  it('should emit reset event when emitReset is called', () => {
+    let resetEmitted = false;
+
+    service.getResetObservable().subscribe((value) => {
+      resetEmitted = value;
+    });
+
+    service.emitReset();
+
+    expect(resetEmitted).toBe(true);
+  });
+
+  it('should update feedback with null ID if no feedback ID in store', () => {
+    store.overrideSelector(selectFeedbackId, null);
+    store.refreshState();
+
     const feedback: FeedbackInterface = { email: 'updated@example.com' };
 
     service.updateFeedback(feedback).subscribe({
       error: (error) => {
-        expect(error.message).toContain('404');
+        expect(error.status).toBe(404);
       },
     });
 

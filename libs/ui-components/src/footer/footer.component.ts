@@ -4,6 +4,7 @@ import {
   Component,
   inject,
   OnDestroy,
+  OnInit,
   signal,
 } from '@angular/core';
 import {
@@ -25,6 +26,12 @@ import { ThankYouFeedbackComponent } from './components/thank-you-feedback/thank
 import { formField } from '../utilities/helper-function';
 import { FeedbackInterface } from './footer.interface';
 import { FooterService } from './service/footer.service';
+import { Store } from '@ngrx/store';
+import { beginSubmitFeedback } from './store/footer.actions';
+import {
+  selectFeedbackLoading,
+  selectIsFeedbackSubmitted,
+} from './store/footer.selectors';
 
 @Component({
   selector: 'app-footer',
@@ -45,15 +52,16 @@ import { FooterService } from './service/footer.service';
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent implements OnDestroy {
+export class FooterComponent implements OnInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
+  private readonly store = inject(Store);
   private readonly footerService = inject(FooterService);
   private readonly subscription = new Subject<void>();
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
-  public isRatingLoading = signal<boolean>(false);
-  public isSubmitted = signal<boolean>(false);
+  public isRatingLoading = this.store.selectSignal(selectFeedbackLoading);
+  public isSubmitted = this.store.selectSignal(selectIsFeedbackSubmitted);
 
   public ratingForm = this.fb.group(
     {
@@ -65,6 +73,15 @@ export class FooterComponent implements OnDestroy {
     },
     { validators: atLeastOneFieldValidator(['rating', 'comment']) },
   );
+
+  ngOnInit(): void {
+    this.footerService
+      .getResetObservable()
+      .pipe(takeUntil(this.subscription))
+      .subscribe(() => {
+        this.selectedRating.set(0);
+      });
+  }
 
   ngOnDestroy() {
     this.subscription.next();
@@ -88,23 +105,9 @@ export class FooterComponent implements OnDestroy {
     if (this.ratingForm.invalid) {
       return;
     }
-    this.isRatingLoading.set(true);
-    this.footerService
-      .submitFeedback(this.ratingFormValues)
-      .pipe(
-        takeUntil(this.subscription),
-        finalize(() => this.isRatingLoading.set(false)),
-      )
-      .subscribe({
-        next: () => {
-          this.isSubmitted.set(true);
-          this.ratingForm.reset();
-          this.selectedRating.set(0);
-        },
-        error: () => {
-          this.isRatingLoading.set(false);
-        },
-      });
+    this.store.dispatch(
+      beginSubmitFeedback({ feedback: this.ratingFormValues }),
+    );
   }
 
   public getField(field: string) {

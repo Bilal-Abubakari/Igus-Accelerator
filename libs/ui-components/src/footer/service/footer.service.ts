@@ -1,38 +1,42 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { inject, Inject, Injectable } from '@angular/core';
+import { Observable, Subject, tap } from 'rxjs';
 import { FeedbackInterface } from '../footer.interface';
+import { Store } from '@ngrx/store';
+import { selectFeedbackId } from '../store/footer.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FooterService {
   private readonly FEEDBACK_ID_KEY = 'feedback_id';
+  private readonly store = inject(Store);
+  private readonly http = inject(HttpClient);
 
-  constructor(
-    private readonly http: HttpClient,
-    @Inject('BASE_API_URL') private readonly baseUrl: string,
-  ) {}
+  constructor(@Inject('BASE_API_URL') private readonly baseUrl: string) {}
+  private readonly resetSubject = new Subject<boolean>();
+  private readonly feedbackId = this.store.selectSignal(selectFeedbackId);
 
   public submitFeedback(
     feedback: FeedbackInterface,
   ): Observable<{ id: string }> {
-    return this.http
-      .post<{ id: string }>(`${this.baseUrl}/user-feedback`, feedback)
-      .pipe(
-        tap((response: { id: string }) => {
-          if (response.id) {
-            localStorage.setItem(this.FEEDBACK_ID_KEY, response.id);
-          }
-        }),
-      );
+    return this.http.post<{ id: string }>(
+      `${this.baseUrl}/user-feedback`,
+      feedback,
+    );
   }
 
   public updateFeedback(feedback: FeedbackInterface): Observable<void> {
-    const feedbackId = localStorage.getItem(this.FEEDBACK_ID_KEY);
     return this.http.patch<void>(
-      `${this.baseUrl}/user-feedback/${feedbackId}`,
+      `${this.baseUrl}/user-feedback/${this.feedbackId()}`,
       feedback,
     );
+  }
+
+  public emitReset() {
+    this.resetSubject.next(true);
+  }
+  public getResetObservable(): Observable<boolean> {
+    return this.resetSubject.asObservable();
   }
 }

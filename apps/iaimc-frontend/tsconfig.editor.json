@@ -3,7 +3,8 @@
   "include": [
     "src/**/*.ts",
     "../../libs/ui-components/src/shared-services/index.ts",
-    "../../libs/ui-components/src/navbar/service/upload-state.service.ts"
+    "../../libs/ui-components/src/navbar/service/upload-state.service.ts",
+    "src/app/app.reducer.ts"
   ],
   "compilerOptions": {},
   "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]

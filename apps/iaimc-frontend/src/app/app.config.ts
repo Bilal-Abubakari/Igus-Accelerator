@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   isDevMode,
@@ -6,20 +7,50 @@ import {
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
 import { AvailableLangs, provideTransloco } from '@jsverse/transloco';
 import { provideTranslocoLocale } from '@jsverse/transloco-locale';
 import { provideTranslocoPersistLang } from '@jsverse/transloco-persist-lang';
-import { appRoutes } from './app.routes';
-import { PrebuiltTranslocoLoader } from './transloco-loader';
-import { environment } from '../../environments/environment';
+import {
+  localStorageStrategy,
+  providePersistStore,
+} from '@ngrx-addons/persist-state';
+import { provideEffects } from '@ngrx/effects';
+import { provideRouterStore } from '@ngrx/router-store';
+import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/footer.reducer';
 import {
   AVAILABLE_LANGUAGE_CODES,
   LANGUAGE_LOCALE_MAPPING,
 } from 'libs/ui-components/src/language-switcher/constants';
+import { environment } from '../../environments/environment';
+import { appEffects } from './app.effects';
+import { appRoutes } from './app.routes';
+import { PrebuiltTranslocoLoader } from './transloco-loader';
+import { appReducer } from './app.reducer';
+import { excludeKeys } from '@ngrx-addons/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideStore(appReducer),
+    provideEffects(...appEffects),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    providePersistStore<typeof appReducer>({
+      states: [
+        {
+          key: FOOTER_FEATURE_KEY,
+          storage: localStorageStrategy,
+          runGuard: () => typeof window !== 'undefined',
+          migrations: [],
+          source: (state) =>
+            state.pipe(
+              excludeKeys(['isEmailUpdated', 'isFeedbackSubmitted', 'message']),
+            ),
+          skip: 1,
+        },
+      ],
+    }),
+    provideRouterStore(),
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
 
     provideHttpClient(),
