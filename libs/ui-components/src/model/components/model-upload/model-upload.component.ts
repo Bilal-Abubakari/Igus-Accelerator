@@ -20,6 +20,7 @@ import { ModelUploadService } from './services/model-upload.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { UploadDirectory, UploadEvent } from './types';
 import { ModelUploadEvent } from '../model-list/types';
+import { ModelUploadState } from './services/model-upload-state.service';
 
 @Component({
   selector: 'app-model-upload',
@@ -42,6 +43,7 @@ export class ModelUploadComponent {
 
   private uploadService = inject(ModelUploadService);
   private snackBar = inject(MatSnackBar);
+  private modelUploadState = inject(ModelUploadState);
 
   public files: WritableSignal<File[]> = signal([]);
   public uploading = signal(false);
@@ -185,6 +187,7 @@ export class ModelUploadComponent {
         `${file.name} uploaded successfully!`,
         'success-snackbar',
       );
+      this.modelUploadState.markModelUploaded();
     }
   }
 
