@@ -8,17 +8,17 @@ import {
   ViewChild,
   OnDestroy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import * as THREE from 'three';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ObjectUtils } from '../../../utilities/object-utils';
 
 @Component({
   selector: 'app-model-viewer',
-  imports: [CommonModule, MatCardModule, MatIconModule],
+  imports: [MatCardModule, MatIconModule],
   templateUrl: './model-viewer.component.html',
   styleUrls: ['./model-viewer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -109,7 +109,7 @@ export class ModelViewerComponent implements AfterViewInit, OnDestroy {
 
   private initControls(): void {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    Object.assign(this.controls, {
+    ObjectUtils.merge(this.controls, {
       enableDamping: true,
       dampingFactor: 0.05,
       rotateSpeed: 0.7,
@@ -119,7 +119,6 @@ export class ModelViewerComponent implements AfterViewInit, OnDestroy {
       autoRotateSpeed: 1.0,
     });
   }
-
   private startRendering(): void {
     this.isRendering = true;
     const renderLoop = () => {
