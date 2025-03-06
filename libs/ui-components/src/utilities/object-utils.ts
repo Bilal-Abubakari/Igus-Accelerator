@@ -14,5 +14,5 @@ export class ObjectUtils {
 }
 
 /**
- * Utility functions for array operations.
+ * Utility functions for array operationss.
  */

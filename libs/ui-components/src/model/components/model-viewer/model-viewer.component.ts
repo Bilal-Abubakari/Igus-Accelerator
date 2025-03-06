@@ -14,7 +14,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ObjectUtils } from './object-utils';
+import { ObjectUtils } from '../../../utilities/object-utils';
 
 @Component({
   selector: 'app-model-viewer',
