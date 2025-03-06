@@ -62,6 +62,7 @@ main {
     mat-card-title {
       font-size: $title-font-size;
       font-weight: bold;
+      font-family: 'Roboto', sans-serif;
 
       @media (max-width: 600px) {
         font-size: 0.9rem;
