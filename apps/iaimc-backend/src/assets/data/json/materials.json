@@ -1,0 +1,2761 @@
+[
+  {
+    "id": "A160",
+    "name": "A160",
+    "procedure": "IM",
+    "color": "BLUE",
+    "colorhex": "#238ac4",
+    "mintemperature": -50,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 100,
+    "maxenvironmentaltemperatureshort": 120,
+    "maxmoistureabsorption": 0.1,
+    "maxwaterabsorption": 0.1,
+    "modulusofelasticity": 1151,
+    "mincoefficientoffriction": 0.09,
+    "maxcoefficientoffriction": 0.19,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 15,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 60,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "> 10^12",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.25,
+    "thermalconductivity": 0.24,
+    "maxrotationalspeed": 0.5,
+    "maxlinearspeed": 2,
+    "maxpivotspeed": 0.4,
+    "chemicals": [
+      {
+        "name": "acetaldehyde_aq_40pct",
+        "resistance": "o"
+      },
+      {
+        "name": "acetamide_aq_50pct",
+        "resistance": "x"
+      },
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "acetyl_chloride",
+        "resistance": "x"
+      },
+      {
+        "name": "hexachlorobenzene",
+        "resistance": "x"
+      },
+      {
+        "name": "hexachloroethane",
+        "resistance": "-"
+      },
+      {
+        "name": "hexamethylphosphoric_acid_triamide",
+        "resistance": "x"
+      },
+      {
+        "name": "caustic_potash_50pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_bromide_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_carbonate_aq_60pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_chloride_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_chloride_aq_90pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_dichromate_aq_5pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_nitrate_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_permanganate_aq_1pct",
+        "resistance": "+"
+      },
+      {
+        "name": "potassium_sulphate_saturated_solution",
+        "resistance": "+"
+      },
+      {
+        "name": "casein",
+        "resistance": "x"
+      },
+      {
+        "name": "caustic_potash_lye_aq_40pct",
+        "resistance": "x"
+      },
+      {
+        "name": "caustic_sodium_bicarb_aq_50pct",
+        "resistance": "x"
+      },
+      {
+        "name": "ketones_aliphatic",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "x"
+      },
+      {
+        "name": "carbon_bisulphide",
+        "resistance": "x"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "palmitic_acid",
+        "resistance": "+"
+      },
+      {
+        "name": "paraffin",
+        "resistance": "+"
+      },
+      {
+        "name": "paraffin_oil",
+        "resistance": "+"
+      },
+      {
+        "name": "perfume",
+        "resistance": "+"
+      },
+      {
+        "name": "perchlorethene",
+        "resistance": "o"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_aq_6pct",
+        "resistance": "x"
+      },
+      {
+        "name": "phenol_aq_88pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phosphoric_acid_aq_0.3pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phosphoric_acid_aq_3pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phosphoric_acid_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phthalic_acid_saturated_solution",
+        "resistance": "+"
+      },
+      {
+        "name": "polyester_resins_with_styrene",
+        "resistance": "x"
+      },
+      {
+        "name": "propane_propene",
+        "resistance": "+"
+      },
+      {
+        "name": "propanol",
+        "resistance": "+"
+      },
+      {
+        "name": "propenoic_acid",
+        "resistance": "x"
+      },
+      {
+        "name": "pyridine",
+        "resistance": "o"
+      },
+      {
+        "name": "mercury",
+        "resistance": "+"
+      },
+      {
+        "name": "mercury_chloride_6pct",
+        "resistance": "+"
+      },
+      {
+        "name": "resorcinol_1.3-dihydroxybenzene_50pct",
+        "resistance": "x"
+      },
+      {
+        "name": "salicylic_acid",
+        "resistance": "+"
+      },
+      {
+        "name": "soda_solution_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "edible_fat_100pct",
+        "resistance": "+"
+      },
+      {
+        "name": "edible_oils",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      },
+      {
+        "name": "tetrahydrofuran_solvent",
+        "resistance": "o"
+      },
+      {
+        "name": "tetralin",
+        "resistance": "-"
+      },
+      {
+        "name": "white_spirit",
+        "resistance": "x"
+      },
+      {
+        "name": "xylol",
+        "resistance": "-"
+      },
+      {
+        "name": "zinc_chloride_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "zinc_oxide",
+        "resistance": "x"
+      },
+      {
+        "name": "zinc_sulphate_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_concentrated_solution",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "citrus_fruits",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 3,
+    "heatedmold": false,
+    "shrinkage": 1.021,
+    "producibilitylevel": 1,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "A180",
+    "name": "A180",
+    "procedure": "IM",
+    "color": "GREEN",
+    "colorhex": "#28a745",
+    "mintemperature": -40,
+    "maxtemperature": 100,
+    "maxtemperatureshort": 110,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.2,
+    "maxwaterabsorption": 0.15,
+    "modulusofelasticity": 1200,
+    "mincoefficientoffriction": 0.1,
+    "maxcoefficientoffriction": 0.2,
+    "density": 1.1,
+    "bendingstrength": 20,
+    "maxsurfacepressure": 18,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 65,
+    "specificvolumeresistance": "> 10^11",
+    "surfaceresistance": "> 10^11",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.3,
+    "thermalconductivity": 0.26,
+    "maxrotationalspeed": 0.6,
+    "maxlinearspeed": 2.5,
+    "maxpivotspeed": 0.5,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 4,
+    "heatedmold": true,
+    "shrinkage": 1.015,
+    "producibilitylevel": 2,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "A181",
+    "name": "A181",
+    "procedure": "CNC",
+    "color": "YELLOW",
+    "colorhex": "#ffc107",
+    "mintemperature": -30,
+    "maxtemperature": 80,
+    "maxtemperatureshort": 90,
+    "maxenvironmentaltemperatureshort": 110,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 0.2,
+    "modulusofelasticity": 1050,
+    "mincoefficientoffriction": 0.08,
+    "maxcoefficientoffriction": 0.18,
+    "density": 1.05,
+    "bendingstrength": 18.5,
+    "maxsurfacepressure": 16,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 63,
+    "specificvolumeresistance": "> 10^11",
+    "surfaceresistance": "> 10^10",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.4,
+    "thermalconductivity": 0.28,
+    "maxrotationalspeed": 0.22,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 2.2,
+    "chemicals": [
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": false,
+    "shrinkage": 1.011,
+    "producibilitylevel": 1.02,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "A200",
+    "name": "A200",
+    "procedure": "MOLD",
+    "color": "PURPLE",
+    "colorhex": "#6f42c1",
+    "mintemperature": -60,
+    "maxtemperature": 120,
+    "maxtemperatureshort": 130,
+    "maxenvironmentaltemperatureshort": 140,
+    "maxmoistureabsorption": 0.05,
+    "maxwaterabsorption": 0.05,
+    "modulusofelasticity": 1300,
+    "mincoefficientoffriction": 0.07,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.15,
+    "bendingstrength": 21.5,
+    "maxsurfacepressure": 19,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "> 10^12",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.7,
+    "maxlinearspeed": 0.3,
+    "maxpivotspeed": 0.6,
+    "chemicals": [
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "A350",
+    "name": "A350",
+    "procedure": "MOLD",
+    "color": "BROWN",
+    "colorhex": "#795548",
+    "mintemperature": -20,
+    "maxtemperature": 110,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.12,
+    "maxwaterabsorption": 0.08,
+    "modulusofelasticity": 1105,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.21,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 72,
+    "specificvolumeresistance": "< 10^ 8",
+    "surfaceresistance": "> 10^13",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.24,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.24,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.25,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_concentrated_solution",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": true,
+    "shrinkage": 0.89,
+    "producibilitylevel": 1.01,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "A500",
+    "name": "A500",
+    "procedure": "CAST",
+    "color": "RED",
+    "colorhex": "#dc3545",
+    "mintemperature": -50,
+    "maxtemperature": 140,
+    "maxtemperatureshort": 150,
+    "maxenvironmentaltemperatureshort": 160,
+    "maxmoistureabsorption": 0.15,
+    "maxwaterabsorption": 0.1,
+    "modulusofelasticity": 1250,
+    "mincoefficientoffriction": 0.09,
+    "maxcoefficientoffriction": 0.19,
+    "density": 1.2,
+    "bendingstrength": 22,
+    "maxsurfacepressure": 20,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 80,
+    "specificvolumeresistance": "> 10^14",
+    "surfaceresistance": "> 10^14",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.32,
+    "thermalconductivity": 0.28,
+    "maxrotationalspeed": 0.65,
+    "maxlinearspeed": 0.35,
+    "maxpivotspeed": 0.55,
+    "chemicals": [
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phosphoric_acid_aq_10pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 7,
+    "heatedmold": true,
+    "shrinkage": 0.99,
+    "producibilitylevel": 1.7,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "AB",
+    "name": "AB",
+    "procedure": "EXTRUDE",
+    "color": "ORANGE",
+    "colorhex": "#ff9900",
+    "mintemperature": -10,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 100,
+    "maxenvironmentaltemperatureshort": 110,
+    "maxmoistureabsorption": 0.25,
+    "maxwaterabsorption": 0.2,
+    "modulusofelasticity": 1000,
+    "mincoefficientoffriction": 0.12,
+    "maxcoefficientoffriction": 0.22,
+    "density": 0.95,
+    "bendingstrength": 17,
+    "maxsurfacepressure": 13,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 60,
+    "specificvolumeresistance": "> 10^9",
+    "surfaceresistance": "> 10^9",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.25,
+    "thermalconductivity": 0.2,
+    "maxrotationalspeed": 0.5,
+    "maxlinearspeed": 0.2,
+    "maxpivotspeed": 0.4,
+    "chemicals": [
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 2,
+    "heatedmold": false,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.5,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "B",
+    "name": "B",
+    "procedure": "CNC",
+    "color": "GREY",
+    "colorhex": "#6c757d",
+    "mintemperature": -40,
+    "maxtemperature": 80,
+    "maxtemperatureshort": 90,
+    "maxenvironmentaltemperatureshort": 100,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 0.25,
+    "modulusofelasticity": 950,
+    "mincoefficientoffriction": 0.1,
+    "maxcoefficientoffriction": 0.2,
+    "density": 0.9,
+    "bendingstrength": 16,
+    "maxsurfacepressure": 12,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 55,
+    "specificvolumeresistance": "< 10^8",
+    "surfaceresistance": "> 10^8",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.22,
+    "thermalconductivity": 0.18,
+    "maxrotationalspeed": 0.45,
+    "maxlinearspeed": 0.15,
+    "maxpivotspeed": 0.35,
+    "chemicals": [
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 1,
+    "heatedmold": false,
+    "shrinkage": 1.04,
+    "producibilitylevel": 1.2,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "C",
+    "name": "C",
+    "procedure": "MOLD",
+    "color": "BLACK",
+    "colorhex": "#000000",
+    "mintemperature": -60,
+    "maxtemperature": 120,
+    "maxtemperatureshort": 130,
+    "maxenvironmentaltemperatureshort": 140,
+    "maxmoistureabsorption": 0.05,
+    "maxwaterabsorption": 0.05,
+    "modulusofelasticity": 1300,
+    "mincoefficientoffriction": 0.07,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.15,
+    "bendingstrength": 21.5,
+    "maxsurfacepressure": 19,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "> 10^12",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.7,
+    "maxlinearspeed": 0.3,
+    "maxpivotspeed": 0.6,
+    "chemicals": [
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "C500",
+    "name": "C500",
+    "procedure": "CAST",
+    "color": "WHITE",
+    "colorhex": "#ffffff",
+    "mintemperature": -20,
+    "maxtemperature": 110,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.12,
+    "maxwaterabsorption": 0.08,
+    "modulusofelasticity": 1105,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.21,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 81,
+    "specificvolumeresistance": "> 10^11",
+    "surfaceresistance": "> 10^13",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.38,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.24,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.25,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_concentrated_solution",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": true,
+    "shrinkage": 0.97,
+    "producibilitylevel": 1.01,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "D",
+    "name": "D",
+    "procedure": "EXTRUDE",
+    "color": "PINK",
+    "colorhex": "#e83e8c",
+    "mintemperature": -30,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 100,
+    "maxenvironmentaltemperatureshort": 110,
+    "maxmoistureabsorption": 0.25,
+    "maxwaterabsorption": 0.2,
+    "modulusofelasticity": 1000,
+    "mincoefficientoffriction": 0.12,
+    "maxcoefficientoffriction": 0.22,
+    "density": 0.95,
+    "bendingstrength": 17,
+    "maxsurfacepressure": 13,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 60,
+    "specificvolumeresistance": "> 10^9",
+    "surfaceresistance": "< 10^9",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.25,
+    "thermalconductivity": 0.2,
+    "maxrotationalspeed": 0.5,
+    "maxlinearspeed": 0.2,
+    "maxpivotspeed": 0.4,
+    "chemicals": [
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 2,
+    "heatedmold": false,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.5,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "F",
+    "name": "F",
+    "procedure": "CNC",
+    "color": "TURQUOISE",
+    "colorhex": "#1abc9c",
+    "mintemperature": -40,
+    "maxtemperature": 80,
+    "maxtemperatureshort": 90,
+    "maxenvironmentaltemperatureshort": 100,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 0.25,
+    "modulusofelasticity": 950,
+    "mincoefficientoffriction": 0.1,
+    "maxcoefficientoffriction": 0.2,
+    "density": 0.9,
+    "bendingstrength": 16,
+    "maxsurfacepressure": 12,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 55,
+    "specificvolumeresistance": "> 10^8",
+    "surfaceresistance": "< 10^8",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.22,
+    "thermalconductivity": 0.18,
+    "maxrotationalspeed": 0.45,
+    "maxlinearspeed": 0.15,
+    "maxpivotspeed": 0.35,
+    "chemicals": [
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      },
+      {
+        "name": "tetrahydrofuran_solvent",
+        "resistance": "o"
+      }
+    ],
+    "cavityindex": 1,
+    "heatedmold": false,
+    "shrinkage": 1.04,
+    "producibilitylevel": 1.2,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "F2",
+    "name": "F2",
+    "procedure": "MOLD",
+    "color": "SILVER",
+    "colorhex": "#b1b1b1",
+    "mintemperature": -60,
+    "maxtemperature": 120,
+    "maxtemperatureshort": 130,
+    "maxenvironmentaltemperatureshort": 140,
+    "maxmoistureabsorption": 0.05,
+    "maxwaterabsorption": 0.05,
+    "modulusofelasticity": 1300,
+    "mincoefficientoffriction": 0.07,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.15,
+    "bendingstrength": 21.5,
+    "maxsurfacepressure": 19,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "> 10^12",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.7,
+    "maxlinearspeed": 0.3,
+    "maxpivotspeed": 0.6,
+    "chemicals": [
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "G",
+    "name": "G",
+    "procedure": "CAST",
+    "color": "GOLD",
+    "colorhex": "#ffd700",
+    "mintemperature": -20,
+    "maxtemperature": 110,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.12,
+    "maxwaterabsorption": 0.08,
+    "modulusofelasticity": 1105,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.21,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 65,
+    "specificvolumeresistance": "< 10^8",
+    "surfaceresistance": "> 10^13",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.3,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.24,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.25,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_concentrated_solution",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": true,
+    "shrinkage": 0.88,
+    "producibilitylevel": 1.01,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "G1",
+    "name": "G1",
+    "procedure": "EXTRUDE",
+    "color": "COPPER",
+    "colorhex": "#ff9900",
+    "mintemperature": -10,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 100,
+    "maxenvironmentaltemperatureshort": 110,
+    "maxmoistureabsorption": 0.25,
+    "maxwaterabsorption": 0.2,
+    "modulusofelasticity": 1000,
+    "mincoefficientoffriction": 0.12,
+    "maxcoefficientoffriction": 0.22,
+    "density": 0.95,
+    "bendingstrength": 17,
+    "maxsurfacepressure": 13,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 60,
+    "specificvolumeresistance": "> 10^9",
+    "surfaceresistance": "> 10^9",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.25,
+    "thermalconductivity": 0.2,
+    "maxrotationalspeed": 0.5,
+    "maxlinearspeed": 0.2,
+    "maxpivotspeed": 0.4,
+    "chemicals": [
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 2,
+    "heatedmold": false,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.5,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "GLW",
+    "name": "GLW",
+    "procedure": "CNC",
+    "color": "BRONZE",
+    "colorhex": "#cd7f32",
+    "mintemperature": -40,
+    "maxtemperature": 80,
+    "maxtemperatureshort": 90,
+    "maxenvironmentaltemperatureshort": 100,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 0.25,
+    "modulusofelasticity": 950,
+    "mincoefficientoffriction": 0.1,
+    "maxcoefficientoffriction": 0.2,
+    "density": 0.9,
+    "bendingstrength": 16,
+    "maxsurfacepressure": 12,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 55,
+    "specificvolumeresistance": "> 10^8",
+    "surfaceresistance": "> 10^8",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.22,
+    "thermalconductivity": 0.18,
+    "maxrotationalspeed": 0.45,
+    "maxlinearspeed": 0.15,
+    "maxpivotspeed": 0.35,
+    "chemicals": [
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      },
+      {
+        "name": "tetrahydrofuran_solvent",
+        "resistance": "o"
+      }
+    ],
+    "cavityindex": 1,
+    "heatedmold": false,
+    "shrinkage": 1.04,
+    "producibilitylevel": 1.2,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "GV0",
+    "name": "GV0",
+    "procedure": "MOLD",
+    "color": "CHROME",
+    "colorhex": "#3498db",
+    "mintemperature": -60,
+    "maxtemperature": 120,
+    "maxtemperatureshort": 130,
+    "maxenvironmentaltemperatureshort": 140,
+    "maxmoistureabsorption": 0.05,
+    "maxwaterabsorption": 0.05,
+    "modulusofelasticity": 1300,
+    "mincoefficientoffriction": 0.07,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.15,
+    "bendingstrength": 21.5,
+    "maxsurfacepressure": 19,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "> 10^12",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.7,
+    "maxlinearspeed": 0.3,
+    "maxpivotspeed": 0.6,
+    "chemicals": [
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "H",
+    "name": "H",
+    "procedure": "CAST",
+    "color": "TEAL",
+    "colorhex": "#0097a7",
+    "mintemperature": -20,
+    "maxtemperature": 110,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.12,
+    "maxwaterabsorption": 0.08,
+    "modulusofelasticity": 1105,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.21,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 58,
+    "specificvolumeresistance": "> 10^8",
+    "surfaceresistance": "> 10^13",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.24,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.25,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_concentrated_solution",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": false,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.01,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "H1",
+    "name": "H1",
+    "procedure": "EXTRUDE",
+    "color": "VIOLET",
+    "colorhex": "#7a288a",
+    "mintemperature": -10,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 100,
+    "maxenvironmentaltemperatureshort": 110,
+    "maxmoistureabsorption": 0.25,
+    "maxwaterabsorption": 0.2,
+    "modulusofelasticity": 1000,
+    "mincoefficientoffriction": 0.12,
+    "maxcoefficientoffriction": 0.22,
+    "density": 0.95,
+    "bendingstrength": 17,
+    "maxsurfacepressure": 13,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 60,
+    "specificvolumeresistance": "< 10^9",
+    "surfaceresistance": "> 10^9",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.25,
+    "thermalconductivity": 0.2,
+    "maxrotationalspeed": 0.5,
+    "maxlinearspeed": 0.2,
+    "maxpivotspeed": 0.4,
+    "chemicals": [
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 2,
+    "heatedmold": false,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.5,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "H370",
+    "name": "H370",
+    "procedure": "MOLD",
+    "color": "MAGENTA",
+    "colorhex": "#ff69b4",
+    "mintemperature": -60,
+    "maxtemperature": 120,
+    "maxtemperatureshort": 130,
+    "maxenvironmentaltemperatureshort": 140,
+    "maxmoistureabsorption": 0.05,
+    "maxwaterabsorption": 0.05,
+    "modulusofelasticity": 1300,
+    "mincoefficientoffriction": 0.07,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.15,
+    "bendingstrength": 21.5,
+    "maxsurfacepressure": 19,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "> 10^12",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.7,
+    "maxlinearspeed": 0.3,
+    "maxpivotspeed": 0.6,
+    "chemicals": [
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "H2",
+    "name": "H2",
+    "procedure": "CNC",
+    "color": "LIME",
+    "colorhex": "#32cd32",
+    "mintemperature": -40,
+    "maxtemperature": 80,
+    "maxtemperatureshort": 90,
+    "maxenvironmentaltemperatureshort": 100,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 0.25,
+    "modulusofelasticity": 950,
+    "mincoefficientoffriction": 0.1,
+    "maxcoefficientoffriction": 0.2,
+    "density": 0.9,
+    "bendingstrength": 16,
+    "maxsurfacepressure": 12,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 55,
+    "specificvolumeresistance": "< 10^8",
+    "surfaceresistance": "> 10^8",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.22,
+    "thermalconductivity": 0.18,
+    "maxrotationalspeed": 0.45,
+    "maxlinearspeed": 0.15,
+    "maxpivotspeed": 0.35,
+    "chemicals": [
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      },
+      {
+        "name": "tetrahydrofuran_solvent",
+        "resistance": "o"
+      }
+    ],
+    "cavityindex": 1,
+    "heatedmold": false,
+    "shrinkage": 1.01,
+    "producibilitylevel": 1.2,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "H4",
+    "name": "H4",
+    "procedure": "CAST",
+    "color": "NAVY",
+    "colorhex": "#03055b",
+    "mintemperature": -20,
+    "maxtemperature": 110,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.12,
+    "maxwaterabsorption": 0.08,
+    "modulusofelasticity": 1105,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.21,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 67,
+    "specificvolumeresistance": "> 10^12",
+    "surfaceresistance": "< 10^13",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.24,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.24,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.25,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": false,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.01,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "HSD350",
+    "name": "HSD350",
+    "procedure": "MOLD",
+    "color": "BEIGE",
+    "colorhex": "#f5deb3",
+    "mintemperature": -40,
+    "maxtemperature": 180,
+    "maxtemperatureshort": 210,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.6,
+    "maxwaterabsorption": 1.2,
+    "modulusofelasticity": 2150,
+    "mincoefficientoffriction": 0.07,
+    "maxcoefficientoffriction": 0.23,
+    "density": 1.39,
+    "bendingstrength": 67,
+    "maxsurfacepressure": 30,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 77,
+    "specificvolumeresistance": "> 10^13",
+    "surfaceresistance": "< 10^14",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.3,
+    "thermalconductivity": 0.24,
+    "maxrotationalspeed": 3.2,
+    "maxlinearspeed": 1.2,
+    "maxpivotspeed": 0.8,
+    "chemicals": [
+      {
+        "name": "alcohol",
+        "resistance": "+ to 0"
+      },
+      {
+        "name": "diluted_acids",
+        "resistance": "+"
+      },
+      {
+        "name": "strong_acids",
+        "resistance": "0"
+      },
+      {
+        "name": "diluted_alkalines",
+        "resistance": "+"
+      },
+      {
+        "name": "strong_alkalines",
+        "resistance": "0"
+      },
+      {
+        "name": "fuel",
+        "resistance": "+ to 0"
+      },
+      {
+        "name": "oils_without_additives",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrocarbons",
+        "resistance": "+"
+      },
+      {
+        "name": "perchloric_acid",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J",
+    "name": "J",
+    "procedure": "EXTRUDE",
+    "color": "OLIVE",
+    "colorhex": "#556b2f",
+    "mintemperature": -20,
+    "maxtemperature": 100,
+    "maxtemperatureshort": 110,
+    "maxenvironmentaltemperatureshort": 120,
+    "maxmoistureabsorption": 0.15,
+    "maxwaterabsorption": 0.12,
+    "modulusofelasticity": 1100,
+    "mincoefficientoffriction": 0.09,
+    "maxcoefficientoffriction": 0.18,
+    "density": 1.05,
+    "bendingstrength": 18.5,
+    "maxsurfacepressure": 15,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 65,
+    "specificvolumeresistance": "> 10^11",
+    "surfaceresistance": "< 10^11",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.28,
+    "thermalconductivity": 0.22,
+    "maxrotationalspeed": 0.6,
+    "maxlinearspeed": 2.3,
+    "maxpivotspeed": 0.4,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 3,
+    "heatedmold": false,
+    "shrinkage": 1.02,
+    "producibilitylevel": 1.7,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J2",
+    "name": "J2",
+    "procedure": "CNC",
+    "color": "LIGHT_BLUE",
+    "colorhex": "#add8e6",
+    "mintemperature": -30,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 100,
+    "maxenvironmentaltemperatureshort": 110,
+    "maxmoistureabsorption": 0.2,
+    "maxwaterabsorption": 0.18,
+    "modulusofelasticity": 1050,
+    "mincoefficientoffriction": 0.08,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.02,
+    "bendingstrength": 17.5,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 70,
+    "specificvolumeresistance": "> 10^11",
+    "surfaceresistance": "< 10^10",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.32,
+    "thermalconductivity": 0.25,
+    "maxrotationalspeed": 0.21,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.18,
+    "chemicals": [
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "tetralin",
+        "resistance": "-"
+      },
+      {
+        "name": ""
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.35,
+    "heatedmold": true,
+    "shrinkage": 1.01,
+    "producibilitylevel": 0.99,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J200",
+    "name": "J200",
+    "procedure": "MOLD",
+    "color": "DARK_GRAY",
+    "colorhex": "#4b4b4b",
+    "mintemperature": -50,
+    "maxtemperature": 90,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 140,
+    "maxmoistureabsorption": 0.2,
+    "maxwaterabsorption": 0.7,
+    "modulusofelasticity": 2800,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.17,
+    "density": 1.72,
+    "bendingstrength": 58,
+    "maxsurfacepressure": 23,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 70,
+    "specificvolumeresistance": "> 10^8",
+    "surfaceresistance": "< 10^8",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.3,
+    "thermalconductivity": 0.24,
+    "maxrotationalspeed": 8.6,
+    "maxlinearspeed": 2.5,
+    "maxpivotspeed": 1,
+    "chemicals": [
+      {
+        "name": "alcohol",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrocarbons",
+        "resistance": "+"
+      },
+      {
+        "name": "greases",
+        "resistance": "+"
+      },
+      {
+        "name": "fuels",
+        "resistance": "+"
+      },
+      {
+        "name": "diluted_acids",
+        "resistance": "0"
+      },
+      {
+        "name": "strong_acids",
+        "resistance": "-"
+      },
+      {
+        "name": "diluted_alkalines",
+        "resistance": "+"
+      },
+      {
+        "name": "strong_alkalines",
+        "resistance": "+ to 0"
+      },
+      {
+        "name": "oils_without_additives",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 5,
+    "heatedmold": true,
+    "shrinkage": 0.98,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J260",
+    "name": "J260",
+    "procedure": "MOLD",
+    "color": "SILVER",
+    "colorhex": "#c0c0c0",
+    "mintemperature": -40,
+    "maxtemperature": 150,
+    "maxtemperatureshort": 180,
+    "maxenvironmentaltemperatureshort": 200,
+    "maxmoistureabsorption": 0.15,
+    "maxwaterabsorption": 0.3,
+    "modulusofelasticity": 3100,
+    "mincoefficientoffriction": 0.09,
+    "maxcoefficientoffriction": 0.16,
+    "density": 1.85,
+    "bendingstrength": 62.5,
+    "maxsurfacepressure": 25,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^10",
+    "surfaceresistance": "> 10^10",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.35,
+    "thermalconductivity": 0.28,
+    "maxrotationalspeed": 0.7,
+    "maxlinearspeed": 0.35,
+    "maxpivotspeed": 0.5,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+ benzene"
+      }
+    ],
+    "cavityindex": 6,
+    "heatedmold": false,
+    "shrinkage": 0.99,
+    "producibilitylevel": 0.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J3",
+    "name": "J3",
+    "procedure": "MOLD",
+    "color": "VIOLET",
+    "colorhex": "#9932cc",
+    "mintemperature": -20,
+    "maxtemperature": 100,
+    "maxtemperatureshort": 120,
+    "maxenvironmentaltemperatureshort": 130,
+    "maxmoistureabsorption": 0.12,
+    "maxwaterabsorption": 0.08,
+    "modulusofelasticity": 1105,
+    "mincoefficientoffriction": 0.11,
+    "maxcoefficientoffriction": 0.21,
+    "density": 1,
+    "bendingstrength": 19,
+    "maxsurfacepressure": 14,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": true,
+    "ptfefree": false,
+    "pfasfree": true,
+    "mouldresistant": true,
+    "dirtresistant": false,
+    "hardness": 75,
+    "specificvolumeresistance": "> 10^13",
+    "surfaceresistance": "> 10^13",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.25,
+    "thermalconductivity": 0.3,
+    "maxrotationalspeed": 0.24,
+    "maxlinearspeed": 0.55,
+    "maxpivotspeed": 0.25,
+    "chemicals": [
+      {
+        "name": "acetone",
+        "resistance": "+"
+      },
+      {
+        "name": "benzene",
+        "resistance": "x"
+      },
+      {
+        "name": "nitric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrochloric_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "sulfuric_acid_20pct",
+        "resistance": "+"
+      },
+      {
+        "name": "ammonia",
+        "resistance": "+"
+      },
+      {
+        "name": "chlorine_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "formaldehyde",
+        "resistance": "+"
+      },
+      {
+        "name": "ethylene_glycol",
+        "resistance": "+"
+      },
+      {
+        "name": "citric_acid_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "phenol_spirituous_70pct",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 0.45,
+    "heatedmold": true,
+    "shrinkage": 1.03,
+    "producibilitylevel": 1.01,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J350",
+    "name": "J350",
+    "procedure": "MOLD",
+    "color": "YELLOW",
+    "colorhex": "#ffff00",
+    "mintemperature": -148,
+    "maxtemperature": 356,
+    "maxtemperatureshort": 428,
+    "maxenvironmentaltemperatureshort": 450,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 1.6,
+    "modulusofelasticity": 2000,
+    "mincoefficientoffriction": 0.01,
+    "maxcoefficientoffriction": 0.2,
+    "density": 1.44,
+    "bendingstrength": 55,
+    "maxsurfacepressure": 60,
+    "underwatercompliant": true,
+    "foodcontactfdacompliant": true,
+    "foodcontacteucompliant": true,
+    "electricallyconductive": false,
+    "ptfefree": true,
+    "pfasfree": true,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 80,
+    "specificvolumeresistance": "> 10^13",
+    "surfaceresistance": "> 10^10",
+    "highchemicalresistance": true,
+    "lowwaterabsorption": true,
+    "maxallowedpressurevelocity": 0.3,
+    "thermalconductivity": 0.24,
+    "maxrotationalspeed": 0.55,
+    "maxlinearspeed": 0.25,
+    "maxpivotspeed": 0.45,
+    "chemicals": [
+      {
+        "name": "alcohol",
+        "resistance": "+"
+      },
+      {
+        "name": "hydrocarbons",
+        "resistance": "+"
+      },
+      {
+        "name": "greases",
+        "resistance": "+"
+      },
+      {
+        "name": "fuels",
+        "resistance": "+"
+      },
+      {
+        "name": "diluted_acids",
+        "resistance": "+"
+      },
+      {
+        "name": "strong_acids",
+        "resistance": "+ to 0"
+      },
+      {
+        "name": "diluted_alkalines",
+        "resistance": "+"
+      },
+      {
+        "name": "strong_alkalines",
+        "resistance": "+"
+      },
+      {
+        "name": "detergents",
+        "resistance": "+"
+      },
+      {
+        "name": "lubricants",
+        "resistance": "+"
+      }
+    ],
+    "cavityindex": 6,
+    "heatedmold": true,
+    "shrinkage": 1.01,
+    "producibilitylevel": 1.9,
+    "injectionmoldingcalculability": true
+  },
+  {
+    "id": "J4",
+    "name": "J4",
+    "procedure": "CNC",
+    "color": "LAVENDER",
+    "colorhex": "#c7b8ea",
+    "mintemperature": -40,
+    "maxtemperature": 80,
+    "maxtemperatureshort": 90,
+    "maxenvironmentaltemperatureshort": 100,
+    "maxmoistureabsorption": 0.3,
+    "maxwaterabsorption": 0.25,
+    "modulusofelasticity": 950,
+    "mincoefficientoffriction": 0.1,
+    "maxcoefficientoffriction": 0.2,
+    "density": 0.9,
+    "bendingstrength": 16,
+    "maxsurfacepressure": 12,
+    "underwatercompliant": false,
+    "foodcontactfdacompliant": false,
+    "foodcontacteucompliant": false,
+    "electricallyconductive": false,
+    "ptfefree": false,
+    "pfasfree": false,
+    "mouldresistant": false,
+    "dirtresistant": false,
+    "hardness": 55,
+    "specificvolumeresistance": "< 10^8",
+    "surfaceresistance": "> 10^8",
+    "highchemicalresistance": false,
+    "lowwaterabsorption": false,
+    "maxallowedpressurevelocity": 0.22,
+    "thermalconductivity": 0.18,
+    "maxrotationalspeed": 0.45,
+    "maxlinearspeed": 0.15,
+    "maxpivotspeed": 0.35,
+    "chemicals": [
+      {
+        "name": "acetic_acid_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "aluminum_chloride_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "carbon_dioxide_gas",
+        "resistance": "+"
+      },
+      {
+        "name": "carbonic_acid_ammonia_aq_10pct",
+        "resistance": "+"
+      },
+      {
+        "name": "cobalt_salts_aq",
+        "resistance": "x"
+      },
+      {
+        "name": "hydrofluorosilicic_acid_aq_30pct",
+        "resistance": "+"
+      },
+      {
+        "name": "nitrogen_oxides_dry",
+        "resistance": "-"
+      },
+      {
+        "name": "ozone",
+        "resistance": "o"
+      },
+      {
+        "name": "styrol",
+        "resistance": "o"
+      },
+      {
+        "name": "tallow",
+        "resistance": "+"
+      },
+      {
+        "name": "tar",
+        "resistance": "+"
+      },
+      {
+        "name": "tetrahydrofuran_solvent",
+        "resistance": "o"
+      }
+    ],
+    "cavityindex": 1,
+    "heatedmold": false,
+    "shrinkage": 1.04,
+    "producibilitylevel": 1.2,
+    "injectionmoldingcalculability": true
+  }
+]
