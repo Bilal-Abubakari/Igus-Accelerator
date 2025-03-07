@@ -57,17 +57,17 @@ describe('FooterService', () => {
   });
 
   it('should send a PATCH request to update feedback using feedbackId from store', () => {
-    const email= 'updated@example.com';
+    const email = 'updated@example.com';
 
     service.updateFeedback(email).subscribe((response) => {
       expect(response).toBeUndefined();
     });
 
     const req = httpMock.expectOne(
-      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`
+      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`,
     );
     expect(req.request.method).toBe('PATCH');
-    expect(req.request.body).toEqual({email});
+    expect(req.request.body).toEqual({ email });
     req.flush(null);
   });
 
@@ -84,7 +84,7 @@ describe('FooterService', () => {
     store.overrideSelector(selectFeedbackId, null);
     store.refreshState();
 
-    const email =  'updated@example.com' ;
+    const email = 'updated@example.com';
 
     service.updateFeedback(email).subscribe({
       error: (error) => {

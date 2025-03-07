@@ -52,7 +52,7 @@ export class ThankYouFeedbackComponent {
     if (!email) {
       return;
     }
-    this.store.dispatch(beginUpdateFeedback({email}));
+    this.store.dispatch(beginUpdateFeedback({ email }));
   }
   public get contactFormValues(): FeedbackRequest {
     return {

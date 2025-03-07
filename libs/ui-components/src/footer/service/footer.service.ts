@@ -28,7 +28,7 @@ export class FooterService {
   public updateFeedback(email: string): Observable<void> {
     return this.http.patch<void>(
       `${this.baseUrl}/user-feedback/${this.feedbackId()}`,
-      {email},
+      { email },
     );
   }
 

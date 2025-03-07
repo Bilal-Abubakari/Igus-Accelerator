@@ -13,7 +13,7 @@ export class FooterEffects {
   public submitFeedback = createEffect(() =>
     this.actions.pipe(
       ofType(FooterActions.beginSubmitFeedback),
-      switchMap(({feedback} ) =>
+      switchMap(({ feedback }) =>
         this.footerService.submitFeedback(feedback).pipe(
           map((response) =>
             FooterActions.submitFeedbackSuccess({ id: response.id }),
