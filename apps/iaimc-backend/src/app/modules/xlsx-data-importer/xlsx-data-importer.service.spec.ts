@@ -30,7 +30,7 @@ describe('XLSX Data Importer Service', () => {
 
   const setupMocks = (options: {
     fileExists?: boolean;
-    fileContents?: string;
+    fileContent?: string;
     csvData?: string;
     existingJsonData?: object[];
   }): void => {
@@ -38,7 +38,7 @@ describe('XLSX Data Importer Service', () => {
       options.fileExists ?? true,
     );
     (helpers.readFileContents as jest.Mock).mockReturnValue(
-      options.fileContents ?? JSON.stringify(options.existingJsonData ?? []),
+      options.fileContent ?? JSON.stringify(options.existingJsonData ?? []),
     );
     (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(
       options.csvData ?? '',
@@ -55,7 +55,7 @@ describe('XLSX Data Importer Service', () => {
     });
 
     it('should throw an exception if the csv file cannot be read', () => {
-      setupMocks({ fileContents: undefined });
+      setupMocks({ fileContent: undefined });
 
       expect(() => {
         service.importMaterialsXLSXDataToJson(csvFileName);

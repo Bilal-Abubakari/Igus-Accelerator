@@ -39,15 +39,15 @@ describe('Utility functions', () => {
       expect(existsSync).toHaveBeenCalled();
     });
 
-    it('should return true if file path exists', () => {
+    it('should return true if file path exist', () => {
       (existsSync as jest.Mock).mockReturnValue(true);
       const fileExists = checkFileExistence(filePath);
       expect(fileExists).toBe(true);
     });
   });
 
-  describe('Check file contents', () => {
-    it('should read file contents if path is valid', () => {
+  describe('Check file content', () => {
+    it('should read file content if path is valid', () => {
       (existsSync as jest.Mock).mockReturnValue(true);
       (readFileSync as jest.Mock).mockReturnValue(fileContents);
 

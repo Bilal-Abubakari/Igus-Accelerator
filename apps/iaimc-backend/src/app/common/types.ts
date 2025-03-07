@@ -20,11 +20,11 @@ export interface ResponseObject<T = undefined> {
 
 export type LOGGER_TYPE = 'log' | 'warn' | 'error' | 'debug';
 
-export type ChemicalResistanceLevel = 'x' | 'o' | '+' | '-';
+export type ResistanceLevel = 'x' | 'o' | '+' | '-';
 
 export interface ChemicalResistance {
   name: string;
-  resistance: ChemicalResistanceLevel;
+  resistance: ResistanceLevel;
 }
 
 export interface InjectionMoldingMaterial {

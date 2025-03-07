@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import path from 'path';
 import { XLSX_ASSETS_FOLDER, JSON_ASSETS_FOLDER } from '../../common/constants';
 import {
-  ChemicalResistanceLevel,
+  ResistanceLevel,
   InjectionMoldingMaterial,
   InjectionMoldingMaterialPropertyValueType,
   ResponseObject,
@@ -49,7 +49,7 @@ export class XLSXDataImporterService {
       if (!line) continue;
 
       const values = this.splitCSVLine(line);
-      // Column and value fields must mach
+      // Column and value fields must match
       if (values.length !== objectKeys.length) {
         const errorMessage =
           'Invalid csv contents. Some data fields are missing';
@@ -70,7 +70,7 @@ export class XLSXDataImporterService {
     let existingMaterialsData: InjectionMoldingMaterial[] = [];
     if (checkFileExistence(jsonFilePath)) {
       const existingJsonContents = readFileContents(jsonFilePath);
-      // If the contnts of the existing json is valid...
+      // If the contents of the existing json is valid...
       if (existingJsonContents)
         existingMaterialsData = JSON.parse(existingJsonContents);
     }
@@ -118,7 +118,7 @@ export class XLSXDataImporterService {
           const [name, resistance] = chemical.split(':');
           return {
             name,
-            resistance: resistance as ChemicalResistanceLevel,
+            resistance: resistance as ResistanceLevel,
           };
         });
 
