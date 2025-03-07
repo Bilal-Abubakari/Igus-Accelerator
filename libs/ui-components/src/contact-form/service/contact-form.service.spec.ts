@@ -4,7 +4,6 @@ import { ContactFormService } from './contact-form.service';
 import { ContactFormData } from '../contact-form.interface';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-
 describe('ContactFormService', () => {
   let service: ContactFormService;
   let httpMock: HttpTestingController;
@@ -116,7 +115,16 @@ describe('ContactFormService', () => {
       formDataEntries[key] = value;
     });
 
-    expect(Object.keys(formDataEntries)).toEqual(['firstName', 'lastName', 'email', 'company', 'postalCode', 'country', 'message', 'agreement']);
+    expect(Object.keys(formDataEntries)).toEqual([
+      'firstName',
+      'lastName',
+      'email',
+      'company',
+      'postalCode',
+      'country',
+      'message',
+      'agreement',
+    ]);
     expect(formDataEntries['telephone']).toBeUndefined();
     expect(formDataEntries['file']).toBeUndefined();
 
@@ -124,7 +132,9 @@ describe('ContactFormService', () => {
   });
 
   it('should append file to FormData if provided', () => {
-    const mockFile = new File(['file content'], 'test.txt', { type: 'text/plain' });
+    const mockFile = new File(['file content'], 'test.txt', {
+      type: 'text/plain',
+    });
     const mockContactFormData: ContactFormData = {
       firstName: 'John',
       lastName: 'Doe',
@@ -150,7 +160,10 @@ describe('ContactFormService', () => {
       formDataEntries[key] = value;
     });
 
-    expect(formDataEntries['file']).toBe(mockFile);
+    const file = formDataEntries['file'] as File;
+    expect(file.name).toBe(mockFile.name);
+    expect(file.size).toBe(mockFile.size);
+    expect(file.type).toBe(mockFile.type);
 
     req.flush(mockContactFormData);
   });
@@ -182,5 +195,5 @@ describe('ContactFormService', () => {
     });
 
     req.flush(mockContactFormData);
-});
+  });
 });

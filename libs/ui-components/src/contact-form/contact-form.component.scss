@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-$full-screen-width: 100vw;
+$full-screen-width: 97vw;
 $full-screen-height: 100vh;
 $max-form-wrapper-width: 650px;
 
@@ -17,8 +17,9 @@ $margin-bottom-intro: 32px;
 $font-size-agreement: 14px;
 
 $gap-standard: 20px;
-$margin-bottom-field: 10px;
-$padding-left-error: 40px;
+$gap-flex: 3px;
+$margin-bottom-field: 18px;
+$padding-left-error: 50px;
 $padding-top-form-btns: 30px;
 $gap-form-btns: 18px;
 $form-btns-height: 55px;
@@ -53,12 +54,14 @@ $button-radius: 0;
   box-sizing: border-box;
   position: relative;
   margin-bottom: 350px;
+  border-radius: 0;
 
   .form-wrapper {
     width: 100%;
     max-width: $max-form-wrapper-width;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 15px auto;
+    padding: 25px;
+    border-radius: 0;
   }
 }
 
@@ -85,8 +88,8 @@ p.intro {
 .email-company-container {
   display: flex;
   flex-direction: column;
+  gap: $gap-flex;
   justify-content: space-between;
-  gap: $gap-standard;
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -164,13 +167,16 @@ textarea {
   border-radius: $button-radius;
 }
 
-.terms-agreemnet {
+.terms-agreement {
   display: flex;
   flex-direction: row;
   gap: $select-file-container-gap;
   align-items: center;
 }
 
+.terms-error {
+  padding-left: $padding-left-error;
+}
 p.agreement {
   font-size: $font-size-agreement;
 
@@ -178,10 +184,6 @@ p.agreement {
     color: inherit;
     text-decoration: underline;
   }
-}
-
-.accept-error {
-  padding-left: $padding-left-error;
 }
 
 .form-btns {
@@ -220,5 +222,20 @@ p.agreement {
 
   &:hover {
     color: $close-btn-hover-color;
+  }
+
+  @media (max-width: 600px) {
+    top: 15px;
+    right: 15px;
+  }
+
+  @media (min-width: 601px) and (max-width: 1024px) {
+    top: 20px;
+    right: 20px;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    top: 25px;
+    right: 25px;
   }
 }

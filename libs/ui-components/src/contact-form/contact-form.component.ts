@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,13 +13,14 @@ import {
   FormGroup,
   AbstractControl,
 } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
 import { ContactFormService } from './service/contact-form.service';
-import { TextOnlyValidators } from '../validators/custom-validators/text-only.validator';
+import { TextOnlyValidators } from '../validators/custom-validators/input-field.validator';
 import { FeatureFlagService } from './service/feature-flag.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ContactFormData } from './contact-form.interface';
+import { ContactFormData, Country } from './contact-form.interface';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { CountryService } from './service/countries.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -39,6 +35,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatOptionModule,
   ],
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
@@ -55,21 +53,48 @@ export class ContactFormComponent implements OnInit {
 
   private static readonly MAX_FILE_SIZE_MB = 10;
 
+  public errorMessages = {
+    required: 'This field is required',
+    textOnly: 'Invalid text format',
+    email: 'Invalid email format',
+    invalidPostalCode: 'Invalid postal code format',
+    invalidPhone: 'Invalid phone number format',
+    invalidCompanyName: 'Invalid company name format',
+    invalidCountrySelection: 'Please select a country',
+    invalidMessage: 'Invalid message format',
+    requiredTrue: 'You must accept the data protection regulations',
+    invalidFileType: 'Invalid file type',
+    fileSize: `File size exceeds maximum of ${ContactFormComponent.MAX_FILE_SIZE_MB}MB`,
+  };
+
   public contactForm!: FormGroup;
   public fileValidationError = '';
   public isSubmitting = false;
+  public countries: Country[] = [];
 
   constructor(
     public readonly dialogRef: MatDialogRef<ContactFormComponent>,
     private readonly formBuilder: FormBuilder,
     private readonly contactFormService: ContactFormService,
+    private readonly countryService: CountryService,
     public readonly featureFlagService: FeatureFlagService,
-    private readonly destroyRef: DestroyRef,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+    this.loadCountries();
+  }
+
+  private loadCountries(): void {
+    this.countryService.getCountries().subscribe({
+      next: (countries: Country[]) => {
+        this.countries = countries;
+      },
+      error: () => {
+        this.countries = [];
+      },
+    });
   }
 
   private initializeForm(): void {
@@ -85,9 +110,26 @@ export class ContactFormComponent implements OnInit {
       agreement: [false, Validators.requiredTrue],
       file: [
         null,
-        [this.validateFileType.bind(this), this.validateFileSize.bind(this)],
+        [
+          TextOnlyValidators.fileType(
+            ContactFormComponent.ALLOWED_FILE_TYPES,
+            ContactFormComponent.MAX_FILE_SIZE_MB,
+          ),
+        ],
       ],
     });
+  }
+
+  public get formControls(): { [key: string]: AbstractControl } {
+    return this.contactForm.controls;
+  }
+
+  public hasError(controlName: string, errorName: string): boolean {
+    return this.formControls[controlName].hasError(errorName);
+  }
+
+  public isTouched(controlName: string): boolean {
+    return this.formControls[controlName].touched;
   }
 
   public validateFileType(
@@ -126,34 +168,32 @@ export class ContactFormComponent implements OnInit {
     }
 
     this.isSubmitting = true;
-    const formData = this.contactForm.value as ContactFormData;
+    const formData: ContactFormData = this.contactForm.getRawValue();
 
-    this.contactFormService
-      .submitContactForm(formData)
-      .pipe(
-        finalize(() => (this.isSubmitting = false)),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe({
-        next: () => this.handleSuccess(),
-        error: (error) => this.handleError(error),
-      });
+    this.contactFormService.submitContactForm(formData).subscribe({
+      next: () => {
+        this.isSubmitting = false;
+        this.snackBar.open('Form submitted successfully!', 'Close', {
+          duration: 3000,
+        });
+        this.dialogRef.close(true);
+      },
+      error: (error: Error) => {
+        this.isSubmitting = false;
+        this.snackBar.open(`Submission failed: ${error.message}`, 'Close', {
+          duration: 5000,
+        });
+      },
+    });
   }
 
-  public handleSuccess(): void {
-    this.snackBar.open('Form submitted successfully!', 'Close', {
-      duration: 3000,
-    });
-    this.dialogRef.close();
-  }
-
-  public handleError(error: Error): void {
-    this.snackBar.open(`Submission failed: ${error.message}`, 'Close', {
-      duration: 3000,
-    });
+  public deleteFile(): void {
+    this.contactForm.patchValue({ file: null });
+    this.contactForm.get('file')?.updateValueAndValidity();
+    this.fileValidationError = '';
   }
 
   public closeDialog(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

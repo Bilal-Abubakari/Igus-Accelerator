@@ -6,6 +6,7 @@
   @if (featureFlagService.isFeatureEnabled('contactForm')) {
     <div class="form-wrapper">
       <h1 class="contact">Contact</h1>
+
       <p class="intro">
         Please enter your questions or suggestions. The data you enter into the
         designer will be transmitted automatically.
@@ -16,16 +17,28 @@
           <mat-form-field>
             <mat-label>First name (optional)</mat-label>
             <input matInput formControlName="firstName" />
+
+            @if (isTouched('firstName')) {
+              <mat-error>
+                @if (hasError('firstName', 'textOnly')) {
+                  <span>{{ errorMessages.textOnly }}</span>
+                }
+              </mat-error>
+            }
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Last name</mat-label>
             <input matInput formControlName="lastName" />
-            @if (
-              contactForm.get('lastName')?.hasError('required') &&
-              contactForm.get('lastName')?.touched
-            ) {
-              <mat-error> Last name is required </mat-error>
+
+            @if (isTouched('lastName')) {
+              <mat-error>
+                @if (hasError('lastName', 'required')) {
+                  <span>{{ errorMessages.required }}</span>
+                } @else if (hasError('lastName', 'textOnly')) {
+                  <span>{{ errorMessages.textOnly }}</span>
+                }
+              </mat-error>
             }
           </mat-form-field>
         </div>
@@ -34,13 +47,13 @@
           <mat-form-field>
             <mat-label>E-mail</mat-label>
             <input matInput formControlName="email" />
-            @if (contactForm.get('email')?.touched) {
+
+            @if (isTouched('email')) {
               <mat-error>
-                @if (contactForm.get('email')?.hasError('required')) {
-                  <span>Email is required</span>
-                }
-                @if (contactForm.get('email')?.hasError('email')) {
-                  <span>Invalid email format</span>
+                @if (hasError('email', 'required')) {
+                  <span>{{ errorMessages.required }}</span>
+                } @else if (hasError('email', 'email')) {
+                  <span>{{ errorMessages.email }}</span>
                 }
               </mat-error>
             }
@@ -49,11 +62,15 @@
           <mat-form-field>
             <mat-label>Company</mat-label>
             <input matInput formControlName="company" />
-            @if (
-              contactForm.get('company')?.hasError('required') &&
-              contactForm.get('company')?.touched
-            ) {
-              <mat-error> Company is required </mat-error>
+
+            @if (isTouched('company')) {
+              <mat-error>
+                @if (hasError('company', 'required')) {
+                  <span>{{ errorMessages.required }}</span>
+                } @else if (hasError('company', 'invalidCompanyName')) {
+                  <span>{{ errorMessages.invalidCompanyName }}</span>
+                }
+              </mat-error>
             }
           </mat-form-field>
         </div>
@@ -62,29 +79,49 @@
           <mat-form-field class="postal-code">
             <mat-label>Postal code</mat-label>
             <input matInput formControlName="postalCode" />
-            @if (
-              contactForm.get('postalCode')?.hasError('required') &&
-              contactForm.get('postalCode')?.touched
-            ) {
-              <mat-error> Postal code is required </mat-error>
+
+            @if (isTouched('postalCode')) {
+              <mat-error>
+                @if (hasError('postalCode', 'required')) {
+                  <span>{{ errorMessages.required }}</span>
+                } @else if (hasError('postalCode', 'invalidPostalCode')) {
+                  <span>{{ errorMessages.invalidPostalCode }}</span>
+                }
+              </mat-error>
             }
           </mat-form-field>
 
           <mat-form-field class="country">
             <mat-label>Country</mat-label>
-            <input matInput formControlName="country" />
-            @if (
-              contactForm.get('country')?.hasError('required') &&
-              contactForm.get('country')?.touched
-            ) {
-              <mat-error> Country is required </mat-error>
-            }
+            <mat-select formControlName="country" required>
+              @for (country of countries; track country.code) {
+                <mat-option [value]="country.code">
+                  {{ country.name }} ({{ country.code }})
+                </mat-option>
+              }
+            </mat-select>
+
+            <mat-error>
+              @if (hasError('country', 'required')) {
+                <span>{{ errorMessages.invalidCountrySelection }}</span>
+              }
+            </mat-error>
           </mat-form-field>
         </div>
 
         <mat-form-field class="telephone">
           <mat-label>Telephone (optional)</mat-label>
           <input matInput formControlName="telephone" />
+
+          @if (isTouched('telephone')) {
+            <mat-error>
+              @if (hasError('telephone', 'required')) {
+                <span>{{ errorMessages.required }}</span>
+              } @else if (hasError('telephone', 'invalidPhone')) {
+                <span>{{ errorMessages.invalidPhone }}</span>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
@@ -93,6 +130,7 @@
         </mat-form-field>
 
         <p class="attach-file-title">File attachment (optional)</p>
+
         <div class="upload-container">
           <input
             #fileInput
@@ -100,6 +138,7 @@
             hidden
             (change)="handleFileSelection($event)"
           />
+
           <button
             class="select-file-btn"
             mat-button
@@ -110,11 +149,21 @@
             <mat-icon>upload_file</mat-icon>
             Select File
           </button>
+
           @if (contactForm.get('file')?.value) {
             <p class="selected-file-name">
               {{ contactForm.get('file')?.value?.name }}
+              <button
+                class="delete-file-btn"
+                mat-icon-button
+                type="button"
+                (click)="deleteFile()"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
             </p>
           }
+
           @if (fileValidationError) {
             <p class="error-message">
               {{ fileValidationError }}
@@ -122,11 +171,12 @@
           }
         </div>
 
-        <div class="terms-agreemnet">
+        <div class="terms-agreement">
           <mat-checkbox
             class="agreement"
             formControlName="agreement"
           ></mat-checkbox>
+
           <p class="agreement">
             I have read and understood the
             <a href="" target="_blank">data protection regulations</a> of igus®
@@ -134,19 +184,24 @@
           </p>
         </div>
 
-        @if (
-          contactForm.get('agreement')?.invalid &&
-          (contactForm.get('agreement')?.touched ||
-            contactForm.get('agreement')?.dirty)
-        ) {
-          <mat-error class="accept-error">
-            You must accept the data protection regulations
+        @if (isTouched('agreement')) {
+          <mat-error class="terms-error">
+            @if (hasError('agreement', 'required')) {
+              <span>{{ errorMessages.requiredTrue }}</span>
+            }
           </mat-error>
         }
+
         <div class="form-btns">
-          <button class="cancel-btn" mat-stroked-button type="button">
+          <button
+            class="cancel-btn"
+            (click)="closeDialog()"
+            stroked-button
+            type="button"
+          >
             Cancel
           </button>
+
           <button class="submit-btn" mat-stroked-button type="submit">
             Submit
           </button>
@@ -156,6 +211,7 @@
   } @else {
     <div class="form-wrapper">
       <h1 class="contact">Contact</h1>
+
       <p class="intro">
         Our contact form is currently undergoing maintenance. Please try again
         later.

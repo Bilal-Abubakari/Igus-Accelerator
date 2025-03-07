@@ -12,12 +12,14 @@ import {
 } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ContactFormComponent } from './contact-form.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ContactFormService } from './service/contact-form.service';
 import { FeatureFlagService } from './service/feature-flag.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContactFormData } from './contact-form.interface';
+import { CountryService } from './service/countries.service';
 
 describe('ContactFormComponent', () => {
   let component: ContactFormComponent;
@@ -50,6 +52,7 @@ describe('ContactFormComponent', () => {
         ContactFormComponent,
         ReactiveFormsModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
       ],
       providers: [
         { provide: MatDialogRef, useValue: { close: jest.fn() } },
@@ -67,6 +70,13 @@ describe('ContactFormComponent', () => {
           provide: MatSnackBar,
           useValue: { open: jest.fn() },
         },
+        {
+          provide: CountryService,
+          useValue: {
+            getCountries: jest.fn(() => of([])),
+          },
+        },
+
         FormBuilder,
       ],
     }).compileComponents();
@@ -256,5 +266,125 @@ describe('ContactFormComponent', () => {
       component.closeDialog();
       expect(dialogRef.close).toHaveBeenCalled();
     });
+  });
+
+  describe('Additional Helper Methods', () => {
+    it('should check if control has specific error', () => {
+      const control = component.contactForm.get('email');
+      control?.setErrors({ email: true });
+      expect(component.hasError('email', 'email')).toBe(true);
+      expect(component.hasError('email', 'required')).toBe(false);
+    });
+
+    it('should check if control is touched', () => {
+      const control = component.contactForm.get('email');
+      control?.markAsTouched();
+      expect(component.isTouched('email')).toBe(true);
+
+      expect(component.isTouched('firstName')).toBe(false);
+    });
+  });
+
+  describe('File Management', () => {
+    it('should delete file from form', () => {
+      const file = mockFile('test.pdf', 'application/pdf', 1024);
+      component.contactForm.patchValue({ file });
+      expect(component.contactForm.get('file')?.value).toEqual(file);
+
+      component.deleteFile();
+      expect(component.contactForm.get('file')?.value).toBeNull();
+      expect(component.fileValidationError).toBe('');
+    });
+
+    it('should handle empty file selection', () => {
+      const event = { target: { files: [] } } as unknown as Event;
+      component.handleFileSelection(event);
+      expect(component.contactForm.get('file')?.value).toBeNull();
+    });
+  });
+
+  describe('Country Loading', () => {
+    let countryService: CountryService;
+
+    beforeEach(() => {
+      countryService = TestBed.inject(CountryService);
+    });
+
+    it('should load countries on initialization', fakeAsync(() => {
+      const mockCountries = [
+        { name: 'United States', code: 'US' },
+        { name: 'Canada', code: 'CA' },
+      ];
+
+      jest
+        .spyOn(countryService, 'getCountries')
+        .mockReturnValue(of(mockCountries));
+
+      component.ngOnInit();
+      tick();
+
+      expect(component.countries).toEqual(mockCountries);
+    }));
+
+    it('should handle error when loading countries', fakeAsync(() => {
+      jest
+        .spyOn(countryService, 'getCountries')
+        .mockReturnValue(throwError(() => new Error('Country loading failed')));
+
+      component.ngOnInit();
+      tick();
+
+      expect(component.countries).toEqual([]);
+    }));
+  });
+
+  describe('Dialog Interactions', () => {
+    it('should close dialog with false when canceled', () => {
+      component.closeDialog();
+      expect(dialogRef.close).toHaveBeenCalledWith(false);
+    });
+
+    it('should close dialog with true when form submitted successfully', fakeAsync(() => {
+      component.contactForm.setValue(validFormData);
+      component.submitForm();
+      tick();
+
+      expect(dialogRef.close).toHaveBeenCalledWith(true);
+    }));
+  });
+
+  describe('Form Submission', () => {
+    it('should not submit invalid form', () => {
+      component.contactForm.setErrors({ invalid: true });
+      const submitSpy = jest.spyOn(contactFormService, 'submitContactForm');
+
+      component.submitForm();
+
+      expect(submitSpy).not.toHaveBeenCalled();
+    });
+
+    it('should submit valid form successfully', fakeAsync(() => {
+      component.contactForm.setValue(validFormData);
+
+      component.submitForm();
+      tick();
+
+      expect(contactFormService.submitContactForm).toHaveBeenCalledWith(
+        validFormData,
+      );
+    }));
+
+    it('should handle submission error', fakeAsync(() => {
+      const error = new Error('Test Error');
+      jest
+        .spyOn(contactFormService, 'submitContactForm')
+        .mockReturnValue(throwError(() => error));
+
+      component.contactForm.setValue(validFormData);
+      component.submitForm();
+      tick();
+
+      expect(component.isSubmitting).toBe(false);
+    }));
   });
 });
