@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Inject, Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { FeedbackInterface, FeedbackRequest } from '../footer.interface';
 import { Store } from '@ngrx/store';
 import { selectFeedbackId } from '../store/footer.selectors';

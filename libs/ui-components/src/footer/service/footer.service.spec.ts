@@ -4,10 +4,10 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { FooterService } from './footer.service';
-import { FeedbackInterface } from '../footer.interface';
 import { provideHttpClient } from '@angular/common/http';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { selectFeedbackId } from '../store/footer.selectors';
+import { FeedbackRequest, FeedbackInterface } from '../footer.interface';
 
 describe('FooterService', () => {
   let service: FooterService;
@@ -38,9 +38,13 @@ describe('FooterService', () => {
     httpMock.verify();
   });
 
-  it('should send feedback via POST', () => {
-    const feedback: FeedbackInterface = { email: 'test@example.com' };
-    const mockResponse = { id: '12345' };
+  it('should create the service', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should send feedback via POST request', () => {
+    const feedback: FeedbackRequest = { email: 'test@example.com' };
+    const mockResponse: FeedbackInterface = { id: '12345' };
 
     service.submitFeedback(feedback).subscribe((response) => {
       expect(response).toEqual(mockResponse);
@@ -52,38 +56,35 @@ describe('FooterService', () => {
     req.flush(mockResponse);
   });
 
-  it('should send a PATCH request to update feedback using store feedbackId', () => {
-    const feedback: FeedbackInterface = { email: 'updated@example.com' };
+  it('should send a PATCH request to update feedback using feedbackId from store', () => {
+    const feedback: FeedbackRequest = { email: 'updated@example.com' };
 
     service.updateFeedback(feedback).subscribe((response) => {
       expect(response).toBeUndefined();
     });
 
     const req = httpMock.expectOne(
-      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`,
+      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`
     );
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual(feedback);
     req.flush(null);
   });
 
-  it('should emit reset event when emitReset is called', () => {
-    let resetEmitted = false;
-
+  it('should emit reset event when emitReset is called', (done) => {
     service.getResetObservable().subscribe((value) => {
-      resetEmitted = value;
+      expect(value).toBe(true);
+      done();
     });
 
     service.emitReset();
-
-    expect(resetEmitted).toBe(true);
   });
 
-  it('should update feedback with null ID if no feedback ID in store', () => {
+  it('should handle case where feedback ID is missing', () => {
     store.overrideSelector(selectFeedbackId, null);
     store.refreshState();
 
-    const feedback: FeedbackInterface = { email: 'updated@example.com' };
+    const feedback: FeedbackRequest = { email: 'updated@example.com' };
 
     service.updateFeedback(feedback).subscribe({
       error: (error) => {

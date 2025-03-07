@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
 import { formField } from '../../../utilities/helper-function';
-import { FeedbackInterface, FeedbackRequest } from '../../footer.interface';
+import { FeedbackRequest } from '../../footer.interface';
 import { FooterService } from '../../service/footer.service';
 import { beginUpdateFeedback } from '../../store/footer.actions';
 import {
@@ -51,7 +51,7 @@ export class ThankYouFeedbackComponent {
     if (this.contactForm.invalid) {
       return;
     }
-    this.store.dispatch(beginUpdateFeedback(this.contactFormValues));
+    this.store.dispatch(beginUpdateFeedback({feedback:this.contactFormValues}));
   }
   public get contactFormValues(): FeedbackRequest {
     return {

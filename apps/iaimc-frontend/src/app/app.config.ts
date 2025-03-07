@@ -18,7 +18,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/footer.reducer';
+
 import {
   AVAILABLE_LANGUAGE_CODES,
   LANGUAGE_LOCALE_MAPPING,
@@ -29,6 +29,7 @@ import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { appReducer } from './app.reducer';
 import { excludeKeys } from '@ngrx-addons/common';
+import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
