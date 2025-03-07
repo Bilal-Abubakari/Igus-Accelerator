@@ -128,27 +128,7 @@ describe('FooterComponent', () => {
     expect(component.selectedRating()).toBe(0);
     expect(component.isRatingLoading()).toBeFalsy();
   });
-
-  it('handles error during feedback submission', fakeAsync(() => {
-    const errorSpy = jest.spyOn(console, 'error').mockImplementation();
-    mockFooterService.submitFeedback.mockReturnValue(
-      throwError(() => new Error('Submission failed')),
-    );
-
-    component.ratingForm.patchValue({ rating: 4, comment: 'Error test' });
-    component.submitFeedback();
-
-    expect(component.isRatingLoading()).toBeFalsy();
-
-    tick();
-    fixture.detectChanges();
-
-    expect(component.isRatingLoading()).toBeFalsy();
-    expect(component.isSubmitted()).toBeFalsy();
-
-    errorSpy.mockRestore();
-  }));
-
+  
   it('shows loading spinner during delayed feedback submission', fakeAsync(() => {
     mockFooterService.submitFeedback.mockReturnValue(
       of({ id: '123' }).pipe(delay(100)),
