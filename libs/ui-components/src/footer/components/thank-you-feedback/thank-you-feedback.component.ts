@@ -48,12 +48,11 @@ export class ThankYouFeedbackComponent {
   }
 
   public onSubmitEmail() {
-    if (this.contactForm.invalid) {
+    const email = this.contactFormValues.email;
+    if (!email) {
       return;
     }
-    this.store.dispatch(
-      beginUpdateFeedback({ feedback: this.contactFormValues }),
-    );
+    this.store.dispatch(beginUpdateFeedback({email}));
   }
   public get contactFormValues(): FeedbackRequest {
     return {

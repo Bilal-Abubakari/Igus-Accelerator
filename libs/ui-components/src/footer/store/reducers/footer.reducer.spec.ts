@@ -31,7 +31,7 @@ describe('Footer Reducer', () => {
 
   it('should start feedback update by setting isFeedbackLoading to true', () => {
     const action = FooterActions.beginUpdateFeedback({
-      feedback: { email: 'test@example.com' },
+      email: 'test@example.com',
     });
     const newState = footerReducer(initialFooterState, action);
 
