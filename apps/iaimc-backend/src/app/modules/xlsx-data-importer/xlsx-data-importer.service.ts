@@ -89,8 +89,10 @@ export class XLSXDataImporterService {
   }
 
   private splitCSVLine(line: string): string[] {
-    const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
-    return line.split(regex).map((value) => value.replace(/(^")|("$)/g, ''));
+    const regex = /,(?=(?:[^"]*"[^"]*")*(?![^"]*"))/;
+    return line
+      .split(regex)
+      .map((field) => field.trim().replace(/^"(.*)"$/, '$1'));
   }
 
   private composeMaterialData(
