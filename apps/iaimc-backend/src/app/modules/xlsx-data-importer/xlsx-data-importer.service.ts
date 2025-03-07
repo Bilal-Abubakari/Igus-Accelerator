@@ -14,6 +14,7 @@ import {
   readFileContents,
   saveFile,
 } from '../../common/utils/helpers';
+import Papa, { ParseResult } from 'papaparse';
 
 const LOGGER_SCOPE = 'CSV Importer Service';
 
@@ -89,8 +90,12 @@ export class XLSXDataImporterService {
   }
 
   private splitCSVLine(line: string): string[] {
-    const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
-    return line.split(regex).map((value) => value.replace(/(^")|("$)/g, ''));
+    const result: ParseResult<string[]> = Papa.parse(line, {
+      delimiter: ',',
+      quoteChar: '"',
+      escapeChar: '\\',
+    });
+    return result.data[0];
   }
 
   private composeMaterialData(
