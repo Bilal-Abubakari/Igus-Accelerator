@@ -64,7 +64,7 @@ describe('FooterService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`
+      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`,
     );
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual(feedback);

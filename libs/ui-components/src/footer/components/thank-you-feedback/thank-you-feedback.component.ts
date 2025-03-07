@@ -51,7 +51,9 @@ export class ThankYouFeedbackComponent {
     if (this.contactForm.invalid) {
       return;
     }
-    this.store.dispatch(beginUpdateFeedback({feedback:this.contactFormValues}));
+    this.store.dispatch(
+      beginUpdateFeedback({ feedback: this.contactFormValues }),
+    );
   }
   public get contactFormValues(): FeedbackRequest {
     return {

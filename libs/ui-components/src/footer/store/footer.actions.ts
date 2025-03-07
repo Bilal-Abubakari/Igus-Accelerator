@@ -4,7 +4,7 @@ import { FeedbackRequest } from '../footer.interface';
 export const BEGIN_SUBMIT_FEEDBACK = '[FEEDBACK] begin submit feedback.';
 export const beginSubmitFeedback = createAction(
   BEGIN_SUBMIT_FEEDBACK,
-  props<{feedback: FeedbackRequest}>(),
+  props<{ feedback: FeedbackRequest }>(),
 );
 
 export const SUBMIT_FEEDBACK_SUCCESS = '[FEEDBACK] submit feedback success.';

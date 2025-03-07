@@ -3,9 +3,10 @@ import { initialFooterState } from '../footer.state';
 import { footerReducer } from './footer.reducer';
 
 describe('Footer Reducer', () => {
-
   it('should start feedback submission by setting isFeedbackLoading to true', () => {
-    const action = FooterActions.beginSubmitFeedback({ feedback: { email: 'test@example.com' } });
+    const action = FooterActions.beginSubmitFeedback({
+      feedback: { email: 'test@example.com' },
+    });
     const newState = footerReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(true);
@@ -29,11 +30,12 @@ describe('Footer Reducer', () => {
   });
 
   it('should start feedback update by setting isFeedbackLoading to true', () => {
-    const action = FooterActions.beginUpdateFeedback({ feedback: { email: 'test@example.com' } });
+    const action = FooterActions.beginUpdateFeedback({
+      feedback: { email: 'test@example.com' },
+    });
     const newState = footerReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(true);
-
   });
 
   it('should handle successful feedback update', () => {
@@ -46,11 +48,12 @@ describe('Footer Reducer', () => {
 
   it('should handle feedback update failure', () => {
     const errorMessage = 'Failed to update feedback';
-    const action = FooterActions.updateFeedbackFailure({ message: errorMessage });
+    const action = FooterActions.updateFeedbackFailure({
+      message: errorMessage,
+    });
     const newState = footerReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(false);
     expect(newState.isEmailUpdated).toBe(false);
   });
-
 });
