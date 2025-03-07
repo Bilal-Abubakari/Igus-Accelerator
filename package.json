@@ -18,6 +18,7 @@
     "test:backend-c": " nx test iaimc-backend --no-cloud --coverage ",
     "test:all": "nx run-many --target=test --no-cloud --all",
     "test:all-c": "nx run-many --target=test --no-cloud --coverage --all --skip-nx-cache",
+    "import-materials": "tsx ./apps/iaimc-backend/src/app/common/scripts/materials-data-importer.script.ts",
     "render:build": "npx yarn install --frozen-lockfile --ignore-scripts && npx yarn nx build iaimc-backend --parallel=1 --skip-nx-cache"
   },
   "private": true,
@@ -111,6 +112,7 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
+    "tsx": "^4.19.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.19.0",
     "webpack-cli": "^5.1.4"

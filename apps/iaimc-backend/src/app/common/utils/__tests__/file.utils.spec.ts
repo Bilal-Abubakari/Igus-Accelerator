@@ -1,13 +1,8 @@
 import { Logger } from '@nestjs/common';
-import { existsSync, readFileSync, writeFile } from 'fs';
+import { existsSync, readFileSync, writeFile, writeFileSync } from 'fs';
 import XLSX from 'xlsx';
-import {
-  checkFileExistence,
-  convertXLSXToCSV,
-  customLogger,
-  readFileContents,
-  saveFile,
-} from '../helpers';
+import { checkFileExistence, readFileContents, saveFile } from '../file.utils';
+import { customLogger, convertXLSXToCSV } from '../general.utils';
 
 jest.mock('fs');
 
@@ -70,11 +65,9 @@ describe('Utility functions', () => {
 
       saveFile(filePath, fileContents);
 
-      expect(writeFile).toHaveBeenCalledWith(
-        filePath,
-        fileContents,
-        expect.any(Function),
-      );
+      expect(writeFileSync).toHaveBeenCalledWith(filePath, fileContents, {
+        encoding: 'utf-8',
+      });
     });
   });
 

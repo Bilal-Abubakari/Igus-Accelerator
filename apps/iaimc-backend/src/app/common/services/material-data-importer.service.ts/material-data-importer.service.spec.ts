@@ -1,29 +1,35 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { JSON_ASSETS_FOLDER } from '../../common/constants';
-import * as helpers from '../../common/utils/helpers';
-import { XLSXDataImporterService } from './xlsx-data-importer.service';
+import * as fileUtilHelpers from '../../utils/file.utils';
+import * as generalUtilHelpers from '../../utils/general.utils';
+import {
+  JSON_ASSETS_FOLDER,
+  MaterialDataImporterService,
+} from './material-data-importer.service';
 
-jest.mock('../../common/utils/helpers');
+jest.mock('../../utils/file.utils');
+jest.mock('../../utils/general.utils');
 
 jest.mock('path', () => ({
   join: jest.fn().mockImplementation((...args) => args.join('/')),
 }));
 
-describe('XLSX Data Importer Service', () => {
-  let service: XLSXDataImporterService;
+describe('Materials Data Importer Service', () => {
+  let service: MaterialDataImporterService;
 
   const csvFileName = 'materials.csv';
   const jsonFileName = 'materials.json';
   const jsonFilePath = `${JSON_ASSETS_FOLDER}/${jsonFileName}`;
-  const successfulImportMessage = 'Material csv data successfully imported';
+  const successfulImportMessage = 'Materials data successfully imported';
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [XLSXDataImporterService],
+      providers: [MaterialDataImporterService],
     }).compile();
 
-    service = module.get<XLSXDataImporterService>(XLSXDataImporterService);
+    service = module.get<MaterialDataImporterService>(
+      MaterialDataImporterService,
+    );
 
     jest.clearAllMocks();
   });
@@ -34,13 +40,13 @@ describe('XLSX Data Importer Service', () => {
     csvData?: string;
     existingJsonData?: object[];
   }): void => {
-    (helpers.checkFileExistence as jest.Mock).mockReturnValue(
+    (fileUtilHelpers.checkFileExistence as jest.Mock).mockReturnValue(
       options.fileExists ?? true,
     );
-    (helpers.readFileContents as jest.Mock).mockReturnValue(
+    (fileUtilHelpers.readFileContents as jest.Mock).mockReturnValue(
       options.fileContent ?? JSON.stringify(options.existingJsonData ?? []),
     );
-    (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(
+    (generalUtilHelpers.convertXLSXToCSV as jest.Mock).mockReturnValue(
       options.csvData ?? '',
     );
   };
@@ -80,16 +86,18 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData, existingJsonData });
 
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedMergedData);
-      });
+      (fileUtilHelpers.saveFile as jest.Mock).mockImplementation(
+        (path, data) => {
+          expect(data).toEqual(expectedMergedData);
+        },
+      );
 
       const result = service.importMaterialsXLSXDataToJson(csvFileName);
 
       expect(result).toEqual({
         message: successfulImportMessage,
       });
-      expect(helpers.saveFile).toHaveBeenCalledWith(
+      expect(fileUtilHelpers.saveFile).toHaveBeenCalledWith(
         jsonFilePath,
         expectedMergedData,
       );
@@ -109,16 +117,21 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData, fileExists: false });
 
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedData);
-      });
+      (fileUtilHelpers.saveFile as jest.Mock).mockImplementation(
+        (path, data) => {
+          expect(data).toEqual(expectedData);
+        },
+      );
 
       const result = service.importMaterialsXLSXDataToJson(csvFileName);
 
       expect(result).toEqual({
         message: successfulImportMessage,
       });
-      expect(helpers.saveFile).toHaveBeenCalledWith(jsonFilePath, expectedData);
+      expect(fileUtilHelpers.saveFile).toHaveBeenCalledWith(
+        jsonFilePath,
+        expectedData,
+      );
     });
 
     it('should handle merging data with duplicate IDs', () => {
@@ -130,16 +143,18 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData, existingJsonData });
 
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedMergedData);
-      });
+      (fileUtilHelpers.saveFile as jest.Mock).mockImplementation(
+        (path, data) => {
+          expect(data).toEqual(expectedMergedData);
+        },
+      );
 
       const result = service.importMaterialsXLSXDataToJson(csvFileName);
 
       expect(result).toEqual({
         message: successfulImportMessage,
       });
-      expect(helpers.saveFile).toHaveBeenCalledWith(
+      expect(fileUtilHelpers.saveFile).toHaveBeenCalledWith(
         jsonFilePath,
         expectedMergedData,
       );
@@ -160,9 +175,11 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData });
 
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedData);
-      });
+      (fileUtilHelpers.saveFile as jest.Mock).mockImplementation(
+        (path, data) => {
+          expect(data).toEqual(expectedData);
+        },
+      );
     });
 
     it('should throw an exception if csv data has missing fields', () => {
@@ -171,7 +188,7 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData });
 
-      const customLoggerSpy = jest.spyOn(helpers, 'customLogger');
+      const customLoggerSpy = jest.spyOn(generalUtilHelpers, 'customLogger');
 
       expect(() => {
         service.importMaterialsXLSXDataToJson('materials.csv');
@@ -179,7 +196,7 @@ describe('XLSX Data Importer Service', () => {
 
       expect(customLoggerSpy).toHaveBeenCalledWith(
         errorMessage,
-        'CSV Importer Service',
+        'Materials Importer Service',
         'error',
       );
     });
@@ -193,16 +210,21 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData });
 
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedData);
-      });
+      (fileUtilHelpers.saveFile as jest.Mock).mockImplementation(
+        (path, data) => {
+          expect(data).toEqual(expectedData);
+        },
+      );
 
       const result = service.importMaterialsXLSXDataToJson(csvFileName);
 
       expect(result).toEqual({
         message: successfulImportMessage,
       });
-      expect(helpers.saveFile).toHaveBeenCalledWith(jsonFilePath, expectedData);
+      expect(fileUtilHelpers.saveFile).toHaveBeenCalledWith(
+        jsonFilePath,
+        expectedData,
+      );
     });
 
     it('should construct the correct jsonFileName from xlsxFile if jsonOutputFile is not provided', () => {
@@ -211,40 +233,19 @@ describe('XLSX Data Importer Service', () => {
 
       setupMocks({ csvData });
 
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedData);
-      });
+      (fileUtilHelpers.saveFile as jest.Mock).mockImplementation(
+        (path, data) => {
+          expect(data).toEqual(expectedData);
+        },
+      );
 
       const result = service.importMaterialsXLSXDataToJson(csvFileName);
 
       expect(result).toEqual({
         message: successfulImportMessage,
       });
-      expect(helpers.saveFile).toHaveBeenCalledWith(jsonFilePath, expectedData);
-    });
-
-    it('should use the provided jsonOutputFile if available', () => {
-      const csvData = `id,name,type\n1,Material A,Type A`;
-      const customJsonFileName = 'custom-materials.json';
-      const customJsonFilePath = `${JSON_ASSETS_FOLDER}/${customJsonFileName}`;
-      const expectedData = [{ id: 1, name: 'Material A', type: 'Type A' }];
-
-      setupMocks({ csvData });
-
-      (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
-        expect(data).toEqual(expectedData);
-      });
-
-      const result = service.importMaterialsXLSXDataToJson(
-        csvFileName,
-        customJsonFileName,
-      );
-
-      expect(result).toEqual({
-        message: successfulImportMessage,
-      });
-      expect(helpers.saveFile).toHaveBeenCalledWith(
-        customJsonFilePath,
+      expect(fileUtilHelpers.saveFile).toHaveBeenCalledWith(
+        jsonFilePath,
         expectedData,
       );
     });

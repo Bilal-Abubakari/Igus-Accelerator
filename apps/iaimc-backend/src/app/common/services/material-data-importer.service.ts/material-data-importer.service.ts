@@ -1,41 +1,43 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import Papa, { ParseResult } from 'papaparse';
 import path from 'path';
-import { XLSX_ASSETS_FOLDER, JSON_ASSETS_FOLDER } from '../../common/constants';
 import {
-  ResistanceLevel,
   InjectionMoldingMaterial,
   InjectionMoldingMaterialPropertyValueType,
+  ResistanceLevel,
   ResponseObject,
-} from '../../common/types';
+} from '../../types';
 import {
   checkFileExistence,
-  convertXLSXToCSV,
-  customLogger,
   readFileContents,
   saveFile,
-} from '../../common/utils/helpers';
-import Papa, { ParseResult } from 'papaparse';
+} from '../../utils/file.utils';
+import { convertXLSXToCSV, customLogger } from '../../utils/general.utils';
 
-const LOGGER_SCOPE = 'CSV Importer Service';
+const LOGGER_SCOPE = 'Materials Importer Service';
+
+export const XLSX_ASSETS_FOLDER = path.join(
+  __dirname,
+  '../../../../assets/data/xlsx',
+);
+export const JSON_ASSETS_FOLDER = path.join(
+  __dirname,
+  '../../../../assets/data/json',
+);
 
 @Injectable()
-export class XLSXDataImporterService {
+export class MaterialDataImporterService {
   /**
    * Loads a provided csv file and converts it to json.
    * If the json file already exists, its updated or modified with the new data.
    * @param xlsxFile
-   * @param jsonOutputFile
    */
-  public importMaterialsXLSXDataToJson(
-    xlsxFile: string,
-    jsonOutputFile?: string,
-  ): ResponseObject {
+  public importMaterialsXLSXDataToJson(xlsxFile: string): ResponseObject {
     const absoluteXLSXFilePath = path.join(XLSX_ASSETS_FOLDER, xlsxFile);
     checkFileExistence(absoluteXLSXFilePath);
 
-    // Read csv file contents and convert to json
-
     const csvData = convertXLSXToCSV(absoluteXLSXFilePath);
+
     if (!csvData)
       throw new InternalServerErrorException('Could not import materials data');
 
@@ -63,7 +65,7 @@ export class XLSXDataImporterService {
       );
     }
 
-    const jsonFileName = jsonOutputFile ?? xlsxFile.split('.')[0] + '.json';
+    const jsonFileName = xlsxFile.split('.')[0] + '.json';
     const jsonFilePath = path.join(JSON_ASSETS_FOLDER, jsonFileName);
 
     // Check if json file already exists
@@ -85,7 +87,7 @@ export class XLSXDataImporterService {
     this.saveJsonOutput(mergedMaterialsData, jsonFileName);
 
     return {
-      message: 'Material csv data successfully imported',
+      message: 'Materials data successfully imported',
     };
   }
 

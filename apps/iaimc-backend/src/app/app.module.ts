@@ -8,7 +8,6 @@ import envConfig from './configurations/env.config';
 import { ContactFormModule } from './modules/contact-form/contact-form.module';
 import { FeedbackModule } from './modules/feedback/feedback.module';
 import { FileUploadModule } from './modules/file-upload/file-upload.module';
-import { XLSXDataImporterModule } from './modules/xlsx-data-importer/xlsx-data-importer.module';
 
 @Module({
   imports: [
@@ -17,7 +16,6 @@ import { XLSXDataImporterModule } from './modules/xlsx-data-importer/xlsx-data-i
     ConfigModule.forRoot(envConfig),
     TypeOrmModule.forRoot(databaseConfig().database),
     ContactFormModule,
-    XLSXDataImporterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
