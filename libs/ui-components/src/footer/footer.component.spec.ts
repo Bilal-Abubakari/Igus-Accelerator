@@ -128,7 +128,7 @@ describe('FooterComponent', () => {
     expect(component.selectedRating()).toBe(0);
     expect(component.isRatingLoading()).toBeFalsy();
   });
-  
+
   it('shows loading spinner during delayed feedback submission', fakeAsync(() => {
     mockFooterService.submitFeedback.mockReturnValue(
       of({ id: '123' }).pipe(delay(100)),
