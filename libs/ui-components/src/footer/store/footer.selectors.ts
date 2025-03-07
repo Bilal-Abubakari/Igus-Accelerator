@@ -7,20 +7,20 @@ export const selectFooterState =
 
 export const selectFeedbackLoading = createSelector(
   selectFooterState,
-  ({isFeedbackLoading}) => isFeedbackLoading,
+  ({ isFeedbackLoading }) => isFeedbackLoading,
 );
 
 export const selectFeedbackId = createSelector(
   selectFooterState,
-  ({feedbackId}) => feedbackId,
+  ({ feedbackId }) => feedbackId,
 );
 
 export const selectIsFeedbackSubmitted = createSelector(
   selectFooterState,
-  ({isFeedbackSubmitted}) => isFeedbackSubmitted,
+  ({ isFeedbackSubmitted }) => isFeedbackSubmitted,
 );
 
 export const selectIsEmailUpdated = createSelector(
   selectFooterState,
-  ({isEmailUpdated}) => isEmailUpdated,
+  ({ isEmailUpdated }) => isEmailUpdated,
 );

@@ -21,7 +21,7 @@ export const submitFeedbackFailure = createAction(SUBMIT_FEEDBACK_FAILURE);
 export const BEGIN_UPDATE_FEEDBACK = '[FEEDBACK] begin update feedback.';
 export const beginUpdateFeedback = createAction(
   BEGIN_UPDATE_FEEDBACK,
-  props<FeedbackRequest>()
+  props<FeedbackRequest>(),
 );
 
 export const UPDATE_FEEDBACK_SUCCESS = '[FEEDBACK] update feedback success.';

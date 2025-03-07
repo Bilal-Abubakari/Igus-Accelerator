@@ -105,9 +105,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     if (this.ratingForm.invalid) {
       return;
     }
-    this.store.dispatch(
-      beginSubmitFeedback(this.ratingFormValues ),
-    );
+    this.store.dispatch(beginSubmitFeedback(this.ratingFormValues));
   }
 
   public getField(field: string) {
