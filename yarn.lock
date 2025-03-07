@@ -2805,6 +2805,68 @@
   resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-11.0.0.tgz#b0f45d6902396db89e0ac1f4e738c2ff3407b794"
   integrity sha512-SOeUQl70Lb2OfhGkvnh4KXWlsd+zA08RuuQgT7kKbzivngxzSo1Oc7Usu5VxCxACQC9wc2l9esOHILSJeK7rJA==
 
+"@ngrx-addons/common@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx-addons/common/-/common-8.0.1.tgz#c06422f2a860cad40eff7c2f4b300b79929afdd6"
+  integrity sha512-kDYSaMZvdGTOowe68hCInZV3KQU1sy18VRDX0MnEc0D1Swae0q6xlgz4OGyiOSe33oqsfNVCOd8fJ2jzZmkFxw==
+  dependencies:
+    tslib "^2.3.0"
+
+"@ngrx-addons/persist-state@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx-addons/persist-state/-/persist-state-8.0.1.tgz#30e95955ac9ad8cd4f1436f8368c03ae889ee13e"
+  integrity sha512-CQpLOwxcTibrukI9ZH1QgoJlva2cjhtMCCHVloogm5QIqttQYOVf/SnKaiZzqsDQ4vZHIZkLmw2p5RLXWJGmgQ==
+  dependencies:
+    "@ngrx-addons/common" "^8.0.1"
+    tslib "^2.3.0"
+
+"@ngrx/component-store@^19.0.0":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/component-store/-/component-store-19.0.1.tgz#0b26b55c425e0c02290638a3babf5b3d1604fee1"
+  integrity sha512-H/UNz7TMVWF8RUNWwEhfGy6zR5vfMEnGlxcAr+CwxRTryx9H0dsBE6esM/Kj/Po9EOjMFnjiY32ccyOrPUfFWA==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/effects@^19.0.0":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-19.0.1.tgz#fc0009d50814f0382c17759e8b9f3412ac28aa79"
+  integrity sha512-q+eztS1zN1247BtUZ41gxhumj4wMmvtfdSMfkFEuu6zuA57Vbx8zitEsw9boqPGtP5E4Cj5HKJLSJrl2kgwgcQ==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/entity@^19.0.0":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-19.0.1.tgz#9174378807e46ed2a384c78a5239ab3ad115c86e"
+  integrity sha512-Dw6UhLi7tGVWb/pLgYI81k1fPxCIbCWMztGKj08e8fLWoMvTWYTbG5tFbOJNSa9D3gPmxsBbbS8VMNqcUgl7wQ==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/router-store@^19.0.0":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-19.0.1.tgz#7e98cdaee6d5f474de71312e0e08ca87c3fe13c8"
+  integrity sha512-JjmClGaP/ccdePoP1/4dJrymbOQPhtcJeyXXaZf5i5em2KQr8M9TeJAEQf8VA6uWbe6tnlo47WYVtNyX+CwYCQ==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/schematics@^19.0.0":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-19.0.1.tgz#776f7654145282b4868d71ece8793ad145b747e0"
+  integrity sha512-kH91X7zewB8niOeemk8NgbjnnW0crwqTl8gG2zZAySW3Q0yGnoPpVAc4Yxezm1/bKsLGLILvEAzzlQGKBrigVg==
+
+"@ngrx/store-devtools@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-19.0.1.tgz#76a98085fbbe9946d9d692a3420eb252115a5084"
+  integrity sha512-afvr6NHh12LpYrOH9JKKEEi/z2DHq/wJ45hRn3mrcRDArQTKpTl7V2eu0dYgjGItSRSeJ2drzzKGjccL61PPSg==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store@^19.0.0":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-19.0.1.tgz#65d74333c814ddf83e851ca5f99523ca00ebf746"
+  integrity sha512-+6eBLb+0rdJ856JRuKnvSzFxv1ISbYuX/OM12dMPf4wm+ddxjhyvi6tF8lPiNnaYb717PGNxXQzBFIGfIs4zGQ==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngtools/webpack@19.1.7":
   version "19.1.7"
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-19.1.7.tgz"
@@ -8177,6 +8239,13 @@ jake@^10.8.5:
     filelist "^1.0.4"
     minimatch "^3.1.2"
 
+jasmine-marbles@~0.9.1:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/jasmine-marbles/-/jasmine-marbles-0.9.2.tgz#5adfee5f72c7f24270687fa64a6e8a8613ffa841"
+  integrity sha512-T7RjG4fRsdiGGzbQZ6Kj39qYt6O1/KIcR4FkUNsD3DUGkd/AzpwzN+xtk0DXlLWEz5BaVdK1SzMgQDVw879c4Q==
+  dependencies:
+    lodash "^4.17.20"
+
 jest-changed-files@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/jest-changed-files/-/jest-changed-files-29.7.0.tgz"
@@ -8997,7 +9066,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   integrity sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==
 
-lodash@4.17.21, lodash@^4.17.14, lodash@^4.17.21:
+lodash@4.17.21, lodash@^4.17.14, lodash@^4.17.20, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
