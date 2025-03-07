@@ -1,12 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { FeedbackInterface } from '../footer.interface';
+import { FeedbackInterface, FeedbackRequest } from '../footer.interface';
 
 export const BEGIN_SUBMIT_FEEDBACK = '[FEEDBACK] begin submit feedback.';
 export const beginSubmitFeedback = createAction(
   BEGIN_SUBMIT_FEEDBACK,
-  props<{
-    feedback: FeedbackInterface;
-  }>(),
+  props<FeedbackRequest>(),
 );
 
 export const SUBMIT_FEEDBACK_SUCCESS = '[FEEDBACK] submit feedback success.';
@@ -23,9 +21,7 @@ export const submitFeedbackFailure = createAction(SUBMIT_FEEDBACK_FAILURE);
 export const BEGIN_UPDATE_FEEDBACK = '[FEEDBACK] begin update feedback.';
 export const beginUpdateFeedback = createAction(
   BEGIN_UPDATE_FEEDBACK,
-  props<{
-    email: FeedbackInterface;
-  }>(),
+  props<FeedbackRequest>()
 );
 
 export const UPDATE_FEEDBACK_SUCCESS = '[FEEDBACK] update feedback success.';

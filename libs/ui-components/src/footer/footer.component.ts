@@ -20,13 +20,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
+import { formField } from '../utilities/helper-function';
 import { atLeastOneFieldValidator } from '../validators/custom-validators/custom.validator';
 import { ThankYouFeedbackComponent } from './components/thank-you-feedback/thank-you-feedback.component';
-import { formField } from '../utilities/helper-function';
-import { FeedbackInterface } from './footer.interface';
+import { FeedbackRequest } from './footer.interface';
 import { FooterService } from './service/footer.service';
-import { Store } from '@ngrx/store';
 import { beginSubmitFeedback } from './store/footer.actions';
 import {
   selectFeedbackLoading,
@@ -106,7 +106,7 @@ export class FooterComponent implements OnInit, OnDestroy {
       return;
     }
     this.store.dispatch(
-      beginSubmitFeedback({ feedback: this.ratingFormValues }),
+      beginSubmitFeedback(this.ratingFormValues ),
     );
   }
 
@@ -114,7 +114,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     return formField(field, this.ratingForm);
   }
 
-  public get ratingFormValues(): FeedbackInterface {
+  public get ratingFormValues(): FeedbackRequest {
     return {
       rating: this.ratingForm.get('rating')?.value,
       comment: this.ratingForm.get('comment')?.value,

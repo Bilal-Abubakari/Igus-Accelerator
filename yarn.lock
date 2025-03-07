@@ -2977,6 +2977,21 @@
   resolved "https://registry.yarnpkg.com/@nestjs/typeorm/-/typeorm-11.0.0.tgz#b0f45d6902396db89e0ac1f4e738c2ff3407b794"
   integrity sha512-SOeUQl70Lb2OfhGkvnh4KXWlsd+zA08RuuQgT7kKbzivngxzSo1Oc7Usu5VxCxACQC9wc2l9esOHILSJeK7rJA==
 
+"@ngrx-addons/common@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx-addons/common/-/common-8.0.1.tgz#c06422f2a860cad40eff7c2f4b300b79929afdd6"
+  integrity sha512-kDYSaMZvdGTOowe68hCInZV3KQU1sy18VRDX0MnEc0D1Swae0q6xlgz4OGyiOSe33oqsfNVCOd8fJ2jzZmkFxw==
+  dependencies:
+    tslib "^2.3.0"
+
+"@ngrx-addons/persist-state@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx-addons/persist-state/-/persist-state-8.0.1.tgz#30e95955ac9ad8cd4f1436f8368c03ae889ee13e"
+  integrity sha512-CQpLOwxcTibrukI9ZH1QgoJlva2cjhtMCCHVloogm5QIqttQYOVf/SnKaiZzqsDQ4vZHIZkLmw2p5RLXWJGmgQ==
+  dependencies:
+    "@ngrx-addons/common" "^8.0.1"
+    tslib "^2.3.0"
+
 "@ngrx/component-store@^19.0.0":
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ngrx/component-store/-/component-store-19.0.1.tgz#0b26b55c425e0c02290638a3babf5b3d1604fee1"
@@ -3009,6 +3024,13 @@
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-19.0.1.tgz#776f7654145282b4868d71ece8793ad145b747e0"
   integrity sha512-kH91X7zewB8niOeemk8NgbjnnW0crwqTl8gG2zZAySW3Q0yGnoPpVAc4Yxezm1/bKsLGLILvEAzzlQGKBrigVg==
+
+"@ngrx/store-devtools@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-19.0.1.tgz#76a98085fbbe9946d9d692a3420eb252115a5084"
+  integrity sha512-afvr6NHh12LpYrOH9JKKEEi/z2DHq/wJ45hRn3mrcRDArQTKpTl7V2eu0dYgjGItSRSeJ2drzzKGjccL61PPSg==
+  dependencies:
+    tslib "^2.0.0"
 
 "@ngrx/store@^19.0.0":
   version "19.0.1"

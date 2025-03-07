@@ -13,13 +13,12 @@ export class FooterEffects {
   public submitFeedback = createEffect(() =>
     this.actions.pipe(
       ofType(FooterActions.beginSubmitFeedback),
-      switchMap(({ feedback }) =>
+      switchMap((feedback ) =>
         this.footerService.submitFeedback(feedback).pipe(
           map((response) =>
             FooterActions.submitFeedbackSuccess({ id: response.id }),
           ),
-          catchError((error) => {
-            console.log(error);
+          catchError(() => {
             return of(FooterActions.submitFeedbackFailure());
           }),
         ),
@@ -30,12 +29,11 @@ export class FooterEffects {
   public updateFeedback = createEffect(() =>
     this.actions.pipe(
       ofType(FooterActions.beginUpdateFeedback),
-      switchMap(({ email }) =>
+      switchMap(( email ) =>
         this.footerService.updateFeedback(email).pipe(
           tap(() => this.resetFooterSubject()),
           map(() => FooterActions.updateFeedbackSuccess()),
           catchError(({ error: { message } }) => {
-            console.error('Feedback update error:', message);
             return of(FooterActions.updateFeedbackFailure(message));
           }),
         ),

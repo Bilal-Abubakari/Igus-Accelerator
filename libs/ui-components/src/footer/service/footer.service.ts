@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Inject, Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { FeedbackInterface } from '../footer.interface';
+import { FeedbackInterface, FeedbackRequest } from '../footer.interface';
 import { Store } from '@ngrx/store';
 import { selectFeedbackId } from '../store/footer.selectors';
 
@@ -9,7 +9,6 @@ import { selectFeedbackId } from '../store/footer.selectors';
   providedIn: 'root',
 })
 export class FooterService {
-  private readonly FEEDBACK_ID_KEY = 'feedback_id';
   private readonly store = inject(Store);
   private readonly http = inject(HttpClient);
 
@@ -18,15 +17,15 @@ export class FooterService {
   private readonly feedbackId = this.store.selectSignal(selectFeedbackId);
 
   public submitFeedback(
-    feedback: FeedbackInterface,
-  ): Observable<{ id: string }> {
-    return this.http.post<{ id: string }>(
+    feedback: FeedbackRequest,
+  ): Observable<FeedbackInterface> {
+    return this.http.post<FeedbackInterface>(
       `${this.baseUrl}/user-feedback`,
       feedback,
     );
   }
 
-  public updateFeedback(feedback: FeedbackInterface): Observable<void> {
+  public updateFeedback(feedback: FeedbackRequest): Observable<void> {
     return this.http.patch<void>(
       `${this.baseUrl}/user-feedback/${this.feedbackId()}`,
       feedback,
