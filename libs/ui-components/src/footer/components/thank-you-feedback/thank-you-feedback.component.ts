@@ -16,7 +16,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { FeedbackInterface } from '../../footer.interface';
 import { FooterService } from '../../service/footer.service';
 import { formField } from '../../../utilities/helper-function';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-thank-you-feedback',
@@ -26,7 +25,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
     RouterLink,
     TranslocoPipe,
   ],
@@ -38,7 +36,6 @@ export class ThankYouFeedbackComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   public readonly footerService = inject(FooterService);
   public isSubmitted = signal(false);
-  public isSubmitLoading = signal<boolean>(false);
   private readonly subscription = new Subject<void>();
   public contactForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
@@ -57,21 +54,19 @@ export class ThankYouFeedbackComponent implements OnDestroy {
     if (this.contactForm.invalid) {
       return;
     }
-    this.isSubmitLoading.set(true);
     this.footerService
       .updateFeedback(this.contactFormValues)
       .pipe(takeUntil(this.subscription))
       .subscribe({
         next: () => {
           this.isSubmitted.set(true);
-          this.isSubmitLoading.set(false);
         },
         error: () => {
           this.isSubmitted.set(false);
-          this.isSubmitLoading.set(false);
         },
       });
   }
+
   public get contactFormValues(): FeedbackInterface {
     return {
       email: this.contactForm.get('email')?.value,

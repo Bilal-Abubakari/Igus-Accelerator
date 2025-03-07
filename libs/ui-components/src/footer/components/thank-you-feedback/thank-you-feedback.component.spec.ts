@@ -54,8 +54,6 @@ describe('ThankYouFeedbackComponent', () => {
     component.contactForm.setValue({ email: 'valid@example.com' });
 
     component.onSubmitEmail();
-
-    expect(component.isSubmitLoading()).toBe(false);
     expect(component.isSubmitted()).toBe(true);
     expect(footerService.updateFeedback).toHaveBeenCalledWith({
       email: 'valid@example.com',
@@ -70,7 +68,6 @@ describe('ThankYouFeedbackComponent', () => {
 
     component.onSubmitEmail();
 
-    expect(component.isSubmitLoading()).toBe(false);
     expect(component.isSubmitted()).toBe(false);
   });
   it('should return an empty string if email control value is null', () => {

@@ -114,19 +114,13 @@ mat-toolbar {
 
         mat-form-field {
           width: 100%;
+
           textarea {
-            color: var(--mat-sys-on-primary);
             resize: none;
           }
         }
       }
     }
-  }
-}
-
-@media only screen and (max-height: 700px) {
-  .form-group {
-    width: 70% !important;
   }
 }
 
