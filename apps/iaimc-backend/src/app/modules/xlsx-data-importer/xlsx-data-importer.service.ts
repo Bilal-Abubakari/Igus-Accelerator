@@ -1,0 +1,163 @@
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import path from 'path';
+import { XLSX_ASSETS_FOLDER, JSON_ASSETS_FOLDER } from '../../common/constants';
+import {
+  ChemicalResistanceLevel,
+  InjectionMoldingMaterial,
+  InjectionMoldingMaterialPropertyValueType,
+  ResponseObject,
+} from '../../common/types';
+import {
+  checkFileExistence,
+  convertXLSXToCSV,
+  customLogger,
+  readFileContents,
+  saveFile,
+} from '../../common/utils/helpers';
+
+const LOGGER_SCOPE = 'CSV Importer Service';
+
+@Injectable()
+export class XLSXDataImporterService {
+  /**
+   * Loads a provided csv file and converts it to json.
+   * If the json file already exists, its updated or modified with the new data.
+   * @param xlsxFile
+   * @param jsonOutputFile
+   */
+  public importMaterialsXLSXDataToJson(
+    xlsxFile: string,
+    jsonOutputFile?: string,
+  ): ResponseObject {
+    const absoluteXLSXFilePath = path.join(XLSX_ASSETS_FOLDER, xlsxFile);
+    checkFileExistence(absoluteXLSXFilePath);
+
+    // Read csv file contents and convert to json
+
+    const csvData = convertXLSXToCSV(absoluteXLSXFilePath);
+    if (!csvData)
+      throw new InternalServerErrorException('Could not import materials data');
+
+    const lines = csvData.split(/\r?\n/);
+    const objectKeys = lines[0].split(',');
+
+    const newMaterialsData: InjectionMoldingMaterial[] = [];
+
+    for (let lineNumber = 1; lineNumber < lines.length; lineNumber++) {
+      const line = lines[lineNumber];
+      if (!line) continue;
+
+      const values = this.splitCSVLine(line);
+      // Column and value fields must mach
+      if (values.length !== objectKeys.length) {
+        const errorMessage =
+          'Invalid csv contents. Some data fields are missing';
+        customLogger(errorMessage, LOGGER_SCOPE, 'error');
+        throw new InternalServerErrorException(errorMessage);
+      }
+
+      const materialData = this.composeMaterialData(objectKeys, values);
+      newMaterialsData.push(
+        materialData as unknown as InjectionMoldingMaterial,
+      );
+    }
+
+    const jsonFileName = jsonOutputFile ?? xlsxFile.split('.')[0] + '.json';
+    const jsonFilePath = path.join(JSON_ASSETS_FOLDER, jsonFileName);
+
+    // Check if json file already exists
+    let existingMaterialsData: InjectionMoldingMaterial[] = [];
+    if (checkFileExistence(jsonFilePath)) {
+      const existingJsonContents = readFileContents(jsonFilePath);
+      // If the contnts of the existing json is valid...
+      if (existingJsonContents)
+        existingMaterialsData = JSON.parse(existingJsonContents);
+    }
+
+    // Merge new data with existing data without duplications
+    const mergedMaterialsData = this.mergeMaterialsData(
+      existingMaterialsData,
+      newMaterialsData,
+    );
+
+    // Save json output
+    this.saveJsonOutput(mergedMaterialsData, jsonFileName);
+
+    return {
+      message: 'Material csv data successfully imported',
+    };
+  }
+
+  private splitCSVLine(line: string): string[] {
+    const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
+    return line.split(regex).map((value) => value.replace(/(^")|("$)/g, ''));
+  }
+
+  private composeMaterialData(
+    keys: string[],
+    values: string[],
+  ): InjectionMoldingMaterial[] {
+    // Using a Record here to allow dynamic property assignment since the keys are not known at compile time.
+    const materialData: Record<
+      string,
+      InjectionMoldingMaterialPropertyValueType
+    > = {};
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i].toLowerCase();
+
+      // The `chemicals` field is processed differently as it's a comma-separated a list of chemicals.
+      if (key === 'chemicals') {
+        const chemicals = values[i].split(',').map((chemical) => {
+          // The format of each chemical in the list is 'chem_name':'resistance'
+          const [name, resistance] = chemical.split(':');
+          return {
+            name,
+            resistance: resistance as ChemicalResistanceLevel,
+          };
+        });
+
+        materialData.chemicals = chemicals;
+      } else {
+        const value = values[i];
+
+        if (value === 'TRUE' || value === 'FALSE')
+          materialData[key] = value === 'TRUE';
+        else if (Number(value)) materialData[key] = Number(value);
+        else materialData[key] = values[i];
+      }
+    }
+
+    return materialData as unknown as InjectionMoldingMaterial[];
+  }
+
+  private mergeMaterialsData(
+    existingData: InjectionMoldingMaterial[],
+    newData: InjectionMoldingMaterial[],
+  ): InjectionMoldingMaterial[] {
+    const mergedData = [...existingData];
+
+    newData.forEach((newItem) => {
+      const existingItemIndex = mergedData.findIndex(
+        (item) => item.id === newItem.id,
+      );
+      if (existingItemIndex !== -1) {
+        // Update existing item
+        mergedData[existingItemIndex] = {
+          ...mergedData[existingItemIndex],
+          ...newItem,
+        };
+      } else {
+        // Add new item
+        mergedData.push(newItem);
+      }
+    });
+
+    return mergedData;
+  }
+
+  private saveJsonOutput(data: object, outputFileName: string): void {
+    const savePath = path.join(JSON_ASSETS_FOLDER, outputFileName);
+    saveFile(savePath, data);
+  }
+}
