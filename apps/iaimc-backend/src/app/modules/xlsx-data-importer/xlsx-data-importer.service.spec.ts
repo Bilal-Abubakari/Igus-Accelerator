@@ -13,6 +13,11 @@ jest.mock('path', () => ({
 describe('XLSX Data Importer Service', () => {
   let service: XLSXDataImporterService;
 
+  const csvFileName = 'materials.csv';
+  const jsonFileName = 'materials.json';
+  const jsonFilePath = `${JSON_ASSETS_FOLDER}/${jsonFileName}`;
+  const successfulImportMessage = 'Material csv data successfully imported';
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [XLSXDataImporterService],
@@ -23,15 +28,26 @@ describe('XLSX Data Importer Service', () => {
     jest.clearAllMocks();
   });
 
+  const setupMocks = (options: {
+    fileExists?: boolean;
+    fileContents?: string;
+    csvData?: string;
+    existingJsonData?: object[];
+  }): void => {
+    (helpers.checkFileExistence as jest.Mock).mockReturnValue(
+      options.fileExists ?? true,
+    );
+    (helpers.readFileContents as jest.Mock).mockReturnValue(
+      options.fileContents ?? JSON.stringify(options.existingJsonData ?? []),
+    );
+    (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(
+      options.csvData ?? '',
+    );
+  };
+
   describe('Import materials XLSX data to json', () => {
-    const csvFileName = 'materials.csv';
-    const jsonFileName = 'materials.json';
-    const jsonFilePath = `${JSON_ASSETS_FOLDER}/${jsonFileName}`;
-
-    const successfulImportMessage = 'Material csv data successfully imported';
-
     it('should throw an exception if the csv file does not exist', () => {
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(false);
+      setupMocks({ fileExists: false });
 
       expect(() => {
         service.importMaterialsXLSXDataToJson(csvFileName);
@@ -39,8 +55,7 @@ describe('XLSX Data Importer Service', () => {
     });
 
     it('should throw an exception if the csv file cannot be read', () => {
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(undefined);
+      setupMocks({ fileContents: undefined });
 
       expect(() => {
         service.importMaterialsXLSXDataToJson(csvFileName);
@@ -48,10 +63,7 @@ describe('XLSX Data Importer Service', () => {
     });
 
     it('should throw an exception if csv content is invalid', () => {
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(
-        'id,name,type\n1,Material A',
-      );
+      setupMocks({ csvData: 'id,name,type\n1,Material A' });
 
       expect(() => {
         service.importMaterialsXLSXDataToJson(csvFileName);
@@ -66,11 +78,8 @@ describe('XLSX Data Importer Service', () => {
         { id: 2, name: 'Material B', type: 'Type B' },
       ];
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(
-        JSON.stringify(existingJsonData),
-      );
+      setupMocks({ csvData, existingJsonData });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedMergedData);
       });
@@ -87,8 +96,7 @@ describe('XLSX Data Importer Service', () => {
     });
 
     it('should throw an exception if csv data is empty', () => {
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue('');
+      setupMocks({ csvData: '' });
 
       expect(() => {
         service.importMaterialsXLSXDataToJson(csvFileName);
@@ -99,10 +107,8 @@ describe('XLSX Data Importer Service', () => {
       const csvData = `id,name,type\n1,Material A,Type A`;
       const expectedData = [{ id: 1, name: 'Material A', type: 'Type A' }];
 
-      (helpers.checkFileExistence as jest.Mock)
-        .mockReturnValueOnce(true)
-        .mockReturnValueOnce(false);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
+      setupMocks({ csvData, fileExists: false });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedData);
       });
@@ -122,11 +128,8 @@ describe('XLSX Data Importer Service', () => {
         { id: 1, name: 'Material A', type: 'Type A' },
       ];
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(
-        JSON.stringify(existingJsonData),
-      );
+      setupMocks({ csvData, existingJsonData });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedMergedData);
       });
@@ -155,8 +158,8 @@ describe('XLSX Data Importer Service', () => {
         },
       ];
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
+      setupMocks({ csvData });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedData);
       });
@@ -166,8 +169,7 @@ describe('XLSX Data Importer Service', () => {
       const csvData = `id,name,type\n1,Material A`;
       const errorMessage = 'Invalid csv contents. Some data fields are missing';
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
+      setupMocks({ csvData });
 
       const customLoggerSpy = jest.spyOn(helpers, 'customLogger');
 
@@ -189,9 +191,8 @@ describe('XLSX Data Importer Service', () => {
         { id: 2, name: 'Material B', type: 'Type B' },
       ];
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(undefined);
+      setupMocks({ csvData });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedData);
       });
@@ -208,9 +209,8 @@ describe('XLSX Data Importer Service', () => {
       const csvData = `id,name,type\n1,Material A,Type A`;
       const expectedData = [{ id: 1, name: 'Material A', type: 'Type A' }];
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(undefined);
+      setupMocks({ csvData });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedData);
       });
@@ -229,9 +229,8 @@ describe('XLSX Data Importer Service', () => {
       const customJsonFilePath = `${JSON_ASSETS_FOLDER}/${customJsonFileName}`;
       const expectedData = [{ id: 1, name: 'Material A', type: 'Type A' }];
 
-      (helpers.checkFileExistence as jest.Mock).mockReturnValue(true);
-      (helpers.convertXLSXToCSV as jest.Mock).mockReturnValue(csvData);
-      (helpers.readFileContents as jest.Mock).mockReturnValue(undefined);
+      setupMocks({ csvData });
+
       (helpers.saveFile as jest.Mock).mockImplementation((path, data) => {
         expect(data).toEqual(expectedData);
       });
