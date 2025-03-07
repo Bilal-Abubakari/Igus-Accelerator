@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { ContactFormService } from './contact-form.service';
 import { ContactFormData } from '../contact-form.interface';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ContactFormService', () => {
   let service: ContactFormService;

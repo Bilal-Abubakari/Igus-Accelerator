@@ -96,7 +96,7 @@
             <mat-select formControlName="country" required>
               @for (country of countries; track country.code) {
                 <mat-option [value]="country.code">
-                  {{ country.name }} ({{ country.code }})
+                  {{ country.name }}
                 </mat-option>
               }
             </mat-select>

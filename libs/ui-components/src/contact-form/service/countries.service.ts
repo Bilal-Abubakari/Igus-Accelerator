@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { Country } from '../contact-form.interface';
+import CountryData from '../../assets/countries-api.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountryService {
-  private readonly countriesEndpoint = 'assets/countries-data.json';
-
   private readonly fallbackCountries: Country[] = [
     { code: 'DE', name: 'Germany' },
     { code: 'US', name: 'United States' },
     { code: 'GB', name: 'United Kingdom' },
   ];
 
-  constructor(private readonly http: HttpClient) {}
+  $countriesData: Observable<{ countries: Country[] }> = of(CountryData);
 
   public getCountries(): Observable<Country[]> {
-    return this.http.get<Country[]>(this.countriesEndpoint).pipe(
+    return this.$countriesData.pipe(
+      map((data) => data.countries),
       catchError(() => {
         return of(this.fallbackCountries);
       }),

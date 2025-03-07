@@ -53,7 +53,7 @@ export class ContactFormComponent implements OnInit {
 
   private static readonly MAX_FILE_SIZE_MB = 10;
 
-  public errorMessages = {
+  public readonly errorMessages = {
     required: 'This field is required',
     textOnly: 'Invalid text format',
     email: 'Invalid email format',
