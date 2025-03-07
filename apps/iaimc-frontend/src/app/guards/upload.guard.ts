@@ -1,16 +1,18 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { UploadStateService } from '../../../../../libs/ui-components/src/navbar/service/upload-state.service';
+import { ModelUploadState } from 'libs/ui-components/src/model/components/model-upload/services/model-upload-state.service';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class UploadGuard implements CanActivate {
-  private readonly uploadState = inject(UploadStateService);
-  private readonly router = inject(Router);
+@Injectable({ providedIn: 'root' })
+export class ModelUploadGuard implements CanActivate {
+  private modelUploadstate = inject(ModelUploadState);
+  private router = inject(Router);
 
   public canActivate(): boolean {
-    if (!this.uploadState.hasUploadedFile()) {
+    const hasUploadedModel = computed(() =>
+      this.modelUploadstate.hasUploadedModel(),
+    )();
+
+    if (!hasUploadedModel) {
       this.router.navigate(['/']);
       return false;
     }

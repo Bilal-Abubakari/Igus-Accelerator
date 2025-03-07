@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 
-$navbar-height: 50px;
 $navbar-horizontal-padding: 32px;
 $shadow-color: rgba(0, 0, 0, 0.2);
 
@@ -17,7 +16,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   );
 
   & {
-    height: $navbar-height;
+    height: var(--navbar-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,7 +98,7 @@ menu {
   display: none;
   position: fixed;
   z-index: 50;
-  top: $navbar-height;
+  top: var(--navbar-height);
   right: $navbar-horizontal-padding;
   width: 260px;
   padding: 8px 0;
