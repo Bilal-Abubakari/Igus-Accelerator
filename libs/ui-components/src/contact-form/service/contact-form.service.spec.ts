@@ -10,7 +10,9 @@ describe('ContactFormService', () => {
   let service: ContactFormService;
   let httpMock: HttpTestingController;
   const baseUrl = 'https://example.com/api';
-
+  
+  let mockContactFormData: ContactFormData;
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -19,9 +21,21 @@ describe('ContactFormService', () => {
         { provide: 'BASE_API_URL', useValue: baseUrl },
       ],
     });
-
     service = TestBed.inject(ContactFormService);
     httpMock = TestBed.inject(HttpTestingController);
+    
+    mockContactFormData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com',
+      company: 'Example Inc.',
+      postalCode: '12345',
+      country: 'USA',
+      telephone: '1234567890',
+      message: 'Test message',
+      agreement: true,
+      file: null,
+    };
   });
 
   afterEach(() => {
@@ -32,146 +46,97 @@ describe('ContactFormService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should submit contact form successfully', () => {
-    const mockContactFormData: ContactFormData = {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      company: 'Example Inc.',
-      postalCode: '12345',
-      country: 'USA',
-      telephone: '1234567890',
-      message: 'Test message',
-      agreement: true,
-      file: null,
-    };
-
-    service.submitContactForm(mockContactFormData).subscribe({
+  const testFormSubmission = (
+    formData: ContactFormData, 
+    additionalChecks?: (formDataEntries: Record<string, string | Blob>) => void
+  ) => {
+    service.submitContactForm(formData).subscribe({
       next: (response) => {
-        expect(response).toEqual(mockContactFormData);
+        expect(response).toEqual(formData);
       },
     });
-
+    
     const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body instanceof FormData).toBeTruthy();
-
+    
     const formDataEntries: Record<string, string | Blob> = {};
     req.request.body.forEach((value: string | Blob, key: string): void => {
       formDataEntries[key] = value;
     });
+    
+    if (additionalChecks) {
+      additionalChecks(formDataEntries);
+    }
+    
+    req.flush(formData);
+    return { req, formDataEntries };
+  };
 
-    expect(formDataEntries['firstName']).toBe('John');
-    expect(formDataEntries['email']).toBe('john@example.com');
-
-    req.flush(mockContactFormData);
+  it('should submit contact form successfully', () => {
+    testFormSubmission(mockContactFormData, (formDataEntries) => {
+      expect(formDataEntries['firstName']).toBe('John');
+      expect(formDataEntries['email']).toBe('john@example.com');
+    });
   });
 
   it('should handle form submission error', () => {
-    const mockContactFormData: ContactFormData = {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      company: 'Example Inc.',
-      postalCode: '12345',
-      country: 'USA',
-      telephone: '1234567890',
-      message: 'Test message',
-      agreement: true,
-      file: null,
-    };
-
     service.submitContactForm(mockContactFormData).subscribe({
       error: (error) => {
         expect(error.message).toBe('Failed to submit form. Try again.');
       },
     });
-
+    
     const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
     req.error(new ErrorEvent('Network error'));
   });
 
   it('should only append non-null and non-undefined values to FormData', () => {
-    const mockContactFormData: ContactFormData = {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
+    const partialFormData: ContactFormData = {
+      ...mockContactFormData,
       company: '',
       postalCode: '',
       country: '',
       telephone: undefined,
-      message: 'Test message',
       agreement: false,
-      file: null,
     };
-
-    service.submitContactForm(mockContactFormData).subscribe({
-      next: (response) => {
-        expect(response).toEqual(mockContactFormData);
-      },
+    
+    testFormSubmission(partialFormData, (formDataEntries) => {
+      expect(Object.keys(formDataEntries)).toEqual([
+        'firstName',
+        'lastName',
+        'email',
+        'company',
+        'postalCode',
+        'country',
+        'message',
+        'agreement',
+      ]);
+      expect(formDataEntries['telephone']).toBeUndefined();
+      expect(formDataEntries['file']).toBeUndefined();
     });
-
-    const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
-    const formDataEntries: Record<string, string | Blob> = {};
-    req.request.body.forEach((value: string | Blob, key: string): void => {
-      formDataEntries[key] = value;
-    });
-
-    expect(Object.keys(formDataEntries)).toEqual([
-      'firstName',
-      'lastName',
-      'email',
-      'company',
-      'postalCode',
-      'country',
-      'message',
-      'agreement',
-    ]);
-    expect(formDataEntries['telephone']).toBeUndefined();
-    expect(formDataEntries['file']).toBeUndefined();
-
-    req.flush(mockContactFormData);
   });
 
   it('should append file to FormData if provided', () => {
     const mockFile = new File(['file content'], 'test.txt', {
       type: 'text/plain',
     });
-    const mockContactFormData: ContactFormData = {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      company: 'Example Inc.',
-      postalCode: '12345',
-      country: 'USA',
-      telephone: '1234567890',
-      message: 'Test message',
-      agreement: true,
+    
+    const formDataWithFile: ContactFormData = {
+      ...mockContactFormData,
       file: mockFile,
     };
-
-    service.submitContactForm(mockContactFormData).subscribe({
-      next: (response) => {
-        expect(response).toEqual(mockContactFormData);
-      },
+    
+    testFormSubmission(formDataWithFile, (formDataEntries) => {
+      const file = formDataEntries['file'] as File;
+      expect(file.name).toBe(mockFile.name);
+      expect(file.size).toBe(mockFile.size);
+      expect(file.type).toBe(mockFile.type);
     });
-
-    const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
-    const formDataEntries: Record<string, string | Blob> = {};
-    req.request.body.forEach((value: string | Blob, key: string): void => {
-      formDataEntries[key] = value;
-    });
-
-    const file = formDataEntries['file'] as File;
-    expect(file.name).toBe(mockFile.name);
-    expect(file.size).toBe(mockFile.size);
-    expect(file.type).toBe(mockFile.type);
-
-    req.flush(mockContactFormData);
   });
 
   it('should handle empty form data', () => {
-    const mockContactFormData: ContactFormData = {
+    const emptyFormData: ContactFormData = {
       firstName: '',
       lastName: '',
       email: '',
@@ -183,19 +148,7 @@ describe('ContactFormService', () => {
       agreement: false,
       file: null,
     };
-
-    service.submitContactForm(mockContactFormData).subscribe({
-      next: (response) => {
-        expect(response).toEqual(mockContactFormData);
-      },
-    });
-
-    const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
-    const formDataEntries: Record<string, string | Blob> = {};
-    req.request.body.forEach((value: string | Blob, key: string): void => {
-      formDataEntries[key] = value;
-    });
-
-    req.flush(mockContactFormData);
+    
+    testFormSubmission(emptyFormData);
   });
 });
