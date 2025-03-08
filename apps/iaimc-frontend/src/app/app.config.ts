@@ -17,9 +17,17 @@ import {
   AVAILABLE_LANGUAGE_CODES,
   LANGUAGE_LOCALE_MAPPING,
 } from 'libs/ui-components/src/language-switcher/constants';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideStore(),
+    provideEffects(),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideRouterStore(),
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
 
     provideHttpClient(),

@@ -85,13 +85,13 @@ describe('ToolbarComponent', () => {
   it('should display the contact, cart, and login buttons', () => {
     const contactButton = fixture.debugElement.query(
       By.css('button mat-icon[fontIcon="mail"]'),
-    ).parent!.nativeElement;
+    ).parent?.nativeElement;
     const cartButton = fixture.debugElement.query(
       By.css('button mat-icon[fontIcon="shopping_cart"]'),
-    ).parent!.nativeElement;
+    ).parent?.nativeElement;
     const loginButton = fixture.debugElement.query(
       By.css('button mat-icon[fontIcon="login"]'),
-    ).parent!.nativeElement;
+    ).parent?.nativeElement;
 
     expect(contactButton).toBeTruthy();
     expect(cartButton).toBeTruthy();
@@ -103,7 +103,7 @@ describe('ToolbarComponent', () => {
       By.css('.humberger__menu button mat-icon[fontIcon="menu"]'),
     );
     const hamburgerMenuButton = hamburgerMenuButtonDebugElement
-      ? hamburgerMenuButtonDebugElement.parent!.nativeElement
+      ? hamburgerMenuButtonDebugElement.parent?.nativeElement
       : null;
     expect(hamburgerMenuButton).toBeTruthy();
   });
