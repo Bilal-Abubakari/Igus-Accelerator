@@ -31,6 +31,7 @@ export default [
       '@angular-eslint/no-output-native': 'error',
       '@angular-eslint/use-component-selector': 'error',
       '@angular-eslint/no-lifecycle-call': 'error',
+      'no-duplicate-imports': 'error',
       '@angular-eslint/prefer-on-push-component-change-detection': 'error',
       '@typescript-eslint/explicit-function-return-type': [
         'error',

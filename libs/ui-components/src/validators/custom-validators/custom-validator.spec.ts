@@ -4,7 +4,7 @@ import { atLeastOneFieldValidator } from './custom.validator';
 describe('atLeastOneFieldValidator', () => {
   it('should return null if control is not a FormGroup', () => {
     const validator = atLeastOneFieldValidator(['a']);
-    const result = validator({} as any);
+    const result = validator({} as never);
     expect(result).toBeNull();
   });
 
