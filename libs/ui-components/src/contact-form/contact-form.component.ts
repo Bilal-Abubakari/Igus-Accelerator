@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -94,7 +99,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   }
 
   private loadCountries(): void {
-    this.countryService.getCountries()
+    this.countryService
+      .getCountries()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (countries: Country[]) => {
@@ -179,7 +185,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     this.isSubmitting = true;
     const formData: ContactFormData = this.contactForm.getRawValue();
 
-    this.contactFormService.submitContactForm(formData)
+    this.contactFormService
+      .submitContactForm(formData)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {

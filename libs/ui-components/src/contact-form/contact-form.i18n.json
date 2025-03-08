@@ -1,13 +1,15 @@
-{ "form": {
+{
+  "form": {
     "CONTACT": {
-        "ar": "اتصل بنا",
-        "de": "Kontakt",
-        "en": "Contact us",
-        "es": "Póngase en contacto con nosotros",
-        "fr": "Contactez nous",
-        "jp": "お問い合わせ",
-        "pt": "Entre em contato conosco",
-        "ru": "Свяжитесь с нами",
-        "zh": "联系我们"
+      "ar": "اتصل بنا",
+      "de": "Kontakt",
+      "en": "Contact us",
+      "es": "Póngase en contacto con nosotros",
+      "fr": "Contactez nous",
+      "jp": "お問い合わせ",
+      "pt": "Entre em contato conosco",
+      "ru": "Свяжитесь с нами",
+      "zh": "联系我们"
     }
-} }
+  }
+}

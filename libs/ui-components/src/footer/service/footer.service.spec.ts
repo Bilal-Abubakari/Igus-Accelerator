@@ -4,86 +4,95 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { FooterService } from './footer.service';
-import { FeedbackInterface } from '../footer.interface';
 import { provideHttpClient } from '@angular/common/http';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { selectFeedbackId } from '../store/footer.selectors';
+import { FeedbackRequest, FeedbackResponse } from '../footer.interface';
 
 describe('FooterService', () => {
   let service: FooterService;
   let httpMock: HttpTestingController;
-  const BASE_API_URL = 'https://api.example.com/';
-  const FEEDBACK_ID_KEY = 'feedback_id';
+  let store: MockStore;
+  const mockBaseUrl = 'https://api.example.com/';
+  const mockFeedbackId = '12345';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideMockStore({
+          selectors: [{ selector: selectFeedbackId, value: mockFeedbackId }],
+        }),
         FooterService,
-        { provide: 'BASE_API_URL', useValue: BASE_API_URL },
+        { provide: 'BASE_API_URL', useValue: mockBaseUrl },
       ],
     });
 
     service = TestBed.inject(FooterService);
     httpMock = TestBed.inject(HttpTestingController);
-    localStorage.clear();
+    store = TestBed.inject(MockStore);
   });
 
   afterEach(() => {
     httpMock.verify();
   });
 
-  it('should send feedback via POST and store feedback_id', () => {
-    const feedback: FeedbackInterface = { email: 'test@example.com' };
-    const mockResponse = { id: '12345' };
+  it('should create the service', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should send feedback via POST request', () => {
+    const feedback: FeedbackRequest = { email: 'test@example.com' };
+    const mockResponse: FeedbackResponse = { id: '12345' };
 
     service.submitFeedback(feedback).subscribe((response) => {
       expect(response).toEqual(mockResponse);
-      expect(localStorage.getItem(FEEDBACK_ID_KEY)).toBe('12345');
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback`);
+    const req = httpMock.expectOne(`${mockBaseUrl}/user-feedback`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(feedback);
     req.flush(mockResponse);
   });
 
-  it('should not store feedback_id if response does not contain an id', () => {
-    const feedback: FeedbackInterface = { email: 'test@example.com' };
-    const mockResponse = {};
+  it('should send a PATCH request to update feedback using feedbackId from store', () => {
+    const email = 'updated@example.com';
 
-    service.submitFeedback(feedback).subscribe();
-
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback`);
-    req.flush(mockResponse);
-
-    expect(localStorage.getItem(FEEDBACK_ID_KEY)).toBeNull();
-  });
-
-  it('should send a PATCH request to update feedback', () => {
-    const feedback: FeedbackInterface = { email: 'updated@example.com' };
-    localStorage.setItem(FEEDBACK_ID_KEY, '12345');
-
-    service.updateFeedback(feedback).subscribe((response) => {
+    service.updateFeedback(email).subscribe((response) => {
       expect(response).toBeUndefined();
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback/12345`);
+    const req = httpMock.expectOne(
+      `${mockBaseUrl}/user-feedback/${mockFeedbackId}`,
+    );
     expect(req.request.method).toBe('PATCH');
-    expect(req.request.body).toEqual(feedback);
+    expect(req.request.body).toEqual({ email });
     req.flush(null);
   });
 
-  it('should fail to update feedback if no feedback_id is stored', () => {
-    const feedback: FeedbackInterface = { email: 'updated@example.com' };
+  it('should emit reset event when emitReset is called', (done) => {
+    service.getResetObservable().subscribe((value) => {
+      expect(value).toBe(true);
+      done();
+    });
 
-    service.updateFeedback(feedback).subscribe({
+    service.emitReset();
+  });
+
+  it('should handle case where feedback ID is missing', () => {
+    store.overrideSelector(selectFeedbackId, null);
+    store.refreshState();
+
+    const email = 'updated@example.com';
+
+    service.updateFeedback(email).subscribe({
       error: (error) => {
-        expect(error.message).toContain('404');
+        expect(error.status).toBe(404);
       },
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}user-feedback/null`);
+    const req = httpMock.expectOne(`${mockBaseUrl}/user-feedback/null`);
     expect(req.request.method).toBe('PATCH');
     req.flush('Feedback ID not found', {
       status: 404,

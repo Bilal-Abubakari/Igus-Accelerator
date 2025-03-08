@@ -4,6 +4,7 @@ import {
   Component,
   inject,
   OnDestroy,
+  OnInit,
   signal,
 } from '@angular/core';
 import {
@@ -19,12 +20,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { finalize, Subject, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
+import { formField } from '../utilities/helper-function';
 import { atLeastOneFieldValidator } from '../validators/custom-validators/custom.validator';
 import { ThankYouFeedbackComponent } from './components/thank-you-feedback/thank-you-feedback.component';
-import { formField } from '../utilities/helper-function';
-import { FeedbackInterface } from './footer.interface';
+import { FeedbackRequest } from './footer.interface';
 import { FooterService } from './service/footer.service';
+import { FooterActions } from './store/footer.actions';
+import {
+  selectFeedbackLoading,
+  selectIsFeedbackSubmitted,
+} from './store/footer.selectors';
 
 @Component({
   selector: 'app-footer',
@@ -45,15 +52,20 @@ import { FooterService } from './service/footer.service';
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent implements OnDestroy {
+export class FooterComponent implements OnInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
+  private readonly store = inject(Store);
   private readonly footerService = inject(FooterService);
-  private readonly subscription = new Subject<void>();
+  private readonly destroyer = new Subject<void>();
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
-  public isRatingLoading = signal<boolean>(false);
-  public isSubmitted = signal<boolean>(false);
+  public readonly isRatingLoading = this.store.selectSignal(
+    selectFeedbackLoading,
+  );
+  public readonly isSubmitted = this.store.selectSignal(
+    selectIsFeedbackSubmitted,
+  );
 
   public ratingForm = this.fb.group(
     {
@@ -66,9 +78,18 @@ export class FooterComponent implements OnDestroy {
     { validators: atLeastOneFieldValidator(['rating', 'comment']) },
   );
 
+  ngOnInit(): void {
+    this.footerService
+      .getResetObservable()
+      .pipe(takeUntil(this.destroyer))
+      .subscribe(() => {
+        this.selectedRating.set(0);
+      });
+  }
+
   ngOnDestroy() {
-    this.subscription.next();
-    this.subscription.complete();
+    this.destroyer.next();
+    this.destroyer.complete();
   }
 
   public onMouseEnter(rating: number): void {
@@ -88,30 +109,17 @@ export class FooterComponent implements OnDestroy {
     if (this.ratingForm.invalid) {
       return;
     }
-    this.isRatingLoading.set(true);
-    this.footerService
-      .submitFeedback(this.ratingFormValues)
-      .pipe(
-        takeUntil(this.subscription),
-        finalize(() => this.isRatingLoading.set(false)),
-      )
-      .subscribe({
-        next: () => {
-          this.isSubmitted.set(true);
-          this.ratingForm.reset();
-          this.selectedRating.set(0);
-        },
-        error: () => {
-          this.isRatingLoading.set(false);
-        },
-      });
+
+    this.store.dispatch(
+      FooterActions.beginSubmitFeedback({ feedback: this.ratingFormValues }),
+    );
   }
 
   public getField(field: string) {
     return formField(field, this.ratingForm);
   }
 
-  public get ratingFormValues(): FeedbackInterface {
+  public get ratingFormValues(): FeedbackRequest {
     return {
       rating: this.ratingForm.get('rating')?.value,
       comment: this.ratingForm.get('comment')?.value,
