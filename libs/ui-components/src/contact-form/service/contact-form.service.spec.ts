@@ -10,9 +10,9 @@ describe('ContactFormService', () => {
   let service: ContactFormService;
   let httpMock: HttpTestingController;
   const baseUrl = 'https://example.com/api';
-  
+
   let mockContactFormData: ContactFormData;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -23,7 +23,7 @@ describe('ContactFormService', () => {
     });
     service = TestBed.inject(ContactFormService);
     httpMock = TestBed.inject(HttpTestingController);
-    
+
     mockContactFormData = {
       firstName: 'John',
       lastName: 'Doe',
@@ -47,28 +47,28 @@ describe('ContactFormService', () => {
   });
 
   const testFormSubmission = (
-    formData: ContactFormData, 
-    additionalChecks?: (formDataEntries: Record<string, string | Blob>) => void
+    formData: ContactFormData,
+    additionalChecks?: (formDataEntries: Record<string, string | Blob>) => void,
   ) => {
     service.submitContactForm(formData).subscribe({
       next: (response) => {
         expect(response).toEqual(formData);
       },
     });
-    
+
     const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body instanceof FormData).toBeTruthy();
-    
+
     const formDataEntries: Record<string, string | Blob> = {};
     req.request.body.forEach((value: string | Blob, key: string): void => {
       formDataEntries[key] = value;
     });
-    
+
     if (additionalChecks) {
       additionalChecks(formDataEntries);
     }
-    
+
     req.flush(formData);
     return { req, formDataEntries };
   };
@@ -86,7 +86,7 @@ describe('ContactFormService', () => {
         expect(error.message).toBe('Failed to submit form. Try again.');
       },
     });
-    
+
     const req = httpMock.expectOne(`${baseUrl}/contact_forms`);
     req.error(new ErrorEvent('Network error'));
   });
@@ -100,7 +100,7 @@ describe('ContactFormService', () => {
       telephone: undefined,
       agreement: false,
     };
-    
+
     testFormSubmission(partialFormData, (formDataEntries) => {
       expect(Object.keys(formDataEntries)).toEqual([
         'firstName',
@@ -121,12 +121,12 @@ describe('ContactFormService', () => {
     const mockFile = new File(['file content'], 'test.txt', {
       type: 'text/plain',
     });
-    
+
     const formDataWithFile: ContactFormData = {
       ...mockContactFormData,
       file: mockFile,
     };
-    
+
     testFormSubmission(formDataWithFile, (formDataEntries) => {
       const file = formDataEntries['file'] as File;
       expect(file.name).toBe(mockFile.name);
@@ -148,7 +148,7 @@ describe('ContactFormService', () => {
       agreement: false,
       file: null,
     };
-    
+
     testFormSubmission(emptyFormData);
   });
 });
