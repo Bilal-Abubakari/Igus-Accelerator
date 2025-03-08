@@ -21,11 +21,13 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouterStore } from '@ngrx/router-store';
+import { appReducer } from './app.reducers';
+import { appEffects } from './app.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideStore(),
-    provideEffects(),
+    provideStore(appReducer),
+    provideEffects(...appEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideRouterStore(),
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
