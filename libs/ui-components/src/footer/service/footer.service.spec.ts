@@ -7,13 +7,13 @@ import { FooterService } from './footer.service';
 import { provideHttpClient } from '@angular/common/http';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { selectFeedbackId } from '../store/footer.selectors';
-import { FeedbackRequest, FeedbackInterface } from '../footer.interface';
+import { FeedbackRequest, FeedbackResponse } from '../footer.interface';
 
 describe('FooterService', () => {
   let service: FooterService;
   let httpMock: HttpTestingController;
   let store: MockStore;
-  const BASE_API_URL = 'https://api.example.com/';
+  const mockBaseUrl = 'https://api.example.com/';
   const mockFeedbackId = '12345';
 
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe('FooterService', () => {
           selectors: [{ selector: selectFeedbackId, value: mockFeedbackId }],
         }),
         FooterService,
-        { provide: 'BASE_API_URL', useValue: BASE_API_URL },
+        { provide: 'BASE_API_URL', useValue: mockBaseUrl },
       ],
     });
 
@@ -44,13 +44,13 @@ describe('FooterService', () => {
 
   it('should send feedback via POST request', () => {
     const feedback: FeedbackRequest = { email: 'test@example.com' };
-    const mockResponse: FeedbackInterface = { id: '12345' };
+    const mockResponse: FeedbackResponse = { id: '12345' };
 
     service.submitFeedback(feedback).subscribe((response) => {
       expect(response).toEqual(mockResponse);
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback`);
+    const req = httpMock.expectOne(`${mockBaseUrl}/user-feedback`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(feedback);
     req.flush(mockResponse);
@@ -64,7 +64,7 @@ describe('FooterService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${BASE_API_URL}/user-feedback/${mockFeedbackId}`,
+      `${mockBaseUrl}/user-feedback/${mockFeedbackId}`,
     );
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual({ email });
@@ -92,7 +92,7 @@ describe('FooterService', () => {
       },
     });
 
-    const req = httpMock.expectOne(`${BASE_API_URL}/user-feedback/null`);
+    const req = httpMock.expectOne(`${mockBaseUrl}/user-feedback/null`);
     expect(req.request.method).toBe('PATCH');
     req.flush('Feedback ID not found', {
       status: 404,
