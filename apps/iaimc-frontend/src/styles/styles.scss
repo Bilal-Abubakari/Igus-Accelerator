@@ -69,6 +69,7 @@ body {
 
 .mat-mdc-select-panel {
   transform-origin: top center !important;
+  background-color: var(--mat-sys-on-primary) !important;
 }
 
 .mat-mdc-form-field .mdc-select__dropdown-icon,
@@ -88,7 +89,4 @@ body {
 .cdk-overlay-connected-position-bounding-box {
   top: unset !important;
   bottom: auto !important;
-}
-.mat-mdc-select-panel {
-  background-color: var(--mat-sys-on-primary) !important;
 }
