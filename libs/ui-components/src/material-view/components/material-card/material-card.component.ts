@@ -18,7 +18,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { TolerancePercentagePipe } from '../../../pipes/tolerance.pipe';
 
 @Component({
   selector: 'app-material-card',
@@ -29,7 +28,6 @@ import { TolerancePercentagePipe } from '../../../pipes/tolerance.pipe';
     MatProgressBarModule,
     MatButtonModule,
     MatIcon,
-    TolerancePercentagePipe,
   ],
   templateUrl: './material-card.component.html',
   styleUrl: './material-card.component.scss',
@@ -56,7 +54,7 @@ export class MaterialCardComponent implements OnInit {
 
   public readonly selectedMaterials = computed(() => {
     const selectedId = this.selectedMaterialId();
-    return this.materials().map((material) => ({
+    return this.materials().map((material: Material) => ({
       ...material,
       isSelected: selectedId === material.id,
       description: this.getMaterialDescription(material),

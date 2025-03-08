@@ -1,5 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { MATERIAL_FEATURE_KEY, MaterialState } from './material.reducer';
+import { MATERIAL_FEATURE_KEY } from './material.reducer';
+import { MaterialState } from './material.state';
 
 export const selectMaterialState =
   createFeatureSelector<MaterialState>(MATERIAL_FEATURE_KEY);

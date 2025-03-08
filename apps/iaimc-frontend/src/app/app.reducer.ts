@@ -1,7 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import {
   materialReducer,
-  MaterialState,
   MATERIAL_FEATURE_KEY,
 } from 'libs/ui-components/src/material-view/store/material.reducer';
 import {
@@ -9,6 +8,7 @@ import {
   footerReducer,
 } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
 import { FooterState } from 'libs/ui-components/src/footer/store/footer.state';
+import { MaterialState } from 'libs/ui-components/src/material-view/store/material.state';
 
 export interface AppState {
   [MATERIAL_FEATURE_KEY]: MaterialState;
