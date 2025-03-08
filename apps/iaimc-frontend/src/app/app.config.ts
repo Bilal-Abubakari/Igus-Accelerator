@@ -27,7 +27,7 @@ import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { excludeKeys } from '@ngrx-addons/common';
 import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
-import { appReducer } from './app.reducers';
+import { appReducer } from './app.reducer';
 import { appEffects } from './app.effects';
 
 export const appConfig: ApplicationConfig = {
