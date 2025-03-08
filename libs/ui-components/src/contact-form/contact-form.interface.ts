@@ -10,3 +10,12 @@ export interface ContactFormData {
   agreement: boolean;
   file: File | null;
 }
+export interface ContactFormResponse {
+  success: boolean;
+  messageId: string;
+}
+
+export interface Country {
+  name: string;
+  code: string;
+}
