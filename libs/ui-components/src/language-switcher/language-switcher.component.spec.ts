@@ -15,8 +15,14 @@ describe('LanguageSwitcherComponent', () => {
   let component: LanguageSwitcherComponent;
   let fixture: ComponentFixture<LanguageSwitcherComponent>;
   let translocoService: TranslocoService;
+  let languageOverlayService: LanguageOverlayService;
 
   beforeEach(async () => {
+    jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) => {
+      if (key === 'translocoLang') return 'en';
+      return null;
+    });
+
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [
@@ -38,6 +44,10 @@ describe('LanguageSwitcherComponent', () => {
     fixture = TestBed.createComponent(LanguageSwitcherComponent);
     component = fixture.componentInstance;
     translocoService = TestBed.inject(TranslocoService);
+    languageOverlayService = TestBed.inject(LanguageOverlayService);
+
+    jest.spyOn(translocoService, 'setActiveLang').mockImplementation(jest.fn());
+
     fixture.detectChanges();
   });
 
@@ -58,6 +68,21 @@ describe('LanguageSwitcherComponent', () => {
     expect(translocoService.getActiveLang()).toBe(DEFAULT_LANGUAGE);
   });
 
+  it('should read saved language from localStorage during initialization', () => {
+    component.ngOnInit();
+    expect(localStorage.getItem).toHaveBeenCalledWith('translocoLang');
+  });
+
+  it('should set active language from localStorage if valid', () => {
+    // Reset for this test
+    jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => 'es');
+
+    // Re-initialize
+    component.ngOnInit();
+
+    expect(translocoService.setActiveLang).toHaveBeenCalledWith('es');
+  });
+
   it('should display the active language label', () => {
     const labelElement = fixture.debugElement.query(
       By.css('.active-lang div'),
@@ -66,11 +91,19 @@ describe('LanguageSwitcherComponent', () => {
   });
 
   it('should toggle language overlay on click', () => {
-    jest.spyOn(component, 'toggleLanguageOverlay');
+    jest
+      .spyOn(languageOverlayService, 'overlayStateToggle')
+      .mockImplementation(jest.fn());
+    jest.spyOn(component.langOverlayToggleEventEmitter, 'emit');
+
     const languageSwitcherElement = fixture.debugElement.query(
       By.css('.language-switcher'),
     ).nativeElement;
     languageSwitcherElement.click();
-    expect(component.toggleLanguageOverlay).toHaveBeenCalled();
+
+    expect(languageOverlayService.overlayStateToggle).toHaveBeenCalled();
+    expect(component.langOverlayToggleEventEmitter.emit).toHaveBeenCalledWith(
+      null,
+    );
   });
 });
