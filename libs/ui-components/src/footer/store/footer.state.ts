@@ -1,4 +1,3 @@
-
 export interface FooterState {
   isFeedbackLoading: boolean;
   feedbackId: string | null;
