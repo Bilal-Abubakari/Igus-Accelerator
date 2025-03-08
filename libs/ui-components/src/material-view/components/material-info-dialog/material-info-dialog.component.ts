@@ -18,11 +18,11 @@ import { AsyncPipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialInfoDialogComponent {
-  private store = inject(Store);
-  private data = inject(MAT_DIALOG_DATA);
-  public dialogRef = inject(MatDialogRef<MaterialInfoDialogComponent>);
+  private readonly store = inject(Store);
+  private readonly data = inject(MAT_DIALOG_DATA);
+  public readonly dialogRef = inject(MatDialogRef<MaterialInfoDialogComponent>);
 
-  material$ = this.store.select(
+  public material$ = this.store.select(
     MaterialSelectors.selectMaterialById(this.data.id),
   );
 
