@@ -1,9 +1,9 @@
-@if (query.loading()) {
+@if (loading()) {
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 } @else {
   <div class="material-grid">
-    @if (query.materials().length > 0) {
-      @for (material of query.materials(); track material.id) {
+    @if (selectedMaterials().length > 0) {
+      @for (material of selectedMaterials(); track material.id) {
         <mat-card
           class="material-card"
           [ngStyle]="{ 'border-color': material.colorhex }"
@@ -15,11 +15,7 @@
             class="material-header"
             [ngStyle]="{ 'background-color': material.colorhex }"
           >
-            @if (
-              store.selectSignal(
-                MaterialSelectors.isMaterialSelected(material.id)
-              )()
-            ) {
+            @if (material.isSelected) {
               <mat-icon>check</mat-icon>
             }
           </div>
@@ -28,17 +24,27 @@
             <mat-card-title class="material-title">
               {{ material.name }}
             </mat-card-title>
+            <mat-card-subtitle class="material-availability">
+              Upon request
+            </mat-card-subtitle>
           </mat-card-header>
 
           <mat-card-content>
-            <p class="material-tolerance">
-              Tolerance: ± {{ material.shrinkage }} mm
+            <p class="material-description">
+              {{ material.description }}
             </p>
-            <mat-progress-bar
-              mode="determinate"
-              [value]="getTolerancePercentage(material.shrinkage)"
-            >
-            </mat-progress-bar>
+
+            <div class="tolerance-container">
+              <label for="tolerance-{{ material.id }}">Tolerance:</label>
+              <mat-progress-bar
+                id="tolerance-{{ material.id }}"
+                mode="determinate"
+                [value]="material.tolerancePercentage"
+              ></mat-progress-bar>
+              <p class="tolerance-value">
+                ± {{ material.shrinkage | tolerancePercentage }}
+              </p>
+            </div>
           </mat-card-content>
 
           <mat-card-actions>
