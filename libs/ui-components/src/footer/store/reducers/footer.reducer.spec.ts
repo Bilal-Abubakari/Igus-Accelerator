@@ -1,4 +1,4 @@
-import * as FooterActions from '../footer.actions';
+import { FooterActions } from '../footer.actions';
 import { initialFooterState } from '../footer.state';
 import { footerReducer } from './footer.reducer';
 

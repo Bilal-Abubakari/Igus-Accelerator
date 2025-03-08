@@ -27,7 +27,7 @@ import { atLeastOneFieldValidator } from '../validators/custom-validators/custom
 import { ThankYouFeedbackComponent } from './components/thank-you-feedback/thank-you-feedback.component';
 import { FeedbackRequest } from './footer.interface';
 import { FooterService } from './service/footer.service';
-import { beginSubmitFeedback } from './store/footer.actions';
+import { FooterActions } from './store/footer.actions';
 import {
   selectFeedbackLoading,
   selectIsFeedbackSubmitted,
@@ -56,12 +56,16 @@ export class FooterComponent implements OnInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);
   private readonly footerService = inject(FooterService);
-  private readonly subscription = new Subject<void>();
+  private readonly destroyer = new Subject<void>();
   public currentYear = new Date().getFullYear();
   public hoveredRating = signal<number>(0);
   public selectedRating = signal<number>(0);
-  public isRatingLoading = this.store.selectSignal(selectFeedbackLoading);
-  public isSubmitted = this.store.selectSignal(selectIsFeedbackSubmitted);
+  public readonly isRatingLoading = this.store.selectSignal(
+    selectFeedbackLoading,
+  );
+  public readonly isSubmitted = this.store.selectSignal(
+    selectIsFeedbackSubmitted,
+  );
 
   public ratingForm = this.fb.group(
     {
@@ -77,15 +81,15 @@ export class FooterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.footerService
       .getResetObservable()
-      .pipe(takeUntil(this.subscription))
+      .pipe(takeUntil(this.destroyer))
       .subscribe(() => {
         this.selectedRating.set(0);
       });
   }
 
   ngOnDestroy() {
-    this.subscription.next();
-    this.subscription.complete();
+    this.destroyer.next();
+    this.destroyer.complete();
   }
 
   public onMouseEnter(rating: number): void {
@@ -107,7 +111,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(
-      beginSubmitFeedback({ feedback: this.ratingFormValues }),
+      FooterActions.beginSubmitFeedback({ feedback: this.ratingFormValues }),
     );
   }
 

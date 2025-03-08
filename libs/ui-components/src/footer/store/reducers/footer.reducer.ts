@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { FooterModel, initialFooterState } from '../footer.state';
-import * as FooterActions from '../footer.actions';
+import { FooterState, initialFooterState } from '../footer.state';
+import { FooterActions } from '../footer.actions';
 
 export const FOOTER_FEATURE_KEY = 'footerState';
 
@@ -45,7 +45,7 @@ const reducer = createReducer(
 );
 
 export function footerReducer(
-  state: FooterModel | undefined,
+  state: FooterState | undefined,
   action: Action<string>,
 ) {
   return reducer(state, action);

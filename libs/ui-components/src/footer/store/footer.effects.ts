@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { FooterService } from '../service/footer.service';
 import { catchError, of, switchMap } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import * as FooterActions from './footer.actions';
+import { FooterActions } from './footer.actions';
 
 @Injectable()
 export class FooterEffects {

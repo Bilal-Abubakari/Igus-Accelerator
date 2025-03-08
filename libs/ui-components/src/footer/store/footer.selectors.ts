@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { FooterModel } from './footer.state';
+import { FooterState } from './footer.state';
 import { FOOTER_FEATURE_KEY } from './reducers/footer.reducer';
 
 export const selectFooterState =
-  createFeatureSelector<FooterModel>(FOOTER_FEATURE_KEY);
+  createFeatureSelector<FooterState>(FOOTER_FEATURE_KEY);
 
 export const selectFeedbackLoading = createSelector(
   selectFooterState,

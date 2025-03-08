@@ -1,6 +1,5 @@
-import { FeedbackInterface } from '../footer.interface';
 
-export interface FooterModel {
+export interface FooterState {
   isFeedbackLoading: boolean;
   feedbackId: string | null;
   isFeedbackSubmitted: boolean;
@@ -8,7 +7,7 @@ export interface FooterModel {
   message: string | null;
 }
 
-export const initialFooterState: FooterModel = {
+export const initialFooterState: FooterState = {
   isFeedbackLoading: false,
   isFeedbackSubmitted: false,
   isEmailUpdated: false,

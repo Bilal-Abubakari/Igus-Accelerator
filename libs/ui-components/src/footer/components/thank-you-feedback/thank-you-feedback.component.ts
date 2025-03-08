@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { formField } from '../../../utilities/helper-function';
 import { FeedbackRequest } from '../../footer.interface';
 import { FooterService } from '../../service/footer.service';
-import { beginUpdateFeedback } from '../../store/footer.actions';
+import { FooterActions } from '../../store/footer.actions';
 import {
   selectFeedbackLoading,
   selectIsEmailUpdated,
@@ -37,8 +37,10 @@ export class ThankYouFeedbackComponent {
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);
   public readonly footerService = inject(FooterService);
-  public isSubmitted = this.store.selectSignal(selectIsEmailUpdated);
-  public isSubmitLoading = this.store.selectSignal(selectFeedbackLoading);
+  public readonly isSubmitted = this.store.selectSignal(selectIsEmailUpdated);
+  public readonly isSubmitLoading = this.store.selectSignal(
+    selectFeedbackLoading,
+  );
   public contactForm = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
   });
@@ -52,7 +54,7 @@ export class ThankYouFeedbackComponent {
     if (!email) {
       return;
     }
-    this.store.dispatch(beginUpdateFeedback({ email }));
+    this.store.dispatch(FooterActions.beginUpdateFeedback({ email }));
   }
   public get contactFormValues(): FeedbackRequest {
     return {
