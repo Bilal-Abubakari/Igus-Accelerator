@@ -21,10 +21,10 @@ export class MaterialEffects {
             map((materials: Material[]) =>
               MaterialActions.loadMaterialsSuccess({ materials }),
             ),
-            catchError((error: HttpErrorResponse) =>
+            catchError(({ message }: HttpErrorResponse) =>
               of(
                 MaterialActions.loadMaterialsFailure({
-                  materialFetchError: error.message,
+                  materialFetchError: message,
                 }),
               ),
             ),
