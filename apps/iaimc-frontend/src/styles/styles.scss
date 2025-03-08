@@ -48,3 +48,10 @@ body {
     }
   }
 }
+
+@include mat.dialog-overrides(
+  (
+    container-color: #fff,
+    container-shape: none,
+  )
+);
