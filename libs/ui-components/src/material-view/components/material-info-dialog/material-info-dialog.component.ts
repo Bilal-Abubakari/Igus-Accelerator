@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -22,27 +17,14 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './material-info-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MaterialInfoDialogComponent implements OnInit {
+export class MaterialInfoDialogComponent {
   private store = inject(Store);
   private data = inject(MAT_DIALOG_DATA);
+  public dialogRef = inject(MatDialogRef<MaterialInfoDialogComponent>);
 
   material$ = this.store.select(
     MaterialSelectors.selectMaterialById(this.data.id),
   );
-
-  public dialogRef = inject(MatDialogRef<MaterialInfoDialogComponent>);
-
-  ngOnInit(): void {
-    this.subscribeToMaterial();
-  }
-
-  private subscribeToMaterial(): void {
-    this.material$.subscribe((material) => {
-      if (!material) {
-        this.dialogRef.close();
-      }
-    });
-  }
 
   getResistanceClass(resistance: string): string {
     switch (resistance) {

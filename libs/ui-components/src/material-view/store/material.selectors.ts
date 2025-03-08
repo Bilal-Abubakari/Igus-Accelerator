@@ -35,5 +35,6 @@ export const MaterialSelectors = {
     ),
   selectLoading,
   selectError,
+  selectSelectedMaterialId,
   isMaterialSelected,
 };

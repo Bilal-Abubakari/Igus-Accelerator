@@ -41,6 +41,9 @@ export class MaterialCardComponent implements OnInit {
     materials: this.store.selectSignal(MaterialSelectors.selectAllMaterials),
     loading: this.store.selectSignal(MaterialSelectors.selectLoading),
     error: this.store.selectSignal(MaterialSelectors.selectError),
+    selectedMaterialId: this.store.selectSignal(
+      MaterialSelectors.selectSelectedMaterialId,
+    ),
   };
 
   public readonly hasError: Signal<boolean> = computed(
@@ -57,7 +60,11 @@ export class MaterialCardComponent implements OnInit {
     );
   }
 
-  public showMoreInfo(material: Material): void {
+  public showMoreInfo(material: Material, event?: MouseEvent): void {
+    if (event) {
+      event.stopPropagation();
+    }
+
     this.dialog.open(MaterialInfoDialogComponent, {
       panelClass: 'fullscreen-dialog',
       width: '100vw',
