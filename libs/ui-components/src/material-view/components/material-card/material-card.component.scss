@@ -1,0 +1,65 @@
+@use '@angular/material' as mat;
+
+$canvas-width: 400px;
+
+.material-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+mat-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 5px;
+  color: var(--mat-sys-on-secondary-fixed);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  width: calc(100vw - $canvas-width);
+  overflow-x: auto;
+}
+
+.material-card {
+  background: white;
+  color: black;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.material-header {
+  height: 10px;
+  width: 100%;
+}
+
+.material-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.material-tolerance {
+  font-size: 1rem;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -8,6 +8,8 @@
           class="material-card"
           [ngStyle]="{ 'border-color': material.colorhex }"
           (click)="toggleSelection(material.id)"
+          (keydown.enter)="toggleSelection(material.id)"
+          tabindex="0"
         >
           <div
             class="material-header"
