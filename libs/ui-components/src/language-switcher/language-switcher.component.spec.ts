@@ -62,7 +62,6 @@ describe('LanguageSwitcherComponent', () => {
       value: [unsupportedLang],
       configurable: true,
     });
-
     component.ngOnInit();
 
     expect(translocoService.getActiveLang()).toBe(DEFAULT_LANGUAGE);
@@ -74,12 +73,8 @@ describe('LanguageSwitcherComponent', () => {
   });
 
   it('should set active language from localStorage if valid', () => {
-    // Reset for this test
     jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => 'es');
-
-    // Re-initialize
     component.ngOnInit();
-
     expect(translocoService.setActiveLang).toHaveBeenCalledWith('es');
   });
 
