@@ -1,8 +1,11 @@
 @use '@angular/material' as mat;
 
 .navbar {
-  @include mat.toolbar-overrides((container-background-color: var(--mat-sys-on-secondary-fixed),
-    ));
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-on-secondary-fixed),
+    )
+  );
 
   height: var(--navbar-height);
   display: flex;
@@ -25,7 +28,9 @@
 }
 
 div {
-  @include mat.tabs-overrides((active-label-text-color: white,
+  @include mat.tabs-overrides(
+    (
+      active-label-text-color: white,
       inactive-label-text-color: white,
       active-hover-label-text-color: white,
       inactive-hover-label-text-color: white,
@@ -33,7 +38,8 @@ div {
       active-focus-label-text-color: white,
       active-indicator-color: white,
       divider-color: var(--mat-sys-on-secondary-fixed),
-    ));
+    )
+  );
 
   display: flex;
   justify-content: center;
