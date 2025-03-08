@@ -16,7 +16,6 @@ export class FooterService {
 
   constructor(@Inject('BASE_API_URL') private readonly baseUrl: string) {}
 
-
   public submitFeedback(
     feedback: FeedbackRequest,
   ): Observable<FeedbackResponse> {
