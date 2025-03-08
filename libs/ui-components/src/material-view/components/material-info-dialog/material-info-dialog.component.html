@@ -1,5 +1,5 @@
 <main>
-  @if (material$ | async; as material) {
+  @if (material(); as material) {
     <header [style.backgroundColor]="material.colorhex">
       {{ material.name }}
     </header>

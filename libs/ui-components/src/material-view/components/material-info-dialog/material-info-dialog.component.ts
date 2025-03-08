@@ -8,11 +8,10 @@ import {
 import { MatButton } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { MaterialSelectors } from '../../store/material.selectors';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-material-info-dialog',
-  imports: [MatDialogActions, MatButton, MatDialogContent, AsyncPipe],
+  imports: [MatDialogActions, MatButton, MatDialogContent],
   templateUrl: './material-info-dialog.component.html',
   styleUrl: './material-info-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,11 +21,11 @@ export class MaterialInfoDialogComponent {
   private readonly data = inject(MAT_DIALOG_DATA);
   public readonly dialogRef = inject(MatDialogRef<MaterialInfoDialogComponent>);
 
-  public material$ = this.store.select(
+  public material = this.store.selectSignal(
     MaterialSelectors.selectMaterialById(this.data.id),
   );
 
-  getResistanceClass(resistance: string): string {
+  public getResistanceClass(resistance: string): string {
     switch (resistance) {
       case 'o':
         return 'neutral';
@@ -39,7 +38,7 @@ export class MaterialInfoDialogComponent {
     }
   }
 
-  close(): void {
+  public close(): void {
     this.dialogRef.close();
   }
 }

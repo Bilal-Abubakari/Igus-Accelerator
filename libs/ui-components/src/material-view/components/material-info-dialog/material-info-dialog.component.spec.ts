@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialInfoDialogComponent } from './material-info-dialog.component';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { createMockMaterial } from '../../store/mocks/mock-material';
 
 describe('MaterialInfoDialogComponent', () => {
   let component: MaterialInfoDialogComponent;
   let fixture: ComponentFixture<MaterialInfoDialogComponent>;
-  let mockStore: { select: jest.Mock };
+  let mockStore: { selectSignal: jest.Mock };
   let mockDialogRef: { close: jest.Mock };
   const mockMaterial = createMockMaterial();
 
   beforeEach(async () => {
     mockStore = {
-      select: jest.fn().mockReturnValue(of(mockMaterial)),
+      selectSignal: jest.fn().mockReturnValue(() => mockMaterial), // Correctly mocked selectSignal
     };
 
     mockDialogRef = {
