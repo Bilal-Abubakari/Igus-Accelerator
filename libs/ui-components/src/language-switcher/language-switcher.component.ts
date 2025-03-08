@@ -10,11 +10,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
-import {
-  AVAILABLE_LANGUAGE_CODES,
-  DEFAULT_LANGUAGE,
-  LANGUAGE_LABELS,
-} from './constants';
+import { AVAILABLE_LANGUAGE_CODES, LANGUAGE_LABELS } from './constants';
 import { LanguageOverlayService } from './services/language-overlay/language-overlay.service';
 import { Language, LanguageCode } from './types';
 
