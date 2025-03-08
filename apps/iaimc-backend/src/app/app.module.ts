@@ -8,6 +8,7 @@ import envConfig from './configurations/env.config';
 import { ContactFormModule } from './modules/contact-form/contact-form.module';
 import { FeedbackModule } from './modules/feedback/feedback.module';
 import { FileUploadModule } from './modules/file-upload/file-upload.module';
+import { MaterialsModule } from './modules/materials/materials.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { FileUploadModule } from './modules/file-upload/file-upload.module';
     ConfigModule.forRoot(envConfig),
     TypeOrmModule.forRoot(databaseConfig().database),
     ContactFormModule,
+    MaterialsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
