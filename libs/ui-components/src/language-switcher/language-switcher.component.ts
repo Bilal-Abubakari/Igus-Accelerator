@@ -45,15 +45,19 @@ export class LanguageSwitcherComponent implements OnInit {
   }
 
   private detectBrowserLocale() {
-    const lang = (navigator.languages as LanguageCode[]).find((lang) =>
-      AVAILABLE_LANGUAGE_CODES.includes(lang),
-    );
+    const savedLang = localStorage.getItem('translocoLang');
 
-    this.translocoService.setActiveLang(lang ?? DEFAULT_LANGUAGE);
+    if (
+      savedLang &&
+      AVAILABLE_LANGUAGE_CODES.includes(savedLang as LanguageCode)
+    ) {
+      this.translocoService.setActiveLang(savedLang);
+      this.activeLanguageCode.set(savedLang as LanguageCode);
+    }
+
     this.translocoService.langChanges$.subscribe((lang) => {
       this.activeLanguageCode.set(lang as LanguageCode);
     });
-    this.activeLanguageCode.set(lang ?? DEFAULT_LANGUAGE);
   }
 
   public toggleLanguageOverlay() {
