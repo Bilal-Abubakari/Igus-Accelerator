@@ -28,6 +28,7 @@ export const isMaterialSelected = (id: string) =>
   createSelector(selectSelectedMaterialId, (selectedId) => selectedId === id);
 
 export const MaterialSelectors = {
+  selectMaterialState,
   selectAllMaterials,
   selectMaterialById: (id: string) =>
     createSelector(selectAllMaterials, (materials) =>
