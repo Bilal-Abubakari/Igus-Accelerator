@@ -1,38 +1,31 @@
 @use '@angular/material' as mat;
 
 .navbar {
-  @include mat.toolbar-overrides(
-    (
-      container-background-color: var(--mat-sys-on-secondary-fixed),
-    )
-  );
+  @include mat.toolbar-overrides((container-background-color: var(--mat-sys-on-secondary-fixed),
+    ));
 
   height: var(--navbar-height);
-
-  & {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    position: relative;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  position: relative;
 
   .menu_toggle {
     display: none;
     background: none;
     border: none;
     color: white;
-    font-size: 1.25rem;
+    font-size: 2rem;
     cursor: pointer;
     position: absolute;
     left: 1rem;
+    z-index: 1100;
   }
 }
 
 div {
-  @include mat.tabs-overrides(
-    (
-      active-label-text-color: white,
+  @include mat.tabs-overrides((active-label-text-color: white,
       inactive-label-text-color: white,
       active-hover-label-text-color: white,
       inactive-hover-label-text-color: white,
@@ -40,15 +33,12 @@ div {
       active-focus-label-text-color: white,
       active-indicator-color: white,
       divider-color: var(--mat-sys-on-secondary-fixed),
-    )
-  );
+    ));
 
-  & {
-    display: flex;
-    justify-content: center;
-    width: auto;
-    text-transform: uppercase;
-  }
+  display: flex;
+  justify-content: center;
+  width: auto;
+  text-transform: uppercase;
 
   .mat-tab-nav-bar {
     display: flex;
@@ -73,20 +63,23 @@ div {
     }
 
     nav {
-      position: absolute;
-      top: 4rem;
-      left: 0;
-      width: 100%;
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 70%;
+      height: 100vh;
       background-color: var(--mat-sys-primary);
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0.75rem;
-      transition: all 0.3s ease-in-out;
+      padding-top: 4rem;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
     }
 
     nav.open {
-      display: flex;
+      left: 0;
     }
   }
 }
