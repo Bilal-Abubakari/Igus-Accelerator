@@ -1,14 +1,14 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { FooterState } from 'libs/ui-components/src/footer/store/footer.state';
-import {
-  FOOTER_FEATURE_KEY,
-  footerReducer,
-} from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
 import {
   materialReducer,
   MaterialState,
   MATERIAL_FEATURE_KEY,
 } from 'libs/ui-components/src/material-view/store/material.reducer';
+import {
+  FOOTER_FEATURE_KEY,
+  footerReducer,
+} from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
+import { FooterState } from 'libs/ui-components/src/footer/store/footer.state';
 
 export interface AppState {
   [MATERIAL_FEATURE_KEY]: MaterialState;

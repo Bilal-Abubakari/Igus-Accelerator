@@ -1,3 +1,5 @@
 import { MaterialEffects } from 'libs/ui-components/src/material-view/store/material.effects';
 
-export const appEffects = [MaterialEffects];
+import { FooterEffects } from 'libs/ui-components/src/footer/store/footer.effects';
+
+export const appEffects = [FooterEffects, MaterialEffects];

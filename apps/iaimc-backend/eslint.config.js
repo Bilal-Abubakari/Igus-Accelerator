@@ -45,6 +45,7 @@ module.exports = [
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-inferrable-types': 'error',
+      'no-duplicate-imports': 'error',
     },
   },
 ];
