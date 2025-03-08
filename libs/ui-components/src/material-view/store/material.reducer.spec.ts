@@ -1,7 +1,8 @@
-import { materialReducer, initialMaterialState } from './material.reducer';
+import { materialReducer } from './material.reducer';
 import { MaterialActions } from './material.actions';
 import { createMockMaterial } from '../store/mocks/mock-material';
 import { Material } from './material.model';
+import { initialMaterialState } from './material.state';
 
 jest.mock('../../utilities/color.utils', () => ({
   getTextColor: jest.fn().mockReturnValue('#FFFFFF'),

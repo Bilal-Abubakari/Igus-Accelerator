@@ -1,21 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { MaterialActions } from './material.actions';
-import { Material } from './material.model';
 import { getTextColor } from '../../utilities/color.utils';
-
-export interface MaterialState {
-  materials: Material[];
-  triggerMaterialFetch: boolean;
-  materialFetchError: string | null;
-  selectedMaterialId: string | null;
-}
-
-export const initialMaterialState: MaterialState = {
-  materials: [],
-  triggerMaterialFetch: false,
-  materialFetchError: null,
-  selectedMaterialId: null,
-};
+import { initialMaterialState, MaterialState } from './material.state';
 
 export const MATERIAL_FEATURE_KEY = 'materialState';
 
