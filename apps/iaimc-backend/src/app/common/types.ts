@@ -13,6 +13,12 @@ export type DatabaseConfig = {
 
 export type MulterFile = Express.Multer.File;
 
+export enum Accepted3DModelType {
+  STL = 'stl',
+  STP = 'stp',
+  STEP = 'step',
+}
+
 export interface ResponseObject<T = undefined> {
   message?: string;
   data?: T;
@@ -73,3 +79,16 @@ export interface InjectionMoldingMaterial {
 
 export type InjectionMoldingMaterialPropertyValueType =
   InjectionMoldingMaterial[keyof InjectionMoldingMaterial];
+
+export enum ReviewStatus {
+  Unsubmitted = 'Unsubmitted',
+  Unassigned = 'Unassigned',
+  Assigned = 'Assigned',
+  Approved = 'Approved',
+  Rejected = 'Rejected',
+}
+
+export enum Role {
+  Admin = 'Admin',
+  Customer = 'Customer',
+}
