@@ -88,20 +88,7 @@ export class MaterialCardComponent implements OnInit {
       data: material,
     });
   }
-  public lightenColor(hex: string, percent: number): string {
-    // Convert hex to RGB
-    let r = parseInt(hex.slice(1, 3), 16);
-    let g = parseInt(hex.slice(3, 5), 16);
-    let b = parseInt(hex.slice(5, 7), 16);
 
-    // Lighten the color
-    r = Math.min(255, r + (255 - r) * (percent / 100));
-    g = Math.min(255, g + (255 - g) * (percent / 100));
-    b = Math.min(255, b + (255 - b) * (percent / 100));
-
-    // Convert back to hex
-    return `#${Math.round(r).toString(16).padStart(2, '0')}${Math.round(g).toString(16).padStart(2, '0')}${Math.round(b).toString(16).padStart(2, '0')}`;
-  }
   private getMaterialDescription(material: Material): string {
     return material.highchemicalresistance
       ? `Food material with high media resistance up to ${material.maxtemperature}°C.`

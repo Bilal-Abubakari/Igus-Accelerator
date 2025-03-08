@@ -4,9 +4,25 @@ import { MaterialCardComponent } from '../../../../../../../../libs/ui-component
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
+const mockMaterials = [
+  {
+    id: '1',
+    name: 'Material A',
+    colorhex: '#FF0000',
+    tolerancePercentage: 5,
+    shrinkage: 0.02,
+  },
+  {
+    id: '2',
+    name: 'Material B',
+    colorhex: '#00FF00',
+    tolerancePercentage: 10,
+    shrinkage: 0.05,
+  },
+];
 const mockStore = {
-  select: jest.fn().mockReturnValue(of({})),
-  selectSignal: jest.fn().mockReturnValue(() => false),
+  select: jest.fn().mockReturnValue(of(mockMaterials)),
+  selectSignal: jest.fn().mockReturnValue(() => mockMaterials),
   dispatch: jest.fn(),
 };
 
