@@ -4,53 +4,51 @@ html {
   --toolbar-height: 50px;
   --navbar-height: 64px;
 
-  $full-screen-width: 97vw;
-  $full-screen-height: 100vh;
-  $max-form-wrapper-width: 650px;
+  --full-screen-width: 97vw;
+  --full-screen-height: 100vh;
+  --max-form-wrapper-width: 650px;
 
-  $submit-btn-bg-color: #3f51b5;
-  $submit-btn-text-color: #fff;
-  $submit-btn-hover-bg: #303f9f;
+  --submit-btn-bg-color: #3f51b5;
+  --submit-btn-text-color: #fff;
+  --submit-btn-hover-bg: #303f9f;
 
-  $color-contact: #363636;
-  $color-intro: #423e3a;
+  --color-contact: #363636;
+  --color-intro: #423e3a;
 
-  $font-size-intro: 16px;
-  $line-height-intro: 24px;
-  $margin-bottom-intro: 32px;
-  $font-size-agreement: 14px;
+  --font-size-intro: 16px;
+  --line-height-intro: 24px;
+  --margin-bottom-intro: 32px;
+  --font-size-agreement: 14px;
 
-  $gap-standard: 20px;
-  $gap-flex: 3px;
-  $margin-bottom-field: 18px;
-  $padding-left-error: 50px;
-  $padding-top-form-btns: 30px;
-  $gap-form-btns: 18px;
-  $form-btns-height: 55px;
-  $select-file-btn-gap: 8px;
-  $select-file-container-gap: 10px;
+  --gap-standard: 20px;
+  --gap-flex: 3px;
+  --margin-bottom-field: 18px;
+  --padding-left-error: 50px;
+  --padding-top-form-btns: 30px;
+  --gap-form-btns: 18px;
+  --form-btns-height: 55px;
+  --select-file-btn-gap: 8px;
+  --select-file-container-gap: 10px;
 
-  $select-file-btn-transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
+  --select-file-btn-transition: background 0.3s ease, box-shadow 0.3s ease;
 
-  $telephone-width: 320px;
-  $textarea-height: 70px;
-  $subscript-padding-top: 4px;
-  $subscript-height: auto !important;
-  $floating-label-font-size: 16px;
+  --telephone-width: 320px;
+  --textarea-height: 70px;
+  --subscript-padding-top: 4px;
+  --subscript-height: auto !important;
+  --floating-label-font-size: 16px;
 
-  $error-font-size: 0.6rem;
-  $error-line-height: 1rem;
-  $error-min-height-transition: min-height 0.2s ease;
+  --error-font-size: 0.6rem;
+  --error-line-height: 1rem;
+  --error-min-height-transition: min-height 0.2s ease;
 
-  $btn-width: 85px;
-  $btn-height: 50px;
-  $close-btn-top: 30px;
-  $close-btn-right: 420px;
-  $close-btn-color: #666;
-  $close-btn-hover-color: #333;
-  $button-radius: 0;
+  --btn-width: 85px;
+  --btn-height: 50px;
+  --close-btn-top: 30px;
+  --close-btn-right: 420px;
+  --close-btn-color: #666;
+  --close-btn-hover-color: #333;
+  --button-radius: 0;
 
   /* COLOR SYSTEM VARIABLES */
   color-scheme: light;

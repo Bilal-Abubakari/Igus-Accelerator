@@ -1,46 +1,60 @@
 @use '@angular/material' as mat;
 
 .full-screen-modal {
-  width: $full-screen-width;
-  height: $full-screen-height;
+  width: var(--full-screen-width);
+  height: var(--full-screen-height);
   box-sizing: border-box;
   position: relative;
-  margin-bottom: 350px;
-  border-radius: 0;
+  margin-bottom: 400px;
 
   .form-wrapper {
     width: 100%;
-    max-width: $max-form-wrapper-width;
+    max-width: var(--max-form-wrapper-width);
     margin: 15px auto;
     padding: 25px;
     border-radius: 0;
   }
 }
 
+.full-screen-dialog {
+  border-radius: 0 !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  width: 100vw;
+  height: 100vh;
+
+  @include mat.dialog-overrides(
+    (
+      container-shape: 0px,
+      container-color: white,
+    )
+  );
+}
+
 h1.contact {
-  color: $color-contact;
+  color: var(--color-contact);
   margin-bottom: 0;
 }
 
 p.intro {
-  font-size: $font-size-intro;
+  font-size: var(--font-size-intro);
   font-weight: 400;
-  line-height: $line-height-intro;
+  line-height: var(--line-height-intro);
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   letter-spacing: normal;
-  margin-bottom: $margin-bottom-intro;
-  color: $color-intro;
+  margin-bottom: var(--margin-bottom-intro);
+  color: var(--color-intro);
 }
 
 .attach-file-title {
-  color: $color-intro;
-  margin: $gap-standard 0;
+  color: var(--color-intro);
+  margin: var(--gap-standard) 0;
 }
 
 .email-company-container {
   display: flex;
   flex-direction: column;
-  gap: $gap-flex;
+  gap: var(--gap-flex);
   justify-content: space-between;
   @media (max-width: 600px) {
     flex-direction: column;
@@ -50,7 +64,7 @@ p.intro {
 .name-fields-container {
   display: flex;
   justify-content: space-between;
-  gap: $gap-standard;
+  gap: var(--gap-standard);
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -59,7 +73,7 @@ p.intro {
 .postal-country-container {
   display: flex;
   justify-content: space-between;
-  gap: $gap-standard;
+  gap: var(--gap-standard);
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -75,28 +89,30 @@ p.intro {
 
 mat-form-field {
   width: 100%;
-  margin-bottom: $margin-bottom-field;
+  margin-bottom: var(--margin-bottom-field);
 
   .mat-mdc-form-field-subscript-wrapper {
-    padding-top: $subscript-padding-top;
-    height: $subscript-height;
+    padding-top: var(--subscript-padding-top);
+    height: var(--subscript-height);
   }
 }
 
+
+
 .telephone {
-  width: $telephone-width;
+  width: var(--telephone-width);
 }
 
 textarea {
-  height: $textarea-height !important;
+  height: var(--textarea-height) !important;
 }
 
 .mat-mdc-form-field-error {
-  font-size: $error-font-size !important;
-  line-height: $error-line-height !important;
+  font-size: var(--error-font-size) !important;
+  line-height: var(--error-line-height) !important;
   display: block;
   min-height: 0;
-  transition: $error-min-height-transition;
+  transition: var(--error-min-height-transition);
 
   &:empty {
     min-height: 0 !important;
@@ -104,33 +120,33 @@ textarea {
 }
 
 .upload-container {
-  margin-bottom: $gap-standard;
+  margin-bottom: var(--gap-standard);
 }
 
 .select-file-btn {
   display: flex;
   align-items: center;
-  gap: $select-file-btn-gap;
-  transition: $select-file-btn-transition;
+  gap: var(--select-file-btn-gap);
+  transition: var(--select-file-btn-transition);
 }
 
 .mat-mdc-button {
   padding: 25px 7px;
-  border-radius: $button-radius;
+  border-radius: var(--button-radius);
 }
 
 .terms-agreement {
   display: flex;
   flex-direction: row;
-  gap: $select-file-container-gap;
+  gap: var(--select-file-container-gap);
   align-items: center;
 }
 
 .terms-error {
-  padding-left: $padding-left-error;
+  padding-left: var(--padding-left-error);
 }
 p.agreement {
-  font-size: $font-size-agreement;
+  font-size: var(--font-size-agreement);
 
   a {
     color: inherit;
@@ -139,11 +155,11 @@ p.agreement {
 }
 
 .form-btns {
-  padding-top: $padding-top-form-btns;
+  padding-top: var(--padding-top-form-btns);
   display: flex;
-  gap: $gap-form-btns;
+  gap: var(--gap-form-btns);
   justify-content: flex-end;
-  height: $form-btns-height;
+  height: var(--form-btns-height);
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -153,27 +169,42 @@ p.agreement {
 
 .cancel-btn,
 .submit-btn {
-  width: $btn-width;
-  height: $btn-height;
-  border-radius: $button-radius;
+  width: var(--btn-width);
+  height: var(--btn-height);
+  border-radius: var(--button-radius);
 }
 
 .submit-btn {
-  background-color: var(--mat-sys-primary);
-  color: var(--mat-sys-on-tertiary) !important;
+  @include mat.button-overrides(
+    (
+      filled-container-shape: 0px,
+    )
+  );
+}
+
+.cancel-btn {
+  border: 1px solid var(--mat-sys-primary);
+  @include mat.button-overrides(
+    (
+      filled-container-shape: 0px,
+      filled-container-color: var(--mat-sys-on-primary),
+      filled-label-text-color: var(--mat-sys-primary),
+      protected-container-color: var(--mat-sys-primary),
+    )
+  );
 }
 
 .close-btn {
   position: absolute;
-  top: $close-btn-top;
-  right: $close-btn-right;
+  top: var(--close-btn-top);
+  right: var(--close-btn-right);
   background: transparent;
   border: none;
   cursor: pointer;
-  color: $close-btn-color;
+  color: var(--close-btn-color);
 
   &:hover {
-    color: $close-btn-hover-color;
+    color: var(--close-btn-hover-color);
   }
 
   @media (max-width: 600px) {

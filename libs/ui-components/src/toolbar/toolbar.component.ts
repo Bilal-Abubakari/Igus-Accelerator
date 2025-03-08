@@ -47,13 +47,9 @@ export class ToolbarComponent {
 
   openContactForm() {
     this.dialog.open(ContactFormComponent, {
-      panelClass: ['full-screen-dialog', 'no-padding-dialog'],
-      position: {
-        top: '0',
-        left: '0',
-      },
-      width: '100%',
-      height: '100%',
+      panelClass: ['full-screen-dialog'],
+      width: '100vw',
+      height: '100vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
     });
