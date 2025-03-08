@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,6 +21,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { CountryService } from './service/countries.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-contact-form',
@@ -42,7 +43,7 @@ import { CountryService } from './service/countries.service';
   styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, OnDestroy {
   private static readonly ALLOWED_FILE_TYPES = [
     'application/step',
     'application/stp',
@@ -52,6 +53,7 @@ export class ContactFormComponent implements OnInit {
   ];
 
   private static readonly MAX_FILE_SIZE_MB = 10;
+  private destroy$ = new Subject<void>();
 
   public readonly errorMessages = {
     required: 'This field is required',
@@ -86,15 +88,22 @@ export class ContactFormComponent implements OnInit {
     this.loadCountries();
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   private loadCountries(): void {
-    this.countryService.getCountries().subscribe({
-      next: (countries: Country[]) => {
-        this.countries = countries;
-      },
-      error: () => {
-        this.countries = [];
-      },
-    });
+    this.countryService.getCountries()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (countries: Country[]) => {
+          this.countries = countries;
+        },
+        error: () => {
+          this.countries = [];
+        },
+      });
   }
 
   private initializeForm(): void {
@@ -170,21 +179,23 @@ export class ContactFormComponent implements OnInit {
     this.isSubmitting = true;
     const formData: ContactFormData = this.contactForm.getRawValue();
 
-    this.contactFormService.submitContactForm(formData).subscribe({
-      next: () => {
-        this.isSubmitting = false;
-        this.snackBar.open('Form submitted successfully!', 'Close', {
-          duration: 3000,
-        });
-        this.dialogRef.close(true);
-      },
-      error: (error: Error) => {
-        this.isSubmitting = false;
-        this.snackBar.open(`Submission failed: ${error.message}`, 'Close', {
-          duration: 5000,
-        });
-      },
-    });
+    this.contactFormService.submitContactForm(formData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.isSubmitting = false;
+          this.snackBar.open('Form submitted successfully!', 'Close', {
+            duration: 3000,
+          });
+          this.dialogRef.close(true);
+        },
+        error: (error: Error) => {
+          this.isSubmitting = false;
+          this.snackBar.open(`Submission failed: ${error.message}`, 'Close', {
+            duration: 5000,
+          });
+        },
+      });
   }
 
   public deleteFile(): void {

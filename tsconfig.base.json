@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,

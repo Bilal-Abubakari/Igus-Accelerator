@@ -13,10 +13,11 @@ export class CountryService {
     { code: 'GB', name: 'United Kingdom' },
   ];
 
-  $countriesData: Observable<{ countries: Country[] }> = of(CountryData);
+  private readonly countriesData: Observable<{ countries: Country[] }> =
+    of(CountryData);
 
   public getCountries(): Observable<Country[]> {
-    return this.$countriesData.pipe(
+    return this.countriesData.pipe(
       map((data) => data.countries),
       catchError(() => {
         return of(this.fallbackCountries);
