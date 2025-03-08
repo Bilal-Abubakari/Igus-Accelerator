@@ -1,6 +1,10 @@
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { ValidationPipe, INestApplication } from '@nestjs/common';
+
+type CorsOriginsFn = (error: Error | null, allow: boolean) => void;
+
+const logger = new Logger();
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +23,9 @@ async function bootstrap(): Promise<void> {
 }
 
 const setupCors: (app: INestApplication) => void = (app: INestApplication) => {
+  const previewUrlPattern =
+    /^https:\/\/preview-injection-moulding-configurator-[a-z0-9]+\.vercel\.app$/;
+
   const allowedOrigins = [
     'https://injection-moulding-configurator.vercel.app',
     process.env.NODE_ENV === 'development'
@@ -26,8 +33,24 @@ const setupCors: (app: INestApplication) => void = (app: INestApplication) => {
       : '',
   ];
 
+  const corsOriginsFn: (
+    origin: string | undefined,
+    cb: CorsOriginsFn,
+  ) => void = (origin: string | undefined, cb: CorsOriginsFn) => {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      previewUrlPattern.test(origin)
+    ) {
+      cb(null, true);
+    } else {
+      logger.warn('Access denied for origin:', origin);
+      cb(null, false);
+    }
+  };
+
   app.enableCors({
-    origin: allowedOrigins,
+    origin: corsOriginsFn,
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
