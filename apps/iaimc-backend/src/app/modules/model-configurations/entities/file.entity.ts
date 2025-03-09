@@ -4,7 +4,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Accepted3DModelType } from '../../../common/types';
+import { Accepted3DModelType } from '../../../common/types/file.types';
 
 @Entity('files')
 export class FileEntity {
