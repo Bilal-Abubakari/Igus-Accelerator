@@ -13,7 +13,8 @@ import {
 } from '../../common/constants';
 import { FileSizeValidatorPipe } from '../../common/pipes/file-size.validator';
 import { FileTypeValidatorPipe } from '../../common/pipes/file-type.validator';
-import { MulterFile, ResponseObject } from '../../common/types';
+import { MulterFile } from '../../common/types/file.types';
+import { ResponseObject } from '../../common/types/general.types';
 import { FileStoreUploadDto } from './dtos/file-upload.dto';
 import { FileUploadService } from './file-upload.service';
 
