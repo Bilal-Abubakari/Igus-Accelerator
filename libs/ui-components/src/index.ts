@@ -6,7 +6,8 @@ import * as modelUploadI18n from './model/components/model-upload/model-upload.i
 import * as navBarI18n from './navbar/navbar.i18n.json';
 import * as stageI18n from './stage/stage.i18n.json';
 import * as toolbarI18n from './toolbar/toolbar.i18n.json';
-
+import * as materialCardI18n from './material-view/components/material-card/material-card.i18n.json';
+import * as materialInfoI18n from './material-view/components/material-info-dialog/material-info-dialog.i18n.json';
 export * from './navbar/navbar.component';
 
 export * from './toolbar/toolbar.component';
@@ -24,3 +25,5 @@ export { feedBackI18n };
 export { footerI18n };
 export { navBarI18n };
 export { modelListI18n, modelUploadI18n };
+export { materialCardI18n };
+export { materialInfoI18n };

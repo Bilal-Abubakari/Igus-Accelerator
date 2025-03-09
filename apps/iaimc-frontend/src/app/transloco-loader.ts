@@ -11,6 +11,8 @@ import {
   modelUploadI18n,
   stageI18n,
   footerI18n,
+  materialCardI18n,
+  materialInfoI18n,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 const componentTranslations = [
@@ -22,6 +24,8 @@ const componentTranslations = [
   modelUploadI18n,
   stageI18n,
   footerI18n,
+  materialCardI18n,
+  materialInfoI18n,
 ];
 
 @Injectable({ providedIn: 'root' })

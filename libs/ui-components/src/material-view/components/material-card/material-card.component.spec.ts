@@ -8,11 +8,17 @@ import { createMockMaterial } from '../../store/mocks/mock-material';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { jest } from '@jest/globals';
+import {
+  translocoConfig,
+  TranslocoService,
+  TranslocoTestingModule,
+} from '@jsverse/transloco';
 
 describe('MaterialCardComponent', () => {
   let component: MaterialCardComponent;
   let fixture: ComponentFixture<MaterialCardComponent>;
   let store: MockStore;
+  let translocoService: TranslocoService;
   let mockDialog: jest.Mocked<MatDialog>;
 
   const mockMaterial = createMockMaterial();
@@ -26,7 +32,18 @@ describe('MaterialCardComponent', () => {
     mockDialog = { open: jest.fn() } as unknown as jest.Mocked<MatDialog>;
 
     await TestBed.configureTestingModule({
-      imports: [MaterialCardComponent],
+      imports: [
+        MaterialCardComponent,
+        TranslocoTestingModule.forRoot({
+          langs: {
+            en: { languageSwitcher: { languageLabel: 'English' } },
+            es: { languageSwitcher: { languageLabel: 'Spanish' } },
+          },
+          translocoConfig: translocoConfig({
+            defaultLang: 'en',
+          }),
+        }),
+      ],
       providers: [
         provideMockStore({
           selectors: [
@@ -54,7 +71,7 @@ describe('MaterialCardComponent', () => {
     }).compileComponents();
 
     store = TestBed.inject(MockStore);
-
+    translocoService = TestBed.inject(TranslocoService);
     const materialId = initialState.materials[0].id;
     store.overrideSelector(
       MaterialSelectors.isMaterialSelected(materialId),

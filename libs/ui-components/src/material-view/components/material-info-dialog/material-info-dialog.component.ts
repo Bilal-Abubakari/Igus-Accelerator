@@ -8,10 +8,11 @@ import {
 import { MatButton } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { MaterialSelectors } from '../../store/material.selectors';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-material-info-dialog',
-  imports: [MatDialogActions, MatButton, MatDialogContent],
+  imports: [MatDialogActions, MatButton, MatDialogContent, TranslocoPipe],
   templateUrl: './material-info-dialog.component.html',
   styleUrl: './material-info-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,6 +20,7 @@ import { MaterialSelectors } from '../../store/material.selectors';
 export class MaterialInfoDialogComponent {
   private readonly store = inject(Store);
   private readonly data = inject(MAT_DIALOG_DATA);
+  private readonly transloco = inject(TranslocoService);
   public readonly dialogRef = inject(MatDialogRef<MaterialInfoDialogComponent>);
 
   public material = this.store.selectSignal(

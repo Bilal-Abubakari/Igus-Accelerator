@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-material-card',
@@ -28,6 +29,7 @@ import { MatIcon } from '@angular/material/icon';
     MatProgressBarModule,
     MatButtonModule,
     MatIcon,
+    TranslocoPipe,
   ],
   templateUrl: './material-card.component.html',
   styleUrl: './material-card.component.scss',
@@ -52,14 +54,11 @@ export class MaterialCardComponent implements OnInit {
 
   public readonly hasError: Signal<boolean> = computed(() => !!this.error());
 
-  public readonly selectedMaterials = computed(() => {
+  public readonly selectedMaterial = computed(() => {
     const selectedId = this.selectedMaterialId();
-    return this.materials().map((material: Material) => ({
-      ...material,
-      isSelected: selectedId === material.id,
-      description: this.getMaterialDescription(material),
-      tolerancePercentage: this.getTolerancePercentage(material.shrinkage),
-    }));
+    return (
+      this.materials().find((material) => material.id === selectedId) || null
+    );
   });
 
   ngOnInit(): void {
@@ -70,6 +69,12 @@ export class MaterialCardComponent implements OnInit {
     this.store.dispatch(
       MaterialActions.toggleMaterialSelection({ materialId }),
     );
+
+    const selectedMaterial = this.materials().find((m) => m.id === materialId);
+    if (selectedMaterial) {
+      /*todo*/
+      // this.applyMaterialToModel(selectedMaterial);
+    }
   }
 
   public showMoreInfo(material: Material, event?: MouseEvent): void {
@@ -87,13 +92,13 @@ export class MaterialCardComponent implements OnInit {
     });
   }
 
-  private getMaterialDescription(material: Material): string {
+  protected getMaterialDescription(material: Material): string {
     return material.highchemicalresistance
       ? `Food material with high media resistance up to ${material.maxtemperature}°C.`
       : 'General-purpose material.';
   }
 
-  private getTolerancePercentage(shrinkage: number): number {
+  protected getTolerancePercentage(shrinkage: number): number {
     return shrinkage * 100;
   }
 }

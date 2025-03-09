@@ -5,90 +5,124 @@
     </header>
 
     <mat-dialog-content>
-      <h3>General Properties</h3>
+      <h3>{{ 'materialInfoDialog.GENERAL_PROPERTIES' | transloco }}</h3>
       <div class="properties_grid">
-        <div class="key">Density:</div>
+        <div class="key">{{ 'materialInfoDialog.DENSITY' | transloco }}:</div>
         <div class="value">{{ material.density }} g/cm³</div>
 
-        <div class="key">Colour:</div>
+        <div class="key">{{ 'materialInfoDialog.COLOUR' | transloco }}:</div>
         <div class="value">{{ material.color }}</div>
 
-        <div class="key">Max. moisture absorption:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.MOISTURE_ABSORPTION' | transloco }}:
+        </div>
         <div class="value">{{ material.maxmoistureabsorption }} %</div>
 
-        <div class="key">Max. water absorption:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.WATER_ABSORPTION' | transloco }}:
+        </div>
         <div class="value">{{ material.maxwaterabsorption }} %</div>
       </div>
 
-      <h3>Mechanical Properties</h3>
+      <h3>{{ 'materialInfoDialog.MECHANICAL_PROPERTIES' | transloco }}</h3>
       <div class="properties_grid">
-        <div class="key">Flexural modulus:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.FLEXURAL_MODULUS' | transloco }}:
+        </div>
         <div class="value">{{ material.modulusofelasticity }} MPa</div>
 
-        <div class="key">Flexural strength:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.FLEXURAL_STRENGTH' | transloco }}:
+        </div>
         <div class="value">{{ material.bendingstrength }} MPa</div>
 
-        <div class="key">Maximum surface pressure:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.MAX_SURFACE_PRESSURE' | transloco }}:
+        </div>
         <div class="value">{{ material.maxsurfacepressure }} MPa</div>
 
-        <div class="key">Shore D hardness:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.SHORE_HARDNESS' | transloco }}:
+        </div>
         <div class="value">{{ material.hardness }}</div>
       </div>
 
-      <h3>Thermal Properties</h3>
+      <h3>{{ 'materialInfoDialog.THERMAL_PROPERTIES' | transloco }}</h3>
       <div class="properties_grid">
-        <div class="key">Max. long-term temperature:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.LONG_TERM_TEMP' | transloco }}:
+        </div>
         <div class="value">{{ material.maxtemperature }} °C</div>
 
-        <div class="key">Max. short-term temperature:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.SHORT_TERM_TEMP' | transloco }}:
+        </div>
         <div class="value">{{ material.maxtemperatureshort }} °C</div>
 
-        <div class="key">Max. environmental temp.:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.ENVIRONMENTAL_TEMP' | transloco }}:
+        </div>
         <div class="value">
           {{ material.maxenvironmentaltemperatureshort }} °C
         </div>
 
-        <div class="key">Min. temperature:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.MIN_TEMPERATURE' | transloco }}:
+        </div>
         <div class="value">{{ material.mintemperature }} °C</div>
       </div>
 
-      <h3>Electrical Properties</h3>
+      <h3>{{ 'materialInfoDialog.ELECTRICAL_PROPERTIES' | transloco }}</h3>
       <div class="properties_grid">
-        <div class="key">Specific transitional resistance:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.SPEC_TRANS_RESIST' | transloco }}:
+        </div>
         <div class="value">{{ material.specificvolumeresistance }}</div>
 
-        <div class="key">Surface resistance:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.SURFACE_RESISTANCE' | transloco }}:
+        </div>
         <div class="value">{{ material.surfaceresistance }}</div>
       </div>
 
-      <h3>Food Industry Compliance</h3>
+      <h3>{{ 'materialInfoDialog.FOOD_INDUSTRY_COMPLIANCE' | transloco }}</h3>
       <div class="properties_grid">
-        <div class="key">FDA-compliant:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.FDA_COMPLIANT' | transloco }}:
+        </div>
         <div class="value">
           {{ material.foodcontactfdacompliant ? 'Yes' : 'No' }}
         </div>
 
-        <div class="key">EU compliance:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.EU_COMPLIANCE' | transloco }}:
+        </div>
         <div class="value">
           {{ material.foodcontacteucompliant ? 'Yes' : 'No' }}
         </div>
       </div>
 
-      <h3>Additional Properties</h3>
+      <h3>{{ 'materialInfoDialog.ADDITIONAL_PROPERTIES' | transloco }}</h3>
       <div class="properties_grid">
-        <div class="key">Underwater use:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.UNDERWATER_USE' | transloco }}:
+        </div>
         <div class="value">
           {{ material.underwatercompliant ? 'Yes' : 'No' }}
         </div>
 
-        <div class="key">Dirt resistance:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.DIRT_RESISTANCE' | transloco }}:
+        </div>
         <div class="value">{{ material.dirtresistant ? 'Yes' : 'No' }}</div>
 
-        <div class="key">Mould resistance:</div>
+        <div class="key">
+          {{ 'materialInfoDialog.MOULD_RESISTANCE' | transloco }}:
+        </div>
         <div class="value">{{ material.mouldresistant ? 'Yes' : 'No' }}</div>
       </div>
 
-      <h3>Chemical Resistance</h3>
+      <h3>{{ 'materialInfoDialog.CHEMICAL_RESISTANCE' | transloco }}</h3>
       <div class="properties-grid">
         @for (chemical of material.chemicals; track chemical.name) {
           <div class="key">{{ chemical.name }}:</div>
@@ -104,7 +138,9 @@
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
-      <button mat-button type="button" (click)="close()">Close</button>
+      <button mat-button type="button" (click)="close()">
+        {{ 'materialInfoDialog.CLOSE' | transloco }}
+      </button>
     </mat-dialog-actions>
   }
 </main>

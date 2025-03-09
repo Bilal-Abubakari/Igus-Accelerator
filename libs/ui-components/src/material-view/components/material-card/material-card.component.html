@@ -2,65 +2,65 @@
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 } @else {
   <div class="material-grid">
-    @if (selectedMaterials().length > 0) {
-      @for (material of selectedMaterials(); track material.id) {
-        <mat-card
-          class="material-card"
-          [ngStyle]="{ 'border-color': material.colorhex }"
-          (click)="toggleSelection(material.id)"
-          (keydown.enter)="toggleSelection(material.id)"
-          tabindex="0"
+    @for (material of materials(); track material.id) {
+      <mat-card
+        class="material-card"
+        [ngStyle]="{ 'border-color': material.colorhex }"
+        (click)="toggleSelection(material.id)"
+        (keydown.enter)="toggleSelection(material.id)"
+        tabindex="0"
+      >
+        <div
+          class="material-header"
+          [ngStyle]="{ 'background-color': material.colorhex }"
         >
-          <div
-            class="material-header"
-            [ngStyle]="{ 'background-color': material.colorhex }"
-          >
-            @if (material.isSelected) {
-              <mat-icon>check</mat-icon>
-            }
-          </div>
+          @if (selectedMaterialId() === material.id) {
+            <mat-icon>check</mat-icon>
+          }
+        </div>
 
-          <mat-card-header>
-            <mat-card-title class="material-title">
-              {{ material.name }}
-            </mat-card-title>
-            <mat-card-subtitle class="material-availability">
-              Upon request
-            </mat-card-subtitle>
-          </mat-card-header>
+        <mat-card-header>
+          <mat-card-title class="material-title">
+            {{ material.name }}
+          </mat-card-title>
+          <mat-card-subtitle class="material-availability">
+            {{ 'materialCard.SUB_TITLE' | transloco }}
+          </mat-card-subtitle>
+        </mat-card-header>
 
-          <mat-card-content>
-            <p class="material-description">
-              {{ material.description }}
-            </p>
+        <mat-card-content>
+          <p class="material-description">
+            {{ getMaterialDescription(material) }}
+          </p>
 
-            <div class="tolerance-container">
-              <label for="tolerance-{{ material.id }}">Tolerance:</label>
-              <mat-progress-bar
-                id="tolerance-{{ material.id }}"
-                mode="determinate"
-                [value]="material.tolerancePercentage"
-              ></mat-progress-bar>
-              <p class="tolerance-value">
-                ± {{ material.shrinkage | percent: '1.0-2' }}
-              </p>
-            </div>
-          </mat-card-content>
-
-          <mat-card-actions>
-            <button
-              type="button"
-              mat-button
-              color="primary"
-              (click)="showMoreInfo(material, $event)"
+          <div class="tolerance-container">
+            <label for="tolerance-{{ material.id }}"
+              >{{ 'materialCard.TOLERANCE' | transloco }}:</label
             >
-              More information
-            </button>
-          </mat-card-actions>
-        </mat-card>
-      }
-    } @else {
-      <p>No materials available.</p>
+            <mat-progress-bar
+              id="tolerance-{{ material.id }}"
+              mode="determinate"
+              [value]="getTolerancePercentage(material.shrinkage)"
+            ></mat-progress-bar>
+            <p class="tolerance-value">
+              ± {{ material.shrinkage | percent: '1.0-2' }}
+            </p>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            type="button"
+            mat-button
+            color="primary"
+            (click)="showMoreInfo(material, $event)"
+          >
+            {{ 'materialCard.MORE_INFO' | transloco }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    } @empty {
+      <p>{{ 'materialCard.EMPTY_STATE' | transloco }}.</p>
     }
   </div>
 }

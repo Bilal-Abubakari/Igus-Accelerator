@@ -1,0 +1,48 @@
+{
+  "materialCard": {
+    "SUB_TITLE": {
+      "ar": "عند الطلب",
+      "de": "Auf Anfrage",
+      "en": "Upon Request",
+      "es": "Previa solicitud",
+      "fr": "Sur demande",
+      "jp": "リクエストに応じて",
+      "pt": "Mediante pedido",
+      "ru": "По запросу",
+      "zh": "根據要求"
+    },
+    "TOLERANCE": {
+      "ar": " التسامح",
+      "de": "Toleranz",
+      "en": "Tolerance",
+      "es": "Tolerancia",
+      "fr": "Tolérance",
+      "jp": "寛容",
+      "pt": "Tolerância",
+      "ru": "Толерантность",
+      "zh": "容忍度"
+    },
+    "MORE_INFO": {
+      "ar": " المزيد من المعلومات",
+      "de": "Weitere Informationen",
+      "en": "More information",
+      "es": "Más información",
+      "fr": "Plus d'informations",
+      "jp": "詳細情報",
+      "pt": "Mais informações",
+      "ru": "Дополнительная информация",
+      "zh": "更多資訊"
+    },
+    "EMPTY_STATE": {
+      "ar": " لا توجد مواد متاحة",
+      "de": "Keine Materialien verfügbar",
+      "en": "No materials available",
+      "es": "No hay materiales disponibles",
+      "fr": "Pas de matériel disponible",
+      "jp": "材料がない",
+      "pt": "Não há materiais disponíveis",
+      "ru": "Материалы отсутствуют",
+      "zh": "無可用資料"
+    }
+  }
+}
