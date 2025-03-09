@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { By } from '@angular/platform-browser';
 import { TranslocoTestingModule, translocoConfig } from '@jsverse/transloco';
-import { LanguageOverlayService } from '../../language-switcher/services/language-overlay/language-overlay.service';
+import { LanguageOverlayService } from '../language-switcher/services/language-overlay/language-overlay.service';
 import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {
@@ -82,15 +82,15 @@ describe('ToolbarComponent', () => {
     expect(menuElement.classes).not.toContain('visible');
   });
 
-  it('should display the contact, cart, and login buttons', () => {
+  it('should display the signup, login, and menu buttons', () => {
     const signinButton = fixture.debugElement.query(
       By.css('.header-toolbar__primary__btn'),
     ).parent?.nativeElement;
     const signUpButton = fixture.debugElement.query(
-      By.css('header-toolbar__secondary__btn'),
+      By.css('.header-toolbar__secondary__btn'),
     ).parent?.nativeElement;
     const langSwitcherButton = fixture.debugElement.query(
-      By.css('button mat-icon[fontIcon="mail"]'),
+      By.css('.header-toolbar__lang__switcher '),
     ).parent?.nativeElement;
 
     expect(signinButton).toBeTruthy();

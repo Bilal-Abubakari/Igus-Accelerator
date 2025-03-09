@@ -50,9 +50,6 @@ $shadow-color: rgba(0, 0, 0, 0.2);
       font-family: 'Roboto', sans-serif;
     }
 
-    .sub-title {
-      color: var(--mat-sys-on-background);
-    }
   }
 
   &__right {
@@ -110,7 +107,7 @@ $shadow-color: rgba(0, 0, 0, 0.2);
       display: block;
       border: none;
 
-      &__btn{
+      &__btn {
         background: transparent;
         border: none;
       }
