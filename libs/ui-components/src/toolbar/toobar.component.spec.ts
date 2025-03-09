@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { By } from '@angular/platform-browser';
 import { TranslocoTestingModule, translocoConfig } from '@jsverse/transloco';
-import { LanguageOverlayService } from '../language-switcher/services/language-overlay/language-overlay.service';
+import { LanguageOverlayService } from '../../language-switcher/services/language-overlay/language-overlay.service';
 import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {
@@ -83,19 +83,19 @@ describe('ToolbarComponent', () => {
   });
 
   it('should display the contact, cart, and login buttons', () => {
-    const contactButton = fixture.debugElement.query(
+    const signinButton = fixture.debugElement.query(
+      By.css('.header-toolbar__primary__btn'),
+    ).parent?.nativeElement;
+    const signUpButton = fixture.debugElement.query(
+      By.css('header-toolbar__secondary__btn'),
+    ).parent?.nativeElement;
+    const langSwitcherButton = fixture.debugElement.query(
       By.css('button mat-icon[fontIcon="mail"]'),
     ).parent?.nativeElement;
-    const cartButton = fixture.debugElement.query(
-      By.css('button mat-icon[fontIcon="shopping_cart"]'),
-    ).parent?.nativeElement;
-    const loginButton = fixture.debugElement.query(
-      By.css('button mat-icon[fontIcon="login"]'),
-    ).parent?.nativeElement;
 
-    expect(contactButton).toBeTruthy();
-    expect(cartButton).toBeTruthy();
-    expect(loginButton).toBeTruthy();
+    expect(signinButton).toBeTruthy();
+    expect(signUpButton).toBeTruthy();
+    expect(langSwitcherButton).toBeTruthy();
   });
 
   it('should display the hamburger menu button on smaller screens', () => {

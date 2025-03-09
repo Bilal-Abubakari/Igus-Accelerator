@@ -47,7 +47,7 @@
     "CART": {
       "ar": "عربة التسوق",
       "de": "Einkaufswagen",
-      "en": "Shopping cart",
+      "en": "Sign in",
       "es": "Cesta de la compra",
       "fr": "Panier d'achat",
       "jp": "ショッピングカート",
@@ -58,7 +58,7 @@
     "LOGIN": {
       "ar": "تسجيل الدخول",
       "de": "Anmeldung",
-      "en": "Login",
+      "en": "Start for free",
       "es": "Inicio de sesión",
       "fr": "Connexion",
       "jp": "ログイン",
