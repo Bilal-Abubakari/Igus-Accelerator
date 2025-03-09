@@ -32,7 +32,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelListComponent implements OnInit {
-  private storageService = inject(LocalStorageService);
+  private readonly storageService = inject(LocalStorageService);
   public uploadedModels: ModelUploadEvent[] = [];
 
   ngOnInit(): void {

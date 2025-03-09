@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MaterialCardComponent } from '../../../../../../../../libs/ui-components/src/material-view/components/material-card/material-card.component';
 
 @Component({
   selector: 'app-configuration',
-  imports: [CommonModule],
+  imports: [MaterialCardComponent],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
