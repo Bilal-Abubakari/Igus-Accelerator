@@ -9,9 +9,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from '../../../common/entities/user.entity';
-import { ReviewStatus } from '../../../common/types';
+import { ReviewStatus } from '../../../common/types/general.types';
 import { FileEntity } from './file.entity';
-import { PrincipalFormEntity } from './principal-form.entity';
 
 @Entity('model_configurations')
 export class ModelConfigurationEntity {
@@ -30,10 +29,6 @@ export class ModelConfigurationEntity {
   @OneToOne(() => FileEntity, { onDelete: 'CASCADE' })
   @JoinColumn()
   public file!: FileEntity;
-
-  @OneToOne(() => PrincipalFormEntity)
-  @JoinColumn()
-  public principalForm!: PrincipalFormEntity;
 
   @Column({
     type: 'enum',

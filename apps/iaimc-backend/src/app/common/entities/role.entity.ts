@@ -1,12 +1,5 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Role } from '../types';
-import { PermissionEntity } from './permission.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from '../types/general.types';
 
 @Entity('roles')
 export class RoleEntity {
@@ -19,9 +12,5 @@ export class RoleEntity {
     default: Role.Customer,
     unique: true,
   })
-  public name: Role = Role.Customer;
-
-  @ManyToMany(() => PermissionEntity, { onDelete: 'CASCADE' })
-  @JoinTable({ name: 'roles_permissions' })
-  public permissions!: PermissionEntity[];
+  public name!: Role;
 }

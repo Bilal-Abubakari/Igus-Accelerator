@@ -4,7 +4,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { ContactFormEntity } from './entity/contact-form.entity';
 import { Repository } from 'typeorm';
 import { FileUploadService } from '../file-upload/file-upload.service';
-import { FileStoreDirectory } from '../../common/types';
+import { FileStoreDirectory } from '../../common/types/file.types';
 import {
   mockContactFormDto,
   mockFile,

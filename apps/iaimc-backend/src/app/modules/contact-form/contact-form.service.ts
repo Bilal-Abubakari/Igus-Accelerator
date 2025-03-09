@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { ContactFormEntity } from './entity/contact-form.entity';
 import { ContactFormDto } from './dto/contact-form.dto';
 import { FileUploadService } from '../file-upload/file-upload.service';
-import { FileStoreDirectory } from '../../common/types';
+import { FileStoreDirectory } from '../../common/types/file.types';
 
 interface CloudinaryUploadResult {
   secure_url: string;
