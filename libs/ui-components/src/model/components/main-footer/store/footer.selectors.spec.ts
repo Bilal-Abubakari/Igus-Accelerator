@@ -1,6 +1,11 @@
-
 import { FOOTER_FEATURE_KEY } from './footer.reducer';
-import { selectFeedbackId, selectFeedbackLoading, selectFooterState, selectIsEmailUpdated, selectIsFeedbackSubmitted } from './footer.selectors';
+import {
+  selectFeedbackId,
+  selectFeedbackLoading,
+  selectFooterState,
+  selectIsEmailUpdated,
+  selectIsFeedbackSubmitted,
+} from './footer.selectors';
 import { FooterState } from './footer.state';
 
 describe('Footer Selectors', () => {
@@ -97,16 +102,10 @@ describe('Footer Selectors', () => {
         [FOOTER_FEATURE_KEY]: {} as FooterState,
       };
 
-      expect(
-        selectFeedbackLoading(incompleteState),
-      ).toBeUndefined();
+      expect(selectFeedbackLoading(incompleteState)).toBeUndefined();
       expect(selectFeedbackId(incompleteState)).toBeUndefined();
-      expect(
-        selectIsFeedbackSubmitted(incompleteState),
-      ).toBeUndefined();
-      expect(
-        selectIsEmailUpdated(incompleteState),
-      ).toBeUndefined();
+      expect(selectIsFeedbackSubmitted(incompleteState)).toBeUndefined();
+      expect(selectIsEmailUpdated(incompleteState)).toBeUndefined();
     });
   });
 });
