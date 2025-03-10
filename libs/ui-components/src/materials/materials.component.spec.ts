@@ -1,7 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { MaterialsComponent } from './materials.component';
-import { MaterialSelectors } from './store/material.selectors';
+import {
+  selectAllMaterials,
+  selectLoading,
+  selectError,
+  selectSelectedMaterialId,
+} from './store/material.selectors';
 import { MaterialActions } from './store/material.actions';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MaterialsCardComponent } from './components/materials-card/materials-card.component';
@@ -39,10 +44,10 @@ describe('MaterialsComponent', () => {
     component = TestBed.createComponent(MaterialsComponent).componentInstance;
     dispatchSpy = jest.spyOn(store, 'dispatch');
 
-    store.overrideSelector(MaterialSelectors.selectAllMaterials, []);
-    store.overrideSelector(MaterialSelectors.selectLoading, false);
-    store.overrideSelector(MaterialSelectors.selectError, null);
-    store.overrideSelector(MaterialSelectors.selectSelectedMaterialId, null);
+    store.overrideSelector(selectAllMaterials, []);
+    store.overrideSelector(selectLoading, false);
+    store.overrideSelector(selectError, null);
+    store.overrideSelector(selectSelectedMaterialId, null);
   });
 
   it('should create the component', () => {
@@ -63,13 +68,13 @@ describe('MaterialsComponent', () => {
   });
 
   it('should correctly compute hasError', () => {
-    store.overrideSelector(MaterialSelectors.selectError, 'Some error');
+    store.overrideSelector(selectError, 'Some error');
     store.refreshState();
     expect(component.hasError()).toBe(true);
   });
 
   it('should correctly compute hasError as false when no error exists', () => {
-    store.overrideSelector(MaterialSelectors.selectError, null);
+    store.overrideSelector(selectError, null);
     store.refreshState();
     expect(component.hasError()).toBe(false);
   });

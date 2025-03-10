@@ -12,7 +12,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { Store } from '@ngrx/store';
-import { MaterialSelectors } from '../../store/material.selectors';
+import { selectMaterialById } from '../../store/material.selectors';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { LowerCasePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -45,8 +45,8 @@ export class MaterialInfoDialogComponent {
     'non-resistant',
   ];
 
-  public material = this.store.selectSignal(
-    MaterialSelectors.selectMaterialById(this.data.id),
+  public readonly material = this.store.selectSignal(
+    selectMaterialById(this.data.id),
   );
 
   public resistantChemicals =
