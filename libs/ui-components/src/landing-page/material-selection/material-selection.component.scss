@@ -1,0 +1,82 @@
+@use '@angular/material' as mat;
+@import 'libs/ui-components/src/styles/_variables.scss';
+
+.material-selection {
+  padding: 20px;
+  background-color: $mat-selection-background-color;
+
+  &__title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+    font-weight: 600;
+  }
+
+  &__grid {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+.material-card {
+  width: $full;
+  max-width: 300px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+
+  @include mat.card-overrides(
+    (
+      elevated-container-color: none,
+      outlined-outline-color: #e7e7e7,
+    )
+  );
+
+  &__checkbox {
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    align-items: center;
+    background-color: #c0dbc7;
+    margin-bottom: 16px;
+  }
+
+  &__checkmark {
+    @include flex-center;
+    color: #2e5235;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  &__features {
+    @include flex-column;
+    gap: 8px;
+  }
+
+  &__feature {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+// Media query for responsive design
+@media (max-width: 768px) {
+  .material-selection__grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .material-card {
+    max-width: 100%;
+  }
+}
