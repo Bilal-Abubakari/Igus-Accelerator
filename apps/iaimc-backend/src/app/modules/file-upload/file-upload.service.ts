@@ -6,11 +6,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { v2 as cloudinary, UploadApiOptions } from 'cloudinary';
 import { Readable } from 'typeorm/platform/PlatformTools';
-import {
-  FileStoreDirectory,
-  MulterFile,
-  ResponseObject,
-} from '../../common/types';
+import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
+import { ResponseObject } from '../../common/types/general.types';
 
 @Injectable()
 export class FileUploadService {

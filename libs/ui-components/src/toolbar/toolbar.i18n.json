@@ -47,7 +47,7 @@
     "CART": {
       "ar": "عربة التسوق",
       "de": "Einkaufswagen",
-      "en": "Shopping cart",
+      "en": "Cart",
       "es": "Cesta de la compra",
       "fr": "Panier d'achat",
       "jp": "ショッピングカート",
@@ -65,6 +65,28 @@
       "pt": "Login",
       "ru": "Вход в систему",
       "zh": "登录"
+    },
+    "SIGNIN": {
+      "ar": "تسجيل الدخول",
+      "de": "Anmelden",
+      "en": "Sign in",
+      "es": "Iniciar sesión",
+      "fr": "Se connecter",
+      "jp": "サインイン",
+      "pt": "Entrar",
+      "ru": "Войти",
+      "zh": "登录"
+    },
+    "START_FOR_FREE": {
+      "ar": "ابدأ مجانًا",
+      "de": "Kostenlos starten",
+      "en": "Start for free",
+      "es": "Comienza gratis",
+      "fr": "Commencer gratuitement",
+      "jp": "無料で始める",
+      "pt": "Comece de graça",
+      "ru": "Начать бесплатно",
+      "zh": "免费开始"
     }
   }
 }
