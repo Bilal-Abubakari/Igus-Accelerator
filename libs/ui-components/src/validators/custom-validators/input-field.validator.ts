@@ -33,15 +33,24 @@ export class TextOnlyValidators {
     };
   }
 
-  static fileType(allowedTypes: string[]): ValidatorFn {
+  static fileType(allowedTypes: string[], maxSizeMB?: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
         return null;
       }
 
       const file = control.value;
-      const isValid = allowedTypes.includes(file.type);
-      return isValid ? null : { invalidFileType: { allowed: allowedTypes } };
+
+      const isValidType = allowedTypes.includes(file.type);
+      if (!isValidType) {
+        return { invalidFileType: { allowed: allowedTypes } };
+      }
+
+      if (maxSizeMB && file.size > maxSizeMB * 1024 * 1024) {
+        return { fileSize: { maxSize: maxSizeMB } };
+      }
+
+      return null;
     };
   }
 }
