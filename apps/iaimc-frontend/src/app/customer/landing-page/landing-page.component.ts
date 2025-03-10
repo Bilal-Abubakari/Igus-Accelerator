@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  StageComponent,
-  ToolbarComponent,
-} from '@igus-accelerator-injection-molding-configurator/ui-components';
+import { StageComponent } from '@igus-accelerator-injection-molding-configurator/ui-components';
+import { ModelUploadComponent } from '../../../../../../libs/ui-components/src/model/components/model-upload/model-upload.component';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ToolbarComponent, StageComponent],
+  imports: [StageComponent, ModelUploadComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
