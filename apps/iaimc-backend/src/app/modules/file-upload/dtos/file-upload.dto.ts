@@ -1,5 +1,5 @@
 import { IsEnum } from 'class-validator';
-import { FileStoreDirectory } from '../../../common/types';
+import { FileStoreDirectory } from '../../../common/types/file.types';
 
 export class FileStoreUploadDto {
   @IsEnum(FileStoreDirectory, {

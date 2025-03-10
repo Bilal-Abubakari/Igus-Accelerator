@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import XLSX from 'xlsx';
-import { LOGGER_TYPE } from '../types';
+import { LOGGER_TYPE } from '../types/general.types';
 
 const logger = new Logger();
 

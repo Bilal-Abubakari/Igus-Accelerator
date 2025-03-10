@@ -82,20 +82,20 @@ describe('ToolbarComponent', () => {
     expect(menuElement.classes).not.toContain('visible');
   });
 
-  it('should display the contact, cart, and login buttons', () => {
-    const contactButton = fixture.debugElement.query(
-      By.css('button mat-icon[fontIcon="mail"]'),
+  it('should display the signup, login, and menu buttons', () => {
+    const signinButton = fixture.debugElement.query(
+      By.css('.header-toolbar__primary__btn'),
     ).parent?.nativeElement;
-    const cartButton = fixture.debugElement.query(
-      By.css('button mat-icon[fontIcon="shopping_cart"]'),
+    const signUpButton = fixture.debugElement.query(
+      By.css('.header-toolbar__secondary__btn'),
     ).parent?.nativeElement;
-    const loginButton = fixture.debugElement.query(
-      By.css('button mat-icon[fontIcon="login"]'),
+    const langSwitcherButton = fixture.debugElement.query(
+      By.css('.header-toolbar__lang__switcher '),
     ).parent?.nativeElement;
 
-    expect(contactButton).toBeTruthy();
-    expect(cartButton).toBeTruthy();
-    expect(loginButton).toBeTruthy();
+    expect(signinButton).toBeTruthy();
+    expect(signUpButton).toBeTruthy();
+    expect(langSwitcherButton).toBeTruthy();
   });
 
   it('should display the hamburger menu button on smaller screens', () => {
