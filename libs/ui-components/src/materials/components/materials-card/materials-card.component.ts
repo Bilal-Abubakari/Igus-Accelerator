@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { Material } from '../../store/material.model';
 import { MatDialog } from '@angular/material/dialog';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -30,7 +30,7 @@ import { MaterialInfoDialogComponent } from '../material-info-dialog/material-in
 })
 export class MaterialsCardComponent {
   private readonly dialog = inject(MatDialog);
-
+  private readonly transloco = inject(TranslocoService);
   @Input() material!: Material;
   @Input() selectedMaterialId!: string | null;
   @Input() toggleSelection!: (id: string) => void;
@@ -49,8 +49,10 @@ export class MaterialsCardComponent {
 
   public getMaterialDescription(material: Material): string {
     return material.highchemicalresistance
-      ? `Food material with high media resistance up to ${material.maxtemperature}°C.`
-      : 'General-purpose material.';
+      ? this.transloco.translate('materialCard.HIGH_CHEMICAL_RESISTANCE', {
+          temp: material.maxtemperature,
+        })
+      : this.transloco.translate('materialCard.GENERAL_PURPOSE');
   }
 
   protected getTolerancePercentage(shrinkage: number): number {

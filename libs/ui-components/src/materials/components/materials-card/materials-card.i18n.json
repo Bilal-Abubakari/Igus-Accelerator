@@ -43,6 +43,28 @@
       "pt": "Não há materiais disponíveis",
       "ru": "Материалы отсутствуют",
       "zh": "無可用資料"
+    },
+    "HIGH_CHEMICAL_RESISTANCE": {
+      "ar": "مادة غذائية ذات مقاومة كيميائية عالية تصل إلى {{temp}} درجة مئوية.",
+      "de": "Lebensmittelmaterial mit hoher Medienbeständigkeit bis zu {{temp}}°C.",
+      "en": "Food material with high media resistance up to {{temp}}°C.",
+      "es": "Material alimenticio con alta resistencia química hasta {{temp}}°C.",
+      "fr": "Matériau alimentaire avec une haute résistance chimique jusqu'à {{temp}}°C.",
+      "jp": "最大{{temp}}°Cの高耐薬品性食品材料。",
+      "pt": "Material alimentar com alta resistência química até {{temp}}°C.",
+      "ru": "Пищевой материал с высокой химической стойкостью до {{temp}}°C.",
+      "zh": "食品材料，耐化学性高达{{temp}}°C。"
+    },
+    "GENERAL_PURPOSE": {
+      "ar": "مادة متعددة الأغراض.",
+      "de": "Allzweckmaterial.",
+      "en": "General-purpose material.",
+      "es": "Material de uso general.",
+      "fr": "Matériau polyvalent.",
+      "jp": "汎用材料。",
+      "pt": "Material de uso geral.",
+      "ru": "Материал общего назначения.",
+      "zh": "通用材料。"
     }
   }
 }
