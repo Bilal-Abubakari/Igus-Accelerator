@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  margin-bottom: var(--margin-bottom-field, 15px);
+}
+
+mat-form-field {
+  width: 100%;
+
+  &.telephone {
+    width: var(--telephone-width, 100%);
+  }
+}

@@ -1,12 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnDestroy,
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,33 +15,37 @@ import {
   ReactiveFormsModule,
   FormBuilder,
   FormGroup,
-  AbstractControl,
 } from '@angular/forms';
-import { ContactFormService } from './service/contact-form.service';
+import { Observable, Subject, map } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { TextOnlyValidators } from '../validators/custom-validators/input-field.validator';
 import { FeatureFlagService } from './service/feature-flag.service';
-import { ContactFormData, Country } from './contact-form.interface';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatOptionModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
-import { CountryService } from './service/countries.service';
-import { Subject, takeUntil } from 'rxjs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ContactFormActions } from './store/contact-form.actions';
+import {
+  selectIsSubmitting,
+  selectIsSubmitted,
+  selectError,
+  selectCountries,
+} from './store/contact-form.selectors';
+import { ReusableButtonComponent } from '../reusable-components/reusable-button/reusable-button.component';
+import { ReusableFormFieldComponent } from '../reusable-components/reusable-form-field/reusable-form-field.component';
+import { SelectOption } from './contact-form.interface';
 
 @Component({
   selector: 'app-contact-form',
   standalone: true,
   imports: [
     CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatSelectModule,
-    MatOptionModule,
+    ReusableFormFieldComponent,
+    ReusableButtonComponent,
   ],
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
@@ -57,8 +60,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     'image/png',
   ];
 
-  private static readonly MAX_FILE_SIZE_MB = 10;
-  private destroy$ = new Subject<void>();
+  public static readonly MAX_FILE_SIZE_MB = 10;
+  public destroy$ = new Subject<void>();
 
   public readonly errorMessages = {
     required: 'This field is required',
@@ -76,40 +79,37 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   public contactForm!: FormGroup;
   public fileValidationError = '';
-  public isSubmitting = false;
-  public countries: Country[] = [];
+  private readonly store = inject(Store);
+
+  public isSubmitting$ = this.store.select(selectIsSubmitting);
+  public isSubmitted$ = this.store.select(selectIsSubmitted);
+  public error$ = this.store.select(selectError);
+  public countries$ = this.store.select(selectCountries);
+
+  public countryOptions$: Observable<SelectOption[]> = this.countries$.pipe(
+    map((countries) => {
+      if (!countries) return [];
+      return countries.map((country) => ({
+        value: country.code,
+        label: country.name,
+      }));
+    }),
+  );
 
   constructor(
     public readonly dialogRef: MatDialogRef<ContactFormComponent>,
     private readonly formBuilder: FormBuilder,
-    private readonly contactFormService: ContactFormService,
-    private readonly countryService: CountryService,
     public readonly featureFlagService: FeatureFlagService,
-    private readonly snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
-    this.loadCountries();
+    this.store.dispatch(ContactFormActions.loadCountries());
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  private loadCountries(): void {
-    this.countryService
-      .getCountries()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (countries: Country[]) => {
-          this.countries = countries;
-        },
-        error: () => {
-          this.countries = [];
-        },
-      });
   }
 
   private initializeForm(): void {
@@ -135,39 +135,6 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  public get formControls(): { [key: string]: AbstractControl } {
-    return this.contactForm.controls;
-  }
-
-  public hasError(controlName: string, errorName: string): boolean {
-    return this.formControls[controlName].hasError(errorName);
-  }
-
-  public isTouched(controlName: string): boolean {
-    return this.formControls[controlName].touched;
-  }
-
-  public validateFileType(
-    control: AbstractControl,
-  ): { [key: string]: boolean } | null {
-    const file = control.value;
-    if (!file) return null;
-    const isValidType = ContactFormComponent.ALLOWED_FILE_TYPES.includes(
-      file.type,
-    );
-    return isValidType ? null : { invalidFileType: true };
-  }
-
-  public validateFileSize(
-    control: AbstractControl,
-  ): { [key: string]: boolean } | null {
-    const file = control.value;
-    if (!file) return null;
-    const isValidSize =
-      file.size <= ContactFormComponent.MAX_FILE_SIZE_MB * 1024 * 1024;
-    return isValidSize ? null : { fileSize: true };
-  }
-
   public handleFileSelection(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (!input.files?.length) return;
@@ -182,26 +149,18 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isSubmitting = true;
-    const formData: ContactFormData = this.contactForm.getRawValue();
+    this.store.dispatch(
+      ContactFormActions.submitForm({
+        formData: this.contactForm.getRawValue(),
+      }),
+    );
 
-    this.contactFormService
-      .submitContactForm(formData)
+    this.isSubmitted$
       .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: () => {
-          this.isSubmitting = false;
-          this.snackBar.open('Form submitted successfully!', 'Close', {
-            duration: 3000,
-          });
+      .subscribe((isSubmitted) => {
+        if (isSubmitted) {
           this.dialogRef.close(true);
-        },
-        error: (error: Error) => {
-          this.isSubmitting = false;
-          this.snackBar.open(`Submission failed: ${error.message}`, 'Close', {
-            duration: 5000,
-          });
-        },
+        }
       });
   }
 

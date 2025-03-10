@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DatabaseConfig } from '../common/types';
 import { FeedbackEntity } from '../modules/feedback/feedback.entity';
+import { ContactFormEntity } from '../modules/contact-form/entity/contact-form.entity';
 
 export default (): DatabaseConfig => ({
   database: {
@@ -10,7 +11,7 @@ export default (): DatabaseConfig => ({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    entities: [FeedbackEntity],
+    entities: [FeedbackEntity, ContactFormEntity],
     url: process.env.POSTGRES_DATABASE_URL,
     synchronize: process.env.NODE_ENV === 'development',
     ssl: false,

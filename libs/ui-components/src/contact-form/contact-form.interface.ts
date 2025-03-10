@@ -19,3 +19,7 @@ export interface Country {
   name: string;
   code: string;
 }
+export interface SelectOption {
+  value: string;
+  label: string;
+}

@@ -1,0 +1,34 @@
+@if (isIconButton) {
+  <button
+    mat-icon-button
+    [class]="className"
+    [type]="type"
+    [disabled]="disabled"
+    [color]="color"
+    (click)="buttonClick.emit($event)"
+  >
+    <ng-content></ng-content>
+  </button>
+} @else if (!isIconButton && flat) {
+  <button
+    mat-flat-button
+    [class]="className"
+    [type]="type"
+    [disabled]="disabled"
+    [color]="color"
+    (click)="buttonClick.emit($event)"
+  >
+    <ng-content></ng-content>
+  </button>
+} @else {
+  <button
+    mat-button
+    [class]="className"
+    [type]="type"
+    [disabled]="disabled"
+    [color]="color"
+    (click)="buttonClick.emit($event)"
+  >
+    <ng-content></ng-content>
+  </button>
+}

@@ -51,6 +51,19 @@ p.intro {
   margin: var(--gap-standard) 0;
 }
 
+.terms-error {
+  font-size: var(--error-font-size) !important;
+  line-height: var(--error-line-height) !important;
+  color: rgb(200, 53, 53);
+  margin: 4px 0 0 0;
+}
+
+:host {
+  --close-btn-top: 24px;
+  --close-btn-right: 24px;
+  --error-font-size: 12px;
+  --error-line-height: 1.33;
+}
 .email-company-container {
   display: flex;
   flex-direction: column;
@@ -63,8 +76,11 @@ p.intro {
 
 .name-fields-container {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
   gap: var(--gap-standard);
+  > * {
+    flex: 1;
+  }
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -74,17 +90,27 @@ p.intro {
   display: flex;
   justify-content: space-between;
   gap: var(--gap-standard);
+  width: 100%;
   @media (max-width: 600px) {
     flex-direction: column;
   }
 }
 
-.postal-code {
+app-reusable-form-field {
   flex: 1;
+  min-width: 0;
 }
 
-.country {
-  flex: 2;
+.select-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
 }
 
 mat-form-field {
