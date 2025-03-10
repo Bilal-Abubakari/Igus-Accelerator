@@ -13,6 +13,10 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { AVAILABLE_LANGUAGE_CODES, LANGUAGE_LABELS } from './constants';
 import { LanguageOverlayService } from './services/language-overlay/language-overlay.service';
 import { Language, LanguageCode } from './types';
+import {
+  LocalStorageKeys,
+  LocalStorageService,
+} from '../model/components/model-upload/services/local-storage.service';
 
 @Component({
   selector: 'app-lang-switcher',
@@ -24,6 +28,7 @@ import { Language, LanguageCode } from './types';
 export class LanguageSwitcherComponent implements OnInit {
   private readonly translocoService = inject(TranslocoService);
   private readonly langOverlayService = inject(LanguageOverlayService);
+  private readonly localStorageService = inject(LocalStorageService);
 
   public langOverlayToggleEventEmitter = output<null>();
 
@@ -41,7 +46,9 @@ export class LanguageSwitcherComponent implements OnInit {
   }
 
   private detectBrowserLocale() {
-    const savedLang = localStorage.getItem('translocoLang');
+    const savedLang = this.localStorageService.getLocalItem<string>(
+      LocalStorageKeys.TRANSLATE_LANG,
+    );
 
     if (
       savedLang &&
