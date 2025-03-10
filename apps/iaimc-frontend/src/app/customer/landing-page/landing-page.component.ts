@@ -3,9 +3,7 @@ import {
   StageComponent,
   ToolbarComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import {
-  FooterComponent
-} from '../../../../../../libs/ui-components/src/landing-page/components/footer/footer.component';
+import { FooterComponent } from '../../../../../../libs/ui-components/src/landing-page/components/footer/footer.component';
 
 @Component({
   selector: 'app-landing-page',

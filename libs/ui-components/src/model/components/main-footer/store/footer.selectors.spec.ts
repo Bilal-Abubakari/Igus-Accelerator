@@ -1,5 +1,6 @@
-import * as fromFooter from './footer.reducer';
-import * as FooterSelectors from './footer.selectors';
+
+import { FOOTER_FEATURE_KEY } from './footer.reducer';
+import { selectFeedbackId, selectFeedbackLoading, selectFooterState, selectIsEmailUpdated, selectIsFeedbackSubmitted } from './footer.selectors';
 import { FooterState } from './footer.state';
 
 describe('Footer Selectors', () => {
@@ -13,8 +14,8 @@ describe('Footer Selectors', () => {
 
   describe('selectFooterState', () => {
     it('should select the feature state', () => {
-      const result = FooterSelectors.selectFooterState({
-        [fromFooter.FOOTER_FEATURE_KEY]: initialState,
+      const result = selectFooterState({
+        [FOOTER_FEATURE_KEY]: initialState,
       });
 
       expect(result).toEqual(initialState);
@@ -28,8 +29,8 @@ describe('Footer Selectors', () => {
         isFeedbackLoading: true,
       };
 
-      const result = FooterSelectors.selectFeedbackLoading({
-        [fromFooter.FOOTER_FEATURE_KEY]: state,
+      const result = selectFeedbackLoading({
+        [FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(true);
@@ -44,16 +45,16 @@ describe('Footer Selectors', () => {
         feedbackId,
       };
 
-      const result = FooterSelectors.selectFeedbackId({
-        [fromFooter.FOOTER_FEATURE_KEY]: state,
+      const result = selectFeedbackId({
+        [FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(feedbackId);
     });
 
     it('should return null when feedbackId is not set', () => {
-      const result = FooterSelectors.selectFeedbackId({
-        [fromFooter.FOOTER_FEATURE_KEY]: initialState,
+      const result = selectFeedbackId({
+        [FOOTER_FEATURE_KEY]: initialState,
       });
 
       expect(result).toBeNull();
@@ -67,8 +68,8 @@ describe('Footer Selectors', () => {
         isFeedbackSubmitted: true,
       };
 
-      const result = FooterSelectors.selectIsFeedbackSubmitted({
-        [fromFooter.FOOTER_FEATURE_KEY]: state,
+      const result = selectIsFeedbackSubmitted({
+        [FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(true);
@@ -82,8 +83,8 @@ describe('Footer Selectors', () => {
         isEmailUpdated: true,
       };
 
-      const result = FooterSelectors.selectIsEmailUpdated({
-        [fromFooter.FOOTER_FEATURE_KEY]: state,
+      const result = selectIsEmailUpdated({
+        [FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(true);
@@ -93,18 +94,18 @@ describe('Footer Selectors', () => {
   describe('selector behavior with incomplete state', () => {
     it('should handle missing properties gracefully', () => {
       const incompleteState = {
-        [fromFooter.FOOTER_FEATURE_KEY]: {} as FooterState,
+        [FOOTER_FEATURE_KEY]: {} as FooterState,
       };
 
       expect(
-        FooterSelectors.selectFeedbackLoading(incompleteState),
+        selectFeedbackLoading(incompleteState),
       ).toBeUndefined();
-      expect(FooterSelectors.selectFeedbackId(incompleteState)).toBeUndefined();
+      expect(selectFeedbackId(incompleteState)).toBeUndefined();
       expect(
-        FooterSelectors.selectIsFeedbackSubmitted(incompleteState),
+        selectIsFeedbackSubmitted(incompleteState),
       ).toBeUndefined();
       expect(
-        FooterSelectors.selectIsEmailUpdated(incompleteState),
+        selectIsEmailUpdated(incompleteState),
       ).toBeUndefined();
     });
   });

@@ -7,11 +7,7 @@ import {
 
 @Component({
   selector: 'app-library',
-  imports: [
-    StageComponent,
-    MainFooterComponent,
-    ModelListComponent,
-  ],
+  imports: [StageComponent, MainFooterComponent, ModelListComponent],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
