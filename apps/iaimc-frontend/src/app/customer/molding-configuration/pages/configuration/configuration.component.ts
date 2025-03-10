@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MaterialCardComponent } from '../../../../../../../../libs/ui-components/src/material-view/components/material-card/material-card.component';
+import { MaterialsComponent } from '../../../../../../../../libs/ui-components/src/materials/materials.component';
 
 @Component({
   selector: 'app-configuration',
-  imports: [MaterialCardComponent],
+  imports: [MaterialsComponent],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

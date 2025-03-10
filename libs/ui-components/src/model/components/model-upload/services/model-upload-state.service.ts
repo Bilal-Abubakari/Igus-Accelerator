@@ -5,7 +5,7 @@ import { LocalStorageKeys, LocalStorageService } from './local-storage.service';
 export class ModelUploadState {
   private readonly localStorageService = inject(LocalStorageService);
 
-  private uploaded = signal<boolean>(
+  private readonly uploaded = signal<boolean>(
     this.localStorageService.getLocalItem<boolean>(
       LocalStorageKeys.HAS_UPLOADED_MODEL,
     ) ?? false,

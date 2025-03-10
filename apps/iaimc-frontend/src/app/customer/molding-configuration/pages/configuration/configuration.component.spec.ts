@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfigurationComponent } from './configuration.component';
-import { MaterialCardComponent } from '../../../../../../../../libs/ui-components/src/material-view/components/material-card/material-card.component';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
+import { MaterialsComponent } from '../../../../../../../../libs/ui-components/src/materials/materials.component';
 
 const mockMaterials = [
   {
@@ -32,7 +32,7 @@ describe('ConfigurationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfigurationComponent, MaterialCardComponent],
+      imports: [ConfigurationComponent, MaterialsComponent],
       providers: [{ provide: Store, useValue: mockStore }],
     }).compileComponents();
 
