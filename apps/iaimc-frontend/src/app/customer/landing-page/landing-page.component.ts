@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
-    StageComponent,
-    ToolbarComponent
+  StageComponent,
+  ToolbarComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-
 
 @Component({
   selector: 'app-landing-page',
