@@ -10,13 +10,13 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
-import {
-  AVAILABLE_LANGUAGE_CODES,
-  DEFAULT_LANGUAGE,
-  LANGUAGE_LABELS,
-} from './constants';
+import { AVAILABLE_LANGUAGE_CODES, LANGUAGE_LABELS } from './constants';
 import { LanguageOverlayService } from './services/language-overlay/language-overlay.service';
 import { Language, LanguageCode } from './types';
+import {
+  LocalStorageKeys,
+  LocalStorageService,
+} from '../model/components/model-upload/services/local-storage.service';
 
 @Component({
   selector: 'app-lang-switcher',
@@ -28,6 +28,7 @@ import { Language, LanguageCode } from './types';
 export class LanguageSwitcherComponent implements OnInit {
   private readonly translocoService = inject(TranslocoService);
   private readonly langOverlayService = inject(LanguageOverlayService);
+  private readonly localStorageService = inject(LocalStorageService);
 
   public langOverlayToggleEventEmitter = output<null>();
 
@@ -45,15 +46,21 @@ export class LanguageSwitcherComponent implements OnInit {
   }
 
   private detectBrowserLocale() {
-    const lang = (navigator.languages as LanguageCode[]).find((lang) =>
-      AVAILABLE_LANGUAGE_CODES.includes(lang),
+    const savedLang = this.localStorageService.getLocalItem<string>(
+      LocalStorageKeys.TRANSLATE_LANG,
     );
 
-    this.translocoService.setActiveLang(lang ?? DEFAULT_LANGUAGE);
+    if (
+      savedLang &&
+      AVAILABLE_LANGUAGE_CODES.includes(savedLang as LanguageCode)
+    ) {
+      this.translocoService.setActiveLang(savedLang);
+      this.activeLanguageCode.set(savedLang as LanguageCode);
+    }
+
     this.translocoService.langChanges$.subscribe((lang) => {
       this.activeLanguageCode.set(lang as LanguageCode);
     });
-    this.activeLanguageCode.set(lang ?? DEFAULT_LANGUAGE);
   }
 
   public toggleLanguageOverlay() {
