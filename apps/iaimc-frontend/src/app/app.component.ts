@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { ToolbarComponent } from '../../../../libs/ui-components/src/toolbar/toolbar.component';
+import { ToolbarComponent } from '../../../../libs/ui-components/src/landing-page/toolbar/toolbar.component';
 
 @Component({
   standalone: true,
