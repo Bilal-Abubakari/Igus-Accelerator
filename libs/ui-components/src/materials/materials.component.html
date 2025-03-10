@@ -7,6 +7,9 @@
         [material]="material"
         [selectedMaterialId]="selectedMaterialId()"
         (click)="toggleSelection(material.id)"
+        (keydown.enter)="toggleSelection(material.id)"
+        (keydown.space)="toggleSelection(material.id)"
+        tabindex="0"
       ></app-materials-card>
     } @empty {
       <p>{{ 'materialCard.EMPTY_STATE' | transloco }}.</p>
