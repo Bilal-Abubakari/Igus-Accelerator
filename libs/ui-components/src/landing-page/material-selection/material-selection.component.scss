@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import "libs/ui-components/src/styles/_variables.scss";
+@import 'libs/ui-components/src/styles/_variables.scss';
 
 .material-selection {
   padding: 20px;
@@ -26,10 +26,12 @@
   background-color: white;
   border-radius: 8px;
 
-  @include mat.card-overrides((
-    elevated-container-color: none,
-    outlined-outline-color: #E7E7E7,
-  ));
+  @include mat.card-overrides(
+    (
+      elevated-container-color: none,
+      outlined-outline-color: #e7e7e7,
+    )
+  );
 
   &__checkbox {
     @include flex-center;
@@ -37,13 +39,13 @@
     height: 24px;
     border-radius: 4px;
     align-items: center;
-    background-color: #C0DBC7;
+    background-color: #c0dbc7;
     margin-bottom: 16px;
   }
 
   &__checkmark {
     @include flex-center;
-    color: #2E5235;
+    color: #2e5235;
     font-size: 20px;
     height: 20px;
     width: 20px;
@@ -66,10 +68,6 @@
     font-size: 14px;
   }
 }
-
-
-
-
 
 // Media query for responsive design
 @media (max-width: 768px) {
