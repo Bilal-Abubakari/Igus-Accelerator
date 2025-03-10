@@ -55,7 +55,7 @@ import { MatDialog } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent implements OnInit, OnDestroy {
-  private dialog = inject(MatDialog);
+  private readonly dialog = inject(MatDialog);
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);
   private readonly footerService = inject(FooterService);
