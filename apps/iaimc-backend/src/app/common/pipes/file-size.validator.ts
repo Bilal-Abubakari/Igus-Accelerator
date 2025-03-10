@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
-import { MulterFile } from '../types';
+import { MulterFile } from '../types/file.types';
 
 @Injectable()
 export class FileSizeValidatorPipe implements PipeTransform {

@@ -10,8 +10,8 @@ $shadow-color: rgba(0, 0, 0, 0.2);
 
   @include mat.toolbar-overrides(
     (
-      container-background-color: var(--mat-sys-tertiary),
-      container-text-color: var(--mat-sys-on-primary),
+      container-background-color: var(--mat-sys-on-primary),
+      container-text-color: var(--mat-sys-on-background),
     )
   );
 
@@ -22,18 +22,14 @@ $shadow-color: rgba(0, 0, 0, 0.2);
     align-items: center;
     padding: 0 $navbar-horizontal-padding;
     font-size: 14px;
-    font-weight: 400px;
+    font-weight: normal;
   }
+
   &__left {
     width: 50%;
     display: flex;
     align-items: center;
     flex: auto;
-
-    .title-bar__logo {
-      font-size: 2rem;
-      color: var(--mat-sys-primary);
-    }
 
     .title-bar__titles {
       display: flex;
@@ -41,55 +37,79 @@ $shadow-color: rgba(0, 0, 0, 0.2);
       vertical-align: middle;
       flex: auto;
       width: 50%;
-
-      padding-left: 16px;
+      padding-left: 5px;
     }
-    .main-title,
-    .sub-title {
-      font-size: 14px;
+
+    .main-title {
+      font-size: 16px;
       letter-spacing: 0.4px;
-      line-height: 20px;
+      font-weight: normal;
+      line-height: 14px;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-    .sub-title {
-      color: var(--mat-sys-on-tertiary);
+      font-family: 'Roboto', sans-serif;
     }
   }
+
   &__right {
     flex: none;
   }
+
+  &__menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
   button {
     width: auto;
-    line-height: 50px;
+    padding: 0 14px;
+    line-height: 24px;
     font-size: 14px;
-    font-weight: 400px;
-    height: 50px;
-    padding: 0 12px;
-    display: inline-flex;
-    gap: 4px;
-    align-items: center;
-    vertical-align: top;
-    background-color: transparent;
-    border: none;
-    color: white;
+    height: 40px;
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       cursor: pointer;
     }
   }
+
+  &__primary__btn {
+    background-color: var(--mat-sys-on-primary);
+    border: 1px solid var(--mat-sys-outline);
+  }
+
+  &__secondary__btn {
+    color: var(--mat-sys-on-primary);
+    background-color: var(--mat-sys-on-background);
+    border: 1px solid var(--mat-sys-outline);
+  }
+
+  &__lang__switcher {
+    background: transparent;
+    border: none;
+  }
+
   .humberger__menu {
+    border: none;
+    background: transparent;
     display: none;
   }
-  button:hover {
-    background-color: var(--mat-sys-on-tertiary);
-  }
+
   @media (max-width: 768px) {
     .header-toolbar__menu {
       display: none;
     }
     .humberger__menu {
       display: block;
+      border: none;
+
+      &__btn {
+        background: transparent;
+        border: none;
+      }
     }
   }
 }

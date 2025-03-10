@@ -2,7 +2,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { v2 as cloudinary } from 'cloudinary';
-import { FileStoreDirectory, MulterFile } from '../../common/types';
+import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
 import { FileUploadService } from './file-upload.service';
 
 jest.mock('cloudinary');

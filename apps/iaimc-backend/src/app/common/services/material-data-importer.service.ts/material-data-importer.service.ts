@@ -1,12 +1,12 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import Papa, { ParseResult } from 'papaparse';
 import path from 'path';
+import { ResponseObject } from '../../types/general.types';
 import {
   InjectionMoldingMaterial,
   InjectionMoldingMaterialPropertyValueType,
   ResistanceLevel,
-  ResponseObject,
-} from '../../types';
+} from '../../types/material.types';
 import {
   checkFileExistence,
   readFileContents,
