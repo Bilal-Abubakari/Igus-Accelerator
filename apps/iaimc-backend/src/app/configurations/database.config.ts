@@ -5,6 +5,7 @@ import { DatabaseConfig } from '../common/types/general.types';
 import { FeedbackEntity } from '../modules/feedback/feedback.entity';
 import { ModelConfigurationEntity } from '../modules/model-configurations/entities/configuration.entity';
 import { FileEntity } from '../modules/model-configurations/entities/file.entity';
+import { ContactFormEntity } from '../modules/contact-form/entity/contact-form.entity';
 
 export default (): DatabaseConfig => ({
   database: {
@@ -16,6 +17,7 @@ export default (): DatabaseConfig => ({
     database: process.env.POSTGRES_DB,
     entities: [
       FeedbackEntity,
+      ContactFormEntity,
       FileEntity,
       ModelConfigurationEntity,
       RoleEntity,

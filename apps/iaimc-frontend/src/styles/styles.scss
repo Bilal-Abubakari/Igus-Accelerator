@@ -70,3 +70,45 @@ mat-form-field.small {
     }
   }
 }
+
+.full-screen-dialog {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+
+  @include mat.dialog-overrides(
+    (
+      container-shape: 0px,
+      container-color: white,
+    )
+  );
+}
+
+.cdk-global-scrollblock {
+  position: fixed;
+  width: 100%;
+  overflow-y: hidden !important;
+}
+
+.mat-mdc-select-panel {
+  transform-origin: top center !important;
+  background-color: var(--mat-sys-on-primary) !important;
+}
+
+.mat-mdc-form-field .mdc-select__dropdown-icon,
+.mat-mdc-form-field .mat-mdc-select-arrow-wrapper {
+  display: none !important;
+}
+
+.mat-mdc-form-field.mat-mdc-form-field-focused {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.mat-mdc-select-panel-wrap {
+  transform: translateY(36px) !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  top: unset !important;
+  bottom: auto !important;
+}
