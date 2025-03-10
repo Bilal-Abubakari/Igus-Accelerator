@@ -26,7 +26,6 @@ mat-icon {
   width: calc(100vw - #{$canvas-width});
   overflow-x: auto;
 
-
   @media (max-width: 1024px) {
     width: calc(100vw - 16px);
   }
