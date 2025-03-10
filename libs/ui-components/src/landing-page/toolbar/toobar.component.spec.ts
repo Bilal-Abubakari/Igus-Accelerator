@@ -3,7 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { By } from '@angular/platform-browser';
 import { TranslocoTestingModule, translocoConfig } from '@jsverse/transloco';
-import { LanguageOverlayService } from '../language-switcher/services/language-overlay/language-overlay.service';
+import { LanguageOverlayService } from '../../language-switcher/services/language-overlay/language-overlay.service';
 import { ToolbarComponent } from './toolbar.component';
 
 describe('ToolbarComponent', () => {

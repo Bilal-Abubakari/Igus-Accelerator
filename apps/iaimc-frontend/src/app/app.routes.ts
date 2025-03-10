@@ -5,9 +5,14 @@ import { LibraryComponent } from './customer/library/library.component';
 import { ConfigurationComponent } from './customer/molding-configuration/pages/configuration/configuration.component';
 import { ProducibilityComponent } from './customer/molding-configuration/pages/producibility/producibility.component';
 import { ModelUploadGuard } from './guards/upload.guard';
+import { LandingPageComponent } from './customer/landing-page/landing-page.component';
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: NAVIGATION_ROUTES.LIBRARY, pathMatch: 'full' },
+  { path: '', redirectTo: NAVIGATION_ROUTES.LANDING_PAGE, pathMatch: 'full' },
+  {
+    path: NAVIGATION_ROUTES.LANDING_PAGE,
+    component: LandingPageComponent,
+  },
   {
     path: NAVIGATION_ROUTES.LIBRARY,
     component: LibraryComponent,

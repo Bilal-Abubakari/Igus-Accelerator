@@ -1,0 +1,48 @@
+{
+  "stage": {
+    "TITLE": {
+      "ar": "حوّل نموذجك ثلاثي الأبعاد إلى واقع مع القولبة بالحقن",
+      "de": "Verwandeln Sie Ihr 3D-Modell mit Spritzguss in Realität",
+      "en": "Transform Your 3D Model into Reality with Injection Molding",
+      "es": "Transforma tu modelo 3D en realidad con moldeo por inyección",
+      "fr": "Transformez votre modèle 3D en réalité avec le moulage par injection",
+      "jp": "射出成形で3Dモデルを現実に変えよう",
+      "pt": "Transforme seu modelo 3D em realidade com moldagem por injeção",
+      "ru": "Превратите свою 3D-модель в реальность с литьем под давлением",
+      "zh": "使用注塑成型将您的 3D 模型变为现实"
+    },
+    "DESCRIPTION": {
+      "ar": "قم بتحميل نماذجك ثلاثية الأبعاد، واختر المواد، واحصل على تحليل فوري لقابلية التصنيع بالقولبة بالحقن",
+      "de": "Laden Sie Ihre 3D-Modelle hoch, wählen Sie Materialien und erhalten Sie eine sofortige Analyse der Spritzgusstauglichkeit",
+      "en": "Upload your 3D models, choose materials, and get instant analysis for injection moldel manufacturability",
+      "es": "Sube tus modelos 3D, elige materiales y obtén un análisis instantáneo de la viabilidad del moldeo por inyección",
+      "fr": "Téléchargez vos modèles 3D, choisissez les matériaux et obtenez une analyse instantanée de la fabricabilité en moulage par injection",
+      "jp": "3Dモデルをアップロードし、材料を選択して、射出成形の製造可能性を即座に分析",
+      "pt": "Carregue seus modelos 3D, escolha os materiais e obtenha uma análise instantânea da viabilidade da moldagem por injeção",
+      "ru": "Загрузите свои 3D-модели, выберите материалы и получите мгновенный анализ пригодности для литья под давлением",
+      "zh": "上传您的 3D 模型，选择材料，并获得注塑成型可制造性的即时分析"
+    },
+    "START_PROJECT": {
+      "ar": "ابدأ مشروعك",
+      "de": "Starten Sie Ihr Projekt",
+      "en": "Start your project",
+      "es": "Inicia tu proyecto",
+      "fr": "Commencez votre projet",
+      "jp": "プロジェクトを開始する",
+      "pt": "Inicie seu projeto",
+      "ru": "Начните свой проект",
+      "zh": "开始您的项目"
+    },
+    "LEARN_MORE": {
+      "ar": "تعرف على المزيد",
+      "de": "Erfahren Sie mehr",
+      "en": "Learn more",
+      "es": "Aprende más",
+      "fr": "En savoir plus",
+      "jp": "詳しく学ぶ",
+      "pt": "Saiba mais",
+      "ru": "Узнать больше",
+      "zh": "了解更多"
+    }
+  }
+}

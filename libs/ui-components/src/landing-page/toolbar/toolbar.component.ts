@@ -7,14 +7,14 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { ContactFormComponent } from '../contact-form/contact-form.component';
+import { ContactFormComponent } from '../../contact-form/contact-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbar } from '@angular/material/toolbar';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { LanguageOverlayComponent } from '../language-switcher/components/language-overlay/language-overlay.component';
-import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
-import { LanguageOverlayService } from '../language-switcher/services/language-overlay/language-overlay.service';
+import { LanguageOverlayComponent } from '../../language-switcher/components/language-overlay/language-overlay.component';
+import { LanguageSwitcherComponent } from '../../language-switcher/language-switcher.component';
+import { LanguageOverlayService } from '../../language-switcher/services/language-overlay/language-overlay.service';
 
 @Component({
   selector: 'app-toolbar',
