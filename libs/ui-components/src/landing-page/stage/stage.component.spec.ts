@@ -1,11 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { StageComponent } from './stage.component';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 describe('StageComponent', () => {
   let component: StageComponent;
   let fixture: ComponentFixture<StageComponent>;
+  let router: Router;
+  let location: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -14,11 +19,16 @@ describe('StageComponent', () => {
           langs: {},
           translocoConfig: translocoConfig({}),
         }),
+        RouterTestingModule.withRoutes([
+          { path: 'library', component: StageComponent }
+        ]),
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StageComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
     fixture.detectChanges();
   });
 
@@ -49,5 +59,18 @@ describe('StageComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.stage-buttons__secondary__btn')),
     ).toBeTruthy();
+  });
+
+  it('should navigate to /library when start project button is clicked', async () => {
+    const startProjectBtn = fixture.debugElement.query(
+      By.css('.stage-buttons__primary__btn'),
+    ).nativeElement;
+
+    startProjectBtn.click();
+    fixture.detectChanges();
+
+    await fixture.whenStable();
+
+    expect(location.path()).toBe('/library');
   });
 });
