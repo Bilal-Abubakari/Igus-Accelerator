@@ -57,8 +57,6 @@ export class ModelConfigController {
       throw new UnauthorizedException();
     }
 
-    console.log(configId, snapshot, user);
-
     await this.modelConfigService.setConfigSnapshot(
       user as JwtUserPayload,
       configId,

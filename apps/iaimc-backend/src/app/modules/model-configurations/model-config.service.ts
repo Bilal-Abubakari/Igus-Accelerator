@@ -166,8 +166,6 @@ export class ModelConfigService {
       | ModelConfigurationEntity[]
       | undefined;
 
-    console.log(configs);
-
     if (!configs) {
       throw new InternalServerErrorException(
         'Could not set snapshot for the configuration',

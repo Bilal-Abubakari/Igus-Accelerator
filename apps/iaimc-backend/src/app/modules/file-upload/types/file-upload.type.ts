@@ -11,7 +11,7 @@ export interface CloudinayFileUploadResult {
   type: string;
   etag: string;
   placeholder: boolean;
-  url: string;
+  url?: string;
   secure_url: string;
   asset_folder: string;
   display_name: string;

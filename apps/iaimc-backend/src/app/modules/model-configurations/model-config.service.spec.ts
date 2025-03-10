@@ -54,7 +54,6 @@ const uploadResult: CloudinayFileUploadResult = {
   type: 'upload',
   etag: 'etag1234567890abcdef',
   placeholder: false,
-  url: 'http://res.cloudinary.com/demo/image/upload/v1709876543/sample-folder/sample-image.jpg',
   secure_url:
     'https://res.cloudinary.com/demo/image/upload/v1709876543/sample-folder/sample-image.jpg',
   asset_folder: 'sample-folder',
