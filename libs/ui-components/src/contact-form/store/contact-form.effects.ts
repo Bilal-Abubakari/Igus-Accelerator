@@ -10,9 +10,9 @@ import { CountryService } from '../service/countries.service';
 @Injectable()
 export class ContactFormEffects {
   constructor(
-    private contactFormService: ContactFormService,
-    private countryService: CountryService,
-    private snackBar: MatSnackBar,
+    private readonly contactFormService: ContactFormService,
+    private readonly countryService: CountryService,
+    private readonly snackBar: MatSnackBar,
   ) {}
   private readonly actions = inject(Actions);
 

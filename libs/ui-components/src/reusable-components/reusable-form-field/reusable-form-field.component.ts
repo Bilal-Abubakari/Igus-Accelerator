@@ -38,7 +38,7 @@ export class ReusableFormFieldComponent {
     return '0';
   }
   getErrorMessages(): string[] {
-    if (!this.control || !this.control.errors) return [];
+    if (!this.control?.errors) return [];
 
     const errorKeys = Object.keys(this.control.errors);
     if (errorKeys.length === 0) return [];
