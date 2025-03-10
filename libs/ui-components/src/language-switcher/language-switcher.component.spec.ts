@@ -10,16 +10,21 @@ import {
 import { LanguageOverlayService } from './services/language-overlay/language-overlay.service';
 import { By } from '@angular/platform-browser';
 import { DEFAULT_LANGUAGE } from './constants';
+import {
+  LocalStorageKeys,
+  LocalStorageService,
+} from '../model/components/model-upload/services/local-storage.service';
 
 describe('LanguageSwitcherComponent', () => {
   let component: LanguageSwitcherComponent;
   let fixture: ComponentFixture<LanguageSwitcherComponent>;
   let translocoService: TranslocoService;
   let languageOverlayService: LanguageOverlayService;
+  let localStorageService: LocalStorageService;
 
   beforeEach(async () => {
     jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) => {
-      if (key === 'translocoLang') return 'en';
+      if (key === LocalStorageKeys.TRANSLATE_LANG) return 'en';
       return null;
     });
 
@@ -38,13 +43,14 @@ describe('LanguageSwitcherComponent', () => {
           }),
         }),
       ],
-      providers: [LanguageOverlayService],
+      providers: [LanguageOverlayService, LocalStorageService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LanguageSwitcherComponent);
     component = fixture.componentInstance;
     translocoService = TestBed.inject(TranslocoService);
     languageOverlayService = TestBed.inject(LanguageOverlayService);
+    localStorageService = TestBed.inject(LocalStorageService);
 
     jest.spyOn(translocoService, 'setActiveLang').mockImplementation(jest.fn());
 
@@ -68,12 +74,15 @@ describe('LanguageSwitcherComponent', () => {
   });
 
   it('should read saved language from localStorage during initialization', () => {
+    jest.spyOn(localStorageService, 'getLocalItem').mockReturnValue('es');
     component.ngOnInit();
-    expect(localStorage.getItem).toHaveBeenCalledWith('translocoLang');
+    expect(localStorageService.getLocalItem).toHaveBeenCalledWith(
+      LocalStorageKeys.TRANSLATE_LANG,
+    );
   });
 
   it('should set active language from localStorage if valid', () => {
-    jest.spyOn(Storage.prototype, 'getItem').mockImplementation(() => 'es');
+    jest.spyOn(localStorageService, 'getLocalItem').mockReturnValue('es');
     component.ngOnInit();
     expect(translocoService.setActiveLang).toHaveBeenCalledWith('es');
   });
