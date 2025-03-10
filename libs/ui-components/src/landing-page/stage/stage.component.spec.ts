@@ -20,7 +20,7 @@ describe('StageComponent', () => {
           translocoConfig: translocoConfig({}),
         }),
         RouterTestingModule.withRoutes([
-          { path: 'library', component: StageComponent }
+          { path: 'library', component: StageComponent },
         ]),
       ],
     }).compileComponents();
