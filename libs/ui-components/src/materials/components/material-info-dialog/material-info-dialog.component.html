@@ -1,0 +1,179 @@
+<main>
+  @if (material(); as material) {
+    <header [style.backgroundColor]="material.colorhex">
+      {{ material.name }}
+    </header>
+
+    <mat-dialog-content>
+      <h3>{{ 'materialInfoDialog.GENERAL_PROPERTIES' | transloco }}</h3>
+      <div class="properties_grid">
+        <div class="key">{{ 'materialInfoDialog.DENSITY' | transloco }}:</div>
+        <div class="value">{{ material.density }} g/cm³</div>
+
+        <div class="key">{{ 'materialInfoDialog.COLOUR' | transloco }}:</div>
+        <div class="value">{{ material.color | lowercase }}</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.MOISTURE_ABSORPTION' | transloco }}:
+        </div>
+        <div class="value">{{ material.maxmoistureabsorption }} %</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.WATER_ABSORPTION' | transloco }}:
+        </div>
+        <div class="value">{{ material.maxwaterabsorption }} %</div>
+      </div>
+
+      <h3>{{ 'materialInfoDialog.MECHANICAL_PROPERTIES' | transloco }}</h3>
+      <div class="properties_grid">
+        <div class="key">
+          {{ 'materialInfoDialog.FLEXURAL_MODULUS' | transloco }}:
+        </div>
+        <div class="value">{{ material.modulusofelasticity }} MPa</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.FLEXURAL_STRENGTH' | transloco }}:
+        </div>
+        <div class="value">{{ material.bendingstrength }} MPa</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.MAX_SURFACE_PRESSURE' | transloco }}:
+        </div>
+        <div class="value">{{ material.maxsurfacepressure }} MPa</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.SHORE_HARDNESS' | transloco }}:
+        </div>
+        <div class="value">{{ material.hardness }}</div>
+      </div>
+
+      <h3>{{ 'materialInfoDialog.THERMAL_PROPERTIES' | transloco }}</h3>
+      <div class="properties_grid">
+        <div class="key">
+          {{ 'materialInfoDialog.LONG_TERM_TEMP' | transloco }}:
+        </div>
+        <div class="value">{{ material.maxtemperature }} °C</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.SHORT_TERM_TEMP' | transloco }}:
+        </div>
+        <div class="value">{{ material.maxtemperatureshort }} °C</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.ENVIRONMENTAL_TEMP' | transloco }}:
+        </div>
+        <div class="value">
+          {{ material.maxenvironmentaltemperatureshort }} °C
+        </div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.MIN_TEMPERATURE' | transloco }}:
+        </div>
+        <div class="value">{{ material.mintemperature }} °C</div>
+      </div>
+
+      <h3>{{ 'materialInfoDialog.ELECTRICAL_PROPERTIES' | transloco }}</h3>
+      <div class="properties_grid">
+        <div class="key">
+          {{ 'materialInfoDialog.SPEC_TRANS_RESIST' | transloco }}:
+        </div>
+        <div class="value">{{ material.specificvolumeresistance }}</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.SURFACE_RESISTANCE' | transloco }}:
+        </div>
+        <div class="value">{{ material.surfaceresistance }}</div>
+      </div>
+
+      <h3>{{ 'materialInfoDialog.FOOD_INDUSTRY_COMPLIANCE' | transloco }}</h3>
+      <div class="properties_grid">
+        <div class="key">
+          {{ 'materialInfoDialog.FDA_COMPLIANT' | transloco }}:
+        </div>
+        <div class="value">
+          {{ material.foodcontactfdacompliant ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.EU_COMPLIANCE' | transloco }}:
+        </div>
+        <div class="value">
+          {{ material.foodcontacteucompliant ? 'Yes' : 'No' }}
+        </div>
+      </div>
+
+      <h3>{{ 'materialInfoDialog.ADDITIONAL_PROPERTIES' | transloco }}</h3>
+      <div class="properties_grid">
+        <div class="key">
+          {{ 'materialInfoDialog.UNDERWATER_USE' | transloco }}:
+        </div>
+        <div class="value">
+          {{ material.underwatercompliant ? 'Yes' : 'No' }}
+        </div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.DIRT_RESISTANCE' | transloco }}:
+        </div>
+        <div class="value">{{ material.dirtresistant ? 'Yes' : 'No' }}</div>
+
+        <div class="key">
+          {{ 'materialInfoDialog.MOULD_RESISTANCE' | transloco }}:
+        </div>
+        <div class="value">{{ material.mouldresistant ? 'Yes' : 'No' }}</div>
+      </div>
+
+      <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
+        <ng-container matColumnDef="chemical">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'materialInfoDialog.CHEMICALS' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let chemical">
+            {{ chemical.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="resistant">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'materialInfoDialog.RESISTANT' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let chemical" class="resistance-icons">
+            @if (chemical.resistance === '+') {
+              <span class="dot resistant"></span>
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="conditionally-resistant">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'materialInfoDialog.CONDITIONALLY_RESISTANT' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let chemical" class="resistance-icons">
+            @if (chemical.resistance === 'o') {
+              <span class="dot conditionally-resistant"></span>
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="non-resistant">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ 'materialInfoDialog.NON_RESISTANT' | transloco }}
+          </th>
+          <td mat-cell *matCellDef="let chemical" class="resistance-icons">
+            @if (chemical.resistance === 'x') {
+              <span class="dot non-resistant"></span>
+            }
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+      <button mat-button type="button" (click)="close()">
+        {{ 'materialInfoDialog.CLOSE' | transloco }}
+      </button>
+    </mat-dialog-actions>
+  }
+</main>
