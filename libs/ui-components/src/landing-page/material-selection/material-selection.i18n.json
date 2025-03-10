@@ -1,0 +1,159 @@
+{
+  "material": {
+    "TITLE": {
+      "ar": "اختيار المواد",
+      "de": "Materialauswahl",
+      "en": "Material Selection",
+      "es": "Selección de Materiales",
+      "fr": "Sélection de Matériaux",
+      "jp": "材料選択",
+      "pt": "Seleção de Material",
+      "ru": "Выбор материала",
+      "zh": "材料选择"
+    },
+    "ABS": {
+      "TITLE": {
+        "ar": "بلاستيك ABS",
+        "de": "ABS Kunststoff",
+        "en": "ABS Plastic",
+        "es": "Plástico ABS",
+        "fr": "Plastique ABS",
+        "jp": "ABSプラスチック",
+        "pt": "Plástico ABS",
+        "ru": "АБС-пластик",
+        "zh": "ABS塑料"
+      },
+      "FEATURES": {
+        "IMPACT": {
+          "ar": "مقاومة عالية للصدمات",
+          "de": "Hohe Stoßfestigkeit",
+          "en": "High impact resistance",
+          "es": "Alta resistencia al impacto",
+          "fr": "Haute résistance aux chocs",
+          "jp": "高い耐衝撃性",
+          "pt": "Alta resistência ao impacto",
+          "ru": "Высокая ударопрочность",
+          "zh": "高抗冲击性"
+        },
+        "HEAT": {
+          "ar": "مقاومة جيدة للحرارة",
+          "de": "Gute Hitzebeständigkeit",
+          "en": "Good heat resistance",
+          "es": "Buena resistencia al calor",
+          "fr": "Bonne résistance à la chaleur",
+          "jp": "優れた耐熱性",
+          "pt": "Boa resistência ao calor",
+          "ru": "Хорошая термостойкость",
+          "zh": "良好的耐热性"
+        },
+        "FINISH": {
+          "ar": "تشطيب سطح ممتاز",
+          "de": "Ausgezeichnete Oberflächenqualität",
+          "en": "Excellent surface finish",
+          "es": "Excelente acabado superficial",
+          "fr": "Excellente finition de surface",
+          "jp": "優れた表面仕上げ",
+          "pt": "Excelente acabamento de superfície",
+          "ru": "Отличная отделка поверхности",
+          "zh": "出色的表面光洁度"
+        }
+      }
+    },
+    "POLYPROPYLENE": {
+      "TITLE": {
+        "ar": "بولي بروبيلين",
+        "de": "Polypropylen",
+        "en": "Polypropylene",
+        "es": "Polipropileno",
+        "fr": "Polypropylène",
+        "jp": "ポリプロピレン",
+        "pt": "Polipropileno",
+        "ru": "Полипропилен",
+        "zh": "聚丙烯"
+      },
+      "FEATURES": {
+        "CHEMICAL": {
+          "ar": "مقاوم للمواد الكيميائية",
+          "de": "Chemikalienbeständig",
+          "en": "Chemical resistant",
+          "es": "Resistente a químicos",
+          "fr": "Résistant aux produits chimiques",
+          "jp": "耐薬品性",
+          "pt": "Resistente a produtos químicos",
+          "ru": "Химически стойкий",
+          "zh": "耐化学性"
+        },
+        "FLEXIBLE": {
+          "ar": "مرن ومتين",
+          "de": "Flexibel und langlebig",
+          "en": "Flexible and durable",
+          "es": "Flexible y duradero",
+          "fr": "Flexible et durable",
+          "jp": "柔軟で耐久性がある",
+          "pt": "Flexível e durável",
+          "ru": "Гибкий и прочный",
+          "zh": "柔韧耐用"
+        },
+        "DENSITY": {
+          "ar": "كثافة منخفضة",
+          "de": "Geringe Dichte",
+          "en": "Low density",
+          "es": "Baja densidad",
+          "fr": "Faible densité",
+          "jp": "低密度",
+          "pt": "Baixa densidade",
+          "ru": "Низкая плотность",
+          "zh": "低密度"
+        }
+      }
+    },
+    "CUSTOM": {
+      "TITLE": {
+        "ar": "مواد مخصصة",
+        "de": "Maßgeschneiderte Materialien",
+        "en": "Custom Materials",
+        "es": "Materiales personalizados",
+        "fr": "Matériaux personnalisés",
+        "jp": "カスタム材料",
+        "pt": "Materiais personalizados",
+        "ru": "Заказные материалы",
+        "zh": "定制材料"
+      },
+      "FEATURES": {
+        "SPECIAL": {
+          "ar": "متطلبات خاصة",
+          "de": "Spezielle Anforderungen",
+          "en": "Special requirement",
+          "es": "Requisitos especiales",
+          "fr": "Exigences spéciales",
+          "jp": "特別な要件",
+          "pt": "Requisito especial",
+          "ru": "Специальные требования",
+          "zh": "特殊要求"
+        },
+        "PROPERTIES": {
+          "ar": "خصائص مخصصة",
+          "de": "Angepasste Eigenschaften",
+          "en": "Custom properties",
+          "es": "Propiedades personalizadas",
+          "fr": "Propriétés personnalisées",
+          "jp": "カスタムプロパティ",
+          "pt": "Propriedades personalizadas",
+          "ru": "Индивидуальные свойства",
+          "zh": "自定义属性"
+        },
+        "CONSULTATION": {
+          "ar": "استشارة الخبراء",
+          "de": "Expertenberatung",
+          "en": "Expert consultation",
+          "es": "Consulta con expertos",
+          "fr": "Consultation d'experts",
+          "jp": "専門家の相談",
+          "pt": "Consulta especializada",
+          "ru": "Консультация эксперта",
+          "zh": "专家咨询"
+        }
+      }
+    }
+  }
+}
