@@ -10,17 +10,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ModelLogoComponent } from '../../../svgs/model-logo/model-logo.component';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ModelLogoComponent } from '../../svgs/model-logo/model-logo.component';
-import { formField } from '../../utilities/helper-function';
+import { formField } from '../../../utilities/helper-function';
 
 @Component({
-  selector: 'app-landing-page-footer',
+  selector: 'app-footer',
   imports: [
     MatToolbarModule,
     FormsModule,
@@ -32,11 +32,11 @@ import { formField } from '../../utilities/helper-function';
     RouterLink,
     MatIconModule,
   ],
-  templateUrl: './landing-page-footer.component.html',
-  styleUrl: './landing-page-footer.component.scss',
+  templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageFooterComponent {
+export class FooterComponent {
   private readonly fb = inject(FormBuilder);
   public currentYear = new Date().getFullYear();
   public readonly isSubscriptionLoading = signal<boolean>(false);

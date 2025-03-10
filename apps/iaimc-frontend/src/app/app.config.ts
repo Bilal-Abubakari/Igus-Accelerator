@@ -29,7 +29,7 @@ import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { appReducer } from './app.reducer';
 import { excludeKeys } from '@ngrx-addons/common';
-import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
+import { FOOTER_FEATURE_KEY } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [

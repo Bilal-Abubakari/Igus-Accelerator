@@ -3,7 +3,7 @@ import { inject, Inject, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { FeedbackResponse, FeedbackRequest } from '../footer.interface';
 import { Store } from '@ngrx/store';
-import { selectFeedbackId } from '../store/selectors/footer.selectors';
+import { selectFeedbackId } from '../store/footer.selectors';
 
 @Injectable({
   providedIn: 'root',

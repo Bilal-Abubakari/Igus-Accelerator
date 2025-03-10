@@ -8,14 +8,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
-import { formField } from '../../../utilities/helper-function';
+import { formField } from '../../../../../utilities/helper-function';
 import { FeedbackRequest } from '../../footer.interface';
 import { FooterService } from '../../service/footer.service';
 import { FooterActions } from '../../store/footer.actions';
 import {
   selectFeedbackLoading,
   selectIsEmailUpdated,
-} from '../../store/selectors/footer.selectors';
+} from '../../store/footer.selectors';
 
 @Component({
   selector: 'app-thank-you-feedback',

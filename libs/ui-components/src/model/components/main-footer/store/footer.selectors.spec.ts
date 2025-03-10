@@ -1,6 +1,6 @@
-import * as fromFooter from '../reducers/footer.reducer';
+import * as fromFooter from './footer.reducer';
 import * as FooterSelectors from './footer.selectors';
-import { FooterState } from '../footer.state';
+import { FooterState } from './footer.state';
 
 describe('Footer Selectors', () => {
   const initialState: FooterState = {

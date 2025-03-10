@@ -10,17 +10,12 @@
   align-items: $align-items;
 }
 
-$font-size-footer: 0.875rem;
-$footer-links-color: #606060;
-$footer-main-background: #1e1925;
-$footer-border-color: #484848;
-$subscription-background: #262626;
 
 mat-toolbar {
   height: auto;
   @include mat.toolbar-overrides(
     (
-      container-background-color: $footer-main-background,
+      container-background-color: var(--footer-main-background),
       container-text-color: var(--mat-sys-surface-container-lowest),
     )
   );
@@ -28,7 +23,7 @@ mat-toolbar {
     width: 100%;
     padding: 5rem 7rem 0;
     form {
-      font-size: $font-size-footer;
+      font-size: var(--font-size-footer);
       margin-bottom: 2.5rem;
       @include flex-option(flex, space-between, left);
       .model-container {
@@ -44,23 +39,21 @@ mat-toolbar {
         }
       }
       .subscription-container {
-        width: 32.5%;
         @include flex-option(flex, left, left);
         flex-direction: column;
         gap: 1.2rem;
-        border: 1px solid $footer-border-color;
+        border: 1px solid var(--footer-border-color);
         border-radius: 1.5rem;
         padding: 1.5rem 0.5rem 1.5rem 1.5rem;
-        background-color: $subscription-background;
+        background-color: var(--subscription-background);
         h4 {
-          font-size: $font-size-footer;
-          color: var(--mat-sys-outline);
+          font-size:  1rem;
+          color: var(--subscription-primary-color);
         }
         .form-fields {
           @include flex-option(flex, left, left);
           gap: 0.5rem;
-          &__wrapper {
-            width: 11.5rem;
+          .small {
             border-radius: 2px;
             input {
               color: var(--mat-sys-outline);
@@ -69,7 +62,8 @@ mat-toolbar {
           .custom-button {
             border-radius: 0.75rem;
             border: none;
-            height: 3.625rem;
+            height: 42px;
+            width: 100%;
             padding: 0 1.19113rem;
             cursor: pointer;
             @include flex-option(flex, center, center);
@@ -84,14 +78,14 @@ mat-toolbar {
     .footer-links {
       @include flex-option(flex, space-between, left);
       font-size: 0.75rem;
-      border-top: 1px solid $footer-border-color;
+      border-top: 1px solid var(--footer-border-color);
       padding: 3.8rem 0;
-      color: $footer-links-color;
+      color: var(--footer-links-color);
       &__terms-and-condition {
         @include flex-option(flex, left, left);
         gap: 1.4rem;
         a {
-          color: $footer-links-color;
+          color: var(--footer-links-color);
           text-decoration: none;
           &:hover {
             text-decoration: underline;
@@ -104,8 +98,8 @@ mat-toolbar {
         &__button {
           padding: 0.3rem;
           border-radius: 0.5rem;
-          background-color: var(--mat-sys-inverse-surface);
-          border: 1px solid $footer-border-color;
+          background-color: var(--subscription-background);
+          border: 1px solid var(--footer-border-color);
           cursor: pointer;
         }
       }
@@ -148,7 +142,7 @@ mat-toolbar {
         .form-fields {
           flex-direction: column;
           gap: 0.5rem !important;
-          &__wrapper {
+         .small {
             width: 100% !important;
           }
         }

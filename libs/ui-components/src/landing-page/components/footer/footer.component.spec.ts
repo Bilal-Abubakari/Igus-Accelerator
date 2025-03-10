@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FooterComponent } from './footer.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { provideRouter } from '@angular/router';
 import { TranslocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
-import { ModelLogoComponent } from '../../svgs/model-logo/model-logo.component';
-import { LandingPageFooterComponent } from './landing-page-footer.component';
+import { provideRouter } from '@angular/router';
+import { ModelLogoComponent } from '../../../svgs/model-logo/model-logo.component';
 
-describe('LandingPageFooterComponent', () => {
-  let component: LandingPageFooterComponent;
-  let fixture: ComponentFixture<LandingPageFooterComponent>;
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,14 +39,14 @@ describe('LandingPageFooterComponent', () => {
           preloadLangs: true,
         }),
         ModelLogoComponent,
-        LandingPageFooterComponent,
+        FooterComponent,
       ],
       providers: [provideRouter([])],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingPageFooterComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -76,7 +76,7 @@ describe('LandingPageFooterComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const errorElement = compiled.querySelector('mat-error');
-    expect(errorElement?.textContent).toContain('This field is required');
+    expect(errorElement?.textContent).toContain('footer.REQUIRED_FIELD');
   });
 
   it('should display invalid email error when email is invalid', () => {
@@ -87,7 +87,7 @@ describe('LandingPageFooterComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const errorElement = compiled.querySelector('mat-error');
     expect(errorElement?.textContent).toContain(
-      'landing-page-footer.ENTER_VALID_EMAILL',
+      'footer.ENTER_VALID_EMAIL',
     );
   });
 });

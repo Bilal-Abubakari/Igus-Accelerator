@@ -4,22 +4,22 @@
       <section class="model-container">
         <div class="model-container__logo">
           <app-model-logo />
-          <p>{{ 'landing-page-footer.LOGO_TEXT' | transloco }}</p>
+          <p>{{ 'footer.LOGO_TEXT' | transloco }}</p>
         </div>
         <p>
-          {{ 'landing-page-footer.MODEL_DESCRIPTIO' | transloco }}
+          {{ 'footer.MODEL_DESCRIPTIO' | transloco }}
         </p>
       </section>
       <section class="subscription-container">
-        <h4>{{ 'landing-page-footer.SUBSCRIPTION_HEADER' | transloco }}</h4>
+        <h4>{{ 'footer.SUBSCRIPTION_HEADER' | transloco }}</h4>
         <div class="form-fields">
           <div>
-            <mat-form-field class="form-fields__wrapper">
+            <mat-form-field class="small">
               <input
                 type="text"
                 matInput
                 [formControl]="getField('firstName')"
-                [placeholder]="'landing-page-footer.FIRST_NAME' | transloco"
+                [placeholder]="'footer.FIRST_NAME' | transloco"
               />
             </mat-form-field>
             @if (
@@ -27,45 +27,52 @@
               subscriptionForm.get('firstName')?.touched
             ) {
               <mat-error>{{
-                'landing-page-footer.REQUIRED_FIELD' | transloco
+                'footer.REQUIRED_FIELD' | transloco
               }}</mat-error>
             } @else if (
               subscriptionForm.get('firstName')?.hasError('pattern')
             ) {
               <mat-error>{{
-                'landing-page-footer.ENTER_VALID_NAME' | transloco
+                'footer.ENTER_VALID_NAME' | transloco
               }}</mat-error>
             } @else if (
               subscriptionForm.get('firstName')?.hasError('minlength')
             ) {
               <mat-error>{{
-                'landing-page-footer.NAME_TOO_SHORT' | transloco
+                'footer.NAME_TOO_SHORT' | transloco
               }}</mat-error>
             } @else if (
               subscriptionForm.get('firstName')?.hasError('maxlength')
             ) {
               <mat-error>{{
-                'landing-page-footer.NAME_TOO_LONG' | transloco
+                'footer.NAME_TOO_LONG' | transloco
               }}</mat-error>
             }
           </div>
 
           <div>
-            <mat-form-field class="form-fields__wrapper">
+            <mat-form-field class="small">
               <input
                 matInput
                 [formControl]="getField('email')"
-                [placeholder]="'landing-page-footer.EMAIL' | transloco"
+                [placeholder]="'footer.EMAIL' | transloco"
               />
             </mat-form-field>
             @if (subscriptionForm.get('email')?.hasError('email')) {
               <mat-error>{{
-                'landing-page-footer.ENTER_VALID_EMAILL' | transloco
+                'footer.ENTER_VALID_EMAIL' | transloco
+              }}</mat-error>
+            }  @if (
+              subscriptionForm.get('email')?.hasError('required') &&
+              subscriptionForm.get('email')?.touched
+            ) {
+              <mat-error>{{
+                'footer.REQUIRED_FIELD' | transloco
               }}</mat-error>
             }
           </div>
           <button class="custom-button" mat-button>
-            <span> {{ 'landing-page-footer.SUBSCRIBE_TEXT' | transloco }}</span>
+            <span> {{ 'footer.SUBSCRIBE_TEXT' | transloco }}</span>
             @if (isSubscriptionLoading()) {
               <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
             }
@@ -82,17 +89,17 @@
       <div class="icons-group">
         <a routerLink="#">
           <button mat-icon-button class="icons-group__button">
-            <mat-icon><img src="assets/github.svg" alt="" /></mat-icon>
+            <mat-icon><img src="assets/images/github.svg" alt="" /></mat-icon>
           </button>
         </a>
         <a routerLink="#">
           <button mat-icon-button class="icons-group__button">
-            <mat-icon><img src="assets/x.svg" alt="" /></mat-icon>
+            <mat-icon><img src="assets/images/x.svg" alt="" /></mat-icon>
           </button>
         </a>
         <a routerLink="#">
           <button mat-icon-button class="icons-group__button">
-            <mat-icon><img src="assets/linked-in.svg" alt="" /></mat-icon>
+            <mat-icon><img src="assets/images/linked-in.svg" alt="" /></mat-icon>
           </button>
         </a>
       </div>
