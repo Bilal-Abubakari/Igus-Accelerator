@@ -45,7 +45,13 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(
-              excludeKeys(['isEmailUpdated', 'isFeedbackSubmitted', 'message']),
+              excludeKeys([
+                'isEmailUpdated',
+                'isFeedbackSubmitted',
+                'message',
+                'isFeedbackLoading',
+                'isFeedbackSubmitted',
+              ]),
             ),
           skip: 1,
         },
