@@ -7,7 +7,12 @@ import {
   computed,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MaterialSelectors } from './store/material.selectors';
+import {
+  selectAllMaterials,
+  selectLoading,
+  selectError,
+  selectSelectedMaterialId,
+} from './store/material.selectors';
 import { MaterialActions } from './store/material.actions';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MaterialsCardComponent } from './components/materials-card/materials-card.component';
@@ -15,25 +20,19 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-materials',
+  imports: [MatProgressSpinner, MaterialsCardComponent, TranslocoPipe],
   templateUrl: './materials.component.html',
   styleUrl: './materials.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatProgressSpinner, MaterialsCardComponent, TranslocoPipe],
 })
 export class MaterialsComponent implements OnInit {
   private readonly store = inject(Store);
 
-  public readonly materials = this.store.selectSignal(
-    MaterialSelectors.selectAllMaterials,
-  );
-  public readonly loading = this.store.selectSignal(
-    MaterialSelectors.selectLoading,
-  );
-  public readonly error = this.store.selectSignal(
-    MaterialSelectors.selectError,
-  );
+  public readonly materials = this.store.selectSignal(selectAllMaterials);
+  public readonly loading = this.store.selectSignal(selectLoading);
+  public readonly error = this.store.selectSignal(selectError);
   public readonly selectedMaterialId = this.store.selectSignal(
-    MaterialSelectors.selectSelectedMaterialId,
+    selectSelectedMaterialId,
   );
 
   public readonly hasError: Signal<boolean> = computed(() => !!this.error());

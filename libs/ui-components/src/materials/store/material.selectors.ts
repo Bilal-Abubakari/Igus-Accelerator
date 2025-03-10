@@ -25,18 +25,10 @@ export const selectSelectedMaterialId = createSelector(
   (state) => state.selectedMaterialId,
 );
 
+export const selectMaterialById = (id: string) =>
+  createSelector(selectAllMaterials, (materials) =>
+    materials.find((material) => material.id === id),
+  );
+
 export const isMaterialSelected = (id: string) =>
   createSelector(selectSelectedMaterialId, (selectedId) => selectedId === id);
-
-export const MaterialSelectors = {
-  selectMaterialState,
-  selectAllMaterials,
-  selectMaterialById: (id: string) =>
-    createSelector(selectAllMaterials, (materials) =>
-      materials.find((material) => material.id === id),
-    ),
-  selectLoading,
-  selectError,
-  selectSelectedMaterialId,
-  isMaterialSelected,
-};
