@@ -2,7 +2,6 @@ import { FooterActions } from './footer.actions';
 import { footerReducer } from './footer.reducer';
 import { initialFooterState } from './footer.state';
 
-
 describe('Footer Reducer', () => {
   it('should start feedback submission by setting isFeedbackLoading to true', () => {
     const action = FooterActions.beginSubmitFeedback({

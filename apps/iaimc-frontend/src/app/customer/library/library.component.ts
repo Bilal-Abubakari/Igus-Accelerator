@@ -4,13 +4,16 @@ import {
   ModelListComponent,
   StageComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import {
-  FooterComponent
-} from '../../../../../../libs/ui-components/src/landing-page/components/footer/footer.component';
+import { FooterComponent } from '../../../../../../libs/ui-components/src/landing-page/components/footer/footer.component';
 
 @Component({
   selector: 'app-library',
-  imports: [StageComponent, MainFooterComponent, ModelListComponent, FooterComponent],
+  imports: [
+    StageComponent,
+    MainFooterComponent,
+    ModelListComponent,
+    FooterComponent,
+  ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

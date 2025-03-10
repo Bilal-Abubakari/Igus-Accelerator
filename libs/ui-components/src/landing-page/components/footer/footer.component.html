@@ -26,27 +26,19 @@
               subscriptionForm.get('firstName')?.hasError('required') &&
               subscriptionForm.get('firstName')?.touched
             ) {
-              <mat-error>{{
-                'footer.REQUIRED_FIELD' | transloco
-              }}</mat-error>
+              <mat-error>{{ 'footer.REQUIRED_FIELD' | transloco }}</mat-error>
             } @else if (
               subscriptionForm.get('firstName')?.hasError('pattern')
             ) {
-              <mat-error>{{
-                'footer.ENTER_VALID_NAME' | transloco
-              }}</mat-error>
+              <mat-error>{{ 'footer.ENTER_VALID_NAME' | transloco }}</mat-error>
             } @else if (
               subscriptionForm.get('firstName')?.hasError('minlength')
             ) {
-              <mat-error>{{
-                'footer.NAME_TOO_SHORT' | transloco
-              }}</mat-error>
+              <mat-error>{{ 'footer.NAME_TOO_SHORT' | transloco }}</mat-error>
             } @else if (
               subscriptionForm.get('firstName')?.hasError('maxlength')
             ) {
-              <mat-error>{{
-                'footer.NAME_TOO_LONG' | transloco
-              }}</mat-error>
+              <mat-error>{{ 'footer.NAME_TOO_LONG' | transloco }}</mat-error>
             }
           </div>
 
@@ -62,13 +54,12 @@
               <mat-error>{{
                 'footer.ENTER_VALID_EMAIL' | transloco
               }}</mat-error>
-            }  @if (
+            }
+            @if (
               subscriptionForm.get('email')?.hasError('required') &&
               subscriptionForm.get('email')?.touched
             ) {
-              <mat-error>{{
-                'footer.REQUIRED_FIELD' | transloco
-              }}</mat-error>
+              <mat-error>{{ 'footer.REQUIRED_FIELD' | transloco }}</mat-error>
             }
           </div>
           <button class="custom-button" mat-button>
@@ -99,7 +90,9 @@
         </a>
         <a routerLink="#">
           <button mat-icon-button class="icons-group__button">
-            <mat-icon><img src="assets/images/linked-in.svg" alt="" /></mat-icon>
+            <mat-icon
+              ><img src="assets/images/linked-in.svg" alt=""
+            /></mat-icon>
           </button>
         </a>
       </div>

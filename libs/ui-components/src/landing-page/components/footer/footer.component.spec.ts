@@ -86,8 +86,6 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const errorElement = compiled.querySelector('mat-error');
-    expect(errorElement?.textContent).toContain(
-      'footer.ENTER_VALID_EMAIL',
-    );
+    expect(errorElement?.textContent).toContain('footer.ENTER_VALID_EMAIL');
   });
 });

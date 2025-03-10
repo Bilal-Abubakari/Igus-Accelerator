@@ -10,7 +10,6 @@
   align-items: $align-items;
 }
 
-
 mat-toolbar {
   height: auto;
   @include mat.toolbar-overrides(
@@ -47,7 +46,7 @@ mat-toolbar {
         padding: 1.5rem 0.5rem 1.5rem 1.5rem;
         background-color: var(--subscription-background);
         h4 {
-          font-size:  1rem;
+          font-size: 1rem;
           color: var(--subscription-primary-color);
         }
         .form-fields {
@@ -142,7 +141,7 @@ mat-toolbar {
         .form-fields {
           flex-direction: column;
           gap: 0.5rem !important;
-         .small {
+          .small {
             width: 100% !important;
           }
         }

@@ -1,5 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +27,10 @@ import { ThankYouFeedbackComponent } from './components/thank-you-feedback/thank
 import { FeedbackRequest } from './footer.interface';
 import { FooterService } from './service/footer.service';
 import { FooterActions } from './store/footer.actions';
-import { selectFeedbackLoading, selectIsFeedbackSubmitted } from './store/footer.selectors';
+import {
+  selectFeedbackLoading,
+  selectIsFeedbackSubmitted,
+} from './store/footer.selectors';
 
 @Component({
   selector: 'app-main-footer',

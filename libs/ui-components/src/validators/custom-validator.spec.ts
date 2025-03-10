@@ -1,7 +1,6 @@
 import { FormGroup, FormControl } from '@angular/forms';
 import { atLeastOneFieldValidator } from './custom.validator';
 
-
 describe('atLeastOneFieldValidator', () => {
   it('should return null if control is not a FormGroup', () => {
     const validator = atLeastOneFieldValidator(['a']);

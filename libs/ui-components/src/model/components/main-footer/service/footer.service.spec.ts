@@ -9,7 +9,6 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { FeedbackRequest, FeedbackResponse } from '../footer.interface';
 import { selectFeedbackId } from '../store/footer.selectors';
 
-
 describe('FooterService', () => {
   let service: FooterService;
   let httpMock: HttpTestingController;
