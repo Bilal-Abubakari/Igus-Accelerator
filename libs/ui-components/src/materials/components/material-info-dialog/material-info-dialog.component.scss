@@ -5,16 +5,47 @@ main {
     text-align: start;
     font-size: 4.5rem;
     font-weight: bold;
-    padding: 6rem 18rem;
+    padding: 4rem 18rem;
+
+    @media (max-width: 1024px) {
+      font-size: 3rem;
+      padding: 3rem 8rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+      padding: 2rem 4rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+      padding: 2rem;
+    }
   }
 
   mat-dialog-content {
     padding: 2rem 18rem;
 
+    @media (max-width: 1024px) {
+      padding: 2rem 8rem;
+    }
+
+    @media (max-width: 768px) {
+      padding: 1.5rem 4rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1rem;
+    }
+
     .properties_grid {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 12px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
     }
 
     h3 {
@@ -25,12 +56,16 @@ main {
     .value {
       font-size: 1rem;
       text-align: right;
+
+      @media (max-width: 768px) {
+        text-align: left;
+      }
     }
 
     @include mat.table-overrides(
-      (
-        background-color: white,
-      )
+        (
+          background-color: white,
+        )
     );
 
     .resistance-icons {
@@ -58,10 +93,22 @@ main {
 
     mat-dialog-content {
       padding: 24px;
+
+      @media (max-width: 768px) {
+        padding: 16px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 12px;
+      }
     }
 
     mat-dialog-actions {
       padding: 16px;
+
+      @media (max-width: 480px) {
+        padding: 12px;
+      }
     }
   }
 }
