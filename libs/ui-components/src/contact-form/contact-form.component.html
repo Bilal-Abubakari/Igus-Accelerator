@@ -1,11 +1,16 @@
 <div class="full-screen-modal">
-  <button class="close-btn" mat-icon-button (click)="closeDialog()">
+  <app-reusable-button
+    className="close-btn"
+    [isIconButton]="true"
+    (buttonClick)="closeDialog()"
+  >
     <mat-icon>close</mat-icon>
-  </button>
+  </app-reusable-button>
 
   @if (featureFlagService.isFeatureEnabled('contactForm')) {
     <div class="form-wrapper">
       <h1 class="contact">Contact</h1>
+
       <p class="intro">
         Please enter your questions or suggestions. The data you enter into the
         designer will be transmitted automatically.
@@ -13,108 +18,104 @@
 
       <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
         <div class="name-fields-container">
-          <mat-form-field>
-            <mat-label>First name (optional)</mat-label>
-            <input matInput formControlName="firstName" />
-          </mat-form-field>
+          <app-reusable-form-field
+            [control]="getFormControl('firstName')"
+            label="First name"
+            [optional]="true"
+            [errorMessages]="errorMessages"
+            className="first-name-field"
+          ></app-reusable-form-field>
 
-          <mat-form-field>
-            <mat-label>Last name</mat-label>
-            <input matInput formControlName="lastName" />
-            @if (
-              contactForm.get('lastName')?.hasError('required') &&
-              contactForm.get('lastName')?.touched
-            ) {
-              <mat-error> Last name is required </mat-error>
-            }
-          </mat-form-field>
+          <app-reusable-form-field
+            [control]="getFormControl('lastName')"
+            label="Last name"
+            [errorMessages]="errorMessages"
+            className="last-name-field"
+          ></app-reusable-form-field>
         </div>
 
         <div class="email-company-container">
-          <mat-form-field>
-            <mat-label>E-mail</mat-label>
-            <input matInput formControlName="email" />
-            @if (contactForm.get('email')?.touched) {
-              <mat-error>
-                @if (contactForm.get('email')?.hasError('required')) {
-                  <span>Email is required</span>
-                }
-                @if (contactForm.get('email')?.hasError('email')) {
-                  <span>Invalid email format</span>
-                }
-              </mat-error>
-            }
-          </mat-form-field>
+          <app-reusable-form-field
+            [control]="getFormControl('email')"
+            label="E-mail"
+            [errorMessages]="errorMessages"
+            className="email-field"
+          ></app-reusable-form-field>
 
-          <mat-form-field>
-            <mat-label>Company</mat-label>
-            <input matInput formControlName="company" />
-            @if (
-              contactForm.get('company')?.hasError('required') &&
-              contactForm.get('company')?.touched
-            ) {
-              <mat-error> Company is required </mat-error>
-            }
-          </mat-form-field>
+          <app-reusable-form-field
+            [control]="getFormControl('company')"
+            label="Company"
+            [errorMessages]="errorMessages"
+            className="company-field"
+          ></app-reusable-form-field>
         </div>
 
         <div class="postal-country-container">
-          <mat-form-field class="postal-code">
-            <mat-label>Postal code</mat-label>
-            <input matInput formControlName="postalCode" />
-            @if (
-              contactForm.get('postalCode')?.hasError('required') &&
-              contactForm.get('postalCode')?.touched
-            ) {
-              <mat-error> Postal code is required </mat-error>
-            }
-          </mat-form-field>
+          <app-reusable-form-field
+            [control]="getFormControl('postalCode')"
+            label="Postal code"
+            className="postal-code"
+            [errorMessages]="errorMessages"
+          ></app-reusable-form-field>
 
-          <mat-form-field class="country">
-            <mat-label>Country</mat-label>
-            <input matInput formControlName="country" />
-            @if (
-              contactForm.get('country')?.hasError('required') &&
-              contactForm.get('country')?.touched
-            ) {
-              <mat-error> Country is required </mat-error>
-            }
-          </mat-form-field>
+          <app-reusable-form-field
+            [control]="getFormControl('country')"
+            label="Country"
+            className="country"
+            [isSelect]="true"
+            [selectOptions]="(countryOptions$ | async) || []"
+            [errorMessages]="errorMessages"
+          ></app-reusable-form-field>
         </div>
 
-        <mat-form-field class="telephone">
-          <mat-label>Telephone (optional)</mat-label>
-          <input matInput formControlName="telephone" />
-        </mat-form-field>
+        <app-reusable-form-field
+          [control]="getFormControl('telephone')"
+          label="Telephone"
+          [optional]="true"
+          className="telephone"
+          [errorMessages]="errorMessages"
+        ></app-reusable-form-field>
 
-        <mat-form-field>
-          <mat-label>Message (optional)</mat-label>
-          <textarea matInput formControlName="message"></textarea>
-        </mat-form-field>
+        <app-reusable-form-field
+          [control]="getFormControl('message')"
+          label="Message"
+          [optional]="true"
+          [isTextarea]="true"
+          [errorMessages]="errorMessages"
+        ></app-reusable-form-field>
 
         <p class="attach-file-title">File attachment (optional)</p>
+
         <div class="upload-container">
           <input
             #fileInput
             type="file"
             hidden
+            accept="image/jpeg,image/png,application/pdf"
             (change)="handleFileSelection($event)"
           />
-          <button
-            class="select-file-btn"
-            mat-button
-            color="primary"
-            type="button"
-            (click)="fileInput.click()"
+
+          <app-reusable-button
+            className="select-file-btn"
+            [color]="'primary'"
+            (buttonClick)="fileInput.click()"
           >
             <mat-icon>upload_file</mat-icon>
             Select File
-          </button>
+          </app-reusable-button>
+
           @if (contactForm.get('file')?.value) {
             <p class="selected-file-name">
               {{ contactForm.get('file')?.value?.name }}
+              <app-reusable-button
+                className="delete-file-btn"
+                (buttonClick)="deleteFile()"
+              >
+                <mat-icon>delete</mat-icon>
+              </app-reusable-button>
             </p>
           }
+
           @if (fileValidationError) {
             <p class="error-message">
               {{ fileValidationError }}
@@ -122,11 +123,12 @@
           }
         </div>
 
-        <div class="terms-agreemnet">
+        <div class="terms-agreement">
           <mat-checkbox
             class="agreement"
             formControlName="agreement"
           ></mat-checkbox>
+
           <p class="agreement">
             I have read and understood the
             <a href="" target="_blank">data protection regulations</a> of igus®
@@ -135,27 +137,40 @@
         </div>
 
         @if (
-          contactForm.get('agreement')?.invalid &&
-          (contactForm.get('agreement')?.touched ||
-            contactForm.get('agreement')?.dirty)
+          contactForm.get('agreement')?.touched &&
+          contactForm.get('agreement')?.hasError('required')
         ) {
-          <mat-error class="accept-error">
-            You must accept the data protection regulations
-          </mat-error>
+          <p class="terms-error">
+            {{ errorMessages.requiredTrue }}
+          </p>
         }
+
         <div class="form-btns">
-          <button class="cancel-btn" mat-stroked-button type="button">
+          <app-reusable-button
+            className="cancel-btn"
+            (buttonClick)="closeDialog()"
+          >
             Cancel
-          </button>
-          <button class="submit-btn" mat-stroked-button type="submit">
-            Submit
-          </button>
+          </app-reusable-button>
+
+          <app-reusable-button
+            className="submit-btn"
+            type="submit"
+            [disabled]="!!(isSubmitting$ | async)"
+          >
+            @if (isSubmitting$ | async) {
+              Submitting...
+            } @else {
+              Submit
+            }
+          </app-reusable-button>
         </div>
       </form>
     </div>
   } @else {
     <div class="form-wrapper">
       <h1 class="contact">Contact</h1>
+
       <p class="intro">
         Our contact form is currently undergoing maintenance. Please try again
         later.
