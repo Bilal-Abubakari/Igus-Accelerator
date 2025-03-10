@@ -1,0 +1,112 @@
+@use '@angular/material' as mat;
+
+$material-card-min-height: 250px;
+$material-card-border-radius: 8px;
+$material-card-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$material-card-hover-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+$material-header-height: 10px;
+$tolerance-container-bg: #f5f3f3;
+
+mat-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 5px;
+  color: var(--mat-sys-on-secondary-fixed);
+}
+
+.materials-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.material-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  color: black;
+  border: 3px solid transparent;
+  border-radius: $material-card-border-radius;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+  min-height: $material-card-min-height;
+  height: 100%;
+  cursor: pointer;
+  box-shadow: $material-card-box-shadow;
+
+  &:hover {
+    box-shadow: $material-card-hover-box-shadow;
+  }
+
+  .material-header {
+    height: $material-header-height;
+    width: 100%;
+    background-color: inherit;
+  }
+
+  .material-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .material-availability {
+    font-size: 0.875rem;
+  }
+
+  mat-card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .material-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .tolerance-container {
+    font-size: 1rem;
+    margin-top: auto;
+    padding: 0.75rem;
+    background: $tolerance-container-bg;
+    border-radius: 4px;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #363636;
+    }
+
+    .tolerance-value {
+      font-size: 0.875rem;
+      color: #c9c8c8;
+      margin-top: 0.5rem;
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+
+    button {
+      font-weight: 500;
+    }
+  }
+}
+
+.no-materials {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ebebeb;
+  padding: 16px;
+}

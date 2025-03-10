@@ -9,6 +9,7 @@ import {
   ElementRef,
   signal,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { merge, tap, catchError, of, finalize } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +22,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { UploadDirectory, UploadEvent } from './types';
 import { ModelUploadEvent } from '../model-list/types';
 import { ModelUploadState } from './services/model-upload-state.service';
+import { NAVIGATION_ROUTES } from '../../../navbar/constants';
 
 @Component({
   selector: 'app-model-upload',
@@ -41,9 +43,10 @@ export class ModelUploadComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  private uploadService = inject(ModelUploadService);
-  private snackBar = inject(MatSnackBar);
-  private modelUploadState = inject(ModelUploadState);
+  private readonly uploadService = inject(ModelUploadService);
+  private readonly snackBar = inject(MatSnackBar);
+  private readonly modelUploadState = inject(ModelUploadState);
+  private readonly router = inject(Router);
 
   public files: WritableSignal<File[]> = signal([]);
   public uploading = signal(false);
@@ -208,6 +211,11 @@ export class ModelUploadComponent {
     this.clearUploadState();
     this.uploading.set(false);
     this.clearFileInput();
+
+    this.router.navigate([
+      NAVIGATION_ROUTES.MOLDING_CONFIGURATION,
+      NAVIGATION_ROUTES.CONFIGURATIONS,
+    ]);
   }
 
   private showSnackbar(message: string, panelClass = '') {
