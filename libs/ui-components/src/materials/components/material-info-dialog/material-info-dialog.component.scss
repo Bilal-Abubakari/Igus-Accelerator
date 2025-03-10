@@ -63,9 +63,9 @@ main {
     }
 
     @include mat.table-overrides(
-        (
-          background-color: white,
-        )
+      (
+        background-color: white,
+      )
     );
 
     .resistance-icons {

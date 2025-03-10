@@ -26,6 +26,11 @@ mat-icon {
   width: calc(100vw - #{$canvas-width});
   overflow-x: auto;
 
+
+  @media (max-width: 1024px) {
+    width: calc(100vw - 16px);
+  }
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     padding: 8px;
