@@ -28,7 +28,7 @@ import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { appReducer } from './app.reducer';
 import { excludeKeys } from '@ngrx-addons/common';
-import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
+import { FOOTER_FEATURE_KEY } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -45,7 +45,13 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(
-              excludeKeys(['isEmailUpdated', 'isFeedbackSubmitted', 'message']),
+              excludeKeys([
+                'isEmailUpdated',
+                'isFeedbackSubmitted',
+                'message',
+                'isFeedbackLoading',
+                'isFeedbackSubmitted',
+              ]),
             ),
           skip: 1,
         },

@@ -20,7 +20,6 @@ import {
 import { Observable, Subject, map } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { TextOnlyValidators } from '../validators/custom-validators/input-field.validator';
 import { FeatureFlagService } from './service/feature-flag.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ContactFormActions } from './store/contact-form.actions';
@@ -33,6 +32,7 @@ import {
 import { ReusableButtonComponent } from '../reusable-components/reusable-button/reusable-button.component';
 import { ReusableFormFieldComponent } from '../reusable-components/reusable-form-field/reusable-form-field.component';
 import { SelectOption } from './contact-form.interface';
+import { TextOnlyValidators } from '../validators/input-field.validator';
 
 @Component({
   selector: 'app-contact-form',

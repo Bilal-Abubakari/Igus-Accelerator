@@ -1,7 +1,7 @@
 import {
   FOOTER_FEATURE_KEY,
   footerReducer,
-} from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
+} from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import {
   CONTACT_FORM_FEATURE_KEY,
   contactFormReducer,
