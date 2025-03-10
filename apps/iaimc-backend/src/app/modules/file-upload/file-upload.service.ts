@@ -8,6 +8,7 @@ import { v2 as cloudinary, UploadApiOptions } from 'cloudinary';
 import { Readable } from 'typeorm/platform/PlatformTools';
 import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
 import { ResponseObject } from '../../common/types/general.types';
+import { CloudinayFileUploadResult } from './types/file-upload.type';
 
 @Injectable()
 export class FileUploadService {
@@ -24,7 +25,7 @@ export class FileUploadService {
   public async uploadFile(
     file: MulterFile,
     directory: FileStoreDirectory,
-  ): Promise<ResponseObject<unknown>> {
+  ): Promise<ResponseObject<CloudinayFileUploadResult>> {
     const uploadApiOptions = {
       folder: directory,
       resource_type: 'raw',
@@ -46,7 +47,7 @@ export class FileUploadService {
     });
 
     try {
-      const results = await upload;
+      const results = (await upload) as CloudinayFileUploadResult;
       return { data: results };
     } catch (error: unknown) {
       this.logger.error(`File upload failed: ${(error as Error).message}`);

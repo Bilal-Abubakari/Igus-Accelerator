@@ -54,3 +54,7 @@ export function saveFile(path: string, contents: string | object): void {
     customLogger((error as Error).message, LOGGER_SCOPE);
   }
 }
+
+export function getFileExtension(file: string): string {
+  return file.split('.').pop() ?? 'unknown';
+}
