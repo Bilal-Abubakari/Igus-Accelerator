@@ -34,7 +34,6 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ContactFormComponent } from '../../../contact-form/contact-form.component';
 
-
 @Component({
   selector: 'app-main-footer',
   imports: [
