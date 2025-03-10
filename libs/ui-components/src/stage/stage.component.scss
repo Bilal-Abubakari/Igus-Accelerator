@@ -82,28 +82,43 @@ $mobile-breakpoint: 768px;
       display: grid;
       grid-template-areas:
         'title'
-        'image'
-        'description';
+        'description'
+        'buttons';
+    
     }
 
     &-title {
       grid-area: title;
-      margin-bottom: 1.5rem;
+      width: auto;
+      font-size: 2.5rem;
     }
 
     &-description {
       grid-area: description;
       margin-top: 1.5rem;
+      width: auto;
     }
   }
+
 
   .text-container {
     width: 100%;
     display: contents;
   }
 
-  .image-container {
-    grid-area: image;
-    width: 100%;
+ .stage-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 0 auto;
+  gap: 24px;
+  margin-top: 24px;
+
+  button{
+    width: auto;
+    padding: 0 10px;
+    line-height: 14px;
+    font-size: 0.8rem;
   }
+}
 }
