@@ -26,7 +26,7 @@ $mobile-breakpoint: 768px;
     font-weight: 600;
     word-wrap: break-word;
     width: 25ch;
-    font-weight: normal;
+    font-weight: initial;
     padding: 20px 0px;
   }
 
@@ -84,7 +84,6 @@ $mobile-breakpoint: 768px;
         'title'
         'description'
         'buttons';
-    
     }
 
     &-title {
@@ -100,25 +99,24 @@ $mobile-breakpoint: 768px;
     }
   }
 
-
   .text-container {
     width: 100%;
     display: contents;
   }
 
- .stage-buttons {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  margin: 0 auto;
-  gap: 24px;
-  margin-top: 24px;
+  .stage-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    gap: 24px;
+    margin-top: 24px;
 
-  button{
-    width: auto;
-    padding: 0 10px;
-    line-height: 14px;
-    font-size: 0.8rem;
+    button {
+      width: auto;
+      padding: 0 10px;
+      line-height: 14px;
+      font-size: 0.8rem;
+    }
   }
-}
 }
