@@ -1,72 +1,71 @@
 $description-color: #555;
 $title-color: #333;
-$background-color: #f8f9fa;
 $container-max-width: 1200px;
 $content-gap: 2rem;
 $shadow-color: rgba(0, 0, 0, 0.2);
 $mobile-breakpoint: 768px;
 
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-}
-
-@mixin shadow-effect {
-  filter: drop-shadow(0px 10px 15px $shadow-color);
-}
-
 .stage {
   &-container {
     width: 100%;
     padding: 4rem 5rem;
-    background-color: $background-color;
+    background-color: var(--mat-sys-on-primary);
     margin-bottom: 2rem;
   }
 
   &-content {
     max-width: $container-max-width;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: $content-gap;
+    text-align: center;
   }
 
   &-title {
-    font-size: 2rem;
+    font-size: 48px;
     color: $title-color;
-    margin-bottom: 1rem;
-    font-weight: 600;
+    margin: 0 auto;
+    font-weight: normal;
+    word-wrap: break-word;
+    width: 25ch;
+    padding: 20px 0px;
   }
 
   &-description {
     font-size: 1rem;
     line-height: 1.6;
     color: $description-color;
-  }
-
-  &-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+    width: 40%;
+    margin: 0 auto;
+    word-wrap: break-word;
+    font-weight: lighter;
   }
 }
 
 .text-container {
   flex: 1;
 }
+.stage-buttons {
+  display: inline-flex;
+  gap: $content-gap;
+  margin-top: 24px;
 
-.image {
-  &-container {
-    flex: 1;
-    @include flex-center;
-    @include shadow-effect;
+  button {
+    width: auto;
+    padding: 0 10px;
+    line-height: 24px;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
   }
-
-  &-card {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    padding: 0;
-    overflow: visible;
+  &__primary__btn {
+    color: var(--mat-sys-on-primary);
+    background-color: var(--mat-sys-on-background);
+    border: 1px solid var(--mat-sys-outline);
+  }
+  &__secondary__btn {
+    background-color: var(--mat-sys-on-primary);
+    border: 1px solid var(--mat-sys-outline);
   }
 }
 
@@ -82,18 +81,20 @@ $mobile-breakpoint: 768px;
       display: grid;
       grid-template-areas:
         'title'
-        'image'
-        'description';
+        'description'
+        'buttons';
     }
 
     &-title {
       grid-area: title;
-      margin-bottom: 1.5rem;
+      width: auto;
+      font-size: 2.5rem;
     }
 
     &-description {
       grid-area: description;
       margin-top: 1.5rem;
+      width: auto;
     }
   }
 
@@ -102,8 +103,19 @@ $mobile-breakpoint: 768px;
     display: contents;
   }
 
-  .image-container {
-    grid-area: image;
-    width: 100%;
+  .stage-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    gap: 24px;
+    margin-top: 24px;
+
+    button {
+      width: auto;
+      padding: 0 10px;
+      line-height: 14px;
+      font-size: 0.8rem;
+    }
   }
 }
