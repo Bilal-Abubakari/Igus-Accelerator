@@ -2,17 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   FooterComponent,
   ModelListComponent,
-  StageComponent
+  StageComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 @Component({
   selector: 'app-library',
-  imports: [
-    StageComponent,
-    FooterComponent,
-    ModelListComponent,
-   
-  ],
+  imports: [StageComponent, FooterComponent, ModelListComponent],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
