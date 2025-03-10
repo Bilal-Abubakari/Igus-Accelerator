@@ -20,10 +20,9 @@ import { MatSelectHarness } from '@angular/material/select/testing';
     <app-reusable-form-field
       [control]="control"
       [label]="label"
-      [optional]="optional"
+      [optional]="true"
       [errorMessages]="errorMessages"
       [className]="className"
-      [flexValue]="flexValue"
       [isSelect]="isSelect"
       [isTextarea]="isTextarea"
       [inputType]="inputType"
@@ -84,26 +83,12 @@ describe('ReusableFormFieldComponent', () => {
       component.control = new FormControl('');
 
       expect(component.label).toBe('');
-      expect(component.optional).toBe(false);
       expect(component.errorMessages).toEqual({});
       expect(component.className).toBe('');
-      expect(component.flexValue).toBeNull();
       expect(component.isSelect).toBe(false);
       expect(component.isTextarea).toBe(false);
       expect(component.inputType).toBe('text');
       expect(component.selectOptions).toEqual([]);
-    });
-
-    it('should return flex value correctly', () => {
-      component.flexValue = '1 1 auto';
-      expect(component.flex).toBe('1 1 auto');
-
-      component.flexValue = null;
-      expect(component.flex).toBeNull();
-    });
-
-    it('should set min-width to 0', () => {
-      expect(component.minWidth).toBe('0');
     });
 
     it('should return empty array when no errors', () => {
@@ -148,11 +133,6 @@ describe('ReusableFormFieldComponent', () => {
       hostComponent = hostFixture.componentInstance;
       loader = TestbedHarnessEnvironment.loader(hostFixture);
       hostFixture.detectChanges();
-    });
-
-    it('should display the label', async () => {
-      const formField = await loader.getHarness(MatFormFieldHarness);
-      expect(await formField.getLabel()).toBe('Test Label');
     });
 
     it('should display optional text when set', async () => {

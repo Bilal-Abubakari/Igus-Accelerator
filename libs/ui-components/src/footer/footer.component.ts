@@ -32,6 +32,8 @@ import {
   selectFeedbackLoading,
   selectIsFeedbackSubmitted,
 } from './store/footer.selectors';
+import { ContactFormComponent } from '../contact-form/contact-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-footer',
@@ -53,6 +55,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent implements OnInit, OnDestroy {
+  private dialog = inject(MatDialog);
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);
   private readonly footerService = inject(FooterService);
@@ -124,5 +127,15 @@ export class FooterComponent implements OnInit, OnDestroy {
       rating: this.ratingForm.get('rating')?.value,
       comment: this.ratingForm.get('comment')?.value,
     };
+  }
+
+  openContactForm() {
+    this.dialog.open(ContactFormComponent, {
+      panelClass: ['full-screen-dialog'],
+      width: '100vw',
+      height: '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+    });
   }
 }

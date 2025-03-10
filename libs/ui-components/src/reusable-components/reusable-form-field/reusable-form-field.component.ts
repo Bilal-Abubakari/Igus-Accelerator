@@ -1,9 +1,14 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+
+export interface SelectOption {
+  value: string;
+  label: string;
+}
 
 @Component({
   selector: 'app-reusable-form-field',
@@ -21,22 +26,14 @@ import { MatSelectModule } from '@angular/material/select';
 export class ReusableFormFieldComponent {
   @Input() control!: FormControl;
   @Input() label = '';
-  @Input() optional = false;
+  @Input() optional?: boolean;
   @Input() errorMessages: { [key: string]: string } = {};
   @Input() className = '';
-  @Input() flexValue: string | null = null;
   @Input() isSelect = false;
   @Input() isTextarea = false;
   @Input() inputType = 'text';
-  @Input() selectOptions: { value: string; label: string }[] = [];
+  @Input() selectOptions: SelectOption[] = [];
 
-  @HostBinding('style.flex') get flex() {
-    return this.flexValue;
-  }
-
-  @HostBinding('style.min-width') get minWidth() {
-    return '0';
-  }
   getErrorMessages(): string[] {
     if (!this.control?.errors) return [];
 

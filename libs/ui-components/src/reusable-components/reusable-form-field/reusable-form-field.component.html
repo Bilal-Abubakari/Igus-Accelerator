@@ -1,6 +1,5 @@
-<mat-form-field [class]="className" [ngStyle]="{ flex: flexValue }">
+<mat-form-field [class]="className">
   <mat-label>{{ label }}{{ optional ? ' (optional)' : '' }}</mat-label>
-
   @if (isSelect) {
     <mat-select [formControl]="control">
       @for (option of selectOptions; track option.value) {

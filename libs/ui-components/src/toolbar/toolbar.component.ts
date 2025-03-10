@@ -6,8 +6,6 @@ import {
   inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
-import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -33,8 +31,6 @@ import { LanguageOverlayService } from '../language-switcher/services/language-o
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
-  constructor(private readonly dialog: MatDialog) {}
-
   protected readonly langOverlayService = inject(LanguageOverlayService);
 
   protected showLangOverlayToggler = computed(() =>
@@ -43,15 +39,5 @@ export class ToolbarComponent {
 
   public toggleOverlay() {
     this.langOverlayService.overlayTogglerStateToggle();
-  }
-
-  openContactForm() {
-    this.dialog.open(ContactFormComponent, {
-      panelClass: ['full-screen-dialog'],
-      width: '100vw',
-      height: '100vh',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-    });
   }
 }

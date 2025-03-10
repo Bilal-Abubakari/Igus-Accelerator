@@ -19,49 +19,49 @@
       <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
         <div class="name-fields-container">
           <app-reusable-form-field
-            [control]="$any(contactForm.get('firstName'))"
+            [control]="getFormControl('firstName')"
             label="First name"
             [optional]="true"
             [errorMessages]="errorMessages"
-            [flexValue]="'1'"
+            className="first-name-field"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
-            [control]="$any(contactForm.get('lastName'))"
+            [control]="getFormControl('lastName')"
             label="Last name"
             [errorMessages]="errorMessages"
-            [flexValue]="'1'"
+            className="last-name-field"
           ></app-reusable-form-field>
         </div>
 
         <div class="email-company-container">
           <app-reusable-form-field
-            [control]="$any(contactForm.get('email'))"
+            [control]="getFormControl('email')"
             label="E-mail"
             [errorMessages]="errorMessages"
+            className="email-field"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
-            [control]="$any(contactForm.get('company'))"
+            [control]="getFormControl('company')"
             label="Company"
             [errorMessages]="errorMessages"
+            className="company-field"
           ></app-reusable-form-field>
         </div>
 
         <div class="postal-country-container">
           <app-reusable-form-field
-            [control]="$any(contactForm.get('postalCode'))"
+            [control]="getFormControl('postalCode')"
             label="Postal code"
             className="postal-code"
-            [flexValue]="'1'"
             [errorMessages]="errorMessages"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
-            [control]="$any(contactForm.get('country'))"
+            [control]="getFormControl('country')"
             label="Country"
             className="country"
-            [flexValue]="'2'"
             [isSelect]="true"
             [selectOptions]="(countryOptions$ | async) || []"
             [errorMessages]="errorMessages"
@@ -69,7 +69,7 @@
         </div>
 
         <app-reusable-form-field
-          [control]="$any(contactForm.get('telephone'))"
+          [control]="getFormControl('telephone')"
           label="Telephone"
           [optional]="true"
           className="telephone"
@@ -77,7 +77,7 @@
         ></app-reusable-form-field>
 
         <app-reusable-form-field
-          [control]="$any(contactForm.get('message'))"
+          [control]="getFormControl('message')"
           label="Message"
           [optional]="true"
           [isTextarea]="true"

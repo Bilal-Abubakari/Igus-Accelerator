@@ -15,6 +15,7 @@ import {
   ReactiveFormsModule,
   FormBuilder,
   FormGroup,
+  FormControl,
 } from '@angular/forms';
 import { Observable, Subject, map } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -133,6 +134,14 @@ export class ContactFormComponent implements OnInit, OnDestroy {
         ],
       ],
     });
+  }
+
+  public getFormControl(controlName: string): FormControl {
+    const control = this.contactForm.get(controlName);
+    if (!control) {
+      throw new Error(`Control ${controlName} not found in form`);
+    }
+    return control as FormControl;
   }
 
   public handleFileSelection(event: Event): void {
