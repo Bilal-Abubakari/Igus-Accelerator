@@ -31,7 +31,7 @@ import { FooterActions } from './store/footer.actions';
 import {
   selectFeedbackLoading,
   selectIsFeedbackSubmitted,
-} from './store/footer.selectors';
+} from './store/selectors/footer.selectors';
 
 @Component({
   selector: 'app-footer',

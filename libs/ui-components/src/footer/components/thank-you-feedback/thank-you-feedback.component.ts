@@ -15,7 +15,7 @@ import { FooterActions } from '../../store/footer.actions';
 import {
   selectFeedbackLoading,
   selectIsEmailUpdated,
-} from '../../store/footer.selectors';
+} from '../../store/selectors/footer.selectors';
 
 @Component({
   selector: 'app-thank-you-feedback',
