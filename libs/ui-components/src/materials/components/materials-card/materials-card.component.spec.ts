@@ -5,16 +5,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { TranslocoPipe } from '@jsverse/transloco';
+import {
+  TranslocoPipe,
+  TranslocoService,
+  TranslocoTestingModule,
+  translocoConfig,
+} from '@jsverse/transloco';
 import { By } from '@angular/platform-browser';
 import { Material } from '../../store/material.model';
 import { createMockMaterial } from '../../store/mocks/mock-material';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
-import {
-  translocoConfig,
-  TranslocoService,
-  TranslocoTestingModule,
-} from '@jsverse/transloco';
 
 describe('MaterialCardComponent', () => {
   let component: MaterialsCardComponent;
@@ -65,6 +65,24 @@ describe('MaterialCardComponent', () => {
       ],
       providers: [{ provide: MatDialog, useValue: mockDialog }],
     }).compileComponents();
+
+    translocoService = TestBed.inject(TranslocoService);
+    jest
+      .spyOn(translocoService, 'translate')
+      .mockImplementation(
+        (key: string | string[], params?: Record<string, unknown>) => {
+          const translations: Record<string, string> = {
+            'materialCard.HIGH_CHEMICAL_RESISTANCE': `Food material with high media resistance up to ${params?.['temp']}°C.`,
+            'materialCard.GENERAL_PURPOSE': 'General-purpose material.',
+          };
+
+          if (Array.isArray(key)) {
+            return key.map((k) => translations[k] || k);
+          }
+
+          return translations[key] || key;
+        },
+      );
 
     fixture = TestBed.createComponent(MaterialsCardComponent);
     component = fixture.componentInstance;
