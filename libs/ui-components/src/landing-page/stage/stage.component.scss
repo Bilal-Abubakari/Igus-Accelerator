@@ -62,7 +62,7 @@ $mobile-breakpoint: 768px;
   }
   &__primary__btn {
     color: var(--mat-sys-on-primary);
-    background-color: var(--mat-sys-on-background);
+    background-color: var(--mat-sys-on-primary-container);
     border: 1px solid var(--mat-sys-outline);
   }
   &__secondary__btn {
