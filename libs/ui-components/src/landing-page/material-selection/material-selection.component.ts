@@ -19,7 +19,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialSelectionComponent {
-  materials = [
+  public materials = [
     {
       titleKey: 'material.ABS.TITLE',
       features: [
