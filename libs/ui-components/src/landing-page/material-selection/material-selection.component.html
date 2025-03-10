@@ -1,30 +1,24 @@
 <div class="material-selection">
   <h1 class="material-selection__title">{{ 'material.TITLE' | transloco }}</h1>
   <div class="material-selection__grid">
-    @for (material of materials;track $index){
-    <mat-card
-      class="material-card"
-      appearance="outlined"
-    >
-      <mat-card-content>
-        <div class="material-card__checkbox">
-          <mat-icon class="material-card__checkmark">check</mat-icon>
-        </div>
-        <mat-card-title class="material-card__title">
-          {{ material.titleKey | transloco }}
-        </mat-card-title>
-        <div class="material-card__features">
-          @for ( featureKey of material.features; track $index) {
-            <p
-              class="material-card__feature"
-            >
-              {{ featureKey | transloco }}
-            </p>
-          }
-
-        </div>
-      </mat-card-content>
-    </mat-card>
+    @for (material of materials; track $index) {
+      <mat-card class="material-card" appearance="outlined">
+        <mat-card-content>
+          <div class="material-card__checkbox">
+            <mat-icon class="material-card__checkmark">check</mat-icon>
+          </div>
+          <mat-card-title class="material-card__title">
+            {{ material.titleKey | transloco }}
+          </mat-card-title>
+          <div class="material-card__features">
+            @for (featureKey of material.features; track $index) {
+              <p class="material-card__feature">
+                {{ featureKey | transloco }}
+              </p>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
     }
   </div>
 </div>
