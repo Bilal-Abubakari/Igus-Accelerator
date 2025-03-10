@@ -17,16 +17,16 @@ $mobile-breakpoint: 768px;
     max-width: $container-max-width;
     margin: 0 auto;
     text-align: center;
+
   }
 
   &-title {
     font-size: 48px;
     color: $title-color;
     margin: 0 auto;
-    font-weight: 600;
+    font-weight: normal;
     word-wrap: break-word;
     width: 25ch;
-    font-weight: initial;
     padding: 20px 0px;
   }
 
