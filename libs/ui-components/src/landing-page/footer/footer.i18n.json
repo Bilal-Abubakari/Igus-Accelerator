@@ -1,0 +1,125 @@
+{
+  "footer": {
+    "LOGO_TEXT": {
+      "ar": "مصمم نموذج الحقن",
+      "de": "Spritzgussmodell-Designer",
+      "en": "Injection Model Designer",
+      "es": "Diseñador de modelos de inyección",
+      "fr": "Concepteur de modèle d'injection",
+      "ja": "インジェクションモデルデザイナー",
+      "pt": "Designer de Modelo de Injeção",
+      "ru": "Дизайнер моделей для литья под давлением",
+      "zh": "注射模型设计师"
+    },
+    "MODEL_DESCRIPTION": {
+      "ar": "حوّل نماذجك ثلاثية الأبعاد إلى واقع مع خدمات القولبة بالحقن الاحترافية",
+      "de": "Verwandeln Sie Ihre 3D-Modelle mit professionellen Spritzgussdiensten in Realität",
+      "en": "Transform your 3D models into reality with professional injection molding services",
+      "es": "Transforme sus modelos 3D en realidad con servicios profesionales de moldeo por inyección",
+      "fr": "Transformez vos modèles 3D en réalité avec des services professionnels de moulage par injection",
+      "ja": "プロの射出成形サービスで3Dモデルを現実に変えましょう",
+      "pt": "Transforme seus modelos 3D em realidade com serviços profissionais de moldagem por injeção",
+      "ru": "Превратите свои 3D-модели в реальность с профессиональными услугами литья под давлением",
+      "zh": "利用专业的注塑成型服务将您的3D模型变为现实"
+    },
+    "SUBSCRIPTION_HEADER": {
+      "ar": "اشترك في نشرتنا الإخبارية وانضم إلى مجتمع IMDesigner المتنامي.",
+      "de": "Melden Sie sich für unseren Newsletter an und treten Sie der wachsenden IMDesigner-Community bei.",
+      "en": "Sign up for our newsletter and join the growing IMDesigner community.",
+      "es": "Regístrese en nuestro boletín y únase a la creciente comunidad de IMDesigner.",
+      "fr": "Inscrivez-vous à notre newsletter et rejoignez la communauté IMDesigner en pleine croissance.",
+      "ja": "ニュースレターに登録して、成長するIMDesignerコミュニティに参加しましょう。",
+      "pt": "Inscreva-se em nosso boletim informativo e junte-se à crescente comunidade IMDesigner.",
+      "ru": "Подпишитесь на нашу рассылку и присоединяйтесь к растущему сообществу IMDesigner.",
+      "zh": "注册我们的新闻通讯，加入不断壮大的IMDesigner社区。"
+    },
+    "SUBSCRIBE_TEXT": {
+      "ar": "اشترك",
+      "de": "Abonnieren",
+      "en": "Subscribe",
+      "es": "Suscribirse",
+      "fr": "S'abonner",
+      "ja": "購読する",
+      "pt": "Inscrever-se",
+      "ru": "Подписаться",
+      "zh": "订阅"
+    },
+    "FIRST_NAME": {
+      "ar": "الاسم الأول",
+      "de": "Vorname",
+      "en": "First Name",
+      "es": "Nombre",
+      "fr": "Prénom",
+      "ja": "名",
+      "pt": "Primeiro Nome",
+      "ru": "Имя",
+      "zh": "名字"
+    },
+    "EMAIL": {
+      "ar": "البريد الإلكتروني",
+      "de": "E-Mail",
+      "en": "Email",
+      "es": "Correo electrónico",
+      "fr": "E-mail",
+      "ja": "メール",
+      "pt": "E-mail",
+      "ru": "Электронная почта",
+      "zh": "电子邮件"
+    },
+    "REQUIRED_FIELD": {
+      "ar": "هذا الحقل مطلوب",
+      "de": "Dieses Feld ist erforderlich",
+      "en": "This field is required",
+      "es": "Este campo es obligatorio",
+      "fr": "Ce champ est requis",
+      "ja": "このフィールドは必須です",
+      "pt": "Este campo é obrigatório",
+      "ru": "Это поле обязательно для заполнения",
+      "zh": "这是必填字段"
+    },
+    "ENTER_VALID_NAME": {
+      "ar": "يرجى إدخال اسم صالح",
+      "de": "Bitte geben Sie einen gültigen Namen ein",
+      "en": "Please enter a valid name",
+      "es": "Por favor, introduzca un nombre válido",
+      "fr": "Veuillez entrer un nom valide",
+      "ja": "有効な名前を入力してください",
+      "pt": "Por favor, insira um nome válido",
+      "ru": "Пожалуйста, введите действительное имя",
+      "zh": "请输入有效的名称"
+    },
+    "NAME_TOO_SHORT": {
+      "ar": "الاسم قصير جدًا",
+      "de": "Der Name ist zu kurz",
+      "en": "Name is too short",
+      "es": "El nombre es demasiado corto",
+      "fr": "Le nom est trop court",
+      "ja": "名前が短すぎます",
+      "pt": "O nome é muito curto",
+      "ru": "Имя слишком короткое",
+      "zh": "名字太短"
+    },
+    "NAME_TOO_LONG": {
+      "ar": "الاسم طويل جدًا",
+      "de": "Der Name ist zu lang",
+      "en": "Name is too long",
+      "es": "El nombre es demasiado largo",
+      "fr": "Le nom est trop long",
+      "ja": "名前が長すぎます",
+      "pt": "O nome é muito longo",
+      "ru": "Имя слишком длинное",
+      "zh": "名字太长"
+    },
+    "ENTER_VALID_EMAIL": {
+      "ar": "الرجاء إدخال عنوان بريد إلكتروني صحيح",
+      "de": "Bitte geben Sie eine gültige E-Mail Adresse ein",
+      "en": "Please enter a valid email address",
+      "es": "Introduzca una dirección de correo electrónico válida",
+      "fr": "Veuillez saisir une adresse électronique valide",
+      "jp": "有効なEメールアドレスを入力してください。",
+      "pt": "Digite um endereço de e-mail válido",
+      "ru": "Пожалуйста, введите действительный адрес электронной почты",
+      "zh": "请输入有效的电子邮件地址"
+    }
+  }
+}
