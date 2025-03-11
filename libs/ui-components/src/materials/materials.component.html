@@ -1,5 +1,7 @@
 @if (loading()) {
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  <div class="loading-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
 } @else {
   <div class="material-grid">
     @for (material of materials(); track material.id) {
