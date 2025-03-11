@@ -17,14 +17,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@igus-accelerator-injection-molding-configurator/libs/shared": [
+        "libs/shared/index.ts"
+      ],
       "@igus-accelerator-injection-molding-configurator/services": [
         "apps/iaimc-frontend/src/app/services/index.ts"
       ],
       "@igus-accelerator-injection-molding-configurator/ui-components": [
         "libs/ui-components/src/index.ts"
-      ],
-      "@igus-accelerator-injection-molding-configurator/libs/shared": [
-        "libs/shared/index.ts"
       ]
     }
   },
