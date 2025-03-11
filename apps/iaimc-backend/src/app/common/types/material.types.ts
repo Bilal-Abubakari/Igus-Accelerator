@@ -51,3 +51,35 @@ export interface InjectionMoldingMaterial {
 
 export type InjectionMoldingMaterialPropertyValueType =
   InjectionMoldingMaterial[keyof InjectionMoldingMaterial];
+
+export type MaterialName =
+  | 'A160'
+  | 'A180'
+  | 'A181'
+  | 'A200'
+  | 'A350'
+  | 'A500'
+  | 'AB'
+  | 'B'
+  | 'C'
+  | 'C500'
+  | 'D'
+  | 'F'
+  | 'F2'
+  | 'G'
+  | 'G1'
+  | 'GLW'
+  | 'GV0'
+  | 'H'
+  | 'H1'
+  | 'H370'
+  | 'H2'
+  | 'H4'
+  | 'HSD350'
+  | 'J'
+  | 'J2'
+  | 'J200'
+  | 'J260'
+  | 'J3'
+  | 'J350'
+  | 'J4';
