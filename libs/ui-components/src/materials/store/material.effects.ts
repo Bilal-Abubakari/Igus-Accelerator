@@ -4,8 +4,8 @@ import { MaterialService } from '../service/material.service';
 import { MaterialActions } from './material.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Material } from './material.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 @Injectable()
 export class MaterialEffects {
@@ -17,7 +17,7 @@ export class MaterialEffects {
       ofType(MaterialActions.loadMaterials),
       mergeMap(() =>
         this.materialService.getMaterials().pipe(
-          map((materials: Material[]) =>
+          map((materials: InjectionMoldingMaterial[]) =>
             MaterialActions.loadMaterialsSuccess({ materials }),
           ),
           catchError(({ message }: HttpErrorResponse) =>

@@ -1,7 +1,7 @@
-import { Material } from './material.model';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 export interface MaterialState {
-  materials: Material[];
+  materials: InjectionMoldingMaterial[];
   triggerMaterialFetch: boolean;
   materialFetchError: string | null;
   selectedMaterialId: string | null;

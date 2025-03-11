@@ -6,7 +6,7 @@ import {
   InjectionMoldingMaterial,
   InjectionMoldingMaterialPropertyValueType,
   ResistanceLevel,
-} from '../../types/material.types';
+} from '@igus-accelerator-injection-molding-configurator/shared-types';
 import {
   checkFileExistence,
   readFileContents,

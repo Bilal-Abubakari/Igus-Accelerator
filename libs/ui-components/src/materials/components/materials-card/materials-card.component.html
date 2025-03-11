@@ -1,13 +1,13 @@
 <mat-card
   class="material-card"
-  [ngStyle]="{ 'border-color': material.colorhex }"
+  [ngStyle]="{ 'border-color': material.colorHex }"
   (click)="toggleSelection(material.id)"
   (keydown.enter)="toggleSelection(material.id)"
   tabindex="0"
 >
   <div
     class="material-header"
-    [ngStyle]="{ 'background-color': material.colorhex }"
+    [ngStyle]="{ 'background-color': material.colorHex }"
   >
     @if (selectedMaterialId === material.id) {
       <mat-icon>check</mat-icon>

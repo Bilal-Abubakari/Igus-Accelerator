@@ -17,7 +17,7 @@ const reducer = createReducer(
     triggerMaterialFetch: false,
     materials: materials.map((material) => ({
       ...material,
-      textColor: getTextColor(material.colorhex),
+      textColor: getTextColor(material.colorHex),
     })),
     materialFetchError: null,
   })),

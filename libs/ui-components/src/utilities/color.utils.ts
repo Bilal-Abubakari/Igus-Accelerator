@@ -1,6 +1,6 @@
 export function getTextColor(backgroundColor: string): string {
-  if (!/^#?[0-9A-F]{6}$/i.test(backgroundColor)) {
-    throw new Error('Invalid color code');
+  if (!backgroundColor || !/^#?[0-9A-F]{6}$/i.test(backgroundColor)) {
+    return 'black';
   }
 
   if (backgroundColor.startsWith('#')) {

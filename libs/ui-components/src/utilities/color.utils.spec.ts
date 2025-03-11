@@ -24,9 +24,12 @@ describe('getTextColor', () => {
     expect(getTextColor('000000')).toBe('white');
   });
 
-  it('should throw an error for invalid color codes', () => {
-    expect(() => getTextColor('#GGGGGG')).toThrow();
-    expect(() => getTextColor('XYZ')).toThrow();
-    expect(() => getTextColor('#1234')).toThrow();
+  it('should return "black" for invalid color codes instead of throwing an error', () => {
+    expect(getTextColor('#GGGGGG')).toBe('black');
+    expect(getTextColor('XYZ')).toBe('black');
+    expect(getTextColor('#1234')).toBe('black');
+    expect(getTextColor('')).toBe('black');
+    expect(getTextColor(null as unknown as string)).toBe('black');
+    expect(getTextColor(undefined as unknown as string)).toBe('black');
   });
 });

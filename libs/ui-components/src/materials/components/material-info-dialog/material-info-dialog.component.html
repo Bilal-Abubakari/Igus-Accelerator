@@ -1,6 +1,6 @@
 <main>
   @if (material(); as material) {
-    <header [style.backgroundColor]="material.colorhex">
+    <header [style.backgroundColor]="material.colorHex">
       {{ material.name }}
     </header>
 
@@ -16,12 +16,12 @@
         <div class="key">
           {{ 'materialInfoDialog.MOISTURE_ABSORPTION' | transloco }}:
         </div>
-        <div class="value">{{ material.maxmoistureabsorption }} %</div>
+        <div class="value">{{ material.maxMoistureAbsorption }} %</div>
 
         <div class="key">
           {{ 'materialInfoDialog.WATER_ABSORPTION' | transloco }}:
         </div>
-        <div class="value">{{ material.maxwaterabsorption }} %</div>
+        <div class="value">{{ material.maxWaterAbsorption }} %</div>
       </div>
 
       <h3>{{ 'materialInfoDialog.MECHANICAL_PROPERTIES' | transloco }}</h3>
@@ -29,17 +29,17 @@
         <div class="key">
           {{ 'materialInfoDialog.FLEXURAL_MODULUS' | transloco }}:
         </div>
-        <div class="value">{{ material.modulusofelasticity }} MPa</div>
+        <div class="value">{{ material.modulusOfElasticity }} MPa</div>
 
         <div class="key">
           {{ 'materialInfoDialog.FLEXURAL_STRENGTH' | transloco }}:
         </div>
-        <div class="value">{{ material.bendingstrength }} MPa</div>
+        <div class="value">{{ material.bendingStrength }} MPa</div>
 
         <div class="key">
           {{ 'materialInfoDialog.MAX_SURFACE_PRESSURE' | transloco }}:
         </div>
-        <div class="value">{{ material.maxsurfacepressure }} MPa</div>
+        <div class="value">{{ material.maxSurfacePressure }} MPa</div>
 
         <div class="key">
           {{ 'materialInfoDialog.SHORE_HARDNESS' | transloco }}:
@@ -52,24 +52,24 @@
         <div class="key">
           {{ 'materialInfoDialog.LONG_TERM_TEMP' | transloco }}:
         </div>
-        <div class="value">{{ material.maxtemperature }} °C</div>
+        <div class="value">{{ material.maxTemperature }} °C</div>
 
         <div class="key">
           {{ 'materialInfoDialog.SHORT_TERM_TEMP' | transloco }}:
         </div>
-        <div class="value">{{ material.maxtemperatureshort }} °C</div>
+        <div class="value">{{ material.maxTemperatureShort }} °C</div>
 
         <div class="key">
           {{ 'materialInfoDialog.ENVIRONMENTAL_TEMP' | transloco }}:
         </div>
         <div class="value">
-          {{ material.maxenvironmentaltemperatureshort }} °C
+          {{ material.maxEnvironmentalTemperatureShort }} °C
         </div>
 
         <div class="key">
           {{ 'materialInfoDialog.MIN_TEMPERATURE' | transloco }}:
         </div>
-        <div class="value">{{ material.mintemperature }} °C</div>
+        <div class="value">{{ material.minTemperature }} °C</div>
       </div>
 
       <h3>{{ 'materialInfoDialog.ELECTRICAL_PROPERTIES' | transloco }}</h3>
@@ -77,12 +77,12 @@
         <div class="key">
           {{ 'materialInfoDialog.SPEC_TRANS_RESIST' | transloco }}:
         </div>
-        <div class="value">{{ material.specificvolumeresistance }}</div>
+        <div class="value">{{ material.specificVolumeResistance }}</div>
 
         <div class="key">
           {{ 'materialInfoDialog.SURFACE_RESISTANCE' | transloco }}:
         </div>
-        <div class="value">{{ material.surfaceresistance }}</div>
+        <div class="value">{{ material.surfaceResistance }}</div>
       </div>
 
       <h3>{{ 'materialInfoDialog.FOOD_INDUSTRY_COMPLIANCE' | transloco }}</h3>
@@ -91,14 +91,14 @@
           {{ 'materialInfoDialog.FDA_COMPLIANT' | transloco }}:
         </div>
         <div class="value">
-          {{ material.foodcontactfdacompliant ? 'Yes' : 'No' }}
+          {{ material.foodContactFDACompliant ? 'Yes' : 'No' }}
         </div>
 
         <div class="key">
           {{ 'materialInfoDialog.EU_COMPLIANCE' | transloco }}:
         </div>
         <div class="value">
-          {{ material.foodcontacteucompliant ? 'Yes' : 'No' }}
+          {{ material.foodContactEUCompliant ? 'Yes' : 'No' }}
         </div>
       </div>
 
@@ -108,18 +108,18 @@
           {{ 'materialInfoDialog.UNDERWATER_USE' | transloco }}:
         </div>
         <div class="value">
-          {{ material.underwatercompliant ? 'Yes' : 'No' }}
+          {{ material.underWaterCompliant ? 'Yes' : 'No' }}
         </div>
 
         <div class="key">
           {{ 'materialInfoDialog.DIRT_RESISTANCE' | transloco }}:
         </div>
-        <div class="value">{{ material.dirtresistant ? 'Yes' : 'No' }}</div>
+        <div class="value">{{ material.dirtResistant ? 'Yes' : 'No' }}</div>
 
         <div class="key">
           {{ 'materialInfoDialog.MOULD_RESISTANCE' | transloco }}:
         </div>
-        <div class="value">{{ material.mouldresistant ? 'Yes' : 'No' }}</div>
+        <div class="value">{{ material.mouldResistant ? 'Yes' : 'No' }}</div>
       </div>
 
       <table mat-table [dataSource]="dataSource()" class="mat-elevation-z8">

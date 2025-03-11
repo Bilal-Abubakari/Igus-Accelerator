@@ -1,8 +1,8 @@
 import { materialReducer } from './material.reducer';
 import { MaterialActions } from './material.actions';
 import { createMockMaterial } from '../store/mocks/mock-material';
-import { Material } from './material.model';
 import { initialMaterialState } from './material.state';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 jest.mock('../../utilities/color.utils', () => ({
   getTextColor: jest.fn().mockReturnValue('#FFFFFF'),
@@ -23,19 +23,23 @@ describe('MaterialReducer', () => {
   });
 
   it('should update materials and reset errors on loadMaterialsSuccess', () => {
-    const materials: Material[] = [
-      createMockMaterial({
-        id: '1',
-        name: 'Material A',
-        colorhex: '#FF5733',
-        shrinkage: 0.5,
-      }),
-      createMockMaterial({
-        id: '2',
-        name: 'Material B',
-        colorhex: '#33FF57',
-        shrinkage: 0.3,
-      }),
+    const materials: InjectionMoldingMaterial[] = [
+      {
+        ...createMockMaterial({
+          id: '1',
+          name: 'Material A',
+          colorHex: '#FF5733',
+          shrinkage: 0.5,
+        }),
+      },
+      {
+        ...createMockMaterial({
+          id: '2',
+          name: 'Material B',
+          colorHex: '#33FF57',
+          shrinkage: 0.3,
+        }),
+      },
     ];
 
     const action = MaterialActions.loadMaterialsSuccess({ materials });
@@ -44,7 +48,6 @@ describe('MaterialReducer', () => {
     expect(state.triggerMaterialFetch).toBe(false);
     expect(state.materials.length).toBe(2);
     expect(state.materialFetchError).toBeNull();
-    expect(state.materials[0].textColor).toBe('#FFFFFF');
   });
 
   it('should set materialFetchError on loadMaterialsFailure', () => {

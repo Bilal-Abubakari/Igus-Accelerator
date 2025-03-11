@@ -12,9 +12,9 @@ import {
   translocoConfig,
 } from '@jsverse/transloco';
 import { By } from '@angular/platform-browser';
-import { Material } from '../../store/material.model';
 import { createMockMaterial } from '../../store/mocks/mock-material';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 describe('MaterialCardComponent', () => {
   let component: MaterialsCardComponent;
@@ -22,22 +22,23 @@ describe('MaterialCardComponent', () => {
   let mockDialog: jest.Mocked<MatDialog>;
   let translocoService: TranslocoService;
 
-  const mockMaterialHighResistance: Material = createMockMaterial({
-    id: '1',
-    name: 'Test Material',
-    colorhex: '#ffffff',
-    shrinkage: 0.05,
-    highchemicalresistance: true,
-    maxtemperature: 100,
-  });
+  const mockMaterialHighResistance: InjectionMoldingMaterial =
+    createMockMaterial({
+      id: '1',
+      name: 'Test Material',
+      colorHex: '#ffffff',
+      shrinkage: 0.05,
+      highChemicalResistance: true,
+      maxTemperature: 100,
+    });
 
-  const mockMaterialGeneral: Material = createMockMaterial({
+  const mockMaterialGeneral: InjectionMoldingMaterial = createMockMaterial({
     id: '2',
     name: 'General Material',
-    colorhex: '#000000',
+    colorHex: '#000000',
     shrinkage: 0.1,
-    highchemicalresistance: false,
-    maxtemperature: 80,
+    highChemicalResistance: false,
+    maxTemperature: 80,
   });
 
   beforeEach(async () => {

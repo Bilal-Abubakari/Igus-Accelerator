@@ -4,7 +4,6 @@ import {
   Input,
   inject,
 } from '@angular/core';
-import { Material } from '../../store/material.model';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { CommonModule } from '@angular/common';
@@ -13,6 +12,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 @Component({
   selector: 'app-materials-card',
@@ -31,11 +31,14 @@ import { MaterialInfoDialogComponent } from '../material-info-dialog/material-in
 export class MaterialsCardComponent {
   private readonly dialog = inject(MatDialog);
   private readonly transloco = inject(TranslocoService);
-  @Input() material!: Material;
+  @Input() material!: InjectionMoldingMaterial;
   @Input() selectedMaterialId!: string | null;
   @Input() toggleSelection!: (id: string) => void;
 
-  public showMoreInfo(material: Material, event?: MouseEvent): void {
+  public showMoreInfo(
+    material: InjectionMoldingMaterial,
+    event?: MouseEvent,
+  ): void {
     if (event) event.stopPropagation();
     this.dialog.open(MaterialInfoDialogComponent, {
       panelClass: 'fullscreen-dialog',
@@ -47,10 +50,10 @@ export class MaterialsCardComponent {
     });
   }
 
-  public getMaterialDescription(material: Material): string {
-    return material.highchemicalresistance
+  public getMaterialDescription(material: InjectionMoldingMaterial): string {
+    return material.highChemicalResistance
       ? this.transloco.translate('materialCard.HIGH_CHEMICAL_RESISTANCE', {
-          temp: material.maxtemperature,
+          temp: material.maxTemperature,
         })
       : this.transloco.translate('materialCard.GENERAL_PURPOSE');
   }
