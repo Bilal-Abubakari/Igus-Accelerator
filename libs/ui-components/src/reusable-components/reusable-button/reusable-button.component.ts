@@ -15,6 +15,6 @@ export class ReusableButtonComponent {
   @Input() disabled = false;
   @Input() flat = false;
   @Input() isIconButton = false;
-  
+
   @Output() buttonClick = new EventEmitter<MouseEvent>();
 }
