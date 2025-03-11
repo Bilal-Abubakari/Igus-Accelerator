@@ -33,6 +33,7 @@ export class ReusableFormFieldComponent {
   @Input() isTextarea = false;
   @Input() inputType = 'text';
   @Input() selectOptions: SelectOption[] = [];
+  @Input() checkboxLabel = '';
   @Input() customErrorMessages: { [key: string]: string } = {};
 
   private defaultErrorMessages: { [key: string]: string } = {

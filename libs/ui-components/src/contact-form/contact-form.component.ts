@@ -33,6 +33,7 @@ import {
 import { ReusableButtonComponent } from '../reusable-components/reusable-button/reusable-button.component';
 import { ReusableFormFieldComponent } from '../reusable-components/reusable-form-field/reusable-form-field.component';
 import { SelectOption } from './contact-form.interface';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-contact-form',
@@ -47,6 +48,7 @@ import { SelectOption } from './contact-form.interface';
     MatSnackBarModule,
     ReusableFormFieldComponent,
     ReusableButtonComponent,
+    MatInputModule
   ],
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],

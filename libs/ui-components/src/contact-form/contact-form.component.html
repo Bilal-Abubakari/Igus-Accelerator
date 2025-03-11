@@ -139,9 +139,9 @@
           contactForm.get('agreement')?.touched &&
           contactForm.get('agreement')?.hasError('required')
         ) {
-          <p class="terms-error">
+          <mat-error class="terms-error">
             You must accept the data protection regulations
-          </p>
+          </mat-error>
         }
 
         <div class="form-btns">

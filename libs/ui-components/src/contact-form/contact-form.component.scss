@@ -7,6 +7,7 @@
   position: relative;
   margin-bottom: 400px;
 
+
   .form-wrapper {
     width: 100%;
     max-width: var(--max-form-wrapper-width);
@@ -23,12 +24,6 @@
   width: 100vw;
   height: 100vh;
 
-  @include mat.dialog-overrides(
-    (
-      container-shape: 0px,
-      container-color: white,
-    )
-  );
 }
 
 h1.contact {
@@ -125,14 +120,41 @@ textarea {
 }
 
 .upload-container {
-  margin-bottom: var(--gap-standard);
-}
-
-.select-file-btn {
+  margin-bottom: 32px;
   display: flex;
-  align-items: center;
-  gap: var(--select-file-btn-gap);
-  transition: var(--select-file-btn-transition);
+  flex-direction: column;
+  gap: 16px;
+  
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
+  
+  .select-file-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--select-file-btn-gap, 8px);
+    margin-bottom: 8px;
+    border: none !important;
+    outline:  none !important;
+    
+    @media (max-width: 600px) {
+      width: 100%;
+      justify-content: center;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+  }
+  
+  .selected-file-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    word-break: break-word;
+  }
 }
 
 .mat-mdc-button {
@@ -143,64 +165,74 @@ textarea {
 .terms-agreement {
   display: flex;
   flex-direction: row;
-  gap: var(--select-file-container-gap);
-  align-items: center;
+  gap: var(--select-file-container-gap, 12px);
+  align-items: flex-start; 
+  margin-bottom: 24px; 
+  
+  @media (max-width: 600px) {
+    margin-bottom: 32px; 
+  }
+  
+  mat-checkbox {
+    margin-top: 3px;
+  }
+  
+  p.agreement {
+    font-size: var(--font-size-agreement, 14px);
+    line-height: 1.5; 
+    margin-top: 12px;
+  }
 }
 
 .terms-error {
-  padding-left: var(--padding-left-error);
-  font-size: var(--error-font-size) !important;
-  line-height: var(--error-line-height) !important;
-  color: rgb(200, 53, 53);
-  margin: 4px 0 0 0;
+  font-size: var(--error-font-size, 12px) !important;
+  line-height: var(--error-line-height, 1.33) !important;
+  margin-top: -16px;
+  margin-bottom: 16px;
 }
-p.agreement {
-  font-size: var(--font-size-agreement);
 
-  a {
-    color: inherit;
-    text-decoration: underline;
+@media (max-width: 480px) {
+    h1.contact {
+      font-size: 24px;
+    }
+    
+    p.intro {
+      font-size: 14px;
+    }
+    
+    .terms-agreement {
+      align-items: flex-start;
+    }
   }
-}
-
+  
 .form-btns {
-  padding-top: var(--padding-top-form-btns);
+  padding-top: 32px;
   display: flex;
-  gap: var(--gap-form-btns);
+  gap: var(--gap-form-btns, 16px);
   justify-content: flex-end;
-  height: var(--form-btns-height);
-
+  height: auto;
+  min-height: var(--form-btns-height, 50px);
+  margin-top: 8px;
+  
   @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-.close-btn {
-  position: absolute;
-  top: var(--close-btn-top);
-  right: var(--close-btn-right);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--close-btn-color);
-
-  &:hover {
-    color: var(--close-btn-hover-color);
-  }
-
-  @media (max-width: 600px) {
-    top: 15px;
-    right: 15px;
-  }
-
-  @media (min-width: 601px) and (max-width: 1024px) {
-    top: 20px;
-    right: 20px;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    top: 25px;
-    right: 25px;
+    display:flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    padding-top: 24px;
+    margin-bottom: 24px;
+    
+    button {
+      width: 100%;
+      padding: 12px 16px;
+    }
+    
+    .cancel-btn {
+      margin-top: 8px;
+    }
+    
+    .submit-btn {
+      margin-bottom: 8px;
+    }
   }
 }
