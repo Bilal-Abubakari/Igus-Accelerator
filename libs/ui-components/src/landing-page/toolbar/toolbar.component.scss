@@ -16,11 +16,9 @@ $shadow-color: rgba(0, 0, 0, 0.2);
   );
 
   & {
-    height: var(--navbar-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 $navbar-horizontal-padding;
     font-size: 14px;
     font-weight: normal;
   }

@@ -1,0 +1,25 @@
+<section class="how-it-works__section">
+  <h1 class="how-it-works__title">
+    {{ 'how-it-works.MAIN_TITLE' | transloco }}
+  </h1>
+  <div class="how-it-works__grid">
+    @for (content of cardContent; track $index) {
+      <mat-card class="material-card" appearance="outlined">
+        <img
+          class="material-card__image"
+          mat-card-image
+          [src]="content.image"
+          [alt]="content.imageAlt"
+        />
+        <mat-card-content class="material-card__content">
+          <mat-card-title class="material-card__title">
+            {{ content.titleKey | transloco }}
+          </mat-card-title>
+          <p class="material-card__description">
+            {{ content.description | transloco }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</section>

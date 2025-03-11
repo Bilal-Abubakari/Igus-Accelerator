@@ -1,0 +1,77 @@
+@use '@angular/material' as mat;
+@import 'libs/ui-components/src/styles/_variables.scss';
+
+.how-it-works__section {
+  background-color: $mat-selection-background-color;
+  padding: 73px 0px 112px 0px;
+}
+
+.how-it-works {
+  padding: 20px;
+  height: 500px;
+  background-color: $mat-selection-background-color;
+
+  &__title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 40px;
+    font-weight: lighter;
+  }
+
+  &__grid {
+    width: 100%;
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px;
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.material-card {
+  width: 100%;
+  max-width: 389px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+
+  @include mat.card-overrides(
+    (
+      elevated-container-color: none,
+      outlined-outline-color: #e7e7e7,
+    )
+  );
+
+  &__title {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 16px;
+  }
+
+  &__decription {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: lighter;
+  }
+}
+
+@media (max-width: 768px) {
+  .how-it-works__section {
+    padding: 20px 0px 20px 0px;
+  }
+  .material-selection__grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .material-card {
+    max-width: 100%;
+  }
+}
