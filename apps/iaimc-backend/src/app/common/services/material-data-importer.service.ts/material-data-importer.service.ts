@@ -111,7 +111,7 @@ export class MaterialDataImporterService {
     > = {};
 
     for (let i = 0; i < keys.length; i++) {
-      const key = keys[i].toLowerCase();
+      const key = keys[i];
 
       // The `chemicals` field is processed differently as it's a comma-separated a list of chemicals.
       if (key === 'chemicals') {
