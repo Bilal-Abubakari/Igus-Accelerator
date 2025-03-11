@@ -8,8 +8,8 @@ export default {
   moduleFileExtensions: ['ts', 'js', 'html'],
   coveragePathIgnorePatterns: [
     '/node_modules/',
-    'contact-form\\.dto\\.ts$',
-    'contact-form\\.entity\\.ts$',
+    '\\.dto\\.ts$',
+    '\\.entity\\.ts$',
   ],
 
   coverageDirectory: '../../coverage/apps/iaimc-backend',

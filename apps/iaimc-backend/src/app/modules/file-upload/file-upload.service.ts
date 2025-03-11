@@ -4,7 +4,11 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { v2 as cloudinary, UploadApiOptions } from 'cloudinary';
+import {
+  v2 as cloudinary,
+  UploadApiOptions,
+  UploadApiResponse,
+} from 'cloudinary';
 import { Readable } from 'typeorm/platform/PlatformTools';
 import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
 import { ResponseObject } from '../../common/types/general.types';
@@ -24,7 +28,7 @@ export class FileUploadService {
   public async uploadFile(
     file: MulterFile,
     directory: FileStoreDirectory,
-  ): Promise<ResponseObject<unknown>> {
+  ): Promise<ResponseObject<UploadApiResponse>> {
     const uploadApiOptions = {
       folder: directory,
       resource_type: 'raw',
@@ -33,12 +37,12 @@ export class FileUploadService {
       unique_filename: false,
     } satisfies UploadApiOptions;
 
-    const upload = new Promise((resolve, rejects) => {
+    const upload = new Promise<UploadApiResponse>((resolve, rejects) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         uploadApiOptions,
         (error, result) => {
           if (error) rejects(new Error(error.message));
-          else resolve(result);
+          else if (result) resolve(result);
         },
       );
 

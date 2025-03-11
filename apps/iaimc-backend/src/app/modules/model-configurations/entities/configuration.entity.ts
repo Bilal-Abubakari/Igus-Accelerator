@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -11,24 +12,31 @@ import {
 import { UserEntity } from '../../../common/entities/user.entity';
 import { ReviewStatus } from '../../../common/types/general.types';
 import { FileEntity } from './file.entity';
+import { MaterialName } from '../../../common/types/material.types';
 
 @Entity('model_configurations')
 export class ModelConfigurationEntity {
   @PrimaryGeneratedColumn('uuid')
   public id!: string;
 
-  @Column()
-  public material!: string;
+  @Column({
+    type: 'varchar',
+    length: 50,
+  })
+  public material!: MaterialName;
 
   @Column({ default: 1 })
   public quantity!: number;
 
-  @Column()
-  public lifeTime!: number;
+  @Column('int', { nullable: true })
+  public lifeTime?: number | null;
 
   @OneToOne(() => FileEntity, { onDelete: 'CASCADE' })
   @JoinColumn()
   public file!: FileEntity;
+
+  @Column({ nullable: true })
+  public snapshot?: string;
 
   @Column({
     type: 'enum',
@@ -37,12 +45,13 @@ export class ModelConfigurationEntity {
   })
   public reviewStatus!: ReviewStatus;
 
-  @OneToOne(() => UserEntity)
-  public assignedUser!: UserEntity;
+  @OneToOne(() => UserEntity, { nullable: true })
+  @JoinTable()
+  public assignedUser?: UserEntity;
 
   @ManyToOne(() => UserEntity)
   @JoinColumn()
-  public user!: UserEntity;
+  public user?: UserEntity;
 
   @CreateDateColumn()
   public createdAt!: Date;
