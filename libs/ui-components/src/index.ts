@@ -15,9 +15,7 @@ export * from './navbar/navbar.component';
 export * from './landing-page/toolbar/toolbar.component';
 export * from './landing-page/how-it-works/how-it-works.component';
 
-
 // EXPORT TRANSLOCO
-
 
 export { toolbarI18n };
 export { stageI18n };

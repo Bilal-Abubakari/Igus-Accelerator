@@ -15,7 +15,6 @@ class MockTranslocoPipe {
     return `en.${key}`;
   }
 }
-
 describe('HowItWorksComponent', () => {
   let component: HowItWorksComponent;
   let fixture: ComponentFixture<HowItWorksComponent>;

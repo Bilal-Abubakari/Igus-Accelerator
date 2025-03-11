@@ -12,13 +12,10 @@ import { FooterComponent } from '../../../../../../libs/ui-components/src/landin
   imports: [
     StageComponent,
     ModelUploadComponent,
-<<<<feat/frontend/IAIMC-64-implement-how-it-works
     MaterialSelectionComponent,
-    HowItWorksComponent,
-=======
     FooterComponent,
     MaterialSelectionComponent,
->>>>main
+    HowItWorksComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
