@@ -5,10 +5,8 @@
         <div class="model-container__logo">
           <app-model-logo />
           <p>{{ 'footer.LOGO_TEXT' | transloco }}</p>
-
         </div>
         <p>
-
           {{ 'footer.MODEL_DESCRIPTION' | transloco }}
         </p>
       </section>
@@ -17,38 +15,37 @@
         <div class="form-fields">
           <div>
             <app-reusable-form-field
-            [isInFooter]="true"
-            [control]="getField('firstName')"
-            [label]="'footer.FIRST_NAME' | transloco"
-            [optional]="false"
-            [inputType]="'text'"
-            className="small"
-            [errorMessages]="errorMessages"
-          ></app-reusable-form-field>
+              [isInFooter]="true"
+              [control]="getField('firstName')"
+              [label]="'footer.FIRST_NAME' | transloco"
+              [optional]="false"
+              [inputType]="'text'"
+              className="small"
+              [errorMessages]="errorMessages"
+            ></app-reusable-form-field>
           </div>
 
           <div>
             <app-reusable-form-field
-            [isInFooter]="true"
-            [control]="getField('email')"
-            [label]="'footer.EMAIL' | transloco"
-            [optional]="false"
-            [inputType]="'text'"
-            className="small"
-            [errorMessages]="errorMessages"
-          ></app-reusable-form-field>
+              [isInFooter]="true"
+              [control]="getField('email')"
+              [label]="'footer.EMAIL' | transloco"
+              [optional]="false"
+              [inputType]="'text'"
+              className="small"
+              [errorMessages]="errorMessages"
+            ></app-reusable-form-field>
           </div>
           <app-reusable-button
-          [className]="'custom-button'"
-          [color]="'accent'"
-          [isInFooter]="true"
+            [className]="'custom-button'"
+            [color]="'primary'"
+            [isInFooter]="true"
           >
-          <span>{{ 'footer.SUBSCRIBE_TEXT' | transloco }}</span>
-          @if (isSubscriptionLoading()) {
-            <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
-          }
+            <span>{{ 'footer.SUBSCRIBE_TEXT' | transloco }}</span>
+            @if (isSubscriptionLoading()) {
+              <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+            }
           </app-reusable-button>
-
         </div>
       </section>
     </form>

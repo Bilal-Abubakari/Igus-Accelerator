@@ -9,7 +9,6 @@ import { TranslocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { provideRouter } from '@angular/router';
 import { ModelLogoComponent } from '../../svgs/model-logo/model-logo.component';
 
-
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;

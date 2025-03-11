@@ -18,7 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ModelLogoComponent } from '../../svgs/model-logo/model-logo.component';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { formField } from '../../utilities/helper-function';
-import { ReusableFormFieldComponent } from "../../reusable-components/reusable-form-field/reusable-form-field.component";
+import { ReusableFormFieldComponent } from '../../reusable-components/reusable-form-field/reusable-form-field.component';
 import { ReusableButtonComponent } from '../../reusable-components/reusable-button/reusable-button.component';
 
 @Component({
@@ -34,8 +34,8 @@ import { ReusableButtonComponent } from '../../reusable-components/reusable-butt
     RouterLink,
     MatIconModule,
     ReusableFormFieldComponent,
-    ReusableButtonComponent
-],
+    ReusableButtonComponent,
+  ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -68,6 +68,6 @@ export class FooterComponent {
     pattern: this.translocoService.translate('footer.ENTER_VALID_NAME'),
     email: this.translocoService.translate('footer.ENTER_VALID_EMAIL'),
     minlength: this.translocoService.translate('footer.NAME_TOO_SHORT'),
-    maxlength: this.translocoService.translate('footer.NAME_TOO_LONG')
+    maxlength: this.translocoService.translate('footer.NAME_TOO_LONG'),
   };
 }
