@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss' ;
+
 :host {
   display: inline-block;
 }
@@ -9,7 +11,7 @@ button {
     height: 42px;
     width: 100%;
     padding: 0 1.19113rem;
-    color: var(--footer-main-background);
+    color: $footer-main-background;
     background-color: var(--mat-sys-surface-container-lowest);
   }
   &.mat-icon-button {

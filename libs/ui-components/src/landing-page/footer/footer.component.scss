@@ -1,20 +1,13 @@
 @use '@angular/material' as mat;
+@import '../../styles/variables.scss' ;
 
-@mixin flex-option(
-  $display: flex,
-  $justify-content: center,
-  $align-items: center
-) {
-  display: $display;
-  justify-content: $justify-content;
-  align-items: $align-items;
-}
+
 
 mat-toolbar {
   height: auto;
   @include mat.toolbar-overrides(
     (
-      container-background-color: var(--footer-main-background),
+      container-background-color: $footer-main-background,
       container-text-color: var(--mat-sys-surface-container-lowest),
     )
   );
@@ -22,7 +15,7 @@ mat-toolbar {
     width: 100%;
     padding: 5rem 7rem 0;
     form {
-      font-size: var(--font-size-footer);
+      font-size: $font-size-footer;
       margin-bottom: 2.5rem;
       @include flex-option(flex, space-between, left);
       .model-container {
@@ -41,13 +34,13 @@ mat-toolbar {
         @include flex-option(flex, left, left);
         flex-direction: column;
         gap: 1.2rem;
-        border: 1px solid var(--footer-border-color);
+        border: 1px solid $footer-border-color;
         border-radius: 1.5rem;
         padding: 1.5rem 0.5rem 1.5rem 1.5rem;
-        background-color: var(--subscription-background);
+        background-color: $subscription-background;
         h4 {
           font-size: 1rem;
-          color: var(--subscription-primary-color);
+          color: $subscription-primary-color;
         }
         .form-fields {
           @include flex-option(flex, left, left);
@@ -79,14 +72,14 @@ mat-toolbar {
     .footer-links {
       @include flex-option(flex, space-between, left);
       font-size: 0.75rem;
-      border-top: 1px solid var(--footer-border-color);
+      border-top: 1px solid $footer-border-color;
       padding: 3.8rem 0;
-      color: var(--footer-links-color);
+      color: $footer-links-color;
       &__terms-and-condition {
         @include flex-option(flex, left, left);
         gap: 1.4rem;
         a {
-          color: var(--footer-links-color);
+          color: $footer-links-color;
           text-decoration: none;
           &:hover {
             text-decoration: underline;
@@ -99,8 +92,8 @@ mat-toolbar {
         &__button {
           padding: 0.3rem;
           border-radius: 0.5rem;
-          background-color: var(--subscription-background);
-          border: 1px solid var(--footer-border-color);
+          background-color: $subscription-background;
+          border: 1px solid $footer-border-color;
           cursor: pointer;
         }
       }
