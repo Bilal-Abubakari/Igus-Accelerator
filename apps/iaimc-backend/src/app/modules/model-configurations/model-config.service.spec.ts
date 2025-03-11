@@ -6,11 +6,11 @@ import {
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Cache } from 'cache-manager';
+import { UploadApiResponse } from 'cloudinary';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../../common/entities/user.entity';
 import { JwtUserPayload } from '../../common/types/general.types';
 import { FileUploadService } from '../file-upload/file-upload.service';
-import { CloudinayFileUploadResult } from '../file-upload/types/file-upload.type';
 import { ModelConfigurationEntity } from './entities/configuration.entity';
 import { FileEntity } from './entities/file.entity';
 import {
@@ -41,7 +41,7 @@ jest.mock('uuid', () => ({
   v4: jest.fn(() => someUUID),
 }));
 
-const uploadResult: CloudinayFileUploadResult = {
+const uploadResult: UploadApiResponse = {
   asset_id: 'abcd1234efgh5678',
   public_id: 'sample-folder/sample-image',
   version: 1709876543,
@@ -61,6 +61,16 @@ const uploadResult: CloudinayFileUploadResult = {
   overwritten: false,
   original_filename: 'sample-image.jpg',
   api_key: '1234567890abcdef',
+  access_control: [],
+  access_mode: '',
+  context: {},
+  format: '',
+  height: 1,
+  metadata: {},
+  moderation: [],
+  pages: 1,
+  url: '',
+  width: 1,
 };
 
 const userId = 'user-id';
@@ -180,7 +190,7 @@ describe('ModelConfigService', () => {
         .spyOn(modelConfigRepo, 'create')
         .mockImplementation((entity) => entity as ModelConfigurationEntity);
 
-      const result = service.createNewConfig(uploadResult, true);
+      const result = service.createNewConfig(uploadResult);
 
       expect(fileRepo.create).toHaveBeenCalledWith({
         id: someUUID,
@@ -215,10 +225,10 @@ describe('ModelConfigService', () => {
         .spyOn(modelConfigRepo, 'create')
         .mockImplementation((entity) => entity as ModelConfigurationEntity);
 
-      service.createNewConfig(uploadResult, false);
+      service.createNewConfig(uploadResult);
 
       expect(fileRepo.create).toHaveBeenCalledWith({
-        id: undefined,
+        id: someUUID,
         name: 'sample-image',
         type: 'sample-image',
         url: 'https://res.cloudinary.com/demo/image/upload/v1709876543/sample-folder/sample-image.jpg',
@@ -229,7 +239,7 @@ describe('ModelConfigService', () => {
 
       expect(modelConfigRepo.create).toHaveBeenCalledWith(
         expect.objectContaining({
-          id: undefined,
+          id: someUUID,
           material: 'A160',
           quantity: 1,
           lifeTime: null,
@@ -260,7 +270,7 @@ describe('ModelConfigService', () => {
 
       await service.updateUserConfigs(userId, uploadResult);
 
-      expect(service.createNewConfig).toHaveBeenCalledWith(uploadResult, false);
+      expect(service.createNewConfig).toHaveBeenCalledWith(uploadResult);
       expect(fileRepo.save).toHaveBeenCalledWith(modelConfig.file);
       expect(modelConfigRepo.save).toHaveBeenCalledWith(modelConfig);
       expect(userRepo.findOne).toHaveBeenCalledWith({
@@ -337,7 +347,7 @@ describe('ModelConfigService', () => {
 
       await service.updateAnonymousUserConfigs(userId, uploadResult);
 
-      expect(service.createNewConfig).toHaveBeenCalledWith(uploadResult, true);
+      expect(service.createNewConfig).toHaveBeenCalledWith(uploadResult);
       expect(cacheManager.get).toHaveBeenCalledWith(userId);
       expect(cacheManager.set).toHaveBeenCalledWith(
         userId,

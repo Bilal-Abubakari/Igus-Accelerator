@@ -7,18 +7,18 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cache } from 'cache-manager';
+import { UploadApiResponse } from 'cloudinary';
 import { Repository } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
+import { ACCESS_TOKEN_EXPIRATION_TIME } from '../../common/constants';
 import { UserEntity } from '../../common/entities/user.entity';
 import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
 import { JwtUserPayload, ReviewStatus } from '../../common/types/general.types';
 import { MaterialName } from '../../common/types/material.types';
 import { getFileExtension } from '../../common/utils/file.utils';
 import { FileUploadService } from '../file-upload/file-upload.service';
-import { CloudinayFileUploadResult } from '../file-upload/types/file-upload.type';
 import { ModelConfigurationEntity } from './entities/configuration.entity';
 import { FileEntity } from './entities/file.entity';
-import { ACCESS_TOKEN_EXPIRATION_TIME } from '../../common/constants';
 
 export const DEFAULT_MATERIAL: MaterialName = 'A160';
 export const CONFIGURATION_CACHE_EXPIRATION_TIME_MS =
@@ -36,7 +36,7 @@ export class ModelConfigService {
     @InjectRepository(FileEntity)
     private readonly fileRepo: Repository<FileEntity>,
     private readonly fileUploadService: FileUploadService,
-  ) {}
+  ) { }
 
   public async uploadConfig(
     { id, anonymous }: JwtUserPayload,
@@ -54,10 +54,7 @@ export class ModelConfigService {
       : this.updateUserConfigs(id, data);
   }
 
-  public createNewConfig(
-    data: CloudinayFileUploadResult,
-    generateIds: boolean,
-  ): ModelConfigurationEntity {
+  public createNewConfig(data: UploadApiResponse): ModelConfigurationEntity {
     const {
       display_name: name,
       secure_url: url,
@@ -68,7 +65,7 @@ export class ModelConfigService {
     const type = getFileExtension(name);
 
     const file = this.fileRepo.create({
-      id: generateIds ? uuidV4() : undefined,
+      id: uuidV4(),
       name,
       type,
       url,
@@ -78,7 +75,7 @@ export class ModelConfigService {
     });
 
     const modelConfig = this.modelConfigRepo.create({
-      id: generateIds ? uuidV4() : undefined,
+      id: uuidV4(),
       material: DEFAULT_MATERIAL,
       quantity: 1,
       lifeTime: null,
@@ -93,9 +90,9 @@ export class ModelConfigService {
 
   public async updateUserConfigs(
     userId: string,
-    data: CloudinayFileUploadResult,
+    data: UploadApiResponse,
   ): Promise<ModelConfigurationEntity> {
-    let modelConfig = this.createNewConfig(data, false);
+    let modelConfig = this.createNewConfig(data);
     const file = await this.fileRepo.save(modelConfig.file);
     modelConfig = await this.modelConfigRepo.save({
       ...modelConfig,
@@ -117,9 +114,9 @@ export class ModelConfigService {
 
   public async updateAnonymousUserConfigs(
     userId: string,
-    data: CloudinayFileUploadResult,
+    data: UploadApiResponse,
   ): Promise<ModelConfigurationEntity> {
-    let newConfig = this.createNewConfig(data, true);
+    let newConfig = this.createNewConfig(data);
 
     let configs = (await this.cacheManager.get(userId)) as
       | ModelConfigurationEntity[]

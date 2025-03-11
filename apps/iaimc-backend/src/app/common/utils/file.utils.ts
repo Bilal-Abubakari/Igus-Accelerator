@@ -56,5 +56,5 @@ export function saveFile(path: string, contents: string | object): void {
 }
 
 export function getFileExtension(file: string): string {
-  return file.split('.').pop() ?? 'unknown';
+  return file.split('.').pop() ?? '';
 }
