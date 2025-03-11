@@ -1,0 +1,149 @@
+@use '@angular/material' as mat;
+@import '../../styles/variables.scss';
+
+mat-toolbar {
+  height: auto;
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: $footer-main-background,
+      container-text-color: var(--mat-sys-surface-container-lowest),
+    )
+  );
+  footer {
+    width: 100%;
+    padding: 5rem 7rem 0;
+    form {
+      font-size: $font-size-footer;
+      margin-bottom: 2.5rem;
+      @include flex-option(flex, space-between, left);
+      .model-container {
+        width: 20%;
+        @include flex-option(flex, left, left);
+        gap: 1.5rem;
+        flex-direction: column;
+        white-space: normal;
+        &__logo {
+          font-size: 1rem;
+          display: flex;
+          gap: 0.25rem;
+        }
+      }
+      .subscription-container {
+        @include flex-option(flex, left, left);
+        flex-direction: column;
+        gap: 1.2rem;
+        border: 1px solid $footer-border-color;
+        border-radius: 1.5rem;
+        padding: 1.5rem 0.5rem 1.5rem 1.5rem;
+        background-color: $subscription-background;
+        h4 {
+          font-size: 1rem;
+          color: $subscription-primary-color;
+        }
+        .form-fields {
+          @include flex-option(flex, left, left);
+          gap: 0.5rem;
+          .small {
+            border-radius: 2px;
+            color: var(--mat-sys-outline);
+            .input-field {
+              color: var(--mat-sys-outline) !important;
+            }
+          }
+          .custom-button {
+            border-radius: 0.75rem;
+            border: none;
+            height: 42px;
+            width: 100%;
+            padding: 0 1.19113rem;
+
+            cursor: pointer;
+            @include flex-option(flex, center, center);
+            gap: 0.5rem;
+            &:hover {
+              background-color: var(--mat-sys-background);
+            }
+          }
+        }
+      }
+    }
+    .footer-links {
+      @include flex-option(flex, space-between, left);
+      font-size: 0.75rem;
+      border-top: 1px solid $footer-border-color;
+      padding: 3.8rem 0;
+      color: $footer-links-color;
+      &__terms-and-condition {
+        @include flex-option(flex, left, left);
+        gap: 1.4rem;
+        a {
+          color: $footer-links-color;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .icons-group {
+        @include flex-option(flex, left, left);
+        gap: 0.5rem;
+        &__button {
+          padding: 0.3rem;
+          border-radius: 0.5rem;
+          background-color: $subscription-background;
+          border: 1px solid $footer-border-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  form {
+    .model-container {
+      width: 30% !important;
+    }
+    .subscription-container {
+      padding: 1.5rem 0.5rem !important;
+      white-space: normal;
+      .form-fields {
+        gap: 0.5rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  mat-toolbar {
+    footer {
+      padding: 5rem 2rem 0;
+      box-sizing: border-box;
+    }
+    form {
+      width: 100% !important;
+      @include flex-option(flex, left, center);
+      gap: 0.5rem;
+      flex-direction: column;
+      .model-container {
+        width: 100% !important;
+      }
+      .subscription-container {
+        width: 100% !important;
+        .form-fields {
+          flex-direction: column;
+          gap: 0.5rem !important;
+          .small {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+    .footer-links {
+      flex-direction: column !important;
+      &__terms-and-condition {
+        flex-direction: column;
+      }
+    }
+  }
+}

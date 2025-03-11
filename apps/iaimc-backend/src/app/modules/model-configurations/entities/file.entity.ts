@@ -1,10 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Accepted3DModelType } from '../../../common/types/file.types';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('files')
 export class FileEntity {
@@ -14,17 +8,20 @@ export class FileEntity {
   @Column()
   public name!: string;
 
-  @Column({ type: 'enum', enum: Accepted3DModelType })
-  public type!: Accepted3DModelType;
+  @Column()
+  public type!: string;
 
   @Column({ type: 'text' })
   public url!: string;
 
+  @Column({ type: 'text' })
+  public checksum!: string;
+
   @Column({ type: 'varchar', length: 50 })
   public assetFolder!: string;
 
-  @CreateDateColumn()
-  public createdAt!: Date;
+  @Column({ type: 'timestamp' })
+  public uploadDate!: Date;
 
   // To do: Add model analysis results columns. They'll be worked out during model analysis...
 }

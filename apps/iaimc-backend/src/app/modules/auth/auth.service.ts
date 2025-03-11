@@ -49,10 +49,13 @@ export class AuthService {
     }
   }
 
-  public async generateTokens(userId: string): Promise<JwtTokens> {
+  public async generateTokens(
+    userId: string,
+    anonymous = true,
+  ): Promise<JwtTokens> {
     const payload: JwtUserPayload = {
       id: userId,
-      anonymous: true,
+      anonymous,
     };
 
     const accessToken = await this.jwtService.signAsync(payload, {

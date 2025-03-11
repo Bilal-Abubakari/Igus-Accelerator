@@ -1,9 +1,8 @@
 import { Controller, Get, Req, Res } from '@nestjs/common';
-import { minutes, Throttle } from '@nestjs/throttler';
+import { Throttle } from '@nestjs/throttler';
 import { Request, Response } from 'express';
+import { REFRESH_TOKEN_THROTTLE_TTL } from '../../common/constants';
 import { AuthService } from './auth.service';
-
-const REFRESH_TOKEN_TTL = minutes(14);
 
 @Controller('auth')
 export class AuthController {
@@ -14,7 +13,7 @@ export class AuthController {
     await this.authService.getAnonymousUserTokens(res);
   }
 
-  @Throttle({ default: { limit: 1, ttl: REFRESH_TOKEN_TTL } })
+  @Throttle({ default: { limit: 1, ttl: REFRESH_TOKEN_THROTTLE_TTL } })
   @Get('refresh')
   public async acquireNewTokens(
     @Req() req: Request,

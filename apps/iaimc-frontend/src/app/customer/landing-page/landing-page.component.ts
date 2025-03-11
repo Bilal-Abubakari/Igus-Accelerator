@@ -5,14 +5,20 @@ import {
   HowItWorksComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 import { ModelUploadComponent } from '../../../../../../libs/ui-components/src/model/components/model-upload/model-upload.component';
+import { FooterComponent } from '../../../../../../libs/ui-components/src/landing-page/footer/footer.component';
 
 @Component({
   selector: 'app-landing-page',
   imports: [
     StageComponent,
     ModelUploadComponent,
+<<<<feat/frontend/IAIMC-64-implement-how-it-works
     MaterialSelectionComponent,
     HowItWorksComponent,
+=======
+    FooterComponent,
+    MaterialSelectionComponent,
+>>>>main
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

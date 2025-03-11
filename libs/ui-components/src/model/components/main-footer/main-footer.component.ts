@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,8 +21,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { formField } from '../utilities/helper-function';
-import { atLeastOneFieldValidator } from '../validators/custom-validators/custom.validator';
+import { formField } from '../../../utilities/helper-function';
+import { atLeastOneFieldValidator } from '../../../validators/custom.validator';
 import { ThankYouFeedbackComponent } from './components/thank-you-feedback/thank-you-feedback.component';
 import { FeedbackRequest } from './footer.interface';
 import { FooterService } from './service/footer.service';
@@ -32,13 +31,12 @@ import {
   selectFeedbackLoading,
   selectIsFeedbackSubmitted,
 } from './store/footer.selectors';
-import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ContactFormComponent } from '../../../contact-form/contact-form.component';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-main-footer',
   imports: [
-    CommonModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -50,11 +48,11 @@ import { MatDialog } from '@angular/material/dialog';
     ThankYouFeedbackComponent,
     TranslocoPipe,
   ],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+  templateUrl: './main-footer.component.html',
+  styleUrl: './main-footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent implements OnInit, OnDestroy {
+export class MainFooterComponent implements OnInit, OnDestroy {
   private readonly dialog = inject(MatDialog);
   private readonly fb = inject(FormBuilder);
   private readonly store = inject(Store);

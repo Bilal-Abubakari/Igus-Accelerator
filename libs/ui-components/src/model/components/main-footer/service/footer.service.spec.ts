@@ -6,8 +6,8 @@ import {
 import { FooterService } from './footer.service';
 import { provideHttpClient } from '@angular/common/http';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { selectFeedbackId } from '../store/footer.selectors';
 import { FeedbackRequest, FeedbackResponse } from '../footer.interface';
+import { selectFeedbackId } from '../store/footer.selectors';
 
 describe('FooterService', () => {
   let service: FooterService;
