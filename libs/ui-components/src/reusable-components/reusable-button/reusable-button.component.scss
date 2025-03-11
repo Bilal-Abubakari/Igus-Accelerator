@@ -3,6 +3,15 @@
 }
 
 button {
+  &.footer{
+    border-radius: 0.75rem;
+    border: none;
+    height: 42px;
+    width: 100%;
+    padding: 0 1.19113rem;
+    color: var(--footer-main-background);
+    background-color: var(--mat-sys-surface-container-lowest);
+  }
   &.mat-icon-button {
     width: 40px;
     height: 40px;
@@ -35,5 +44,6 @@ button {
       justify-content: center;
       gap: 8px;
     }
+
   }
 }

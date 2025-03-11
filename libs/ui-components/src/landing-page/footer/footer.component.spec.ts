@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { TranslocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { provideRouter } from '@angular/router';
-import { ModelLogoComponent } from '../../../svgs/model-logo/model-logo.component';
+import { ModelLogoComponent } from '../../svgs/model-logo/model-logo.component';
+
 
 describe('FooterComponent', () => {
   let component: FooterComponent;

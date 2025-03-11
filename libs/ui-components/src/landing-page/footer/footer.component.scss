@@ -54,8 +54,9 @@ mat-toolbar {
           gap: 0.5rem;
           .small {
             border-radius: 2px;
-            input {
-              color: var(--mat-sys-outline);
+            color: var(--mat-sys-outline);
+            .input-field {
+              color: var(--mat-sys-outline) !important;
             }
           }
           .custom-button {
@@ -64,6 +65,7 @@ mat-toolbar {
             height: 42px;
             width: 100%;
             padding: 0 1.19113rem;
+        
             cursor: pointer;
             @include flex-option(flex, center, center);
             gap: 0.5rem;
@@ -113,7 +115,6 @@ mat-toolbar {
     }
     .subscription-container {
       padding: 1.5rem 0.5rem !important;
-      width: 52% !important;
       white-space: normal;
       .form-fields {
         gap: 0.5rem !important;

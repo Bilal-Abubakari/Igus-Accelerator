@@ -1,6 +1,6 @@
 import * as feedBackI18n from './model/components/main-footer/components/thank-you-feedback/feedback.i18n.json';
 import * as footerI18n from './model/components/main-footer/footer.i18n.json';
-import * as footerSubscriptionI18n from './landing-page/components/footer/footer.i18n.json';
+import * as footerSubscriptionI18n from './landing-page/footer/footer.i18n.json';
 import * as langSwticherI18n from './language-switcher/lang-switcher.i18n.json';
 import * as modelListI18n from './model/components/model-list/model-list.i18n.json';
 import * as modelUploadI18n from './model/components/model-upload/model-upload.i18n.json';

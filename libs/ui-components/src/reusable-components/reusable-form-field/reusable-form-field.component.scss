@@ -5,7 +5,9 @@
 
 mat-form-field {
   width: 100%;
-
+  .footer{
+    color: var(--subscription-primary-color) !important;
+  }
   &.telephone {
     width: var(--telephone-width, 100%);
   }
