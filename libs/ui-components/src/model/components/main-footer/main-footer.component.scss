@@ -44,7 +44,6 @@ mat-toolbar {
       .custom-button {
         color: var(--mat-sys-primary);
         width: 50%;
-
         &:disabled {
           color: var(--mat-sys-primary-container);
         }

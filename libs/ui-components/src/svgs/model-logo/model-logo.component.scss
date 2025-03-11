@@ -1,0 +1,13 @@
+@mixin flex-option(
+  $display: flex,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+main {
+  @include flex-option(flex, center, center);
+}

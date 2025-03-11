@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
@@ -11,10 +12,12 @@ import envConfig from './configurations/env.config';
 import jwtConfig from './configurations/jwt.config';
 import throttlerConfig from './configurations/throttler.config';
 import { AuthModule } from './modules/auth/auth.module';
+import { JwtStrategy } from './modules/auth/strategies/jwt.strategy';
 import { ContactFormModule } from './modules/contact-form/contact-form.module';
 import { FeedbackModule } from './modules/feedback/feedback.module';
 import { FileUploadModule } from './modules/file-upload/file-upload.module';
 import { MaterialsModule } from './modules/materials/materials.module';
+import { ModelConfigModule } from './modules/model-configurations/model-config.module';
 
 @Module({
   imports: [
@@ -23,6 +26,8 @@ import { MaterialsModule } from './modules/materials/materials.module';
     ContactFormModule,
     MaterialsModule,
     AuthModule,
+    ModelConfigModule,
+    CacheModule.register(),
     ConfigModule.forRoot(envConfig),
     TypeOrmModule.forRoot(databaseConfig().database),
     JwtModule.register(jwtConfig().jwtOptions),
@@ -31,6 +36,7 @@ import { MaterialsModule } from './modules/materials/materials.module';
   controllers: [AppController],
   providers: [
     AppService,
+    JwtStrategy,
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
