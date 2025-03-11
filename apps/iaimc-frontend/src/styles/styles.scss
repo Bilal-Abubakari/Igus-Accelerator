@@ -65,17 +65,23 @@ body {
   }
 }
 
-@include mat.dialog-overrides((container-color: #fff,
+@include mat.dialog-overrides(
+  (
+    container-color: #fff,
     container-shape: none,
-  ));
+  )
+);
 
 .full-screen-dialog {
   border-radius: 0 !important;
   overflow: hidden !important;
 
-  @include mat.dialog-overrides((container-shape: 0px,
+  @include mat.dialog-overrides(
+    (
+      container-shape: 0px,
       container-color: white,
-    ));
+    )
+  );
 }
 
 .cdk-global-scrollblock {
