@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import 'libs/ui-components/src/styles/_variables.scss';
+@use 'libs/ui-components/src/styles/_variables.scss' as variables;
 
 .injection-model-container {
   width: 100%;
@@ -56,7 +56,7 @@
 .option-card {
   flex: 1;
   padding: 2rem;
-  @include flex-column;
+  @include variables.flex-column;
   align-items: flex-start;
 
   &:first-child {
@@ -89,7 +89,7 @@
 }
 
 .option-description {
-  color: $schedule-description-color;
+  color: variables.$schedule-description-color;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -122,11 +122,13 @@
 }
 
 .upload-button {
-  display: flex;
+  @include variables.flex-center;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
+}
+mat-icon {
+  padding: 0.6rem 0 0 0;
 }
 
 .arrow-icon {
