@@ -8,7 +8,12 @@ import { FooterComponent } from '../../../../../../libs/ui-components/src/landin
 
 @Component({
   selector: 'app-landing-page',
-  imports: [StageComponent, ModelUploadComponent,FooterComponent, MaterialSelectionComponent],
+  imports: [
+    StageComponent,
+    ModelUploadComponent,
+    FooterComponent,
+    MaterialSelectionComponent,
+  ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
