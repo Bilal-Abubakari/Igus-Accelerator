@@ -36,7 +36,7 @@ export class ModelConfigService {
     @InjectRepository(FileEntity)
     private readonly fileRepo: Repository<FileEntity>,
     private readonly fileUploadService: FileUploadService,
-  ) { }
+  ) {}
 
   public async uploadConfig(
     { id, anonymous }: JwtUserPayload,

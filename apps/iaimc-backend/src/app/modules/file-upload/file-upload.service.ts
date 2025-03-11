@@ -4,7 +4,11 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { v2 as cloudinary, UploadApiOptions, UploadApiResponse } from 'cloudinary';
+import {
+  v2 as cloudinary,
+  UploadApiOptions,
+  UploadApiResponse,
+} from 'cloudinary';
 import { Readable } from 'typeorm/platform/PlatformTools';
 import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
 import { ResponseObject } from '../../common/types/general.types';
@@ -38,7 +42,7 @@ export class FileUploadService {
         uploadApiOptions,
         (error, result) => {
           if (error) rejects(new Error(error.message));
-          else if(result) resolve(result);
+          else if (result) resolve(result);
         },
       );
 
