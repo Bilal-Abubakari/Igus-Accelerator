@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ToolbarComponent } from '../../../../libs/ui-components/src/landing-page/toolbar/toolbar.component';
+import { ToolbarComponent } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 @Component({
   standalone: true,
