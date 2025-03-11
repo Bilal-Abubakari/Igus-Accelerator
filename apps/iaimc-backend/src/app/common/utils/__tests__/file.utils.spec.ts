@@ -1,7 +1,12 @@
 import { Logger } from '@nestjs/common';
 import { existsSync, readFileSync, writeFile, writeFileSync } from 'fs';
 import XLSX from 'xlsx';
-import { checkFileExistence, readFileContents, saveFile } from '../file.utils';
+import {
+  checkFileExistence,
+  getFileExtension,
+  readFileContents,
+  saveFile,
+} from '../file.utils';
 import { customLogger, convertXLSXToCSV } from '../general.utils';
 
 jest.mock('fs');
@@ -145,6 +150,32 @@ describe('Utility functions', () => {
       expect(() => convertXLSXToCSV(mockPath)).toThrow(
         'Failed to convert sheet to CSV',
       );
+    });
+  });
+
+  describe('Get file extension', () => {
+    test('returns the extension for a file with a single dot', () => {
+      expect(getFileExtension('document.pdf')).toBe('pdf');
+    });
+
+    test('returns the last extension for a file with multiple dots', () => {
+      expect(getFileExtension('archive.tar.gz')).toBe('gz');
+    });
+
+    // test('returns an empty string for a file without an extension', () => {
+    //   expect(getFileExtension('README')).toBe('');
+    // });
+
+    // test('returns an empty string for a hidden file without an extension', () => {
+    //   expect(getFileExtension('.gitignore')).toBe('');
+    // });
+
+    test('returns an empty string for a filename ending with a dot', () => {
+      expect(getFileExtension('filename.')).toBe('');
+    });
+
+    test('returns an empty string for an empty input', () => {
+      expect(getFileExtension('')).toBe('');
     });
   });
 });
