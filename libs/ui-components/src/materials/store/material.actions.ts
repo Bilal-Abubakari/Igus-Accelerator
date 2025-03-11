@@ -1,4 +1,4 @@
-import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { createActionGroup, props, emptyProps } from '@ngrx/store';
 
 export const MaterialActions = createActionGroup({

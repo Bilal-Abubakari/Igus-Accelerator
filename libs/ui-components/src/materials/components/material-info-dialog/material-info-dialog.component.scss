@@ -55,8 +55,13 @@ main {
       padding-bottom: 4px;
     }
 
+    .key {
+      font-family: 'Roboto', sans-serif;
+    }
+
     .value {
       text-align: right;
+      font-family: 'Roboto', sans-serif;
 
       @media (max-width: 768px) {
         text-align: left;

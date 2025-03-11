@@ -1,4 +1,4 @@
-import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 export const createMockMaterial = (
   overrides: Partial<InjectionMoldingMaterial> = {},

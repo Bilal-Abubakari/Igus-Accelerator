@@ -1,7 +1,7 @@
 import { Inject, inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 @Injectable({ providedIn: 'root' })
 export class MaterialService {

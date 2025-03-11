@@ -14,7 +14,7 @@ import {
 import { By } from '@angular/platform-browser';
 import { createMockMaterial } from '../../store/mocks/mock-material';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
-import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 describe('MaterialCardComponent', () => {
   let component: MaterialsCardComponent;

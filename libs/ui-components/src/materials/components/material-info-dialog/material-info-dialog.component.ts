@@ -16,7 +16,7 @@ import { LowerCasePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
+import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 @Component({
   selector: 'app-material-info-dialog',

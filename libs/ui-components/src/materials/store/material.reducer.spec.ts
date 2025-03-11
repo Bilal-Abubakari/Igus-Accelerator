@@ -2,7 +2,6 @@ import { materialReducer } from './material.reducer';
 import { MaterialActions } from './material.actions';
 import { createMockMaterial } from '../store/mocks/mock-material';
 import { initialMaterialState } from './material.state';
-import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 jest.mock('../../utilities/color.utils', () => ({
   getTextColor: jest.fn().mockReturnValue('#FFFFFF'),
