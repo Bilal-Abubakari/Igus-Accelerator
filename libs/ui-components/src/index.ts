@@ -12,7 +12,14 @@ import * as materialInfoI18n from './materials/components/material-info-dialog/m
 import * as materialSelectionI18n from './landing-page/material-selection/material-selection.i18n.json';
 import * as scheduleCallI18n from './landing-page/schedule-call/schedule-call.i18n.json';
 
+import * as howItWorks18n from './landing-page/how-it-works/how-it-works.i18n.json';
+export * from './navbar/navbar.component';
+
+export * from './landing-page/toolbar/toolbar.component';
+export * from './landing-page/how-it-works/how-it-works.component';
+
 // EXPORT TRANSLOCO
+
 export { toolbarI18n };
 export { stageI18n };
 export { langSwticherI18n };
@@ -34,6 +41,7 @@ export { materialsI18n };
 export { materialInfoI18n };
 export { materialSelectionI18n };
 export { scheduleCallI18n };
+export { howItWorks18n };
 
 export * from './landing-page/material-selection/material-selection.component';
 

@@ -3,6 +3,7 @@ import {
   StageComponent,
   MaterialSelectionComponent,
   ScheduleCallComponent,
+  HowItWorksComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 import { ModelUploadComponent } from '../../../../../../libs/ui-components/src/model/components/model-upload/model-upload.component';
 import { FooterComponent } from '../../../../../../libs/ui-components/src/landing-page/footer/footer.component';
@@ -15,6 +16,7 @@ import { FooterComponent } from '../../../../../../libs/ui-components/src/landin
     ScheduleCallComponent,
     FooterComponent,
     MaterialSelectionComponent,
+    HowItWorksComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

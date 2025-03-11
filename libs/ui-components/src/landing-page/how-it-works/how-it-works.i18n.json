@@ -1,0 +1,85 @@
+{
+  "how-it-works": {
+    "MAIN_TITLE": {
+      "ar": "كيف يعمل",
+      "de": "Wie es funktioniert",
+      "en": "How it works",
+      "es": "Cómo funciona",
+      "fr": "Comment ça marche",
+      "jp": "仕組み",
+      "pt": "Como funciona",
+      "ru": "Как это работает",
+      "zh": "它是如何运作的"
+    },
+    "TITLE": {
+      "UPLOAD_MODEL": {
+        "ar": "تحميل النموذج",
+        "de": "Modell hochladen",
+        "en": "Upload Model",
+        "es": "Subir modelo",
+        "fr": "Téléverser le modèle",
+        "jp": "モデルをアップロード",
+        "pt": "Carregar modelo",
+        "ru": "Загрузить модель",
+        "zh": "上传模型"
+      },
+      "INSTANT_ANALYSIS": {
+        "ar": "تحليل فوري",
+        "de": "Sofortige Analyse",
+        "en": "Instant Analysis",
+        "es": "Análisis instantáneo",
+        "fr": "Analyse instantanée",
+        "jp": "即時分析",
+        "pt": "Análise instantânea",
+        "ru": "Мгновенный анализ",
+        "zh": "即时分析"
+      },
+      "EXPECT_REVIEW": {
+        "ar": "انتظر المراجعة",
+        "de": "Überprüfung erwarten",
+        "en": "Expect Review",
+        "es": "Esperar revisión",
+        "fr": "Attendez une révision",
+        "jp": "レビューを待つ",
+        "pt": "Aguarde revisão",
+        "ru": "Ожидайте обзор",
+        "zh": "等待审查"
+      }
+    },
+    "DESCRIPTION": {
+      "UPLOAD_MODEL": {
+        "ar": "نشر التطبيقات وإدارتها وتصحيح أخطائها بملكية شاملة دون مواجهة اختناقات أو عقبات Kubernetes.",
+        "de": "Bereitstellen, verwalten und debuggen Sie Anwendungen mit End-to-End-Verantwortung, ohne Engpässe oder Kubernetes-Hürden.",
+        "en": "Deploy, manage, and debug applications with end-to-end ownership without experiencing bottlenecks or battling Kubernetes hurdles.",
+        "es": "Despliegue, administre y depure aplicaciones con propiedad de extremo a extremo sin enfrentar cuellos de botella ni obstáculos de Kubernetes.",
+        "fr": "Déployez, gérez et déboguez des applications avec une propriété de bout en bout sans subir de goulots d'étranglement ni lutter contre les obstacles de Kubernetes.",
+        "jp": "エンドツーエンドの所有権を持ち、ボトルネックや Kubernetes の障害に悩まされることなくアプリケーションをデプロイ、管理、デバッグ。",
+        "pt": "Implante, gerencie e depure aplicações com propriedade de ponta a ponta, sem enfrentar gargalos ou obstáculos do Kubernetes.",
+        "ru": "Развертывайте, управляйте и отлаживайте приложения с полным контролем, избегая узких мест и сложностей Kubernetes.",
+        "zh": "以端到端所有权部署、管理和调试应用程序，而不会遇到瓶颈或 Kubernetes 障碍。"
+      },
+      "INSTANT_ANALYSIS": {
+        "ar": "حدد مشكلات التوافر، والأخطاء في التكوين، ونقص الموارد، وشذوذ K8s، وفشل عمليات النشر مع الملاحظات وفحوصات الصحة.",
+        "de": "Identifizieren Sie Verfügbarkeitsprobleme, Fehlkonfigurationen, Ressourcenmangel, K8s-Anomalien und fehlgeschlagene Deployments mit Feedback und Gesundheitschecks.",
+        "en": "Identify availability issues, misconfigurations, lack of resources, K8s anomalies, and failed deploys with feedback and health checks.",
+        "es": "Identifique problemas de disponibilidad, configuraciones incorrectas, falta de recursos, anomalías en K8s y despliegues fallidos con retroalimentación y comprobaciones de salud.",
+        "fr": "Identifiez les problèmes de disponibilité, les erreurs de configuration, le manque de ressources, les anomalies K8s et les déploiements échoués avec des retours et des vérifications de santé.",
+        "jp": "可用性の問題、設定ミス、リソース不足、K8s の異常、デプロイの失敗を特定し、フィードバックとヘルスチェックを実施。",
+        "pt": "Identifique problemas de disponibilidade, configurações incorretas, falta de recursos, anomalias no K8s e falhas de implantação com feedback e verificações de saúde.",
+        "ru": "Определяйте проблемы доступности, ошибки конфигурации, нехватку ресурсов, аномалии K8s и неудачные развертывания с обратной связью и проверками состояния.",
+        "zh": "识别可用性问题、配置错误、资源不足、K8s 异常和部署失败，并提供反馈和健康检查。"
+      },
+      "EXPECT_REVIEW": {
+        "ar": "أدوات قوية تشمل CLI، وواجهات مطور شاملة، وتكاملات CI/CD السحابية الأصلية.",
+        "de": "Robuste Tools, die eine CLI, umfangreiche Entwickler-Schnittstellen und cloud-native CI/CD-Integrationen umfassen.",
+        "en": "Robust tooling that encompasses a CLI, extensive developer interfaces, and cloud-native CI/CD integrations.",
+        "es": "Herramientas robustas que incluyen una CLI, interfaces extensas para desarrolladores e integraciones nativas en la nube para CI/CD.",
+        "fr": "Des outils robustes comprenant une CLI, des interfaces développeur étendues et des intégrations CI/CD cloud-native.",
+        "jp": "CLI、広範な開発者向けインターフェース、クラウドネイティブな CI/CD 統合を備えた強力なツール群。",
+        "pt": "Ferramentas robustas que abrangem uma CLI, interfaces extensas para desenvolvedores e integrações nativas de CI/CD em nuvem.",
+        "ru": "Мощные инструменты, включающие CLI, расширенные интерфейсы для разработчиков и облачные CI/CD-интеграции.",
+        "zh": "强大的工具集，包括 CLI、广泛的开发者接口和云原生 CI/CD 集成。"
+      }
+    }
+  }
+}
