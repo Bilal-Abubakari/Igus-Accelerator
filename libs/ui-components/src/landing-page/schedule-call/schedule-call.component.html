@@ -1,0 +1,30 @@
+<div class="injection-model-container">
+  <h1 class="title">{{ 'cta.TITLE' | transloco }}</h1>
+
+  <div class="options-container">
+    <div class="option-card">
+      <h2 class="option-title">{{ 'cta.SCHEDULE.TITLE' | transloco }}</h2>
+      <p class="option-description">
+        {{ 'cta.SCHEDULE.DESCRIPTION' | transloco }}
+      </p>
+      <button mat-flat-button class="action-button" (click)="openContactForm()">
+        {{ 'cta.SCHEDULE.BUTTON' | transloco }}
+      </button>
+    </div>
+
+    <div class="option-card">
+      <h2 class="option-title">{{ 'cta.TRY_IT.TITLE' | transloco }}</h2>
+      <p class="option-description">
+        {{ 'cta.TRY_IT.DESCRIPTION' | transloco }}
+      </p>
+      <button
+        mat-flat-button
+        class="action-button upload-button"
+        [routerLink]="['/library']"
+      >
+        <span>{{ 'cta.TRY_IT.BUTTON' | transloco }}</span>
+        <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
