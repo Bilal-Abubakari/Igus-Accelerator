@@ -3,11 +3,17 @@ $font-size-base: 16px;
 $full: 100%;
 $spacing-unit: 8px;
 $mat-selection-background-color: #f5f5f5;
+$schedule-description-color: #606060;
 
 //Global Mixins
 @mixin flex-center {
   display: flex;
   justify-content: center;
+}
+
+@mixin align-center {
+  display: flex;
+  align-items: center;
 }
 
 @mixin flex-column {
