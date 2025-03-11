@@ -7,6 +7,8 @@ import * as modelUploadI18n from './model/components/model-upload/model-upload.i
 import * as navBarI18n from './navbar/navbar.i18n.json';
 import * as stageI18n from './landing-page/stage/stage.i18n.json';
 import * as toolbarI18n from './landing-page/toolbar/toolbar.i18n.json';
+import * as materialsI18n from './materials/components/materials-card/materials-card.i18n.json';
+import * as materialInfoI18n from './materials/components/material-info-dialog/material-info-dialog.i18n.json';
 import * as materialSelectionI18n from './landing-page/material-selection/material-selection.i18n.json';
 import * as scheduleCallI18n from './landing-page/schedule-call/schedule-call.i18n.json';
 
@@ -28,6 +30,8 @@ export * from './language-switcher/language-switcher.component';
 export * from './model/components/main-footer/main-footer.component';
 export * from './navbar/navbar.component';
 export * from './landing-page/toolbar/toolbar.component';
+export { materialsI18n };
+export { materialInfoI18n };
 export { materialSelectionI18n };
 export { scheduleCallI18n };
 

@@ -19,10 +19,12 @@ body {
   margin: 0;
   height: 8px;
 }
+
 *::-webkit-scrollbar-thumb {
   background-color: var(--mat-sys-primary-container);
   border-radius: 8px;
 }
+
 *::-webkit-scrollbar-track {
   background-color: var(var(--mat-sys-primary));
 }
@@ -70,6 +72,13 @@ mat-form-field.small {
     }
   }
 }
+
+@include mat.dialog-overrides(
+  (
+    container-color: #fff,
+    container-shape: none,
+  )
+);
 
 .full-screen-dialog {
   border-radius: 0 !important;

@@ -1,0 +1,70 @@
+{
+  "materialCard": {
+    "SUB_TITLE": {
+      "ar": "عند الطلب",
+      "de": "Auf Anfrage",
+      "en": "Upon Request",
+      "es": "Previa solicitud",
+      "fr": "Sur demande",
+      "jp": "リクエストに応じて",
+      "pt": "Mediante pedido",
+      "ru": "По запросу",
+      "zh": "根據要求"
+    },
+    "TOLERANCE": {
+      "ar": " التسامح",
+      "de": "Toleranz",
+      "en": "Tolerance",
+      "es": "Tolerancia",
+      "fr": "Tolérance",
+      "jp": "寛容",
+      "pt": "Tolerância",
+      "ru": "Толерантность",
+      "zh": "容忍度"
+    },
+    "MORE_INFO": {
+      "ar": " المزيد من المعلومات",
+      "de": "Weitere Informationen",
+      "en": "More information",
+      "es": "Más información",
+      "fr": "Plus d'informations",
+      "jp": "詳細情報",
+      "pt": "Mais informações",
+      "ru": "Дополнительная информация",
+      "zh": "更多資訊"
+    },
+    "EMPTY_STATE": {
+      "ar": " لا توجد مواد متاحة",
+      "de": "Keine Materialien verfügbar",
+      "en": "No materials available",
+      "es": "No hay materiales disponibles",
+      "fr": "Pas de matériel disponible",
+      "jp": "材料がない",
+      "pt": "Não há materiais disponíveis",
+      "ru": "Материалы отсутствуют",
+      "zh": "無可用資料"
+    },
+    "HIGH_CHEMICAL_RESISTANCE": {
+      "ar": "مادة غذائية ذات مقاومة كيميائية عالية تصل إلى {{temp}} درجة مئوية.",
+      "de": "Lebensmittelmaterial mit hoher Medienbeständigkeit bis zu {{temp}}°C.",
+      "en": "Food material with high media resistance up to {{temp}}°C.",
+      "es": "Material alimenticio con alta resistencia química hasta {{temp}}°C.",
+      "fr": "Matériau alimentaire avec une haute résistance chimique jusqu'à {{temp}}°C.",
+      "jp": "最大{{temp}}°Cの高耐薬品性食品材料。",
+      "pt": "Material alimentar com alta resistência química até {{temp}}°C.",
+      "ru": "Пищевой материал с высокой химической стойкостью до {{temp}}°C.",
+      "zh": "食品材料，耐化学性高达{{temp}}°C。"
+    },
+    "GENERAL_PURPOSE": {
+      "ar": "مادة متعددة الأغراض.",
+      "de": "Allzweckmaterial.",
+      "en": "General-purpose material.",
+      "es": "Material de uso general.",
+      "fr": "Matériau polyvalent.",
+      "jp": "汎用材料。",
+      "pt": "Material de uso geral.",
+      "ru": "Материал общего назначения.",
+      "zh": "通用材料。"
+    }
+  }
+}

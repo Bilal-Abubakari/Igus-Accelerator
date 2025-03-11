@@ -11,6 +11,8 @@ import {
   modelUploadI18n,
   stageI18n,
   footerI18n,
+  materialsI18n,
+  materialInfoI18n,
   materialSelectionI18n,
   scheduleCallI18n,
   footerSubscriptionI18n,
@@ -26,6 +28,8 @@ const componentTranslations = [
   modelUploadI18n,
   stageI18n,
   footerI18n,
+  materialsI18n,
+  materialInfoI18n,
   materialSelectionI18n,
   scheduleCallI18n,
 ];
