@@ -3,6 +3,29 @@ import { ScheduleCallComponent } from './schedule-call.component';
 import { By } from '@angular/platform-browser';
 import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+// Mock ReusableButtonComponent as standalone
+@Component({
+  selector: 'app-reusable-button',
+  template:
+    '<button [class]="className" (click)="handleClick()">{{buttonText}}<ng-content></ng-content></button>',
+  standalone: true,
+})
+class MockReusableButtonComponent {
+  @Input() className = '';
+  @Input() color = '';
+  @Input() isInFooter = false;
+  @Input() styles: Record<string, string> = {};
+  @Input() routerLink: never[] = [];
+  @Output() buttonClick = new EventEmitter<void>();
+
+  buttonText = '';
+
+  handleClick(): void {
+    this.buttonClick.emit();
+  }
+}
 
 describe('ScheduleCallComponent', () => {
   let component: ScheduleCallComponent;
@@ -11,7 +34,8 @@ describe('ScheduleCallComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        ScheduleCallComponent,
+        ScheduleCallComponent, // Import as standalone component
+        MockReusableButtonComponent, // Import mock as standalone
         TranslocoTestingModule.forRoot({
           langs: {},
           translocoConfig: translocoConfig({}),
@@ -52,19 +76,38 @@ describe('ScheduleCallComponent', () => {
     );
   });
 
-  it('should render correct button text', () => {
-    const buttons = fixture.debugElement.queryAll(By.css('.action-button'));
-    expect(buttons[0].nativeElement.textContent.trim()).toBe(
-      'en.cta.SCHEDULE.BUTTON',
+  it('should render reusable buttons with correct content', () => {
+    const buttons = fixture.debugElement.queryAll(
+      By.css('app-reusable-button'),
     );
-    expect(buttons[1].nativeElement.textContent.trim()).toContain(
-      'arrow_forwarden.cta.TRY_IT.BUTTON',
-    );
+    expect(buttons.length).toBe(2);
+
+    const scheduleButtonContent = buttons[0].nativeElement.textContent.trim();
+    expect(scheduleButtonContent).toContain('en.cta.SCHEDULE.BUTTON');
+
+    const tryItButtonContent = buttons[1].nativeElement.textContent.trim();
+    expect(tryItButtonContent).toContain('en.cta.TRY_IT.BUTTON');
   });
 
-  it('should have arrow icon in upload button', () => {
-    const arrowIcon = fixture.debugElement.query(By.css('.arrow-icon'));
+  it('should have arrow icon in the try it button', () => {
+    const tryItButton = fixture.debugElement.queryAll(
+      By.css('app-reusable-button'),
+    )[1];
+    const arrowIcon = tryItButton.query(By.css('.arrow-icon'));
+
     expect(arrowIcon).toBeTruthy();
     expect(arrowIcon.nativeElement.textContent.trim()).toBe('arrow_forward');
+  });
+
+  it('should call openContactForm when schedule button is clicked', () => {
+    jest.spyOn(component, 'openContactForm');
+
+    const scheduleButton = fixture.debugElement.queryAll(
+      By.css('app-reusable-button'),
+    )[0];
+    const buttonElement = scheduleButton.query(By.css('button'));
+    buttonElement.nativeElement.click();
+
+    expect(component.openContactForm).toHaveBeenCalled();
   });
 });
