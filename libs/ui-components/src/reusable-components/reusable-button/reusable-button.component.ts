@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ReusableButtonComponent {
   @Input() className = '';
+  @Input() isInFooter = false;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled = false;
   @Input() flat = false;

@@ -6,8 +6,7 @@ import {
 import {
   FOOTER_FEATURE_KEY,
   footerReducer,
-} from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
-import { FooterState } from 'libs/ui-components/src/footer/store/footer.state';
+} from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { MaterialState } from 'libs/ui-components/src/materials/store/material.state';
 
 export interface AppState {
@@ -20,6 +19,7 @@ import {
   contactFormReducer,
 } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
 import { ContactFormState } from 'libs/ui-components/src/contact-form/store/contact-form.models';
+import { FooterState } from 'libs/ui-components/src/model/components/main-footer/store/footer.state';
 
 export const appReducer: ActionReducerMap<AppState> = {
   [MATERIAL_FEATURE_KEY]: materialReducer,

@@ -43,6 +43,14 @@ body {
   }
 }
 
+mat-form-field.small {
+  --mat-form-field-container-height: 42px;
+  --mat-form-field-container-vertical-padding: 8px;
+}
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 0.5625rem !important;
+}
+
 @media (max-width: 600px) {
   .full-screen-modal {
     .form-wrapper {
