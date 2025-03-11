@@ -5,10 +5,14 @@
       <p class="stage-description">{{ 'stage.DESCRIPTION' | transloco }}</p>
     </div>
     <div class="stage-buttons">
-      <button class="stage-buttons__primary__btn">
+      <button
+        mat-button
+        [routerLink]="['/library']"
+        class="stage-buttons__primary__btn"
+      >
         <span>{{ 'stage.START_PROJECT' | transloco }}</span>
       </button>
-      <button class="stage-buttons__secondary__btn">
+      <button mat-button class="stage-buttons__secondary__btn">
         <span>{{ 'stage.LEARN_MORE' | transloco }}</span>
       </button>
     </div>

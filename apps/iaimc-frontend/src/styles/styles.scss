@@ -19,10 +19,12 @@ body {
   margin: 0;
   height: 8px;
 }
+
 *::-webkit-scrollbar-thumb {
   background-color: var(--mat-sys-primary-container);
   border-radius: 8px;
 }
+
 *::-webkit-scrollbar-track {
   background-color: var(var(--mat-sys-primary));
 }
@@ -63,9 +65,45 @@ body {
   }
 }
 
-@include mat.dialog-overrides(
-  (
-    container-color: #fff,
+@include mat.dialog-overrides((container-color: #fff,
     container-shape: none,
-  )
-);
+  ));
+
+.full-screen-dialog {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+
+  @include mat.dialog-overrides((container-shape: 0px,
+      container-color: white,
+    ));
+}
+
+.cdk-global-scrollblock {
+  position: fixed;
+  width: 100%;
+  overflow-y: hidden !important;
+}
+
+.mat-mdc-select-panel {
+  transform-origin: top center !important;
+  background-color: var(--mat-sys-on-primary) !important;
+}
+
+.mat-mdc-form-field .mdc-select__dropdown-icon,
+.mat-mdc-form-field .mat-mdc-select-arrow-wrapper {
+  display: none !important;
+}
+
+.mat-mdc-form-field.mat-mdc-form-field-focused {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.mat-mdc-select-panel-wrap {
+  transform: translateY(36px) !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  top: unset !important;
+  bottom: auto !important;
+}

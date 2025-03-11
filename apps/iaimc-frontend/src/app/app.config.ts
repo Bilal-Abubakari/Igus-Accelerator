@@ -29,13 +29,14 @@ import { excludeKeys } from '@ngrx-addons/common';
 import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
 import { appReducer } from './app.reducer';
 import { appEffects } from './app.effects';
+import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideStore(appReducer),
     provideEffects(...appEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    providePersistStore<typeof appReducer>({
+    providePersistStore({
       states: [
         {
           key: FOOTER_FEATURE_KEY,
@@ -48,11 +49,19 @@ export const appConfig: ApplicationConfig = {
             ),
           skip: 1,
         },
+        {
+          key: CONTACT_FORM_FEATURE_KEY,
+          storage: localStorageStrategy,
+          runGuard: () => typeof window !== 'undefined',
+          migrations: [],
+          source: (state) =>
+            state.pipe(excludeKeys(['isSubmitting', 'isSubmitted', 'error'])),
+          skip: 1,
+        },
       ],
     }),
     provideRouterStore(),
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
-
     provideHttpClient(),
     provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),

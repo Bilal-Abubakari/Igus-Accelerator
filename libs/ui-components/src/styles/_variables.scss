@@ -1,0 +1,16 @@
+//Global Variables
+$font-size-base: 16px;
+$full: 100%;
+$spacing-unit: 8px;
+$mat-selection-background-color: #f5f5f5;
+
+//Global Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
