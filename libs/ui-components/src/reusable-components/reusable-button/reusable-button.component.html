@@ -3,6 +3,7 @@
     mat-icon-button
     [class]="className"
     [type]="type"
+    [ngStyle]="styles"
     [disabled]="disabled"
     [color]="color"
     (click)="buttonClick.emit($event)"
@@ -14,6 +15,7 @@
     mat-flat-button
     [class]="className"
     [type]="type"
+    [ngStyle]="styles"
     [disabled]="disabled"
     [color]="color"
     (click)="buttonClick.emit($event)"
@@ -25,6 +27,7 @@
     mat-button
     [class]="className"
     [class.footer]="isInFooter"
+    [ngStyle]="styles"
     [type]="type"
     [disabled]="disabled"
     [color]="color"
