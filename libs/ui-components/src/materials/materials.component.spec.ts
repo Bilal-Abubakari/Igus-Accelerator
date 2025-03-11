@@ -5,7 +5,7 @@ import {
   selectAllMaterials,
   selectLoading,
   selectError,
-  selectSelectedMaterialId,
+  selectMaterial,
 } from './store/material.selectors';
 import { MaterialActions } from './store/material.actions';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -47,7 +47,7 @@ describe('MaterialsComponent', () => {
     store.overrideSelector(selectAllMaterials, []);
     store.overrideSelector(selectLoading, false);
     store.overrideSelector(selectError, null);
-    store.overrideSelector(selectSelectedMaterialId, null);
+    store.overrideSelector(selectMaterial, null);
   });
 
   it('should create the component', () => {

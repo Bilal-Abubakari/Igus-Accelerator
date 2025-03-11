@@ -20,15 +20,7 @@ export const selectError = createSelector(
   (state) => state.materialFetchError,
 );
 
-export const selectSelectedMaterialId = createSelector(
+export const selectMaterial = createSelector(
   selectMaterialState,
-  (state) => state.selectedMaterialId,
+  (state) => state.selectedMaterial,
 );
-
-export const selectMaterialById = (id: string) =>
-  createSelector(selectAllMaterials, (materials) =>
-    materials.find((material) => material.id === id),
-  );
-
-export const isMaterialSelected = (id: string) =>
-  createSelector(selectSelectedMaterialId, (selectedId) => selectedId === id);

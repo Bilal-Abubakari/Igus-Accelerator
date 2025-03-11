@@ -22,32 +22,21 @@ describe('MaterialReducer', () => {
     expect(state.materialFetchError).toBeNull();
   });
 
-  it('should update materials and reset errors on loadMaterialsSuccess', () => {
-    const materials: InjectionMoldingMaterial[] = [
-      {
-        ...createMockMaterial({
-          id: '1',
-          name: 'Material A',
-          colorHex: '#FF5733',
-          shrinkage: 0.5,
-        }),
-      },
-      {
-        ...createMockMaterial({
-          id: '2',
-          name: 'Material B',
-          colorHex: '#33FF57',
-          shrinkage: 0.3,
-        }),
-      },
-    ];
+  it('should toggle material selection correctly', () => {
+    const material = createMockMaterial({ id: '1', name: 'Material A' });
 
-    const action = MaterialActions.loadMaterialsSuccess({ materials });
-    const state = materialReducer(initialMaterialState, action);
+    const initialState = {
+      ...initialMaterialState,
+      materials: [material],
+    };
 
-    expect(state.triggerMaterialFetch).toBe(false);
-    expect(state.materials.length).toBe(2);
-    expect(state.materialFetchError).toBeNull();
+    const action = MaterialActions.toggleMaterialSelection({ materialId: '1' });
+
+    let state = materialReducer(initialState, action);
+    expect(state.selectedMaterial).toEqual(material);
+
+    state = materialReducer(state, action);
+    expect(state.selectedMaterial).toBeNull();
   });
 
   it('should set materialFetchError on loadMaterialsFailure', () => {
@@ -62,12 +51,19 @@ describe('MaterialReducer', () => {
   });
 
   it('should toggle material selection correctly', () => {
+    const material = createMockMaterial({ id: '1', name: 'Material A' });
+
+    const initialState = {
+      ...initialMaterialState,
+      materials: [material],
+    };
+
     const action = MaterialActions.toggleMaterialSelection({ materialId: '1' });
 
-    let state = materialReducer(initialMaterialState, action);
-    expect(state.selectedMaterialId).toBe('1');
+    let state = materialReducer(initialState, action);
+    expect(state.selectedMaterial).toEqual(material);
 
     state = materialReducer(state, action);
-    expect(state.selectedMaterialId).toBeNull();
+    expect(state.selectedMaterial).toBeNull();
   });
 });

@@ -49,16 +49,19 @@ mat-icon {
     height: $material-header-height;
     width: 100%;
     background-color: inherit;
+    font-family: 'Roboto', sans-serif;
   }
 
   .material-title {
     font-weight: bold;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    font-family: 'Roboto', sans-serif;
   }
 
   .material-availability {
     font-size: 0.875rem;
+    font-family: 'Roboto', sans-serif;
   }
 
   mat-card-content {
@@ -70,6 +73,7 @@ mat-icon {
   .material-description {
     font-size: 0.9rem;
     margin-bottom: 1rem;
+    font-family: 'Roboto', sans-serif;
   }
 
   .tolerance-container {

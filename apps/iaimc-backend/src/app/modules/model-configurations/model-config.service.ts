@@ -14,7 +14,7 @@ import { ACCESS_TOKEN_EXPIRATION_TIME } from '../../common/constants';
 import { UserEntity } from '../../common/entities/user.entity';
 import { FileStoreDirectory, MulterFile } from '../../common/types/file.types';
 import { JwtUserPayload, ReviewStatus } from '../../common/types/general.types';
-import { MaterialName } from '../../common/types/material.types';
+import { MaterialName } from '@igus-accelerator-injection-molding-configurator/shared-types';
 import { getFileExtension } from '../../common/utils/file.utils';
 import { FileUploadService } from '../file-upload/file-upload.service';
 import { ModelConfigurationEntity } from './entities/configuration.entity';

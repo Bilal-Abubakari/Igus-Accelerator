@@ -9,7 +9,7 @@
     class="material-header"
     [ngStyle]="{ 'background-color': material.colorHex }"
   >
-    @if (selectedMaterialId === material.id) {
+    @if (selectedMaterialId?.id === material.id) {
       <mat-icon>check</mat-icon>
     }
   </div>

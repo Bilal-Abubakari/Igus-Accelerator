@@ -6,6 +6,7 @@ main {
     font-size: 4.5rem;
     font-weight: bold;
     padding: 4rem 18rem;
+    font-family: 'Roboto', sans-serif;
 
     @media (max-width: 1024px) {
       font-size: 3rem;
@@ -25,6 +26,7 @@ main {
 
   mat-dialog-content {
     padding: 2rem 18rem;
+    font-family: 'Roboto', sans-serif;
 
     @media (max-width: 1024px) {
       padding: 2rem 8rem;
@@ -61,11 +63,8 @@ main {
       }
     }
 
-    @include mat.table-overrides(
-      (
-        background-color: white,
-      )
-    );
+    @include mat.table-overrides((background-color: white,
+      ));
 
     .resistance-icons {
       text-align: center;

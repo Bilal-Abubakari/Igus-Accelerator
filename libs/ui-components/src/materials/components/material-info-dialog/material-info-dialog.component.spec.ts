@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialInfoDialogComponent } from './material-info-dialog.component';
 import { Store } from '@ngrx/store';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { signal } from '@angular/core';
 import {
   translocoConfig,
   TranslocoService,
@@ -29,7 +29,7 @@ describe('MaterialInfoDialogComponent', () => {
 
   beforeEach(async () => {
     mockStore = {
-      selectSignal: jest.fn().mockReturnValue(() => mockMaterial),
+      selectSignal: jest.fn().mockReturnValue(signal(mockMaterial)),
     };
 
     mockDialogRef = {
@@ -52,7 +52,7 @@ describe('MaterialInfoDialogComponent', () => {
       providers: [
         { provide: Store, useValue: mockStore },
         { provide: MatDialogRef, useValue: mockDialogRef },
-        { provide: MAT_DIALOG_DATA, useValue: { id: 'default-id' } },
+        { provide: MAT_DIALOG_DATA, useValue: mockMaterial },
       ],
     }).compileComponents();
 
@@ -67,25 +67,24 @@ describe('MaterialInfoDialogComponent', () => {
   });
 
   it('should filter resistantChemicals correctly', () => {
-    expect(component.resistantChemicals.length).toBe(2);
-    expect(component.resistantChemicals).toEqual([
+    const resistant = component.resistantChemicals();
+    expect(resistant.length).toBe(2);
+    expect(resistant).toEqual([
       { name: 'Chemical A', resistance: '+' },
       { name: 'Chemical D', resistance: '+' },
     ]);
   });
 
   it('should filter conditionallyResistantChemicals correctly', () => {
-    expect(component.conditionallyResistantChemicals.length).toBe(1);
-    expect(component.conditionallyResistantChemicals).toEqual([
-      { name: 'Chemical B', resistance: 'o' },
-    ]);
+    const conditional = component.conditionallyResistantChemicals();
+    expect(conditional.length).toBe(1);
+    expect(conditional).toEqual([{ name: 'Chemical B', resistance: 'o' }]);
   });
 
   it('should filter nonResistantChemicals correctly', () => {
-    expect(component.nonResistantChemicals.length).toBe(1);
-    expect(component.nonResistantChemicals).toEqual([
-      { name: 'Chemical C', resistance: 'x' },
-    ]);
+    const nonResistant = component.nonResistantChemicals();
+    expect(nonResistant.length).toBe(1);
+    expect(nonResistant).toEqual([{ name: 'Chemical C', resistance: 'x' }]);
   });
 
   it('should return all chemicals in dataSource', () => {
@@ -98,6 +97,7 @@ describe('MaterialInfoDialogComponent', () => {
     expect(component.getResistanceClass('+')).toBe('good');
     expect(component.getResistanceClass('unknown')).toBe('unknown');
   });
+
   it('should close the dialog when close() is called', () => {
     component.close();
     expect(mockDialogRef.close).toHaveBeenCalled();

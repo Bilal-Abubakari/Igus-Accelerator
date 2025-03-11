@@ -167,7 +167,7 @@ describe('MaterialCardComponent', () => {
   });
 
   it('should not show the check icon when the material is not selected', () => {
-    component.selectedMaterialId = '2';
+    component.selectedMaterialId = mockMaterialGeneral;
     fixture.detectChanges();
     const iconElement = fixture.debugElement.query(By.css('mat-icon'));
     expect(iconElement).toBeNull();

@@ -32,7 +32,7 @@ export class MaterialsCardComponent {
   private readonly dialog = inject(MatDialog);
   private readonly transloco = inject(TranslocoService);
   @Input() material!: InjectionMoldingMaterial;
-  @Input() selectedMaterialId!: string | null;
+  @Input() selectedMaterialId!: InjectionMoldingMaterial | null;
   @Input() toggleSelection!: (id: string) => void;
 
   public showMoreInfo(

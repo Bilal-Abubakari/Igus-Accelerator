@@ -4,12 +4,12 @@ export interface MaterialState {
   materials: InjectionMoldingMaterial[];
   triggerMaterialFetch: boolean;
   materialFetchError: string | null;
-  selectedMaterialId: string | null;
+  selectedMaterial: InjectionMoldingMaterial | null;
 }
 
 export const initialMaterialState: MaterialState = {
   materials: [],
   triggerMaterialFetch: false,
   materialFetchError: null,
-  selectedMaterialId: null,
+  selectedMaterial: null,
 };

@@ -11,7 +11,7 @@ import {
   selectAllMaterials,
   selectLoading,
   selectError,
-  selectSelectedMaterialId,
+  selectMaterial,
 } from './store/material.selectors';
 import { MaterialActions } from './store/material.actions';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -31,9 +31,7 @@ export class MaterialsComponent implements OnInit {
   public readonly materials = this.store.selectSignal(selectAllMaterials);
   public readonly loading = this.store.selectSignal(selectLoading);
   public readonly error = this.store.selectSignal(selectError);
-  public readonly selectedMaterialId = this.store.selectSignal(
-    selectSelectedMaterialId,
-  );
+  public readonly selectedMaterialId = this.store.selectSignal(selectMaterial);
 
   public readonly hasError: Signal<boolean> = computed(() => !!this.error());
 

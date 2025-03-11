@@ -12,7 +12,7 @@ import {
 import { UserEntity } from '../../../common/entities/user.entity';
 import { ReviewStatus } from '../../../common/types/general.types';
 import { FileEntity } from './file.entity';
-import { MaterialName } from '../../../common/types/material.types';
+import { MaterialName } from '@igus-accelerator-injection-molding-configurator/shared-types';
 
 @Entity('model_configurations')
 export class ModelConfigurationEntity {
