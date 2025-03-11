@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store';
-import { ContactFormActions } from './contact-form.actions';
-import { contactFormReducer } from './contact-form.reducer';
+import { ContactFormActions } from '../contact-form.actions';
+import { contactFormReducer } from '../reducer/contact-form.reducer';
 import {
   ContactFormState,
   initialContactFormState,
-} from './contact-form.models';
-import { ContactFormData, Country } from '../contact-form.interface';
+} from '../contact-form.models';
+import { ContactFormData, Country } from '../../contact-form.interface';
 
 describe('Contact Form Reducer', () => {
   const mockFile = new File(['test'], 'test.pdf', { type: 'application/pdf' });

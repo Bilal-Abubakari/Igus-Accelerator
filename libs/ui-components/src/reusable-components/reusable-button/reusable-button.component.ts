@@ -15,7 +15,6 @@ export class ReusableButtonComponent {
   @Input() disabled = false;
   @Input() flat = false;
   @Input() isIconButton = false;
-  @Input() color: 'primary' | 'accent' | 'warn' | undefined;
-
+  
   @Output() buttonClick = new EventEmitter<MouseEvent>();
 }

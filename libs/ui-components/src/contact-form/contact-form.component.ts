@@ -64,17 +64,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   public static readonly MAX_FILE_SIZE_MB = 10;
   public destroy$ = new Subject<void>();
 
-  public readonly errorMessages = {
-    required: 'This field is required',
-    textOnly: 'Invalid text format',
-    email: 'Invalid email format',
-    invalidPostalCode: 'Invalid postal code format',
-    invalidPhone: 'Invalid phone number format',
-    invalidCompanyName: 'Invalid company name format',
-    invalidCountrySelection: 'Please select a country',
-    invalidMessage: 'Invalid message format',
-    requiredTrue: 'You must accept the data protection regulations',
-    invalidFileType: 'Invalid file type',
+  public readonly customErrorMessages = {
     fileSize: `File size exceeds maximum of ${ContactFormComponent.MAX_FILE_SIZE_MB}MB`,
   };
 

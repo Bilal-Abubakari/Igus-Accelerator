@@ -22,14 +22,14 @@
             [control]="getFormControl('firstName')"
             label="First name"
             [optional]="true"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="first-name-field"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
             [control]="getFormControl('lastName')"
             label="Last name"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="last-name-field"
           ></app-reusable-form-field>
         </div>
@@ -38,14 +38,14 @@
           <app-reusable-form-field
             [control]="getFormControl('email')"
             label="E-mail"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="email-field"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
             [control]="getFormControl('company')"
             label="Company"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="company-field"
           ></app-reusable-form-field>
         </div>
@@ -55,7 +55,7 @@
             [control]="getFormControl('postalCode')"
             label="Postal code"
             className="postal-code"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
@@ -64,7 +64,7 @@
             className="country"
             [isSelect]="true"
             [selectOptions]="(countryOptions$ | async) || []"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
           ></app-reusable-form-field>
         </div>
 
@@ -73,7 +73,7 @@
           label="Telephone"
           [optional]="true"
           className="telephone"
-          [errorMessages]="errorMessages"
+          [customErrorMessages]="customErrorMessages"
         ></app-reusable-form-field>
 
         <app-reusable-form-field
@@ -81,7 +81,7 @@
           label="Message"
           [optional]="true"
           [isTextarea]="true"
-          [errorMessages]="errorMessages"
+          [customErrorMessages]="customErrorMessages"
         ></app-reusable-form-field>
 
         <p class="attach-file-title">File attachment (optional)</p>
@@ -97,7 +97,6 @@
 
           <app-reusable-button
             className="select-file-btn"
-            [color]="'primary'"
             (buttonClick)="fileInput.click()"
           >
             <mat-icon>upload_file</mat-icon>
@@ -141,7 +140,7 @@
           contactForm.get('agreement')?.hasError('required')
         ) {
           <p class="terms-error">
-            {{ errorMessages.requiredTrue }}
+            You must accept the data protection regulations
           </p>
         }
 

@@ -176,33 +176,6 @@ p.agreement {
   }
 }
 
-.cancel-btn,
-.submit-btn {
-  width: var(--btn-width);
-  height: var(--btn-height);
-  border-radius: var(--button-radius);
-}
-
-.submit-btn {
-  @include mat.button-overrides(
-    (
-      filled-container-shape: 0px,
-    )
-  );
-}
-
-.cancel-btn {
-  border: 1px solid var(--mat-sys-primary);
-  @include mat.button-overrides(
-    (
-      filled-container-shape: 0px,
-      filled-container-color: var(--mat-sys-on-primary),
-      filled-label-text-color: var(--mat-sys-primary),
-      protected-container-color: var(--mat-sys-primary),
-    )
-  );
-}
-
 .close-btn {
   position: absolute;
   top: var(--close-btn-top);

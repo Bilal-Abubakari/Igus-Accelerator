@@ -33,6 +33,24 @@ export class ReusableFormFieldComponent {
   @Input() isTextarea = false;
   @Input() inputType = 'text';
   @Input() selectOptions: SelectOption[] = [];
+  @Input() customErrorMessages: { [key: string]: string } = {};
+
+  private defaultErrorMessages: { [key: string]: string } = {
+    required: 'This field is required',
+    textOnly: 'Invalid text format',
+    email: 'Invalid email format',
+    invalidPostalCode: 'Invalid postal code format',
+    invalidPhone: 'Invalid phone number format',
+    invalidCompanyName: 'Invalid company name format',
+    invalidCountrySelection: 'Please select a country',
+    invalidMessage: 'Invalid message format',
+    requiredTrue: 'You must accept the data protection regulations',
+    invalidFileType: 'Invalid file type',
+    fileSize: 'File size exceeds maximum allowed',
+    pattern: 'Invalid format',
+    minlength: 'Input is too short',
+    maxlength: 'Input is too long',
+  };
 
   getErrorMessages(): string[] {
     if (!this.control?.errors) return [];
@@ -41,10 +59,11 @@ export class ReusableFormFieldComponent {
     if (errorKeys.length === 0) return [];
 
     const firstErrorKey = errorKeys[0];
-    if (this.errorMessages[firstErrorKey]) {
-      return [this.errorMessages[firstErrorKey]];
-    }
+    const errorMessage =
+      this.customErrorMessages[firstErrorKey] ||
+      this.defaultErrorMessages[firstErrorKey] ||
+      `Validation error: ${firstErrorKey}`;
 
-    return [`Validation error: ${firstErrorKey}`];
+    return [errorMessage];
   }
 }

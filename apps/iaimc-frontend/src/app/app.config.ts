@@ -29,7 +29,7 @@ import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { appReducer } from './app.reducer';
 import { excludeKeys } from '@ngrx-addons/common';
 import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
-import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
+import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/reducer/contact-form.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [

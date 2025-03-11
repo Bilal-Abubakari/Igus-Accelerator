@@ -1,13 +1,22 @@
 :host {
   display: inline-block;
+  --button-bg-color: var(--mat-sys-primary);
+  --button-text-color: var(--mat-sys-on-primary);
+  --cancel-border-color: var(--mat-sys-primary);
+  --cancel-text-color: var(--mat-sys-primary);
+  --cancel-bg-color: transparent;
 }
 
 button {
+  border-radius: var(--button-radius, 0);
+  border: none;
+  font-size: 14px;
+
   &.mat-icon-button {
     width: 40px;
     height: 40px;
     line-height: 40px;
-    border-radius: 50%;
+    color: var(--mat-sys-on-surface);
 
     &.close-btn {
       position: absolute;
@@ -16,24 +25,36 @@ button {
     }
   }
 
-  &.mat-flat-button,
-  &.mat-button {
-    &.cancel-btn {
-      background-color: white;
-      color: var(--mat-sys-primary, #005691);
-      border: 1px solid var(--mat-sys-primary, #005691);
-    }
+  &.mat-flat-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
 
-    &.submit-btn {
-      background-color: var(--mat-sys-primary, #005691);
-      color: white;
-    }
-
-    &.select-file-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+    &:disabled {
+      background-color: var(--button-disabled-bg);
+      color: var(--button-disabled-color);
     }
   }
+
+  &.mat-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+
+    &:hover {
+      background-color: var(--mat-sys-hover-state-layer-opacity);
+    }
+
+    &:disabled {
+      color: var(--button-disabled-color);
+    }
+  }
+}
+
+.submit-btn {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+}
+.cancel-btn {
+  border: 1px solid var(--mat-sys-primary);
+  background-color: transparent;
+  color: var(--mat-sys-primary);
 }
