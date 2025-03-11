@@ -63,8 +63,11 @@ main {
       }
     }
 
-    @include mat.table-overrides((background-color: white,
-      ));
+    @include mat.table-overrides(
+      (
+        background-color: white,
+      )
+    );
 
     .resistance-icons {
       text-align: center;
