@@ -28,22 +28,13 @@ describe('HowItWorksComponent', () => {
           langs: {},
           translocoConfig: translocoConfig({}),
         }),
+        CommonModule,
+        MatCard,
+        MatCardContent,
+        MatCardTitle,
       ],
       providers: [{ provide: TranslocoPipe, useClass: MockTranslocoPipe }],
-    })
-      .overrideComponent(HowItWorksComponent, {
-        set: {
-          imports: [
-            CommonModule,
-            MatCard,
-            MatCardContent,
-            MatCardTitle,
-            TranslocoPipe,
-          ],
-          providers: [{ provide: TranslocoPipe, useClass: MockTranslocoPipe }],
-        },
-      })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HowItWorksComponent);
     component = fixture.componentInstance;
@@ -58,38 +49,33 @@ describe('HowItWorksComponent', () => {
     expect(component.cardContent).toBeDefined();
     expect(component.cardContent.length).toBe(3);
 
-    expect(component.cardContent[0].titleKey).toBe(
-      'how-it-works.TITLE.UPLOAD_MODEL',
-    );
-    expect(component.cardContent[0].description).toBe(
-      'how-it-works.DESCRIPTION.UPLOAD_MODEL',
-    );
-    expect(component.cardContent[0].image).toBe(
-      'assets/images/upload-your-model.svg',
-    );
-    expect(component.cardContent[0].imageAlt).toBe('upload your model Image');
+    const expectedContent = [
+      {
+        titleKey: 'how-it-works.TITLE.UPLOAD_MODEL',
+        description: 'how-it-works.DESCRIPTION.UPLOAD_MODEL',
+        image: 'assets/images/upload-your-model.svg',
+        imageAlt: 'upload your model Image',
+      },
+      {
+        titleKey: 'how-it-works.TITLE.INSTANT_ANALYSIS',
+        description: 'how-it-works.DESCRIPTION.INSTANT_ANALYSIS',
+        image: 'assets/images/instant-analysis.svg',
+        imageAlt: 'instant analysis Image',
+      },
+      {
+        titleKey: 'how-it-works.TITLE.EXPECT_REVIEW',
+        description: 'how-it-works.DESCRIPTION.EXPECT_REVIEW',
+        image: 'assets/images/expect-review.svg',
+        imageAlt: 'expect review Image',
+      },
+    ];
 
-    expect(component.cardContent[1].titleKey).toBe(
-      'how-it-works.TITLE.INSTANT_ANALYSIS',
-    );
-    expect(component.cardContent[1].description).toBe(
-      'how-it-works.DESCRIPTION.INSTANT_ANALYSIS',
-    );
-    expect(component.cardContent[1].image).toBe(
-      'assets/images/instant-analysis.svg',
-    );
-    expect(component.cardContent[1].imageAlt).toBe('instant analysis Image');
-
-    expect(component.cardContent[2].titleKey).toBe(
-      'how-it-works.TITLE.EXPECT_REVIEW',
-    );
-    expect(component.cardContent[2].description).toBe(
-      'how-it-works.DESCRIPTION.EXPECT_REVIEW',
-    );
-    expect(component.cardContent[2].image).toBe(
-      'assets/images/expect-review.svg',
-    );
-    expect(component.cardContent[2].imageAlt).toBe('expect review Image');
+    component.cardContent.forEach((card, index) => {
+      expect(card.titleKey).toBe(expectedContent[index].titleKey);
+      expect(card.description).toBe(expectedContent[index].description);
+      expect(card.image).toBe(expectedContent[index].image);
+      expect(card.imageAlt).toBe(expectedContent[index].imageAlt);
+    });
   });
 
   it('should render the correct number of cards', () => {
@@ -101,19 +87,19 @@ describe('HowItWorksComponent', () => {
     fixture.detectChanges();
     const componentHtml = fixture.nativeElement.textContent;
 
+    // Check for main title
     expect(componentHtml).toContain('en.how-it-works.MAIN_TITLE');
 
-    expect(componentHtml).toContain('en.how-it-works.TITLE.UPLOAD_MODEL');
-    expect(componentHtml).toContain('en.how-it-works.TITLE.INSTANT_ANALYSIS');
-    expect(componentHtml).toContain('en.how-it-works.TITLE.EXPECT_REVIEW');
+    // Check for card titles and descriptions
+    component.cardContent.forEach((card) => {
+      const translatedTitle = new MockTranslocoPipe().transform(card.titleKey);
+      const translatedDescription = new MockTranslocoPipe().transform(
+        card.description,
+      );
 
-    expect(componentHtml).toContain('en.how-it-works.DESCRIPTION.UPLOAD_MODEL');
-    expect(componentHtml).toContain(
-      'en.how-it-works.DESCRIPTION.INSTANT_ANALYSIS',
-    );
-    expect(componentHtml).toContain(
-      'en.how-it-works.DESCRIPTION.EXPECT_REVIEW',
-    );
+      expect(componentHtml).toContain(translatedTitle);
+      expect(componentHtml).toContain(translatedDescription);
+    });
   });
 
   it('should use the right Material components in the template', () => {
@@ -142,23 +128,6 @@ describe('HowItWorksComponent', () => {
       expect(imgEl.attributes['alt']).toBe(
         component.cardContent[index].imageAlt,
       );
-    });
-  });
-
-  it('should use TranslocoPipe for rendering content', () => {
-    const mockPipe = new MockTranslocoPipe();
-    const componentHtml = fixture.nativeElement.textContent;
-
-    const mainTitle = 'how-it-works.MAIN_TITLE';
-    const translatedMainTitle = mockPipe.transform(mainTitle);
-    expect(componentHtml).toContain(translatedMainTitle);
-
-    component.cardContent.forEach((card) => {
-      const translatedTitle = mockPipe.transform(card.titleKey);
-      const translatedDescription = mockPipe.transform(card.description);
-
-      expect(componentHtml).toContain(translatedTitle);
-      expect(componentHtml).toContain(translatedDescription);
     });
   });
 
