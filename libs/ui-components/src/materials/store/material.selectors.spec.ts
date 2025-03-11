@@ -4,7 +4,6 @@ import {
   selectAllMaterials,
   selectLoading,
   selectError,
-  selectMaterial,
 } from './material.selectors';
 import { createMockMaterial } from '../store/mocks/mock-material';
 
