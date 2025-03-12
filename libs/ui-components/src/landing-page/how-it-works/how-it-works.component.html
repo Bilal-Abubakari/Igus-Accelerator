@@ -6,23 +6,24 @@
     <div class="how-it-works__grid">
       @for (content of cardContent; track $index) {
         <div class="card-wrapper">
-          <div class="custom-card">
+          <mat-card class="custom-card" appearance="outlined">
             <div class="custom-card__image-container">
               <img
                 class="custom-card__image"
+                mat-card-image
                 [src]="content.image"
                 [alt]="content.imageAlt"
               />
             </div>
-            <div class="custom-card__content">
-              <h2 class="custom-card__title">
+            <mat-card-content class="custom-card__content">
+              <mat-card-title class="custom-card__title">
                 {{ content.titleKey | transloco }}
-              </h2>
+              </mat-card-title>
               <p class="custom-card__description">
                 {{ content.description | transloco }}
               </p>
-            </div>
-          </div>
+            </mat-card-content>
+          </mat-card>
         </div>
       }
     </div>
