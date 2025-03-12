@@ -14,6 +14,7 @@ import {
   materialsI18n,
   materialInfoI18n,
   materialSelectionI18n,
+  scheduleCallI18n,
   howItWorks18n,
   footerSubscriptionI18n,
   stayUpdatedI18n,
@@ -32,6 +33,7 @@ const componentTranslations = [
   materialsI18n,
   materialInfoI18n,
   materialSelectionI18n,
+  scheduleCallI18n,
   howItWorks18n,
   stayUpdatedI18n,
 ];

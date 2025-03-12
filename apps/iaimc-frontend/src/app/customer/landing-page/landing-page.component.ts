@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   StageComponent,
   MaterialSelectionComponent,
+  ScheduleCallComponent,
   HowItWorksComponent,
   StayUpdatedComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
@@ -11,7 +12,7 @@ import { FooterComponent } from '../../../../../../libs/ui-components/src/landin
   selector: 'app-landing-page',
   imports: [
     StageComponent,
-    MaterialSelectionComponent,
+    ScheduleCallComponent,
     FooterComponent,
     MaterialSelectionComponent,
     HowItWorksComponent,
