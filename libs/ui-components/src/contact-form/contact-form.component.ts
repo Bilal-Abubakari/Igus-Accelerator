@@ -35,8 +35,7 @@ import { ReusableFormFieldComponent } from '../reusable-components/reusable-form
 import { SelectOption } from './contact-form.interface';
 import { MatInputModule } from '@angular/material/input';
 import { TextOnlyValidators } from '../validators/input-field.validator';
-import { DEFAULT_ERROR_MESSAGES } from '../utilities/error-messages'; 
-
+import { DEFAULT_ERROR_MESSAGES } from '../utilities/error-messages';
 
 @Component({
   selector: 'app-contact-form',
@@ -59,7 +58,7 @@ import { DEFAULT_ERROR_MESSAGES } from '../utilities/error-messages';
   encapsulation: ViewEncapsulation.None,
 })
 export class ContactFormComponent implements OnInit, OnDestroy {
-  public readonly customErrorMessages = DEFAULT_ERROR_MESSAGES; 
+  public readonly customErrorMessages = DEFAULT_ERROR_MESSAGES;
 
   private static readonly ALLOWED_FILE_TYPES = [
     'application/step',

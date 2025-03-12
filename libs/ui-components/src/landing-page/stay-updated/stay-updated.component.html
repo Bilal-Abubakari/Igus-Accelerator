@@ -1,0 +1,43 @@
+<section>
+  <div class="notifications-container">
+    <div class="notifications-info">
+      <h2 class="notifications-title">{{ 'stayUpdated.TITLE' | transloco }}</h2>
+      <p class="notifications-description">
+        {{ 'stayUpdated.DESCRIPTION' | transloco }}
+      </p>
+
+      <ul class="features-list">
+        <li class="feature-item">
+          <mat-icon class="feature-icon">check</mat-icon>
+          <span>{{ 'stayUpdated.FEATURES.STATUS' | transloco }}</span>
+        </li>
+        <li class="feature-item">
+          <mat-icon class="feature-icon">check</mat-icon>
+          <span>{{ 'stayUpdated.FEATURES.COMMUNICATION' | transloco }}</span>
+        </li>
+        <li class="feature-item">
+          <mat-icon class="feature-icon">check</mat-icon>
+          <span>{{ 'stayUpdated.FEATURES.FEEDBACK' | transloco }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-container">
+      @for (item of notificationItems; track item.key) {
+        <div class="notification-card completed">
+          <div class="icon-container">
+            <mat-icon class="check-icon">check</mat-icon>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">
+              {{ 'stayUpdated.ITEMS.' + item.key + '.TITLE' | transloco }}
+            </h3>
+            <p class="card-description">
+              {{ 'stayUpdated.ITEMS.' + item.key + '.DESCRIPTION' | transloco }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

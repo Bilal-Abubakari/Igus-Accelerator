@@ -1,0 +1,135 @@
+{
+  "stayUpdated": {
+    "TITLE": {
+      "ar": "ابق على اطلاع طوال العملية",
+      "de": "Bleiben Sie während des gesamten Prozesses auf dem Laufenden",
+      "en": "Stay Updated Throughout the Process",
+      "es": "Manténgase actualizado durante todo el proceso",
+      "fr": "Restez informé tout au long du processus",
+      "jp": "プロセス全体を通して最新情報を入手",
+      "pt": "Mantenha-se atualizado durante todo o processo",
+      "ru": "Будьте в курсе на протяжении всего процесса",
+      "zh": "在整个过程中保持更新"
+    },
+    "DESCRIPTION": {
+      "ar": "تلقي إشعارات في الوقت الحقيقي حول حالة مشروعك وملاحظات المراجعة الفنية وتحديثات الإنتاج.",
+      "de": "Erhalten Sie Echtzeit-Benachrichtigungen über Ihren Projektstatus, technisches Feedback und Produktionsupdates.",
+      "en": "Receive real-time notifications about your project status, technical review feedback, and production updates.",
+      "es": "Reciba notificaciones en tiempo real sobre el estado de su proyecto, comentarios de revisión técnica y actualizaciones de producción.",
+      "fr": "Recevez des notifications en temps réel sur l'état de votre projet, les commentaires d'examen technique et les mises à jour de production.",
+      "jp": "プロジェクトの状況、技術的なレビューのフィードバック、製造の更新についてリアルタイムの通知を受け取ります。",
+      "pt": "Receba notificações em tempo real sobre o status do seu projeto, feedback de revisão técnica e atualizações de produção.",
+      "ru": "Получайте уведомления в реальном времени о статусе вашего проекта, техническом обзоре и обновлениях производства.",
+      "zh": "接收有关项目状态、技术审查反馈和生产更新的实时通知。"
+    },
+    "FEATURES": {
+      "STATUS": {
+        "ar": "تحديثات الحالة الفورية",
+        "de": "Sofortige Statusaktualisierungen",
+        "en": "Instant status updates",
+        "es": "Actualizaciones instantáneas de estado",
+        "fr": "Mises à jour instantanées du statut",
+        "jp": "即時ステータスアップデート",
+        "pt": "Atualizações instantâneas de status",
+        "ru": "Мгновенные обновления статуса",
+        "zh": "即时状态更新"
+      },
+      "COMMUNICATION": {
+        "ar": "التواصل المباشر مع الفريق التقني",
+        "de": "Direkte Kommunikation mit dem technischen Team",
+        "en": "Direct communication with technical team",
+        "es": "Comunicación directa con el equipo técnico",
+        "fr": "Communication directe avec l'équipe technique",
+        "jp": "技術チームとの直接コミュニケーション",
+        "pt": "Comunicação direta com a equipe técnica",
+        "ru": "Прямое общение с технической командой",
+        "zh": "与技术团队直接沟通"
+      },
+      "FEEDBACK": {
+        "ar": "تقارير ملاحظات مفصلة",
+        "de": "Detaillierte Feedback-Berichte",
+        "en": "Detailed feedback reports",
+        "es": "Informes detallados de retroalimentación",
+        "fr": "Rapports de feedback détaillés",
+        "jp": "詳細なフィードバックレポート",
+        "pt": "Relatórios detalhados de feedback",
+        "ru": "Подробные отчеты с обратной связью",
+        "zh": "详细的反馈报告"
+      }
+    },
+    "ITEMS": {
+      "MODEL_ANALYSIS": {
+        "TITLE": {
+          "ar": "اكتمال تحليل النموذج",
+          "de": "Modellanalyse abgeschlossen",
+          "en": "Model Analysis Complete",
+          "es": "Análisis del modelo completo",
+          "fr": "Analyse du modèle terminée",
+          "jp": "モデル分析完了",
+          "pt": "Análise do modelo concluída",
+          "ru": "Анализ модели завершен",
+          "zh": "模型分析完成"
+        },
+        "DESCRIPTION": {
+          "ar": "لقد اجتاز نموذجك التحليل الأولي. المراجعة الفنية قيد التقدم",
+          "de": "Ihr Modell hat die erste Analyse bestanden. Technische Überprüfung läuft",
+          "en": "Your model has passed initial analysis. Technical review in progress",
+          "es": "Su modelo ha pasado el análisis inicial. Revisión técnica en progreso",
+          "fr": "Votre modèle a passé l'analyse initiale. Examen technique en cours",
+          "jp": "モデルは初期分析に合格しました。技術レビュー進行中",
+          "pt": "Seu modelo passou na análise inicial. Revisão técnica em andamento",
+          "ru": "Ваша модель прошла первичный анализ. Идет технический обзор",
+          "zh": "您的模型已通过初步分析。技术审查进行中"
+        }
+      },
+      "TECHNICAL_FEEDBACK": {
+        "TITLE": {
+          "ar": "ملاحظات فنية",
+          "de": "Technisches Feedback",
+          "en": "Technical Feedback",
+          "es": "Retroalimentación técnica",
+          "fr": "Feedback technique",
+          "jp": "技術的フィードバック",
+          "pt": "Feedback técnico",
+          "ru": "Технический отзыв",
+          "zh": "技术反馈"
+        },
+        "DESCRIPTION": {
+          "ar": "تعديلات طفيفة موصى بها للإنتاج الأمثل",
+          "de": "Geringfügige Anpassungen für optimale Produktion empfohlen",
+          "en": "Minor adjustments recommended for optimal production",
+          "es": "Ajustes menores recomendados para una producción óptima",
+          "fr": "Ajustements mineurs recommandés pour une production optimale",
+          "jp": "最適な生産のためのマイナーな調整を推奨",
+          "pt": "Pequenos ajustes recomendados para produção ideal",
+          "ru": "Рекомендуются незначительные корректировки для оптимального производства",
+          "zh": "建议进行小调整以实现最佳生产"
+        }
+      },
+      "QUOTE_READY": {
+        "TITLE": {
+          "ar": "عرض السعر جاهز",
+          "de": "Angebot bereit",
+          "en": "Quote Ready",
+          "es": "Cotización lista",
+          "fr": "Devis prêt",
+          "jp": "見積もり準備完了",
+          "pt": "Orçamento pronto",
+          "ru": "Предложение готово",
+          "zh": "报价准备就绪"
+        },
+        "DESCRIPTION": {
+          "ar": "عرض سعر الإنتاج الخاص بك متاح الآن للمراجعة",
+          "de": "Ihr Produktionsangebot ist jetzt zur Überprüfung verfügbar",
+          "en": "Your production quote is now available for review",
+          "es": "Su cotización de producción ya está disponible para revisión",
+          "fr": "Votre devis de production est maintenant disponible pour examen",
+          "jp": "製作見積もりがレビュー可能になりました",
+          "pt": "Seu orçamento de produção já está disponível para revisão",
+          "ru": "Ваше производственное предложение теперь доступно для просмотра",
+          "zh": "您的生产报价现已可供审核"
+        }
+      }
+    }
+  }
+}
