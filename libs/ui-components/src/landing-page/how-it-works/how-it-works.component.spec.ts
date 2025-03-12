@@ -70,13 +70,13 @@ describe('HowItWorksComponent', () => {
   }
 
   function verifyMaterialComponents() {
-    expect(fixture.debugElement.queryAll(By.directive(MatCard)).length).toBe(0);
+    expect(fixture.debugElement.queryAll(By.directive(MatCard)).length).toBe(3);
     expect(
       fixture.debugElement.queryAll(By.directive(MatCardTitle)).length,
-    ).toBe(0);
+    ).toBe(3);
     expect(
       fixture.debugElement.queryAll(By.directive(MatCardContent)).length,
-    ).toBe(0);
+    ).toBe(3);
   }
 
   function verifyImages() {
