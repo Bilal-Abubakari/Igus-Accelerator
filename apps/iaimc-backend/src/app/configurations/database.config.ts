@@ -6,6 +6,7 @@ import { FeedbackEntity } from '../modules/feedback/feedback.entity';
 import { ModelConfigurationEntity } from '../modules/model-configurations/entities/configuration.entity';
 import { FileEntity } from '../modules/model-configurations/entities/file.entity';
 import { ContactFormEntity } from '../modules/contact-form/entity/contact-form.entity';
+import { NewsLetterSubscriberEntity } from '../modules/news-letter-subscriber/entities/new-letter-subscriber.entity';
 
 export default (): DatabaseConfig => ({
   database: {
@@ -20,8 +21,9 @@ export default (): DatabaseConfig => ({
       ContactFormEntity,
       FileEntity,
       ModelConfigurationEntity,
+      NewsLetterSubscriberEntity,
       RoleEntity,
-      UserEntity,
+      UserEntity
     ],
     url: process.env.POSTGRES_DATABASE_URL,
     synchronize: process.env.NODE_ENV === 'development',
