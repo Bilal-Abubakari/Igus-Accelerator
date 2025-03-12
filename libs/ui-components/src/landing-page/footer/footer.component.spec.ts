@@ -5,7 +5,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterTestingModule } from '@angular/router/testing';
-import { translocoConfig, TranslocoService, TranslocoTestingModule } from '@jsverse/transloco';
+import {
+  translocoConfig,
+  TranslocoService,
+  TranslocoTestingModule,
+} from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ReusableButtonComponent } from '../../reusable-components/reusable-button/reusable-button.component';
@@ -39,21 +43,19 @@ describe('FooterComponent', () => {
         ReusableButtonComponent,
         ModelLogoComponent,
         TranslocoTestingModule.forRoot({
-        langs: {
-        en: { languageSwitcher: { languageLabel: 'English' } },
-        es: { languageSwitcher: { languageLabel: 'Spanish' } },
-        },
-        translocoConfig: translocoConfig({
-        defaultLang: 'en',
-        }),
+          langs: {
+            en: { languageSwitcher: { languageLabel: 'English' } },
+            es: { languageSwitcher: { languageLabel: 'Spanish' } },
+          },
+          translocoConfig: translocoConfig({
+            defaultLang: 'en',
+          }),
         }),
       ],
       providers: [
         FormBuilder,
         provideMockStore({
-          selectors: [
-            { selector: selectIsSubscriptionLoading, value: false },
-          ],
+          selectors: [{ selector: selectIsSubscriptionLoading, value: false }],
         }),
         {
           provide: FooterService,
@@ -75,7 +77,6 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 
   it('should initialize the subscription form', () => {
     expect(component.subscriptionForm).toBeDefined();
@@ -121,12 +122,15 @@ describe('FooterComponent', () => {
 
   it('should dispatch NewsletterActions.subscribe when form is valid', () => {
     const dispatchSpy = jest.spyOn(store, 'dispatch');
-    component.subscriptionForm.setValue({ firstName: 'John', email: 'john@example.com' });
+    component.subscriptionForm.setValue({
+      firstName: 'John',
+      email: 'john@example.com',
+    });
     component.onSubscribe();
     expect(dispatchSpy).toHaveBeenCalledWith(
       NewsletterActions.subscribe({
         subscriber: { firstName: 'John', email: 'john@example.com' },
-      })
+      }),
     );
   });
 
@@ -161,7 +165,10 @@ describe('FooterComponent', () => {
   });
 
   it('should call getResetObservable on ngOnInit', () => {
-    const getResetObservableSpy = jest.spyOn(footerService, 'getResetObservable');
+    const getResetObservableSpy = jest.spyOn(
+      footerService,
+      'getResetObservable',
+    );
     component.ngOnInit();
     expect(getResetObservableSpy).toHaveBeenCalled();
   });
