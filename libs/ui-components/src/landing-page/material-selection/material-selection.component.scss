@@ -1,42 +1,52 @@
 @use '@angular/material' as mat;
-@import 'libs/ui-components/src/styles/_variables.scss';
+@use 'libs/ui-components/src/styles/_variables.scss' as variables;
 
 .material-selection {
-  padding: 20px;
-  background-color: $mat-selection-background-color;
+  padding: 70px 6%;
+  background-color: #f5f5f5;
   width: 100%;
 
   &__title {
     text-align: center;
-    font-size: 28px;
+    font-size: 40px; // Match font size with how-it-works
     margin-bottom: 40px;
-    font-weight: 600;
+    font-weight: normal; // Match font weight with how-it-works
+    color: #333; // Match color with how-it-works
   }
 
   &__grid {
-    @include flex-center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     width: 100%;
-    gap: 9%;
+    max-width: 1400px; // Match max-width container from how-it-works
+    margin: 0 auto; // Center the grid like how-it-works
   }
 }
 
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .material-card {
-  width: $full;
-  max-width: 300px;
-  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0; // Remove margin-bottom
   background-color: white;
   border-radius: 8px;
+  overflow: hidden;
 
   @include mat.card-overrides(
     (
       elevated-container-color: none,
-      outlined-outline-color: #e7e7e7,
+      outlined-outline-color: #e0e0e0,
+      // Match border color with how-it-works
     )
   );
 
   &__checkbox {
-    @include flex-center;
+    @include variables.flex-center;
     width: 24px;
     height: 24px;
     border-radius: 4px;
@@ -46,7 +56,7 @@
   }
 
   &__checkmark {
-    @include flex-center;
+    @include variables.flex-center;
     color: #2e5235;
     font-size: 20px;
     height: 20px;
@@ -56,30 +66,59 @@
 
   &__title {
     font-size: 18px;
+    font-weight: 500; // Match font weight with how-it-works
+    line-height: 26px; // Match line height with how-it-works
     margin-bottom: 16px;
+    color: #333; // Match color with how-it-works
   }
 
   &__features {
-    @include flex-column;
+    @include variables.flex-column;
     gap: 8px;
   }
 
   &__feature {
     margin: 0;
-    color: #666;
+    color: #666; // Match description color with how-it-works
     font-size: 14px;
+    line-height: 22px; // Match line height with how-it-works
   }
 }
 
-// Media query for responsive design
-@media (max-width: 768px) {
+// Media query for responsive design - matching with how-it-works
+@media (max-width: 899px) and (min-width: 600px) {
   .material-selection__grid {
-    flex-direction: column;
-    align-items: center;
-    padding: 0 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .material-selection__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .material-selection {
+    padding: 40px 16px; // Match padding with how-it-works mobile
+
+    &__title {
+      font-size: 32px; // Match font size with how-it-works mobile
+      margin-bottom: 24px; // Match margin with how-it-works mobile
+    }
   }
 
   .material-card {
     max-width: 100%;
+
+    &__title {
+      font-size: 16px; // Match font size with how-it-works mobile
+      line-height: 24px; // Match line height with how-it-works mobile
+    }
+
+    &__feature {
+      font-size: 14px;
+      line-height: 20px; // Match line height with how-it-works mobile
+    }
   }
 }

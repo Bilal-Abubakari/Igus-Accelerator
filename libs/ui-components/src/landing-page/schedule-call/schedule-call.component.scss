@@ -3,12 +3,10 @@
 
 .injection-model-container {
   width: 100%;
-  max-width: 1200px;
-  padding: 4rem 1.5rem;
   margin: 0 auto;
 
-  @media (max-width: 1200px) {
-    padding: 3rem 3rem;
+  @media (min-width: 1200px) {
+    padding: 4rem 9%;
   }
 
   @media (max-width: 768px) {
