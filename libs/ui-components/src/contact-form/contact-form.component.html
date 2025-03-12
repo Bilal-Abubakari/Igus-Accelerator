@@ -62,20 +62,22 @@
             [selectOptions]="(countryOptions$ | async) || []"
             [customErrorMessages]="customErrorMessages"
           >
-            <ng-template #suffix>
+           
               @if (getFormControl('country').value) {
-                <button
-                  mat-icon-button
-                  type="button"
-                  class="clear-selection-button"
-                  (mousedown)="clearCountrySelection($event)"
-                  aria-label="Clear selection"
-                  [disabled]="contactForm.get('country')?.disabled"
-                >
-                  <mat-icon>close</mat-icon>
-                </button>
+                <div class="clear-button-container">
+                  <button
+                    mat-icon-button
+                    type="button"
+                    class="clear-selection-button"
+                    (mousedown)="clearCountrySelection($event)"
+                    aria-label="Clear selection"
+                    [disabled]="contactForm.get('country')?.disabled"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
               }
-            </ng-template>
+          
           </app-reusable-form-field>
         </div>
 
@@ -188,3 +190,6 @@
     </div>
   }
 </div>
+
+ 
+

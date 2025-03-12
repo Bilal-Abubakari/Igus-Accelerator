@@ -117,7 +117,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       email: ['', [Validators.required, Validators.email]],
       company: ['', [Validators.required, TextOnlyValidators.companyName()]],
       postalCode: ['', [Validators.required, TextOnlyValidators.postalCode()]],
-      country: ['', [Validators.required, TextOnlyValidators.textOnly()]],
+      country: ['', [Validators.required, TextOnlyValidators.textOnly(), ]],
       telephone: ['', TextOnlyValidators.phoneNumber()],
       message: [''],
       agreement: [false, Validators.requiredTrue],
