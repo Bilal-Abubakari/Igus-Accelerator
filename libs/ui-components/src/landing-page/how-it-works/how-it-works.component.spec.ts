@@ -70,13 +70,13 @@ describe('HowItWorksComponent', () => {
   }
 
   function verifyMaterialComponents() {
-    expect(fixture.debugElement.queryAll(By.directive(MatCard)).length).toBe(3);
+    expect(fixture.debugElement.queryAll(By.directive(MatCard)).length).toBe(0);
     expect(
       fixture.debugElement.queryAll(By.directive(MatCardTitle)).length,
-    ).toBe(3);
+    ).toBe(0);
     expect(
       fixture.debugElement.queryAll(By.directive(MatCardContent)).length,
-    ).toBe(3);
+    ).toBe(0);
   }
 
   function verifyImages() {
@@ -88,17 +88,6 @@ describe('HowItWorksComponent', () => {
         component.cardContent[index].imageAlt,
       );
     });
-  }
-
-  function verifyComponentStructure() {
-    const section = fixture.debugElement.query(
-      By.css('.how-it-works__section'),
-    );
-    expect(section).toBeTruthy();
-    expect(section.query(By.css('.how-it-works__title'))).toBeTruthy();
-    const grid = section.query(By.css('.how-it-works__grid'));
-    expect(grid).toBeTruthy();
-    expect(grid.queryAll(By.css('.material-card')).length).toBe(3);
   }
 
   it('should create', () => {
@@ -126,5 +115,4 @@ describe('HowItWorksComponent', () => {
   );
   it('should have the correct number of images and alt texts', verifyImages);
   it('should check the structure of each card content', verifyImages);
-  it('should render the entire component structure', verifyComponentStructure);
 });

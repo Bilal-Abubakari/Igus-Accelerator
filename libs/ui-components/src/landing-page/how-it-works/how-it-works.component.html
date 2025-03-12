@@ -1,25 +1,30 @@
-<section class="how-it-works__section">
-  <h1 class="how-it-works__title">
-    {{ 'how-it-works.MAIN_TITLE' | transloco }}
-  </h1>
-  <div class="how-it-works__grid">
-    @for (content of cardContent; track $index) {
-      <mat-card class="material-card" appearance="outlined">
-        <img
-          class="material-card__image"
-          mat-card-image
-          [src]="content.image"
-          [alt]="content.imageAlt"
-        />
-        <mat-card-content class="material-card__content">
-          <mat-card-title class="material-card__title">
-            {{ content.titleKey | transloco }}
-          </mat-card-title>
-          <p class="material-card__description">
-            {{ content.description | transloco }}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    }
+<section class="how-it-works">
+  <div class="how-it-works__container">
+    <h1 class="how-it-works__title">
+      {{ 'how-it-works.MAIN_TITLE' | transloco }}
+    </h1>
+    <div class="how-it-works__grid">
+      @for (content of cardContent; track $index) {
+        <div class="card-wrapper">
+          <div class="custom-card">
+            <div class="custom-card__image-container">
+              <img
+                class="custom-card__image"
+                [src]="content.image"
+                [alt]="content.imageAlt"
+              />
+            </div>
+            <div class="custom-card__content">
+              <h2 class="custom-card__title">
+                {{ content.titleKey | transloco }}
+              </h2>
+              <p class="custom-card__description">
+                {{ content.description | transloco }}
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
   </div>
 </section>
