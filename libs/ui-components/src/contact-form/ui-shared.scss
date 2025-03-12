@@ -1,93 +1,92 @@
-
 @mixin responsive-flex {
-    display: flex;
-    @media (max-width: 600px) {
-      flex-direction: column;
-    }
+  display: flex;
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
-  
-  @mixin grid-responsive($cols) {
-    display: grid;
-    grid-template-columns: $cols;
-    gap: var(--gap-standard);
-    
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-    }
+}
+
+@mixin grid-responsive($cols) {
+  display: grid;
+  grid-template-columns: $cols;
+  gap: var(--gap-standard);
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
-  
-  @mixin form-container {
+}
+
+@mixin form-container {
+  width: 100%;
+  max-width: var(--max-form-wrapper-width);
+  margin: 15px auto;
+  padding: 25px;
+}
+
+@mixin base-button {
+  height: 50px;
+  width: 130px;
+
+  @media (max-width: 600px) {
     width: 100%;
-    max-width: var(--max-form-wrapper-width);
-    margin: 15px auto;
-    padding: 25px;
+    padding: 12px 16px;
   }
-  
-  @mixin base-button {
-    height: 50px;
-    width: 130px;
-    
-    @media (max-width: 600px) {
-      width: 100%;
-      padding: 12px 16px;
-    }
+}
+
+@mixin icon-button {
+  padding: 4px;
+  min-width: auto;
+  height: auto;
+  line-height: 1;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
   }
-  
-  @mixin icon-button {
-    padding: 4px;
-    min-width: auto;
-    height: auto;
-    line-height: 1;
-    
-    mat-icon {
-      font-size: 18px;
-      width: 18px;
-      height: 18px;
-    }
-  }
-  
-  @mixin material-form-overrides {
-    .mat-mdc-form-field {
-      width: 100%;
-      
-      .mdc-text-field {
-        border-radius: 0 !important;
-        
-        .mdc-text-field__input {
-          font-size: 16px !important;
-          color: var(--color-intro) !important;
-        }
-        
-        .mdc-floating-label {
+}
+
+@mixin material-form-overrides {
+  .mat-mdc-form-field {
+    width: 100%;
+
+    .mdc-text-field {
+      border-radius: 0 !important;
+
+      .mdc-text-field__input {
+        font-size: 16px !important;
+        color: var(--color-intro) !important;
+      }
+
+      .mdc-floating-label {
+        font-size: var(--field-label-font-size) !important;
+        color: var(--field-label-color) !important;
+
+        &--float-above {
           font-size: var(--field-label-font-size) !important;
-          color: var(--field-label-color) !important;
-          
-          &--float-above {
-            font-size: var(--field-label-font-size) !important;
-          }
-        }
-        
-        .mdc-notched-outline {
-          border-radius: 0 !important;
-          
-          &__leading,
-          &__notch,
-          &__trailing {
-            border-radius: 0 !important;
-          }
         }
       }
-    }
-    
-    .mat-mdc-form-field-error {
-      font-size: 12px !important;
-      line-height: var(--error-line-height) !important;
-      display: block;
-      min-height: 0;
-      transition: var(--error-min-height-transition);
-      
-      &:empty {
-        min-height: 0 !important;
+
+      .mdc-notched-outline {
+        border-radius: 0 !important;
+
+        &__leading,
+        &__notch,
+        &__trailing {
+          border-radius: 0 !important;
+        }
       }
     }
   }
+
+  .mat-mdc-form-field-error {
+    font-size: 12px !important;
+    line-height: var(--error-line-height) !important;
+    display: block;
+    min-height: 0;
+    transition: var(--error-min-height-transition);
+
+    &:empty {
+      min-height: 0 !important;
+    }
+  }
+}
