@@ -1,13 +1,16 @@
 import { Action } from '@ngrx/store';
-import { FooterState, initialFooterState } from './footer.state';
-import { NewsletterActions } from './footer.actions';
-import { FOOTER_FEATURE_KEY, footerReducer } from './footer.reducers';
 import { SubscriptionRequest } from '../footer.interface';
+import { NewsletterActions } from './footer.actions';
+import {
+  NEWS_LETTER_SUBSCRIBER_FEATURE_KEY,
+  newsLetterSubscriberReducer,
+} from './footer.reducers';
+import { NewLetterState, initialFooterState } from './footer.state';
 
-describe('Footer Reducer', () => {
+describe('Newsletter Reducer', () => {
   it('should return the initial state', () => {
     const action: Action = { type: 'NOOP' };
-    const result = footerReducer(undefined, action);
+    const result = newsLetterSubscriberReducer(undefined, action);
 
     expect(result).toEqual(initialFooterState);
   });
@@ -18,7 +21,7 @@ describe('Footer Reducer', () => {
       firstName: 'John',
     };
     const action = NewsletterActions.subscribe({ subscriber });
-    const result = footerReducer(initialFooterState, action);
+    const result = newsLetterSubscriberReducer(initialFooterState, action);
 
     expect(result).toEqual({
       ...initialFooterState,
@@ -28,13 +31,13 @@ describe('Footer Reducer', () => {
   });
 
   it('should set isSubscriptionLoading to false when subscribeSuccess action is dispatched', () => {
-    const loadingState: FooterState = {
+    const loadingState: NewLetterState = {
       ...initialFooterState,
       isSubscriptionLoading: true,
     };
 
     const action = NewsletterActions.subscribeSuccess();
-    const result = footerReducer(loadingState, action);
+    const result = newsLetterSubscriberReducer(loadingState, action);
 
     expect(result).toEqual({
       ...loadingState,
@@ -44,7 +47,7 @@ describe('Footer Reducer', () => {
   });
 
   it('should set error message when subscribeFailure action is dispatched with message', () => {
-    const loadingState: FooterState = {
+    const loadingState: NewLetterState = {
       ...initialFooterState,
       isSubscriptionLoading: true,
     };
@@ -53,7 +56,7 @@ describe('Footer Reducer', () => {
     const action = NewsletterActions.subscribeFailure({
       message: errorMessage,
     });
-    const result = footerReducer(loadingState, action);
+    const result = newsLetterSubscriberReducer(loadingState, action);
 
     expect(result).toEqual({
       ...loadingState,
@@ -63,14 +66,14 @@ describe('Footer Reducer', () => {
   });
 
   it('should set error to undefined when subscribeFailure action is dispatched without message', () => {
-    const loadingState: FooterState = {
+    const loadingState: NewLetterState = {
       ...initialFooterState,
       isSubscriptionLoading: true,
       error: 'Previous error',
     };
 
     const action = NewsletterActions.subscribeFailure({});
-    const result = footerReducer(loadingState, action);
+    const result = newsLetterSubscriberReducer(loadingState, action);
 
     expect(result).toEqual({
       ...loadingState,
@@ -80,6 +83,6 @@ describe('Footer Reducer', () => {
   });
 
   it('should maintain feature key', () => {
-    expect(FOOTER_FEATURE_KEY).toBe('footerState');
+    expect(NEWS_LETTER_SUBSCRIBER_FEATURE_KEY).toBe('footerState');
   });
 });

@@ -1,0 +1,131 @@
+@use 'libs/ui-components/src/styles/_variables.scss' as variables;
+
+section {
+  background-color: variables.$mat-selection-background-color;
+  padding: 80px 0;
+  position: relative;
+}
+
+.notifications-container {
+  @include variables.flex-center;
+  background-color: variables.$footer-main-background;
+  color: white;
+  border-radius: 20px;
+  padding: 6rem 4rem;
+  margin: 0 10%;
+  gap: 40px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    width: 35%;
+    height: 30px;
+    background-color: variables.$mat-selection-background-color;
+    border-bottom-left-radius: 20px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 3rem 24px;
+    margin: 3%;
+
+    &::after {
+      height: 50px;
+    }
+  }
+}
+.card-container {
+  background-color: #212121;
+  border-radius: 12px;
+  border: 1px solid variables.$footer-border-color;
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.notifications-info {
+  flex: 1;
+  padding-right: 20px;
+  z-index: 1;
+}
+
+.notifications-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.notifications-description {
+  opacity: 0.8;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.feature-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+  color: variables.$check-icon-color;
+}
+
+.notifications-cards {
+  @include variables.flex-column;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1;
+}
+
+.notification-card {
+  display: flex;
+  padding: 16px;
+  margin-bottom: 12px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+
+  .card-title {
+    color: white;
+  }
+}
+.check-icon {
+  @include variables.flex-option;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: variables.$check-icon-color;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.card-description {
+  color: variables.$subscription-primary-color;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.4;
+}

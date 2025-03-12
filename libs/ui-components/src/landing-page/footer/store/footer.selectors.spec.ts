@@ -1,19 +1,19 @@
-import { FooterState } from './footer.state';
-import { FOOTER_FEATURE_KEY } from './footer.reducers';
+import { NewLetterState } from './footer.state';
+import { NEWS_LETTER_SUBSCRIBER_FEATURE_KEY } from './footer.reducers';
 import {
   selectFooterState,
   selectIsSubscriptionLoading,
 } from './footer.selectors';
 
 describe('Footer Selectors', () => {
-  const mockFooterState: FooterState = {
+  const mockFooterState: NewLetterState = {
     isSubscriptionLoading: true,
     message: null,
     error: null,
   };
 
   const mockAppState = {
-    [FOOTER_FEATURE_KEY]: mockFooterState,
+    [NEWS_LETTER_SUBSCRIBER_FEATURE_KEY]: mockFooterState,
   };
 
   describe('selectFooterState', () => {
@@ -31,7 +31,7 @@ describe('Footer Selectors', () => {
 
     it('should select the updated isSubscriptionLoading property when state changes', () => {
       const updatedState = {
-        [FOOTER_FEATURE_KEY]: {
+        [NEWS_LETTER_SUBSCRIBER_FEATURE_KEY]: {
           ...mockFooterState,
           isSubscriptionLoading: false,
         },

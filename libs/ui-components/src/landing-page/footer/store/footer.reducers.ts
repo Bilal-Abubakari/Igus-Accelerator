@@ -1,8 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { FooterState, initialFooterState } from './footer.state';
+import { NewLetterState, initialFooterState } from './footer.state';
 import { NewsletterActions } from './footer.actions';
 
-export const FOOTER_FEATURE_KEY = 'footerState';
+export const NEWS_LETTER_SUBSCRIBER_FEATURE_KEY = 'footerState';
 
 const reducer = createReducer(
   initialFooterState,
@@ -22,10 +22,9 @@ const reducer = createReducer(
     error: message,
   })),
 );
-
-export function footerReducer(
-  state: FooterState | undefined,
-  action: Action<string>,
+export function newsLetterSubscriberReducer(
+  state: NewLetterState | undefined,
+  action: Action,
 ) {
   return reducer(state, action);
 }

@@ -32,6 +32,7 @@ import { ModelUploadState } from '../model/components/model-upload/services/mode
 })
 export class NavbarComponent {
   private modelUploadState = inject(ModelUploadState);
+  public readonly isMenuOpened = signal(false);
 
   public homeRoute = signal(NAVIGATION_ROUTES.LIBRARY);
   public configurationsRoute = signal([
@@ -44,8 +45,6 @@ export class NavbarComponent {
     NAVIGATION_ROUTES.MOLDING_CONFIGURATION,
     NAVIGATION_ROUTES.PRODUCIBILITY,
   ]);
-
-  public isMenuOpened = signal(false);
 
   public hasUploadedModel = computed(() =>
     this.modelUploadState.hasUploadedModel(),
