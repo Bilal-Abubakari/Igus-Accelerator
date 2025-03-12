@@ -1,11 +1,23 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardContent,
+  MatCardImage,
+  MatCardTitle,
+} from '@angular/material/card';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-how-it-works',
-  imports: [CommonModule, MatCard, MatCardContent, MatCardTitle, TranslocoPipe],
+  imports: [
+    CommonModule,
+    MatCard,
+    MatCardContent,
+    MatCardTitle,
+    TranslocoPipe,
+    MatCardImage,
+  ],
   templateUrl: './how-it-works.component.html',
   styleUrl: './how-it-works.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
