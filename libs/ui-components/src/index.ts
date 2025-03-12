@@ -47,4 +47,3 @@ export { howItWorks18n };
 
 export * from './landing-page/schedule-call/schedule-call.component';
 export { stayUpdatedI18n };
-
