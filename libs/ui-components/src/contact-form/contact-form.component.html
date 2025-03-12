@@ -62,22 +62,20 @@
             [selectOptions]="(countryOptions$ | async) || []"
             [customErrorMessages]="customErrorMessages"
           >
-           
-              @if (getFormControl('country').value) {
-                <div class="clear-button-container">
-                  <button
-                    mat-icon-button
-                    type="button"
-                    class="clear-selection-button"
-                    (mousedown)="clearCountrySelection($event)"
-                    aria-label="Clear selection"
-                    [disabled]="contactForm.get('country')?.disabled"
-                  >
-                    <mat-icon>close</mat-icon>
-                  </button>
-                </div>
-              }
-          
+            @if (getFormControl('country').value) {
+              <div class="clear-button-container">
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="clear-selection-button"
+                  (mousedown)="clearCountrySelection($event)"
+                  aria-label="Clear selection"
+                  [disabled]="contactForm.get('country')?.disabled"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            }
           </app-reusable-form-field>
         </div>
 
@@ -190,6 +188,3 @@
     </div>
   }
 </div>
-
- 
-

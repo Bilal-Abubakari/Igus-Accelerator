@@ -14,8 +14,8 @@ import { RouterLink } from '@angular/router';
     TranslocoPipe,
     ReusableButtonComponent,
     MatIcon,
-    RouterLink
-],
+    RouterLink,
+  ],
   templateUrl: './schedule-call.component.html',
   styleUrl: './schedule-call.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
