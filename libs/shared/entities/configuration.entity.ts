@@ -9,10 +9,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../../../apps/iaimc-backend/src/app/common/entities/user.entity';
-import { ReviewStatus } from '../../../apps/iaimc-backend/src/app/common/types/general.types';
 import { FileEntity } from './file.entity';
-import { MaterialName } from '../../../apps/iaimc-backend/src/app/common/types/material.types';
+import { MaterialName } from '../types/material.types';
+import { UserEntity } from './user.entity';
+import { ReviewStatus } from '../types/model-configuration.types';
 
 @Entity('model_configurations')
 export class ModelConfigurationEntity {

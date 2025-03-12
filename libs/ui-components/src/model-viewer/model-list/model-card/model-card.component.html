@@ -1,4 +1,5 @@
-<div class="model-snapshot">
+<button class="model-snapshot" (click)="setActiveConfig()" 
+>
   @if (modelConfiguration.snapshot) {
     <img
       [src]="modelConfiguration.snapshot"
@@ -14,4 +15,4 @@
   </p>
   <p class="material">iglidur®{{ modelConfiguration.material }}</p>
   <p class="date-added">Added:</p>
-</div>
+</button>

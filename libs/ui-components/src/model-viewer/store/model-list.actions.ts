@@ -15,5 +15,7 @@ export const ModelListActions = createActionGroup({
       model: ModelConfigurationEntity;
     }>(),
     'Update Model Snapshot Failure': props<{ id: string; error: string }>(),
+    'Set Upload Status': props<{ hasModelUploaded: boolean }>()
   },
+  
 });

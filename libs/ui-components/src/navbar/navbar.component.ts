@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { Store } from '@ngrx/store';
+import { selectHasUploaded } from '../model-viewer/store/model-list.selectors';
 import { NAVIGATION_ROUTES } from './constants';
 
 @Component({
@@ -24,6 +26,10 @@ import { NAVIGATION_ROUTES } from './constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
+  private readonly store = inject(Store);
+  public readonly hasUploadedModel = this.store.selectSignal(selectHasUploaded);
+  public readonly isMenuOpened = signal(false);
+
   public homeRoute = signal(NAVIGATION_ROUTES.LIBRARY);
   public configurationsRoute = signal([
     '/',
@@ -36,9 +42,9 @@ export class NavbarComponent {
     NAVIGATION_ROUTES.PRODUCIBILITY,
   ]);
 
-  public isMenuOpened = signal(false);
-
+ 
   public toggleMenu(): void {
     this.isMenuOpened.set(!this.isMenuOpened());
   }
 }
+ 

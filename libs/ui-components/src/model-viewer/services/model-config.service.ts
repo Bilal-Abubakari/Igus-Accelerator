@@ -3,14 +3,12 @@ import { Inject, inject, Injectable } from '@angular/core';
 import {
   ConfigCount,
   ModelConfigurationEntity,
+  LocalStorageKeys,
+  LocalStorageService,
 } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UploadDirectory, UploadProgress } from '../types/model-upload.types';
-import {
-  LocalStorageKeys,
-  LocalStorageService,
-} from 'libs/shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',

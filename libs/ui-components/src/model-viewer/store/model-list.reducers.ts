@@ -23,7 +23,6 @@ export const modelListReducer = createReducer(
         triggerModelFetch: false,
       });
     } else {
-      console.error('Model list is not an array:', modelList);
       return state;
     }
   }),
@@ -47,4 +46,8 @@ export const modelListReducer = createReducer(
       state,
     ),
   ),
+   on(ModelListActions.setUploadStatus, (state, { hasModelUploaded }) => ({
+    ...state,
+    hasModelUploaded,
+  })),
 );

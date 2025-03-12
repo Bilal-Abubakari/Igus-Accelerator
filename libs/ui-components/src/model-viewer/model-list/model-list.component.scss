@@ -1,9 +1,14 @@
-@use '../styles/variables' as vars;
+@use '../styles/variables' as modelViewerVars;
+@use '../../styles/variables' as globalVars;
 
 .model-list {
   padding: 32px 16px;
   margin: 0 auto;
-  max-width: 90vw;
+  width: globalVars.$max-content-width;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   p {
     display: flex;
@@ -18,9 +23,11 @@
 
   .model-grid {
     display: grid;
+    width: globalVars.$max-content-width;
+
     grid-template-columns: repeat(
       auto-fill,
-      minmax(vars.$snapshot-card-width, 1fr)
+      minmax(modelViewerVars.$snapshot-card-width, 1fr)
     );
     gap: 16px;
   }

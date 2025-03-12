@@ -6,6 +6,8 @@ $snapshot-image-height: 220px;
 .model-snapshot {
   width: vars.$snapshot-card-width;
   height: vars.$snapshot-card-height;
+  background: none;
+  border: none;
 
   .snapshot-image {
     border-radius: 8px;

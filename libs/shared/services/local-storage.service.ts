@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 export enum LocalStorageKeys {
   UPLOADED_MODELS = 'uploadedModels',
+  HAS_UPLOADED_MODEL = 'hasUploadedModel',
   TRANSLATE_LANG = 'translocoLang',
   IS_AUTHENTICATED = 'isAuthenticated',
   ACCESS_TOKEN = 'accessToken',

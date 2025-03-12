@@ -1,9 +1,10 @@
-export { ModelConfigurationEntity } from './entities/configuration.entity';
-export { FileEntity } from './entities/file.entity';
+export { UserEntity, FileEntity, ModelConfigurationEntity, RoleEntity } from './entities';
 
-export { ConfigCount } from './types/model-configuration.types';
+export * from './types/model-configuration.types';
 
 export {
   LocalStorageKeys,
   LocalStorageService,
 } from './services/local-storage.service';
+
+export * from './types/material.types';

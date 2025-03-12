@@ -11,6 +11,7 @@ import {
   viewChild,
   WritableSignal,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -27,6 +28,7 @@ import { ModelConfigService } from '../services/model-config.service';
 import { ModelViewerService } from '../services/model-viewer.service';
 import { ModelListActions } from '../store/model-list.actions';
 import { UploadDirectory } from '../types/model-upload.types';
+import { NAVIGATION_ROUTES } from '../../navbar/constants';
 
 type UploadProgress = {
   name: string;
@@ -54,6 +56,7 @@ export class ModelUploadComponent {
   private readonly modelViewerService = inject(ModelViewerService);
   private readonly localStorageService = inject(LocalStorageService);
   private readonly store = inject(Store);
+  private readonly router = inject(Router);
 
   protected fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
@@ -115,14 +118,16 @@ export class ModelUploadComponent {
     const snapshot = await this.handleSnapshotGeneration(modelUrl);
     this.uploadService
       .updateConfigSnapshot(snapshot, this.handleFailedConfigSnapshotUpdate)
-      ?.subscribe({
-        next: (updatedConfig) => {
+      .subscribe({
+        next: async (updatedConfig) => {
           this.store.dispatch(
             ModelListActions.addModel({
               model: updatedConfig as ModelConfigurationEntity,
             }),
           );
-          this.modelUploaded.emit(updatedConfig as ModelConfigurationEntity);
+
+          this.store.dispatch(ModelListActions.setUploadStatus({ hasModelUploaded: true }));
+          await this.router.navigate([NAVIGATION_ROUTES.MOLDING_CONFIGURATION]);
         },
         error: () => {
           this.handleFailedConfigSnapshotUpdate();

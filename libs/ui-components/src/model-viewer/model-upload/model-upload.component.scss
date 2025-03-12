@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use '../../styles/variables' as globalVars;
 
 .upload_wrapper {
   display: flex;
@@ -6,7 +7,7 @@
   align-items: center;
   padding: 2rem 1rem;
   margin: 0 auto;
-  max-width: 90vw;
+  width: globalVars.$max-content-width;
 
   .upload_card {
     width: 100%;

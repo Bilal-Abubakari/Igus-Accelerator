@@ -7,7 +7,9 @@ export interface ModelListState extends EntityState<ModelConfigurationEntity> {
   triggerModelFetch: boolean;
   errorFetchingModel: string | null;
   loading: boolean;
+  hasModelUploaded: boolean;
 }
+
 
 export const modelListAdapter = createEntityAdapter<ModelConfigurationEntity>({
   selectId: (model: ModelConfigurationEntity) => model.id,
@@ -18,4 +20,5 @@ export const initialModelListState: ModelListState =
     triggerModelFetch: true,
     errorFetchingModel: null,
     loading: false,
+    hasModelUploaded: false,
   });

@@ -12,18 +12,14 @@
       <button mat-button class="header-toolbar__primary__btn">
         <span>{{ 'toolbar.SIGNIN' | transloco }}</span>
       </button>
-      <button mat-button class="header-toolbar__secondary__btn">
+      <button class="header-toolbar__secondary__btn">
         <span>{{ 'toolbar.START_FOR_FREE' | transloco }}</span>
       </button>
-      <button
-        mat-button
-        class="header-toolbar__lang__switcher"
-        (click)="toggleOverlay()"
-      >
+      <button class="header-toolbar__lang__switcher" (click)="toggleOverlay()">
         <mat-icon aria-hidden="false" fontIcon="more_vert"></mat-icon>
       </button>
     </div>
-    <div mat-button class="humberger__menu">
+    <div class="humberger__menu">
       <button class="humberger__menu__btn" (click)="toggleOverlay()">
         <mat-icon aria-hidden="false" fontIcon="menu"></mat-icon>
       </button>

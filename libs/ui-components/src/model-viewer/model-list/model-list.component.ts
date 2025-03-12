@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
-  OnInit,
+  inject
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ModelListActions } from '../store/model-list.actions';
 import {
   selectAllModels,
   selectErrorFetchingModel,
@@ -20,14 +18,10 @@ import { ModelCardComponent } from './model-card/model-card.component';
   styleUrl: './model-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModelListComponent implements OnInit {
+export class ModelListComponent {
   private readonly store = inject(Store);
 
   public models = this.store.selectSignal(selectAllModels);
   public errorFetchingModel = this.store.selectSignal(selectErrorFetchingModel);
   public triggerModelFetch = this.store.selectSignal(selectTriggerModelFetch);
-
-  ngOnInit() {
-    this.store.dispatch(ModelListActions.loadModelList());
-  }
 }

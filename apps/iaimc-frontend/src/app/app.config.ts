@@ -20,7 +20,7 @@ import { provideRouterStore } from '@ngrx/router-store';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
-import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
+import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import {
   AVAILABLE_LANGUAGE_CODES,
   LANGUAGE_LOCALE_MAPPING,
@@ -31,6 +31,7 @@ import { appReducer } from './app.reducer';
 import { appRoutes } from './app.routes';
 import { httpReqInterceptor } from './interceptors/http.interceptor';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
+import { MODEL_LIST_FEATURE_KEY } from 'libs/ui-components/src/model-viewer/store/model-list.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -46,7 +47,13 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(
-              excludeKeys(['isEmailUpdated', 'isFeedbackSubmitted', 'message']),
+              excludeKeys([
+                'isEmailUpdated',
+                'isFeedbackSubmitted',
+                'message',
+                'isFeedbackLoading',
+                'isFeedbackSubmitted',
+              ]),
             ),
           skip: 1,
         },
@@ -57,6 +64,15 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(excludeKeys(['isSubmitting', 'isSubmitted', 'error'])),
+          skip: 1,
+        },
+        {
+          key: MODEL_LIST_FEATURE_KEY,
+          storage: localStorageStrategy,
+          runGuard: () => typeof window !== 'undefined',
+          migrations: [],
+          source: (state) =>
+            state.pipe(excludeKeys(['loading', 'errorFetchingModel', 'triggerModelFetch'])),
           skip: 1,
         },
       ],

@@ -1,0 +1,49 @@
+<main class="feedback-container">
+  @if (!isSubmitted()) {
+    <h4>{{ 'feedback.THANKS' | transloco }}</h4>
+    <p>{{ 'feedback.REQUEST_TO_CONTACT_CUSTOMER' | transloco }}</p>
+    <form [formGroup]="contactForm">
+      <mat-form-field appearance="outline" class="email-input">
+        <input
+          matInput
+          type="email"
+          placeholder="E-mail"
+          [formControl]="getField('email')"
+        />
+        @if (contactForm.get('email')?.hasError('email')) {
+          <mat-error>{{ 'feedback.ENTER_VALID_EMAIL' | transloco }}</mat-error>
+        }
+      </mat-form-field>
+      @if (isSubmitLoading()) {
+        <div class="spinner-container">
+          <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+        </div>
+      } @else {
+        <button
+          mat-button
+          [disabled]="!contactForm.valid"
+          class="custom-button"
+          (click)="onSubmitEmail()"
+        >
+          {{ 'feedback.SUBMIT' | transloco }}
+        </button>
+      }
+    </form>
+    <p class="privacy-notice">
+      {{ 'feedback.PRIVACY_POLICY_FRAGMENT_1' | transloco }}
+      <a routerLink="#">{{ 'feedback.PRIVACY_POLICY_LINK' | transloco }}</a>
+      {{ 'feedback.PRIVACY_POLICY_FRAGMENT_2' | transloco }}
+    </p>
+  } @else {
+    <div class="success-container">
+      <h2>{{ 'feedback.THANKS' | transloco }}</h2>
+      <div class="feedback-image">
+        <img
+          src="assets/images/thank-you.png"
+          alt="thank you"
+          class="success-image"
+        />
+      </div>
+    </div>
+  }
+</main>

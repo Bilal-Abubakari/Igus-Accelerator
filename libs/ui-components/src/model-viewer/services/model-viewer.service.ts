@@ -79,9 +79,9 @@ export class ModelViewerService {
     });
   }
 
-  public createMaterial(): THREE.MeshPhysicalMaterial {
+  public createMaterial(colorHex?: string): THREE.MeshPhysicalMaterial {
     return new THREE.MeshPhysicalMaterial({
-      color: 0xd4cfa3,
+      color: colorHex ?? 0xd4cfa3,
       metalness: 0.1,
       roughness: 0.7,
       clearcoat: 0.2,
@@ -146,6 +146,64 @@ export class ModelViewerService {
     };
     renderLoop();
   }
+
+  public resizeCanvas(width: number, height: number): void {
+    if (!this.renderer || !this.camera) return;
+
+    if (width <= 0 || height <= 0) {
+      return;
+    }
+
+    try {
+      this.camera.aspect = width / height;
+      this.camera.updateProjectionMatrix();
+
+      this.renderer.setSize(width, height, true);
+
+      if (this.controls) {
+        this.controls.update();
+      }
+
+      this.renderScene();
+    } catch {
+      console.error()
+     }
+  }
+
+  public updateModelColor(colorHex: string): boolean {
+    if (!this.modelMesh) {
+      return false;
+    }
+
+    try {
+      // Check if the material is a MeshPhysicalMaterial or an array of materials
+      if (this.modelMesh.material instanceof THREE.MeshPhysicalMaterial) {
+        this.modelMesh.material.color.set(colorHex);
+        this.modelMesh.material.needsUpdate = true;
+        this.renderScene();
+        return true;
+      } else if (Array.isArray(this.modelMesh.material)) {
+        // If it's an array of materials, update all of them
+        this.modelMesh.material.forEach(mat => {
+          if (mat instanceof THREE.MeshPhysicalMaterial) {
+            mat.color.set(colorHex);
+            mat.needsUpdate = true;
+          }
+        });
+        this.renderScene();
+        return true;
+      } else {
+        // If it's another type of material, create a new one and replace it
+        const newMaterial = this.createMaterial(colorHex);
+        this.modelMesh.material = newMaterial;
+        this.renderScene();
+        return true;
+      }
+    } catch {
+      return false;
+    }
+  }
+
 
   public getCanvasOutput(
     modelUrl: string,

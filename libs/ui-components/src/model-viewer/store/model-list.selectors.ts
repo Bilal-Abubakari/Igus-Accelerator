@@ -24,3 +24,7 @@ export const selectErrorFetchingModel = createSelector(
   selectModelListState,
   (state) => state.errorFetchingModel,
 );
+export const selectHasUploaded = createSelector(
+  selectModelListState,
+  (state) => state.hasModelUploaded,
+);

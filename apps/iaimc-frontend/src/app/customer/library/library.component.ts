@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
-  FooterComponent,
+  MainFooterComponent,
   ModelListComponent,
   ModelUploadComponent,
   NavbarComponent,
@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'app-library',
   imports: [
-    FooterComponent,
+    MainFooterComponent,
     ModelUploadComponent,
     NavbarComponent,
     ModelListComponent,

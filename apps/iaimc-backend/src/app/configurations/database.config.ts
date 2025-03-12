@@ -1,10 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { RoleEntity } from '../common/entities/role.entity';
-import { UserEntity } from '../common/entities/user.entity';
 import { DatabaseConfig } from '../common/types/general.types';
 import { FeedbackEntity } from '../modules/feedback/feedback.entity';
-import { ModelConfigurationEntity } from '../modules/model-configurations/entities/configuration.entity';
-import { FileEntity } from '../modules/model-configurations/entities/file.entity';
+import { ModelConfigurationEntity, UserEntity, FileEntity, RoleEntity } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { ContactFormEntity } from '../modules/contact-form/entity/contact-form.entity';
 
 export default (): DatabaseConfig => ({
