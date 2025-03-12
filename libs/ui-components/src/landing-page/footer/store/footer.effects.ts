@@ -6,8 +6,8 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 @Injectable()
 export class NewsletterEffects {
-  private actions = inject(Actions);
-  private footerService = inject(FooterService);
+  private readonly actions = inject(Actions);
+  private readonly footerService = inject(FooterService);
 
   public subscribe = createEffect(() =>
     this.actions.pipe(

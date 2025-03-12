@@ -90,7 +90,6 @@ export class FooterComponent implements OnInit, OnDestroy {
     if (this.subscriptionForm.invalid) {
       return;
     }
-    console.log(this.subscriptionFormValues);
     this.store.dispatch(
       NewsletterActions.subscribe({ subscriber: this.subscriptionFormValues }),
     );
