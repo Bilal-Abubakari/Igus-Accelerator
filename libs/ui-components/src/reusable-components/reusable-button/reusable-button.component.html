@@ -5,7 +5,7 @@
     [type]="type"
     [ngStyle]="styles"
     [disabled]="disabled"
-    [color]="color"
+    [attr.aria-label]="ariaLabel || ''"
     (click)="buttonClick.emit($event)"
   >
     <ng-content></ng-content>
@@ -17,7 +17,7 @@
     [type]="type"
     [ngStyle]="styles"
     [disabled]="disabled"
-    [color]="color"
+    [attr.aria-label]="ariaLabel || ''"
     (click)="buttonClick.emit($event)"
   >
     <ng-content></ng-content>
@@ -30,7 +30,7 @@
     [ngStyle]="styles"
     [type]="type"
     [disabled]="disabled"
-    [color]="color"
+    [attr.aria-label]="ariaLabel || ''"
     (click)="buttonClick.emit($event)"
   >
     <ng-content></ng-content>

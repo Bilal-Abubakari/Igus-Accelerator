@@ -4,12 +4,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { ContactFormEntity } from './entity/contact-form.entity';
 import { Repository } from 'typeorm';
 import { FileUploadService } from '../file-upload/file-upload.service';
-import { FileStoreDirectory } from '../../common/types/file.types';
-import {
-  mockContactFormDto,
-  mockFile,
-  errorContactFormDto,
-} from './contact-form.mock';
+import { mockContactFormDto, errorContactFormDto } from './contact-form.mock';
 
 describe('ContactFormService', () => {
   let service: ContactFormService;
@@ -74,31 +69,11 @@ describe('ContactFormService', () => {
     (mockRepository.create as jest.Mock).mockReturnValue(mockContactFormDto);
     (mockRepository.save as jest.Mock).mockResolvedValue(createdEntity);
 
-    const result = await service.createForm(mockContactFormDto, mockFile);
+    const result = await service.createForm(mockContactFormDto);
 
-    expect(mockFileUploadService.uploadFile).toHaveBeenCalledWith(
-      mockFile,
-      FileStoreDirectory.CONTACT_FORMS,
-    );
     expect(mockRepository.create).toHaveBeenCalledWith(mockContactFormDto);
     expect(mockRepository.save).toHaveBeenCalledWith(mockContactFormDto);
     expect(result).toEqual(createdEntity);
-  });
-
-  it('should propagate an error if file upload fails', async () => {
-    const uploadError = new Error('Upload failed');
-    (mockFileUploadService.uploadFile as jest.Mock).mockRejectedValue(
-      uploadError,
-    );
-    (mockRepository.create as jest.Mock).mockReturnValue(errorContactFormDto);
-
-    await expect(
-      service.createForm(errorContactFormDto, mockFile),
-    ).rejects.toThrow('Upload failed');
-    expect(mockFileUploadService.uploadFile).toHaveBeenCalledWith(
-      mockFile,
-      FileStoreDirectory.CONTACT_FORMS,
-    );
   });
 
   it('should propagate an error if repository.save fails', async () => {

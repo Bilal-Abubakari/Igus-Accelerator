@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CONTACT_FORM_FEATURE_KEY } from './contact-form.reducer';
+import { CONTACT_FORM_FEATURE_KEY } from './reducer/contact-form.reducer';
 import { ContactFormState } from './contact-form.models';
 
 export const selectContactFormState = createFeatureSelector<ContactFormState>(
