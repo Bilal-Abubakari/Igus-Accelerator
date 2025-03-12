@@ -1,4 +1,4 @@
-import { FOOTER_FEATURE_KEY } from './footer.reducer';
+import { MAIN_FOOTER_FEATURE_KEY } from './footer.reducer';
 import {
   selectFeedbackId,
   selectFeedbackLoading,
@@ -20,7 +20,7 @@ describe('Footer Selectors', () => {
   describe('selectFooterState', () => {
     it('should select the feature state', () => {
       const result = selectFooterState({
-        [FOOTER_FEATURE_KEY]: initialState,
+        [MAIN_FOOTER_FEATURE_KEY]: initialState,
       });
 
       expect(result).toEqual(initialState);
@@ -35,7 +35,7 @@ describe('Footer Selectors', () => {
       };
 
       const result = selectFeedbackLoading({
-        [FOOTER_FEATURE_KEY]: state,
+        [MAIN_FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(true);
@@ -51,7 +51,7 @@ describe('Footer Selectors', () => {
       };
 
       const result = selectFeedbackId({
-        [FOOTER_FEATURE_KEY]: state,
+        [MAIN_FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(feedbackId);
@@ -59,7 +59,7 @@ describe('Footer Selectors', () => {
 
     it('should return null when feedbackId is not set', () => {
       const result = selectFeedbackId({
-        [FOOTER_FEATURE_KEY]: initialState,
+        [MAIN_FOOTER_FEATURE_KEY]: initialState,
       });
 
       expect(result).toBeNull();
@@ -74,7 +74,7 @@ describe('Footer Selectors', () => {
       };
 
       const result = selectIsFeedbackSubmitted({
-        [FOOTER_FEATURE_KEY]: state,
+        [MAIN_FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(true);
@@ -89,7 +89,7 @@ describe('Footer Selectors', () => {
       };
 
       const result = selectIsEmailUpdated({
-        [FOOTER_FEATURE_KEY]: state,
+        [MAIN_FOOTER_FEATURE_KEY]: state,
       });
 
       expect(result).toBe(true);
@@ -99,7 +99,7 @@ describe('Footer Selectors', () => {
   describe('selector behavior with incomplete state', () => {
     it('should handle missing properties gracefully', () => {
       const incompleteState = {
-        [FOOTER_FEATURE_KEY]: {} as FooterState,
+        [MAIN_FOOTER_FEATURE_KEY]: {} as FooterState,
       };
 
       expect(selectFeedbackLoading(incompleteState)).toBeUndefined();
