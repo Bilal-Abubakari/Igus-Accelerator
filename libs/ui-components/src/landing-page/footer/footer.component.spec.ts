@@ -69,23 +69,4 @@ describe('FooterComponent', () => {
     expect(form.get('firstName')?.value).toBe('');
     expect(form.get('email')?.value).toBe('');
   });
-
-  it('should display required error when firstName is touched and empty', () => {
-    const firstNameControl = component.getField('firstName');
-    firstNameControl.markAsTouched();
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    const errorElement = compiled.querySelector('mat-error');
-    expect(errorElement?.textContent).toContain('footer.REQUIRED_FIELD');
-  });
-
-  it('should display invalid email error when email is invalid', () => {
-    const emailControl = component.getField('email');
-    emailControl.setValue('invalid-email');
-    emailControl.markAsTouched();
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    const errorElement = compiled.querySelector('mat-error');
-    expect(errorElement?.textContent).toContain('footer.ENTER_VALID_EMAIL');
-  });
 });

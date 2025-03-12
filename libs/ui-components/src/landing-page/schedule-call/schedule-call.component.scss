@@ -1,0 +1,138 @@
+@use '@angular/material' as mat;
+@use 'libs/ui-components/src/styles/_variables.scss' as variables;
+
+.injection-model-container {
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: 1200px) {
+    padding: 4rem 9%;
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  text-align: start;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.options-container {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+
+  @media (max-width: 992px) {
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+.option-card {
+  flex: 1;
+  padding: 2rem;
+  @include variables.flex-column;
+  align-items: flex-start;
+
+  &:first-child {
+    border-right: 1px solid #eaeaea;
+
+    @media (max-width: 768px) {
+      border-right: none;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 992px) {
+    padding: 1.75rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.option-title {
+  font-size: 1.25rem;
+  font-weight: 350;
+  margin-bottom: 0.5rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
+}
+
+.option-description {
+  color: variables.$schedule-description-color;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.action-button {
+  background-color: var(--mat-sys-on-primary-container);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-on-primary-container);
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+.upload-button {
+  @include variables.flex-center;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1rem;
+}
+mat-icon {
+  padding: 0.6rem 0 0 0;
+}
+
+.arrow-icon {
+  font-size: 1.1rem;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
+}
