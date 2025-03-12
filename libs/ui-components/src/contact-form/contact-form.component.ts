@@ -4,6 +4,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,11 +49,12 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     ReusableFormFieldComponent,
     ReusableButtonComponent,
-    MatInputModule
+    MatInputModule,
   ],
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ContactFormComponent implements OnInit, OnDestroy {
   private static readonly ALLOWED_FILE_TYPES = [
@@ -173,5 +175,10 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   public closeDialog(): void {
     this.dialogRef.close(false);
+  }
+
+  public clearCountrySelection(event: Event): void {
+    event.stopPropagation();
+    this.contactForm.get('country')?.setValue(null);
   }
 }

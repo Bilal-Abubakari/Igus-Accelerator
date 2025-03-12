@@ -14,13 +14,13 @@ mat-form-field {
 .checkbox-field {
   display: flex;
   flex-direction: column;
-  
+
   .checkbox-label {
     margin-top: 5px;
     font-size: var(--font-size-agreement, 14px);
     line-height: 1.5;
   }
-  
+
   mat-error {
     color: var(--error-color, #f44336);
     font-size: var(--error-font-size, 12px);
@@ -34,11 +34,11 @@ mat-form-field {
     flex-direction: row;
     align-items: flex-start;
     gap: var(--select-file-container-gap, 12px);
-    
+
     mat-checkbox {
       margin-top: 3px;
     }
-    
+
     .checkbox-label {
       margin-top: 12px;
     }

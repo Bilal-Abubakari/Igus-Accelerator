@@ -1,11 +1,7 @@
 <div class="full-screen-modal">
-  <app-reusable-button
-    className="close-btn"
-    [isIconButton]="true"
-    (buttonClick)="closeDialog()"
-  >
+  <button mat-icon-button class="direct-close-btn" (click)="closeDialog()">
     <mat-icon>close</mat-icon>
-  </app-reusable-button>
+  </button>
 
   @if (featureFlagService.isFeatureEnabled('contactForm')) {
     <div class="form-wrapper">
@@ -58,6 +54,7 @@
             [customErrorMessages]="customErrorMessages"
           ></app-reusable-form-field>
 
+          <!-- Modify the country form field -->
           <app-reusable-form-field
             [control]="getFormControl('country')"
             label="Country"
@@ -65,7 +62,21 @@
             [isSelect]="true"
             [selectOptions]="(countryOptions$ | async) || []"
             [customErrorMessages]="customErrorMessages"
-          ></app-reusable-form-field>
+          >
+            <ng-template #suffix>
+              <button
+                mat-icon-button
+                type="button"
+                class="clear-selection-button"
+                *ngIf="getFormControl('country').value"
+                (mousedown)="clearCountrySelection($event)"
+                aria-label="Clear selection"
+                [disabled]="contactForm.get('country')?.disabled"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </ng-template>
+          </app-reusable-form-field>
         </div>
 
         <app-reusable-form-field

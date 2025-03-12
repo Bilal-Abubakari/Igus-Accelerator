@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use '../../../../apps/iaimc-frontend/src/styles/stylestheme.scss' as var;
 
 .full-screen-modal {
   width: var(--full-screen-width);
@@ -7,6 +8,29 @@
   position: relative;
   margin-bottom: 400px;
 
+  .direct-close-btn {
+    position: absolute;
+    top: 70px;
+    right: 410px;
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+
+    mat-icon {
+      display: block;
+      font-size: 25px;
+      width: 24px;
+      height: 24px;
+    }
+  }
 
   .form-wrapper {
     width: 100%;
@@ -23,12 +47,11 @@
   max-height: 100vh !important;
   width: 100vw;
   height: 100vh;
-
 }
 
 h1.contact {
   color: var(--color-contact);
-  margin-bottom: 0;
+  margin: 20px 0;
 }
 
 p.intro {
@@ -44,14 +67,9 @@ p.intro {
 .attach-file-title {
   color: var(--color-intro);
   margin: var(--gap-standard) 0;
+  font-size: var(--font-size-intro);
 }
 
-:host {
-  --close-btn-top: 24px;
-  --close-btn-right: 24px;
-  --error-font-size: 12px;
-  --error-line-height: 1.33;
-}
 .email-company-container {
   display: flex;
   flex-direction: column;
@@ -75,28 +93,32 @@ p.intro {
 }
 
 .postal-country-container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 5fr 8fr;
   gap: var(--gap-standard);
   width: 100%;
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
-}
 
-app-reusable-form-field {
-  flex: 1;
-  min-width: 0;
+  app-reusable-form-field {
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+
+    .postal-code {
+      order: 1;
+    }
+
+    .country {
+      order: 2;
+    }
+  }
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: var(--margin-bottom-field);
-
-  .mat-mdc-form-field-subscript-wrapper {
-    padding-top: var(--subscript-padding-top);
-    height: var(--subscript-height);
-  }
 }
 
 .telephone {
@@ -108,7 +130,7 @@ textarea {
 }
 
 .mat-mdc-form-field-error {
-  font-size: var(--error-font-size) !important;
+  font-size: 12px !important;
   line-height: var(--error-line-height) !important;
   display: block;
   min-height: 0;
@@ -124,34 +146,17 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  
+
   @media (max-width: 600px) {
     margin-bottom: 40px;
   }
-  
-  .select-file-btn {
-    display: flex;
-    align-items: center;
-    gap: var(--select-file-btn-gap, 8px);
-    margin-bottom: 8px;
-    border: none !important;
-    outline:  none !important;
-    
-    @media (max-width: 600px) {
-      width: 100%;
-      justify-content: center;
-      padding: 12px 16px;
-      margin-bottom: 12px;
-    }
-  }
-  
+
   .selected-file-name {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px;
     border-radius: 4px;
-    margin: 8px 0 0 0;
     font-size: 14px;
     word-break: break-word;
   }
@@ -166,45 +171,46 @@ textarea {
   display: flex;
   flex-direction: row;
   gap: var(--select-file-container-gap, 12px);
-  align-items: flex-start; 
-  margin-bottom: 24px; 
-  
+  align-items: flex-start;
+  margin-bottom: 18px;
+
   @media (max-width: 600px) {
-    margin-bottom: 32px; 
+    margin-bottom: 32px;
   }
-  
+
   mat-checkbox {
-    margin-top: 3px;
+    margin-top: -13px;
   }
-  
+
   p.agreement {
     font-size: var(--font-size-agreement, 14px);
-    line-height: 1.5; 
-    margin-top: 12px;
+    line-height: 1.5;
+    margin-top: px;
   }
 }
 
 .terms-error {
-  font-size: var(--error-font-size, 12px) !important;
-  line-height: var(--error-line-height, 1.33) !important;
+  font-size: 12px !important;
+
   margin-top: -16px;
   margin-bottom: 16px;
+  margin-left: 50px;
 }
 
 @media (max-width: 480px) {
-    h1.contact {
-      font-size: 24px;
-    }
-    
-    p.intro {
-      font-size: 14px;
-    }
-    
-    .terms-agreement {
-      align-items: flex-start;
-    }
+  h1.contact {
+    font-size: 24px;
   }
-  
+
+  p.intro {
+    font-size: 14px;
+  }
+
+  .terms-agreement {
+    align-items: flex-start;
+  }
+}
+
 .form-btns {
   padding-top: 32px;
   display: flex;
@@ -213,26 +219,75 @@ textarea {
   height: auto;
   min-height: var(--form-btns-height, 50px);
   margin-top: 8px;
-  
+
   @media (max-width: 600px) {
-    display:flex;
+    display: flex;
     flex-direction: row;
     gap: 16px;
     width: 100%;
     padding-top: 24px;
     margin-bottom: 24px;
-    
+
     button {
       width: 100%;
       padding: 12px 16px;
     }
-    
+
     .cancel-btn {
       margin-top: 8px;
     }
-    
+
     .submit-btn {
       margin-bottom: 8px;
     }
+  }
+}
+.submit-btn {
+  height: 50px;
+  width: 130px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color) !important;
+  font-weight: 500;
+}
+
+.cancel-btn {
+  height: 50px;
+  width: 130px;
+
+  border: 1px solid var(--cancel-border-color);
+  background-color: var(--cancel-bg-color);
+  color: var(--cancel-text-color);
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background-color: rgba(var(--mat-sys-primary-rgb, 0, 0, 0), 0.04);
+    }
+  }
+}
+
+.select-file-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--select-file-btn-gap, 8px);
+  margin-bottom: 8px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+  }
+}
+
+.delete-file-btn {
+  padding: 4px;
+  min-width: auto;
+  height: auto;
+  line-height: 1;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
   }
 }
