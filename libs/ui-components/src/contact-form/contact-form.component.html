@@ -63,17 +63,18 @@
             [customErrorMessages]="customErrorMessages"
           >
             <ng-template #suffix>
-              <button
-                mat-icon-button
-                type="button"
-                class="clear-selection-button"
-                *ngIf="getFormControl('country').value"
-                (mousedown)="clearCountrySelection($event)"
-                aria-label="Clear selection"
-                [disabled]="contactForm.get('country')?.disabled"
-              >
-                <mat-icon>close</mat-icon>
-              </button>
+              @if (getFormControl('country').value) {
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="clear-selection-button"
+                  (mousedown)="clearCountrySelection($event)"
+                  aria-label="Clear selection"
+                  [disabled]="contactForm.get('country')?.disabled"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
             </ng-template>
           </app-reusable-form-field>
         </div>
