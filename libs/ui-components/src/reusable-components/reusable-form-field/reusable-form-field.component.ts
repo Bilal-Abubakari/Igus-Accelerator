@@ -37,7 +37,7 @@ export class ReusableFormFieldComponent {
   @Input() checkboxLabel = '';
   @Input() customErrorMessages: { [key: string]: string } = {};
 
-  private defaultErrorMessages: { [key: string]: string } = {
+  private readonly defaultErrorMessages: { [key: string]: string } = {
     required: 'This field is required',
     textOnly: 'Invalid text format',
     email: 'Invalid email format',
