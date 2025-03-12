@@ -1,11 +1,35 @@
 @use '@angular/material' as mat;
 @use '../../../../apps/iaimc-frontend/src/styles/stylestheme.scss' as var;
+
+%flex-container {
+  display: flex;
+  gap: var(--gap-standard);
+}
+
+%responsive-flex {
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+%shared-button {
+  height: 50px;
+  width: 130px;
+}
+
+%icon-styles {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
 .full-screen-modal {
   width: var(--full-screen-width);
   height: var(--full-screen-height);
   box-sizing: border-box;
   position: relative;
   margin-bottom: 400px;
+
   .direct-close-btn {
     position: absolute;
     top: 70px;
@@ -20,12 +44,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border: none;
     cursor: pointer;
+
     mat-icon {
       font-size: 25px;
       width: 24px;
       height: 24px;
     }
   }
+
   .form-wrapper {
     width: 100%;
     max-width: var(--max-form-wrapper-width);
@@ -34,6 +60,7 @@
     border-radius: 0;
   }
 }
+
 .full-screen-dialog {
   border-radius: 0 !important;
   max-width: 100vw !important;
@@ -41,89 +68,101 @@
   width: 100vw;
   height: 100vh;
 }
+
 h1.contact {
   color: var(--color-contact);
   margin: 20px 0;
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 }
-p.intro {
+
+p.intro,
+.attach-file-title {
   font-size: var(--font-size-intro);
+  color: var(--color-intro);
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+p.intro {
   font-weight: 400;
   line-height: var(--line-height-intro);
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin-bottom: var(--margin-bottom-intro);
-  color: var(--color-intro);
 }
+
 .attach-file-title {
-  color: var(--color-intro);
   margin: var(--gap-standard) 0;
-  font-size: var(--font-size-intro);
 }
+
+.name-fields-container {
+  @extend %flex-container;
+  width: 100%;
+
+  > * {
+    flex: 1;
+  }
+
+  @extend %responsive-flex;
+}
+
 .email-company-container {
   display: flex;
   flex-direction: column;
   gap: var(--gap-flex);
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
 }
-.name-fields-container {
-  display: flex;
-  width: 100%;
-  gap: var(--gap-standard);
-  > * {
-    flex: 1;
-  }
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
-}
+
 .postal-country-container {
   display: grid;
   grid-template-columns: 5fr 8fr;
   gap: var(--gap-standard);
   width: 100%;
+
   app-reusable-form-field {
     width: 100%;
     flex: 1;
     min-width: 0;
   }
+
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
+
     .postal-code {
       order: 1;
     }
+
     .country {
       order: 2;
     }
   }
 }
+
 mat-form-field {
   width: 100%;
 }
+
 .telephone {
   width: var(--telephone-width);
 }
+
 textarea {
   height: var(--textarea-height) !important;
 }
-.mat-mdc-form-field-error {
-  font-size: 12px !important;
-  line-height: var(--error-line-height) !important;
-  display: block;
-  min-height: 0;
-  transition: var(--error-min-height-transition);
-  &:empty {
-    min-height: 0 !important;
-  }
-}
+
 .upload-container {
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+
   @media (max-width: 600px) {
     margin-bottom: 40px;
   }
+
   .selected-file-name {
     display: flex;
     align-items: center;
@@ -134,42 +173,50 @@ textarea {
     word-break: break-word;
   }
 }
+
+.mat-mdc-form-field-error {
+  font-size: 12px !important;
+  line-height: var(--error-line-height) !important;
+  display: block;
+  min-height: 0;
+  transition: var(--error-min-height-transition);
+
+  &:empty {
+    min-height: 0 !important;
+  }
+}
+
+.terms-error {
+  font-size: 12px !important;
+  margin: -16px 0 16px 50px;
+}
+
 .mat-mdc-button {
   padding: 25px 7px;
   border-radius: var(--button-radius);
 }
+
 .terms-agreement {
   display: flex;
   flex-direction: row;
   gap: var(--select-file-container-gap, 12px);
   align-items: flex-start;
   margin-bottom: 18px;
+
   @media (max-width: 600px) {
     margin-bottom: 32px;
   }
+
   mat-checkbox {
     margin-top: -13px;
   }
+
   p.agreement {
     font-size: var(--font-size-agreement, 14px);
     line-height: 1.5;
   }
 }
-.terms-error {
-  font-size: 12px !important;
-  margin: -16px 0 16px 50px;
-}
-@media (max-width: 480px) {
-  h1.contact {
-    font-size: 24px;
-  }
-  p.intro {
-    font-size: 14px;
-  }
-  .terms-agreement {
-    align-items: flex-start;
-  }
-}
+
 .form-btns {
   padding-top: 32px;
   display: flex;
@@ -178,49 +225,46 @@ textarea {
   height: auto;
   min-height: var(--form-btns-height, 50px);
   margin-top: 8px;
+
   @media (max-width: 600px) {
-    display: flex;
     flex-direction: row;
-    gap: 16px;
     width: 100%;
     padding-top: 24px;
     margin-bottom: 24px;
+
     button {
       width: 100%;
       padding: 12px 16px;
     }
-    .cancel-btn {
-      margin-top: 8px;
-    }
-    .submit-btn {
-      margin-bottom: 8px;
-    }
   }
 }
+
 .submit-btn {
-  height: 50px;
-  width: 130px;
+  @extend %shared-button;
   background-color: var(--button-bg-color);
   color: var(--button-text-color) !important;
   font-weight: 500;
 }
+
 .cancel-btn {
-  height: 50px;
-  width: 130px;
+  @extend %shared-button;
   border: 1px solid var(--cancel-border-color);
   background-color: var(--cancel-bg-color);
   color: var(--cancel-text-color);
+
   @media (hover: hover) {
     &:hover:not(:disabled) {
       background-color: rgba(var(--mat-sys-primary-rgb, 0, 0, 0), 0.04);
     }
   }
 }
+
 .select-file-btn {
   display: flex;
   align-items: center;
   gap: var(--select-file-btn-gap, 8px);
   margin-bottom: 8px;
+
   @media (max-width: 600px) {
     width: 100%;
     justify-content: center;
@@ -228,17 +272,31 @@ textarea {
     margin-bottom: 12px;
   }
 }
-.delete-file-btn {
+
+.delete-file-btn,
+.clear-selection-button {
   padding: 4px;
   min-width: auto;
   height: auto;
   line-height: 1;
+
   mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
+    @extend %icon-styles;
   }
 }
+
+.clear-selection-button {
+  margin-right: 8px;
+
+  mat-icon {
+    color: #666;
+  }
+
+  &:hover mat-icon {
+    color: #333;
+  }
+}
+
 .mat-mdc-form-field {
   .mdc-text-field {
     border-radius: 0 !important;
@@ -257,6 +315,7 @@ textarea {
         color: var(--field-label-color) !important;
       }
     }
+
     .mdc-notched-outline {
       border-radius: 0 !important;
 
@@ -278,19 +337,5 @@ textarea {
   .mat-mdc-option {
     font-size: 14px;
     line-height: 1.5;
-  }
-}
-
-.clear-selection-button {
-  @extend .delete-file-btn;
-  margin-right: 8px;
-
-  mat-icon {
-    @extend .delete-file-btn, mat-icon;
-    color: #666;
-  }
-
-  &:hover mat-icon {
-    color: #333;
   }
 }
