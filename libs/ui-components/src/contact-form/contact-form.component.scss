@@ -268,3 +268,29 @@ textarea {
     }
   }
 }
+
+.country {
+  .mdc-text-field__input,
+  .mat-mdc-select-value-text {
+    font-size: 14px !important;
+  }
+
+  .mat-mdc-option {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.clear-selection-button {
+  @extend .delete-file-btn;
+  margin-right: 8px;
+
+  mat-icon {
+    @extend .delete-file-btn, mat-icon;
+    color: #666;
+  }
+
+  &:hover mat-icon {
+    color: #333;
+  }
+}
