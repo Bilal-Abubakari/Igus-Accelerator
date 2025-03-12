@@ -5,7 +5,6 @@ import { ReusableButtonComponent } from '../../reusable-components/reusable-butt
 import { ContactFormComponent } from '../../contact-form/contact-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,7 +14,6 @@ import { RouterLink } from '@angular/router';
     TranslocoPipe,
     ReusableButtonComponent,
     MatIcon,
-    MatButton,
     RouterLink,
   ],
   templateUrl: './schedule-call.component.html',

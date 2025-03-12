@@ -1,9 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { ContactFormActions } from './contact-form.actions';
+import { ContactFormActions } from '../contact-form.actions';
 import {
   ContactFormState,
   initialContactFormState,
-} from './contact-form.models';
+} from '../contact-form.models';
 
 export const CONTACT_FORM_FEATURE_KEY = 'contactForm';
 

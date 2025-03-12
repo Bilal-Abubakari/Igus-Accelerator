@@ -8,16 +8,17 @@ import {
   mainFooterReducer,
 } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { MaterialState } from 'libs/ui-components/src/materials/store/material.state';
+
+import { ContactFormState } from 'libs/ui-components/src/contact-form/store/contact-form.models';
+import { FooterState } from 'libs/ui-components/src/model/components/main-footer/store/footer.state';
 import {
   CONTACT_FORM_FEATURE_KEY,
   contactFormReducer,
-} from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
+} from 'libs/ui-components/src/contact-form/store/reducer/contact-form.reducer';
 import {
   NEWS_LETTER_SUBSCRIBER_FEATURE_KEY,
   newsLetterSubscriberReducer,
 } from '../../../../libs/ui-components/src/landing-page/footer/store/footer.reducers';
-import { ContactFormState } from 'libs/ui-components/src/contact-form/store/contact-form.models';
-import { FooterState } from 'libs/ui-components/src/model/components/main-footer/store/footer.state';
 import { NewLetterState } from 'libs/ui-components/src/landing-page/footer/store/footer.state';
 
 export interface AppState {

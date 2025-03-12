@@ -14,7 +14,6 @@ import { Component } from '@angular/core';
       [disabled]="disabled"
       [flat]="flat"
       [isIconButton]="isIconButton"
-      [color]="color"
       (buttonClick)="handleClick($event)"
     >
       Button Text
@@ -27,7 +26,6 @@ class TestHostComponent {
   disabled = false;
   flat = false;
   isIconButton = false;
-  color: 'primary' | 'accent' | 'warn' | undefined;
   clickEvent: MouseEvent | null = null;
 
   handleClick(event: MouseEvent): void {
@@ -60,7 +58,6 @@ describe('ReusableButtonComponent', () => {
       expect(component.disabled).toBe(false);
       expect(component.flat).toBe(false);
       expect(component.isIconButton).toBe(false);
-      expect(component.color).toBeUndefined();
     });
 
     it('should emit buttonClick event when clicked', () => {
@@ -136,14 +133,6 @@ describe('ReusableButtonComponent', () => {
 
       const button = hostFixture.debugElement.query(By.css('button'));
       expect(button.nativeElement.disabled).toBe(true);
-    });
-
-    it('should apply color theme correctly', () => {
-      hostComponent.color = 'primary';
-      hostFixture.detectChanges();
-
-      const button = hostFixture.debugElement.query(By.css('button'));
-      expect(button.nativeElement.classList).toContain('mat-primary');
     });
 
     it('should emit click events properly', () => {

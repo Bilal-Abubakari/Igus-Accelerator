@@ -29,7 +29,7 @@ import { excludeKeys } from '@ngrx-addons/common';
 import { MAIN_FOOTER_FEATURE_KEY } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { appReducer } from './app.reducer';
 import { appEffects } from './app.effects';
-import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
+import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/reducer/contact-form.reducer';
 import { NEWS_LETTER_SUBSCRIBER_FEATURE_KEY } from 'libs/ui-components/src/landing-page/footer/store/footer.reducers';
 
 export const appConfig: ApplicationConfig = {
