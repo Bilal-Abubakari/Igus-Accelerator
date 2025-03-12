@@ -86,8 +86,7 @@ export default [
       '@angular-eslint/template/cyclomatic-complexity': [
         'error',
         { maxComplexity: 10 },
-      ],
-      '@angular-eslint/template/no-call-expression': 'off',
+      ]
     },
   },
 ];

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { ObjectUtils } from '../../utilities/object-utils';
 
@@ -25,6 +25,7 @@ export class ModelViewerService {
       canvas,
       antialias: true,
       alpha: true,
+      preserveDrawingBuffer: true,
     });
     this.renderer.setSize(width, height);
     this.renderer.setClearColor(canvasBackground, 1);
@@ -66,12 +67,17 @@ export class ModelViewerService {
   }
 
   public addLights() {
-    this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
+    pmremGenerator.compileEquirectangularShader();
+
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+
     const lights = [
       { color: 0xffffff, intensity: 0.7, position: [1, 2, 3] },
-      { color: 0xffffff, intensity: 0.3, position: [-1, 0.5, -1] },
-      { color: 0xffffff, intensity: 0.2, position: [0, -1, -2] },
+      { color: 0xffffff, intensity: 0.4, position: [-1, 0.5, -1] },
+      { color: 0xffffff, intensity: 0.3, position: [0, -1, -2] },
     ];
+
     lights.forEach(({ color, intensity, position }) => {
       const light = new THREE.DirectionalLight(color, intensity);
       light.position.set(...(position as [number, number, number]));
@@ -82,12 +88,13 @@ export class ModelViewerService {
   public createMaterial(colorHex?: string): THREE.MeshPhysicalMaterial {
     return new THREE.MeshPhysicalMaterial({
       color: colorHex ?? 0xd4cfa3,
-      metalness: 0.1,
+      metalness: 0.0,
       roughness: 0.7,
       clearcoat: 0.2,
       clearcoatRoughness: 0.3,
       reflectivity: 0.5,
       envMapIntensity: 0.5,
+      flatShading: false,
     });
   }
 
@@ -128,7 +135,7 @@ export class ModelViewerService {
       enableZoom: true,
       enablePan: true,
       autoRotate: true,
-      autoRotateSpeed: 1.0,
+      autoRotateSpeed: 0.1,
     });
   }
 
@@ -167,7 +174,7 @@ export class ModelViewerService {
       this.renderScene();
     } catch {
       console.error()
-     }
+    }
   }
 
   public updateModelColor(colorHex: string): boolean {
@@ -210,19 +217,57 @@ export class ModelViewerService {
     asDataUrl: boolean,
     canvasWidth?: number,
     canvasHeight?: number,
+    cameraDistance?: number,
   ): Promise<string | HTMLCanvasElement> {
     const canvas = document.createElement('canvas');
     this.initializeViewer(canvas, canvasWidth, canvasHeight);
 
     return new Promise((resolve) => {
-      this.loadModel(modelUrl, () => {
+      this.loader.load(modelUrl, (geometry) => {
+        if (this.modelMesh) this.scene.remove(this.modelMesh);
+
+        this.modelMesh = new THREE.Mesh(geometry, this.createMaterial());
+        this.processModel(this.modelMesh, geometry);
+        this.scene.add(this.modelMesh);
+
+        // Use custom camera positioning for snapshots
+        const boundingBox = new THREE.Box3().setFromObject(this.modelMesh);
+        const center = new THREE.Vector3();
+        boundingBox.getCenter(center);
+        const size = new THREE.Vector3();
+        boundingBox.getSize(size);
+        const maxDim = Math.max(size.x, size.y, size.z);
+
+        const fitDistance = maxDim * (cameraDistance ?? 1.6);
+
+        this.camera.position.set(
+          center.x + fitDistance,
+          center.y + fitDistance,
+          center.z + fitDistance
+        );
+        this.camera.lookAt(center);
+
         this.renderScene();
         resolve(
           asDataUrl
             ? this.renderer.domElement.toDataURL()
-            : this.renderer.domElement,
+            : this.renderer.domElement
         );
       });
     });
+
+    // const canvas = document.createElement('canvas');
+    // this.initializeViewer(canvas, canvasWidth, canvasHeight);
+
+    // return new Promise((resolve) => {
+    //   this.loadModel(modelUrl, () => {
+    //     this.renderScene();
+    //     resolve(
+    //       asDataUrl
+    //         ? this.renderer.domElement.toDataURL()
+    //         : this.renderer.domElement,
+    //     );
+    //   });
+    // });
   }
 }

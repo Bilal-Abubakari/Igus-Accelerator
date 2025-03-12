@@ -13,3 +13,37 @@ mat-form-field {
     width: var(--telephone-width, 100%);
   }
 }
+
+.checkbox-field {
+  display: flex;
+  flex-direction: column;
+
+  .checkbox-label {
+    margin-top: 5px;
+    font-size: var(--font-size-agreement, 14px);
+    line-height: 1.5;
+  }
+
+  mat-error {
+    color: var(--error-color, #f44336);
+    font-size: var(--error-font-size, 12px);
+    line-height: var(--error-line-height, 1.33);
+    margin-top: 4px;
+  }
+}
+
+@media (min-width: 601px) {
+  .checkbox-field {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--select-file-container-gap, 12px);
+
+    mat-checkbox {
+      margin-top: 3px;
+    }
+
+    .checkbox-label {
+      margin-top: 12px;
+    }
+  }
+}

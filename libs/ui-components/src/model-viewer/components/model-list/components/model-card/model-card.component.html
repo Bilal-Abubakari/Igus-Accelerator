@@ -1,0 +1,21 @@
+<mat-card class="model_snapshot" (click)="setActiveConfig()">
+  @if (modelConfiguration.snapshot) {
+    <img
+      mat-card-image
+      [src]="modelConfiguration.snapshot"
+      alt="Model Snapshot"
+      class="snapshot_image"
+      [class.active_config]="isActiveConfig()"
+    />
+  }
+
+  <mat-card-content class="card_text">
+    <p class="file_name ">{{ modelConfiguration.file.name }}</p>
+    <p class="review_status">
+      <mat-icon>cloud_circle</mat-icon>
+      <span>{{ modelConfiguration.reviewStatus }}</span>
+    </p>
+    <p class="material">iglidur®{{ modelConfiguration.material }}</p>
+    <p class="date_added">Added: {{ relativeUploadedTime() }}</p>
+  </mat-card-content>
+</mat-card>

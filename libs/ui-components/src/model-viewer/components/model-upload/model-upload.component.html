@@ -5,6 +5,7 @@
         'modeluploads.HERO_TEXT' | transloco
       }}</mat-card-title>
     </mat-card-header>
+    
     <mat-card-content>
       <div
         class="upload_container"
@@ -17,11 +18,9 @@
           <div class="loading_overlay">
             <mat-spinner diameter="50"></mat-spinner>
             <p>{{ 'modeluploads.LOADER' | transloco }}</p>
-            <!-- @for (progress of uploadProgress(); track progress.name) { -->
             <div>
               {{ uploadProgress().name }}: {{ uploadProgress().progress }}%
             </div>
-            <!-- } -->
           </div>
         }
 
@@ -53,7 +52,6 @@
         }
       </div>
     </mat-card-content>
+    
   </mat-card>
 </div>
-
-<img src="" alt="" />

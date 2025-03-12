@@ -1,11 +1,7 @@
 <div class="full-screen-modal">
-  <app-reusable-button
-    className="close-btn"
-    [isIconButton]="true"
-    (buttonClick)="closeDialog()"
-  >
+  <button mat-icon-button class="direct-close-btn" (click)="closeDialog()">
     <mat-icon>close</mat-icon>
-  </app-reusable-button>
+  </button>
 
   @if (featureFlagService.isFeatureEnabled('contactForm')) {
     <div class="form-wrapper">
@@ -22,14 +18,14 @@
             [control]="getFormControl('firstName')"
             label="First name"
             [optional]="true"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="first-name-field"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
             [control]="getFormControl('lastName')"
             label="Last name"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="last-name-field"
           ></app-reusable-form-field>
         </div>
@@ -38,14 +34,14 @@
           <app-reusable-form-field
             [control]="getFormControl('email')"
             label="E-mail"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="email-field"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
             [control]="getFormControl('company')"
             label="Company"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
             className="company-field"
           ></app-reusable-form-field>
         </div>
@@ -55,7 +51,7 @@
             [control]="getFormControl('postalCode')"
             label="Postal code"
             className="postal-code"
-            [errorMessages]="errorMessages"
+            [customErrorMessages]="customErrorMessages"
           ></app-reusable-form-field>
 
           <app-reusable-form-field
@@ -64,8 +60,23 @@
             className="country"
             [isSelect]="true"
             [selectOptions]="(countryOptions$ | async) || []"
-            [errorMessages]="errorMessages"
-          ></app-reusable-form-field>
+            [customErrorMessages]="customErrorMessages"
+          >
+            @if (getFormControl('country').value) {
+              <div class="clear-button-container">
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="clear-selection-button"
+                  (mousedown)="clearCountrySelection($event)"
+                  aria-label="Clear selection"
+                  [disabled]="contactForm.get('country')?.disabled"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            }
+          </app-reusable-form-field>
         </div>
 
         <app-reusable-form-field
@@ -73,7 +84,7 @@
           label="Telephone"
           [optional]="true"
           className="telephone"
-          [errorMessages]="errorMessages"
+          [customErrorMessages]="customErrorMessages"
         ></app-reusable-form-field>
 
         <app-reusable-form-field
@@ -81,7 +92,7 @@
           label="Message"
           [optional]="true"
           [isTextarea]="true"
-          [errorMessages]="errorMessages"
+          [customErrorMessages]="customErrorMessages"
         ></app-reusable-form-field>
 
         <p class="attach-file-title">File attachment (optional)</p>
@@ -97,7 +108,6 @@
 
           <app-reusable-button
             className="select-file-btn"
-            [color]="'primary'"
             (buttonClick)="fileInput.click()"
           >
             <mat-icon>upload_file</mat-icon>
@@ -140,9 +150,9 @@
           contactForm.get('agreement')?.touched &&
           contactForm.get('agreement')?.hasError('required')
         ) {
-          <p class="terms-error">
-            {{ errorMessages.requiredTrue }}
-          </p>
+          <mat-error class="terms-error">
+            You must accept the data protection regulations
+          </mat-error>
         }
 
         <div class="form-btns">

@@ -13,12 +13,24 @@ html {
   --submit-btn-hover-bg: #303f9f;
 
   --color-contact: #363636;
-  --color-intro: #423e3a;
+  --color-intro: #34302c;
+  --field-label-font-size: 17px;
+  --field-label-color: #6a6a66;
 
   --font-size-intro: 16px;
   --line-height-intro: 24px;
   --margin-bottom-intro: 32px;
   --font-size-agreement: 14px;
+
+  --button-display-inline: inline-block;
+  --button-bg-color: var(--mat-sys-primary);
+  --button-text-color: var(--mat-sys-on-primary);
+  --cancel-border-color: var(--mat-sys-primary);
+  --cancel-text-color: var(--mat-sys-primary);
+  --cancel-bg-color: transparent;
+  --button-transition: all 0.2s ease-in-out;
+  --button-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --button-hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 
   --gap-standard: 20px;
   --gap-flex: 3px;

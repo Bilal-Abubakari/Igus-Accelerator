@@ -19,7 +19,6 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
 import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import {
   AVAILABLE_LANGUAGE_CODES,
@@ -32,6 +31,7 @@ import { appRoutes } from './app.routes';
 import { httpReqInterceptor } from './interceptors/http.interceptor';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { MODEL_LIST_FEATURE_KEY } from 'libs/ui-components/src/model-viewer/store/model-list.state';
+import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/reducer/contact-form.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -79,7 +79,6 @@ export const appConfig: ApplicationConfig = {
     }),
     provideRouterStore(),
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
-    // { provide: HTTP_INTERCEPTORS, useClass: HttpReqInterceptor, multi: true },
     provideHttpClient(withInterceptors([httpReqInterceptor])),
     provideAnimationsAsync(),
     provideZoneChangeDetection({ eventCoalescing: true }),

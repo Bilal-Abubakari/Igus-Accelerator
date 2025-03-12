@@ -65,21 +65,6 @@ export class ModelConfigController {
     );
   }
 
-  @Get(':id')
-  public async getActiveConfig(
-    @Param('id') activeConfig: string,
-    @Req() { user }: Request,
-  ): Promise<ModelConfigurationEntity | undefined> {
-    if (!user) {
-      throw new UnauthorizedException();
-    }
-
-    return await this.modelConfigService.getActiveConfig(
-      user as JwtUserPayload,
-      activeConfig,
-    );
-  }
-
   @Get('customer')
   public async getCustomerConfigs(
     @Req() { user }: Request,
@@ -101,6 +86,21 @@ export class ModelConfigController {
 
     return this.modelConfigService.getTotalCustomerConfigs(
       user as JwtUserPayload,
+    );
+  }
+
+  @Get(':id')
+  public async getActiveConfig(
+    @Param('id') activeConfig: string,
+    @Req() { user }: Request,
+  ): Promise<ModelConfigurationEntity | undefined> {
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
+    return await this.modelConfigService.getActiveConfig(
+      user as JwtUserPayload,
+      activeConfig,
     );
   }
 }

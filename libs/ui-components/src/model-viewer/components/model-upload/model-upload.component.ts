@@ -24,16 +24,18 @@ import {
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
 import { catchError, of, tap } from 'rxjs';
-import { ModelConfigService } from '../services/model-config.service';
-import { ModelViewerService } from '../services/model-viewer.service';
-import { ModelListActions } from '../store/model-list.actions';
-import { UploadDirectory } from '../types/model-upload.types';
-import { NAVIGATION_ROUTES } from '../../navbar/constants';
+import { ModelConfigService } from '../../services/model-config.service';
+import { ModelViewerService } from '../../services/model-viewer.service';
+import { ModelListActions } from '../../store/model-list.actions';
+import { UploadDirectory } from '../../types/model-upload.types';
+import { NAVIGATION_ROUTES } from '../../../navbar/constants';
 
 type UploadProgress = {
   name: string;
   progress: number;
 };
+
+const SUPPORTED_FILE_TYPES = ['stl'];
 
 @Component({
   selector: 'app-model-upload',
@@ -58,7 +60,7 @@ export class ModelUploadComponent {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
 
-  protected fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
+  public fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
   public file: WritableSignal<File | null> = signal(null);
   public uploading = signal(false);
@@ -68,10 +70,24 @@ export class ModelUploadComponent {
 
   public onFileSelected(event: Event): void {
     const files = (event.target as HTMLInputElement).files;
-    if (files) {
-      this.file.set(files[0]);
-      this.uploadFile();
+    if (!files) {
+      this.showSnackbar('No file uploaded', 'error-snackbar')
+      return;
     }
+
+    const file = files[0];
+    const isFileSupported = this.isFileTypeSupported(file);
+    if(!isFileSupported) {
+      this.showSnackbar('Unsupported file type', 'error-snackbar')
+      return;
+    }
+
+    this.file.set(file);
+    this.uploadFile();
+  }
+
+  public isFileTypeSupported(file: File) {
+    return SUPPORTED_FILE_TYPES.includes(file.name.split('.').pop() ?? '');
   }
 
   public onDrop(event: DragEvent): void {
@@ -144,6 +160,9 @@ export class ModelUploadComponent {
     return (await this.modelViewerService.getCanvasOutput(
       modelUrl,
       true,
+      undefined,
+      undefined,
+      1.5
     )) as string;
   }
 

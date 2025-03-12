@@ -40,7 +40,6 @@ export class MaterialsComponent implements OnInit {
   }
 
   public toggleSelection(materialId: string, colorHex: string): void {
-     console.log(`Dispatching Toggle Material Selection:`, { materialId, colorHex });
   this.store.dispatch(
     MaterialActions.toggleMaterialSelection({ materialId, colorHex }),
   );

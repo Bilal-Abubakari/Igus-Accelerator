@@ -1,10 +1,11 @@
 <div class="configuration">
-  <div #viewer class="model-viewer-content" [class.fullscreen]="isFullScreen()">
-    <div #controls class="model-controls">
+  <div #viewer class="model_viewer_content" [class.fullscreen]="isFullScreen()">
+    <div #controls class="model_controls">
       <mat-icon (click)="toggleFullScreen()">
         {{ isFullScreen() ? 'fullscreen_exit' : 'fullscreen' }}
       </mat-icon>
     </div>
   </div>
+
   <app-materials />
 </div>

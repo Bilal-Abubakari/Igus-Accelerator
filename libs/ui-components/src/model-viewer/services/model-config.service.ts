@@ -20,7 +20,7 @@ export class ModelConfigService {
   constructor(
     @Inject('BASE_API_URL')
     private readonly baseUrl: string,
-  ) {}
+  ) { }
 
   public uploadConfig(
     file: File,
@@ -35,22 +35,24 @@ export class ModelConfigService {
         `${this.baseUrl}/configuration/upload`,
         formData,
         {
-          reportProgress: true,
           observe: 'events',
+          reportProgress: true,
           withCredentials: true,
         },
       )
       .pipe(
         map((event) => {
-          if (event.type === HttpEventType.UploadProgress && event.total) {
-            return {
-              name: '',
-              progress: Math.round((100 * event.loaded) / event.total),
-            } as UploadProgress;
-          } else if (event.type === HttpEventType.Response) {
-            return event.body as ModelConfigurationEntity;
+          switch (event.type) {
+            case HttpEventType.UploadProgress:
+              return {
+                name: file.name,
+                progress: Math.round(100 * (event.loaded / (event.total ?? 1)) - 1),
+              } as UploadProgress;
+            case HttpEventType.Response:
+              return event.body as ModelConfigurationEntity;
+            default:
+              return { name: file.name, progress: 0 };
           }
-          return { name: '', progress: 0 };
         }),
       );
   }
@@ -84,7 +86,7 @@ export class ModelConfigService {
     );
   }
 
-  public getModelConfigs(): Observable<ModelConfigurationEntity[]> {
+  public getCustomerConfigs(): Observable<ModelConfigurationEntity[]> {
     return this.http.get<ModelConfigurationEntity[]>(
       `${this.baseUrl}/configuration/customer`,
     );

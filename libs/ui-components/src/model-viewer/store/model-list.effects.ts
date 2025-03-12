@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { ModelConfigService } from '../services/model-config.service';
 import { ModelListActions } from './model-list.actions';
 
@@ -13,11 +13,11 @@ export class ModelListEffects {
     this.actions$.pipe(
       ofType(ModelListActions.loadModelList),
       exhaustMap(() =>
-        this.modelConfigService.getModelConfigs().pipe(
+        this.modelConfigService.getCustomerConfigs().pipe(
           map((modelList) =>
             ModelListActions.loadModelListSuccess({
               modelList: modelList ?? [],
-            }),
+            }), 
           ),
           catchError((error) => {
             return of(

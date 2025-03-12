@@ -1,0 +1,47 @@
+<div class="injection-model-container">
+  <h1 class="title">{{ 'cta.TITLE' | transloco }}</h1>
+
+  <div class="options-container">
+    <div class="option-card">
+      <h2 class="option-title">{{ 'cta.SCHEDULE.TITLE' | transloco }}</h2>
+      <p class="option-description">
+        {{ 'cta.SCHEDULE.DESCRIPTION' | transloco }}
+      </p>
+      <app-reusable-button
+        [className]="'upload-button'"
+        (buttonClick)="openContactForm()"
+        [styles]="{
+          'background-color': 'var(--mat-sys-on-primary-container)',
+          color: 'white',
+          'border-radius': '25px',
+          'font-weight': 'semi-bold',
+        }"
+      >
+        <span>{{ 'cta.SCHEDULE.BUTTON' | transloco }}</span>
+      </app-reusable-button>
+    </div>
+
+    <div class="option-card">
+      <h2 class="option-title">{{ 'cta.TRY_IT.TITLE' | transloco }}</h2>
+      <p class="option-description">
+        {{ 'cta.TRY_IT.DESCRIPTION' | transloco }}
+      </p>
+      <app-reusable-button
+        [className]="'upload-button'"
+        [routerLink]="['/library']"
+        [styles]="{
+          'background-color': 'var(--mat-sys-on-primary-container)',
+          color: 'white',
+          'border-radius': '25px',
+          'font-weight': 'semi-bold',
+          display: 'flex',
+          'align-items': 'start',
+          'justify-content': 'center',
+        }"
+      >
+        {{ 'cta.TRY_IT.BUTTON' | transloco }}
+        <mat-icon class="arrow-icon">arrow_forward</mat-icon>
+      </app-reusable-button>
+    </div>
+  </div>
+</div>

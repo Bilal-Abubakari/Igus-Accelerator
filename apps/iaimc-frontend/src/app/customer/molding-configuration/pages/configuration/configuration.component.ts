@@ -144,7 +144,6 @@ export class ConfigurationComponent implements AfterViewInit {
   private listenForMaterialChanges(): void {
     this.store.select(selectMaterial).subscribe((selectedMaterial) => {
       if (selectedMaterial) {
-        console.log('Material Selected:', selectedMaterial);
         this.modelViewerService.updateModelColor(selectedMaterial.colorHex);
       }
     });

@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use '../styles/breakpoints' as bp;
 
 $canvas-width: 700px;
 $material-card-min-height: 250px;
@@ -6,8 +7,6 @@ $material-card-border-radius: 8px;
 $material-card-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 $material-card-hover-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 $material-header-height: 10px;
-$toolbar-height: 50px;
-$navbar-height: 64px;
 $tolerance-container-bg: #f5f3f3;
 
 .loading-container {
@@ -31,27 +30,31 @@ mat-icon {
 
 .material-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 16px;
-  padding: 16px;
-  width: calc(100vw - #{$canvas-width});
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 16px 24px;
   overflow-x: auto;
-  height: calc(100vh - #{$toolbar-height} - #{$navbar-height} );
+  height: calc(100vh - var(--toolbar-height) - var(--navbar-height));
     &::-webkit-scrollbar {
     display: none;
   }
-  @media (max-width: 1024px) {
-    width: calc(100vw - 16px);
+
+  @include bp.xxl {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    padding: 8px;
-    width: calc(100vw - 16px);
+  @include bp.lg {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  @include bp.md-only {
+    grid-template-columns: 1fr;
   }
 
-  @media only screen and (max-height: 700px) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 20px;
-  }
+
+
+
+
+
+
 }

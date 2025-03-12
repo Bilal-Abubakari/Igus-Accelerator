@@ -1,0 +1,11 @@
+<div class="model_list">
+  @if (errorFetchingModel()) {
+    <p class="error_message">Error fetching models. Please try again later.</p>
+  } @else if (models().length) {
+    <div class="standard_model_view">
+      @for (model of models(); track model.id) {
+        <app-model-card [modelConfiguration]="model" />
+      }
+    </div>
+  }
+</div>

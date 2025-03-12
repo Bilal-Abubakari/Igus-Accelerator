@@ -18,7 +18,7 @@ import { FileUploadService } from '../file-upload/file-upload.service';
 import { FileEntity, ModelConfigurationEntity, MaterialName, UserEntity, ReviewStatus, ConfigCount } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 export const DEFAULT_MATERIAL: MaterialName = 'A160';
-export const CONFIGURATION_CACHE_EXPIRATION_TIME_MS = 10000 * ACCESS_TOKEN_EXPIRATION_TIME;
+export const CONFIGURATION_CACHE_EXPIRATION_TIME_MS = 1000 * ACCESS_TOKEN_EXPIRATION_TIME;
 
 @Injectable()
 export class ModelConfigService {

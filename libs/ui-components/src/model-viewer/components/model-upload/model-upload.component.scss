@@ -1,27 +1,28 @@
 @use '@angular/material' as mat;
-@use '../../styles/variables' as globalVars;
+@use '../../../styles/variables' as globalVars;
+@use '../../../styles/breakpoints' as bp;
 
 .upload_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
-  margin: 0 auto;
-  width: globalVars.$max-content-width;
+  margin: 50px auto;
+  box-sizing: border-box;
+  width: min(100%, globalVars.$max-content-width);
 
   .upload_card {
     width: 100%;
     max-width: 75rem;
     border-radius: 0.5rem;
-    border: 0.0625rem solid #ddd;
+    border: 1px solid #ddd;
     background-color: #fff;
 
     mat-card-header {
       padding: 1rem;
-      border-bottom: 0.0625rem solid #eee;
+      border-bottom: 1px solid #eee;
 
       mat-card-title {
-        font-size: 1.25rem;
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
         font-weight: 700;
         color: #333;
         font-family: 'Roboto', sans-serif;
@@ -29,7 +30,7 @@
     }
 
     mat-card-content {
-      padding: 1rem;
+      box-sizing: border-box;
     }
 
     .upload_container {
@@ -39,7 +40,7 @@
       align-items: center;
       justify-content: center;
       padding: 1.25rem;
-      border: 0.125rem dashed #ccc;
+      border: 2px dashed #ccc;
       border-radius: 0.625rem;
       background-color: #f9f9f9;
       margin-bottom: 1.25rem;
@@ -157,13 +158,13 @@
   }
 }
 
-@media (max-width: 768px) {
+// Responsive Styling using Breakpoint Mixins
+@include bp.max-md {
   .upload_wrapper {
     padding: 1rem;
   }
 
   .upload_card {
-    width: 100%;
     max-width: 90vw;
   }
 
@@ -177,10 +178,50 @@
   }
 }
 
-@media only screen and (max-height: 700px) {
+@include bp.md-only {
   .upload_wrapper {
-    .upload_card {
-      width: 100%;
-    }
+    margin: 40px auto;
+  }
+
+  .upload_card {
+    max-width: 80vw;
+  }
+
+  .upload_container {
+    min-height: 11rem;
+  }
+}
+
+@include bp.lg {
+  .upload_wrapper {
+    margin: 60px auto;
+  }
+
+  .upload_card {
+    max-width: 70vw;
+  }
+
+  .upload_container {
+    padding: 1.5rem;
+  }
+}
+
+@include bp.xl {
+  .upload_card {
+    max-width: 60vw;
+  }
+
+  .upload_container {
+    padding: 2rem;
+  }
+}
+
+@include bp.xxl {
+  .upload_card {
+    max-width: 50vw;
+  }
+
+  .upload_container {
+    min-height: 14rem;
   }
 }

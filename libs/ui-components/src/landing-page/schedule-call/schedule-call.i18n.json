@@ -1,0 +1,85 @@
+{
+  "cta": {
+    "TITLE": {
+      "ar": "هل أنت مستعد لأخذ نموذج الحقن في جولة؟",
+      "de": "Sind Sie bereit, das Injection Model auszuprobieren?",
+      "en": "Ready to take Injection Model for a spin?",
+      "es": "¿Listo para dar una vuelta con Injection Model?",
+      "fr": "Prêt à tester le modèle d'injection ?",
+      "jp": "インジェクション・モデルを試す準備はできていますか？",
+      "pt": "Pronto para dar uma volta com o Injection Model?",
+      "ru": "Готовы взять Injection Model на вооружение?",
+      "zh": "准备好试用注塑模型了吗？"
+    },
+    "SCHEDULE": {
+      "TITLE": {
+        "ar": "حدد موعداً لمكالمة هاتفية",
+        "de": "Einen Anruf vereinbaren",
+        "en": "Schedule a call",
+        "es": "Programar una llamada",
+        "fr": "Planifier un appel",
+        "jp": "電話予約",
+        "pt": "Agendar uma chamada",
+        "ru": "Запланируйте звонок",
+        "zh": "预约电话"
+      },
+      "DESCRIPTION": {
+        "ar": "نحن نساعد الشركات بكل سرور على البدء.",
+        "de": "Wir helfen Unternehmen gerne beim Einstieg.",
+        "en": "We are gladly helping companies to get started.",
+        "es": "Estamos encantados de ayudar a las empresas a ponerse en marcha.",
+        "fr": "Nous aidons volontiers les entreprises à démarrer.",
+        "jp": "私たちは喜んで企業のスタートをお手伝いします。",
+        "pt": "Temos o prazer de ajudar as empresas a começar.",
+        "ru": "Мы с удовольствием помогаем компаниям начать работу.",
+        "zh": "我们很高兴能帮助企业起步。"
+      },
+      "BUTTON": {
+        "ar": "حدد موعداً لمكالمة هاتفية",
+        "de": "Einen Anruf vereinbaren",
+        "en": "Schedule a call",
+        "es": "Programar una llamada",
+        "fr": "Planifier un appel",
+        "jp": "電話予約",
+        "pt": "Agendar uma chamada",
+        "ru": "Запланируйте звонок",
+        "zh": "预约电话"
+      }
+    },
+    "TRY_IT": {
+      "TITLE": {
+        "ar": "جرّبها بنفسك",
+        "de": "Probieren Sie es selbst aus",
+        "en": "Try it out yourself",
+        "es": "Pruébelo usted mismo",
+        "fr": "Essayez-le vous-même",
+        "jp": "自分で試してみる",
+        "pt": "Experimente você mesmo",
+        "ru": "Попробуйте сами",
+        "zh": "亲自体验"
+      },
+      "DESCRIPTION": {
+        "ar": "لقد جعلنا من السهل قدر الإمكان تجربة نموذج الحقن.",
+        "de": "Wir haben es so einfach wie möglich gemacht, das Injektionsmodell auszuprobieren.",
+        "en": "We have made it as easy as possible to try Injection model.",
+        "es": "Hemos facilitado al máximo la prueba del modelo Injection.",
+        "fr": "Nous avons fait en sorte qu'il soit aussi facile que possible d'essayer le modèle d'injection.",
+        "jp": "インジェクションモデルをできるだけ簡単にお試しいただけるようにしました。",
+        "pt": "Facilitamos ao máximo a experimentação do modelo Injection.",
+        "ru": "Мы сделали так, чтобы попробовать модель Injection было максимально просто.",
+        "zh": "我们为您提供了尽可能简便的注射模式。"
+      },
+      "BUTTON": {
+        "ar": "تحميل النموذج",
+        "de": "Modell hochladen",
+        "en": "Upload model",
+        "es": "Subir modelo",
+        "fr": "Télécharger le modèle",
+        "jp": "モデルのアップロード",
+        "pt": "Carregar modelo",
+        "ru": "Загрузить модель",
+        "zh": "上传模型"
+      }
+    }
+  }
+}
