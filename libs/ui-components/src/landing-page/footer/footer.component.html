@@ -37,14 +37,17 @@
             ></app-reusable-form-field>
           </div>
           <app-reusable-button
-            [className]="'custom-button'"
             [color]="'primary'"
             [isInFooter]="true"
+            (buttonClick)="onSubscribe()"
+            [disabled]="isSubscriptionLoading()"
           >
-            <span>{{ 'footer.SUBSCRIBE_TEXT' | transloco }}</span>
-            @if (isSubscriptionLoading()) {
-              <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
-            }
+            <span class="button-content">
+              <span>{{ 'footer.SUBSCRIBE_TEXT' | transloco }}</span>
+              @if (isSubscriptionLoading()) {
+                <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+              }
+            </span>
           </app-reusable-button>
         </div>
       </section>

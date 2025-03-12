@@ -28,8 +28,9 @@ import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { appReducer } from './app.reducer';
 import { excludeKeys } from '@ngrx-addons/common';
-import { FOOTER_FEATURE_KEY } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
+import { MAIN_FOOTER_FEATURE_KEY } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/contact-form.reducer';
+import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/landing-page/footer/store/footer.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -39,7 +40,7 @@ export const appConfig: ApplicationConfig = {
     providePersistStore({
       states: [
         {
-          key: FOOTER_FEATURE_KEY,
+          key: MAIN_FOOTER_FEATURE_KEY,
           storage: localStorageStrategy,
           runGuard: () => typeof window !== 'undefined',
           migrations: [],
@@ -62,6 +63,15 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(excludeKeys(['isSubmitting', 'isSubmitted', 'error'])),
+          skip: 1,
+        },
+        {
+          key: FOOTER_FEATURE_KEY,
+          storage: localStorageStrategy,
+          runGuard: () => typeof window !== 'undefined',
+          migrations: [],
+          source: (state) =>
+            state.pipe(excludeKeys(['isSubscriptionLoading', 'message'])),
           skip: 1,
         },
       ],

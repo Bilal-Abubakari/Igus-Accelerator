@@ -50,19 +50,11 @@ mat-toolbar {
               color: var(--mat-sys-outline) !important;
             }
           }
-          .custom-button {
-            border-radius: 0.75rem;
-            border: none;
-            height: 42px;
-            width: 100%;
-            padding: 0 1.19113rem;
-
+          .button-content {
+            @include flex-option(flex, center, center);
             cursor: pointer;
             @include flex-option(flex, center, center);
             gap: 0.5rem;
-            &:hover {
-              background-color: var(--mat-sys-background);
-            }
           }
         }
       }

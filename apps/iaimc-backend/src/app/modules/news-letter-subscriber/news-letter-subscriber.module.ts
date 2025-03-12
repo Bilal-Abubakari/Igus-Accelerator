@@ -8,9 +8,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      NewsLetterSubscriberEntity
-    ]),
+    TypeOrmModule.forFeature([NewsLetterSubscriberEntity]),
     NestMailerModule.forRoot({
       transport: {
         host: process.env.EMAIL_HOST,
@@ -33,6 +31,6 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
     }),
   ],
   controllers: [NewsLetterSubscriberController],
-  providers: [NewsLetterSubscriberService]
+  providers: [NewsLetterSubscriberService],
 })
 export class NewsLetterSubscriberModule {}

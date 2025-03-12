@@ -11,12 +11,12 @@ describe('NewsLetterSubscriberController', () => {
 
   const mockSubscriberDto: NewsLetterSubscriberDto = {
     email: 'test@example.com',
-    firstName: 'John'
+    firstName: 'John',
   };
 
   beforeEach(async () => {
     serviceMock = {
-      create: jest.fn()
+      create: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -24,12 +24,14 @@ describe('NewsLetterSubscriberController', () => {
       providers: [
         {
           provide: NewsLetterSubscriberService,
-          useValue: serviceMock
-        }
+          useValue: serviceMock,
+        },
       ],
     }).compile();
 
-    controller = module.get<NewsLetterSubscriberController>(NewsLetterSubscriberController);
+    controller = module.get<NewsLetterSubscriberController>(
+      NewsLetterSubscriberController,
+    );
   });
 
   afterEach(() => {

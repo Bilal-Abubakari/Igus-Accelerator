@@ -6,7 +6,6 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { NewsLetterSubscriberDto } from './dtos/news-letter-subscriber.dto';
 import * as process from 'node:process';
 
-
 @Injectable()
 export class NewsLetterSubscriberService {
   constructor(
@@ -20,11 +19,15 @@ export class NewsLetterSubscriberService {
       const subscriber = await this.saveSubscriber(subscriberDto);
       await this.sendWelcomeEmail(subscriber);
     } catch (error) {
-      throw new InternalServerErrorException(`Failed to create newsletter subscriber ${(error as Error).message}`,);
+      throw new InternalServerErrorException(
+        `Failed to create newsletter subscriber ${(error as Error).message}`,
+      );
     }
   }
 
-  private async saveSubscriber(subscriberDto: NewsLetterSubscriberDto): Promise<NewsLetterSubscriberEntity> {
+  private async saveSubscriber(
+    subscriberDto: NewsLetterSubscriberDto,
+  ): Promise<NewsLetterSubscriberEntity> {
     const existingSubscriber = await this.repository.findOne({
       where: { email: subscriberDto.email },
     });
@@ -41,7 +44,9 @@ export class NewsLetterSubscriberService {
     return this.repository.save(subscriber);
   }
 
-  private async sendWelcomeEmail(subscriber: NewsLetterSubscriberDto): Promise<void> {
+  private async sendWelcomeEmail(
+    subscriber: NewsLetterSubscriberDto,
+  ): Promise<void> {
     const { email, firstName } = subscriber;
 
     try {
@@ -52,7 +57,9 @@ export class NewsLetterSubscriberService {
         html: this.getWelcomeEmailTemplate(firstName),
       });
     } catch (error) {
-      throw new InternalServerErrorException(`Failed to send welcome email ${(error as Error).message}`);
+      throw new InternalServerErrorException(
+        `Failed to send welcome email ${(error as Error).message}`,
+      );
     }
   }
 
@@ -65,5 +72,4 @@ export class NewsLetterSubscriberService {
       <p>Best regards,<br/>The Team</p>
     `;
   }
-
 }

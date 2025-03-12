@@ -23,7 +23,7 @@ export default (): DatabaseConfig => ({
       ModelConfigurationEntity,
       NewsLetterSubscriberEntity,
       RoleEntity,
-      UserEntity
+      UserEntity,
     ],
     url: process.env.POSTGRES_DATABASE_URL,
     synchronize: process.env.NODE_ENV === 'development',

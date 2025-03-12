@@ -24,7 +24,7 @@ describe('NewsLetterSubscriberService', () => {
 
   const mockSubscriberDto: NewsLetterSubscriberDto = {
     email: 'test@example.com',
-    firstName: 'John'
+    firstName: 'John',
   };
 
   const mockSubscriberEntity: NewsLetterSubscriberEntity = {
@@ -32,18 +32,18 @@ describe('NewsLetterSubscriberService', () => {
     email: 'test@example.com',
     firstName: 'John',
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
   };
 
   beforeEach(async () => {
     repositoryMock = {
       findOne: jest.fn(),
       create: jest.fn(),
-      save: jest.fn()
+      save: jest.fn(),
     };
 
     mailerServiceMock = {
-      sendMail: jest.fn()
+      sendMail: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -51,16 +51,18 @@ describe('NewsLetterSubscriberService', () => {
         NewsLetterSubscriberService,
         {
           provide: getRepositoryToken(NewsLetterSubscriberEntity),
-          useValue: repositoryMock
+          useValue: repositoryMock,
         },
         {
           provide: MailerService,
-          useValue: mailerServiceMock
-        }
+          useValue: mailerServiceMock,
+        },
       ],
     }).compile();
 
-    service = module.get<NewsLetterSubscriberService>(NewsLetterSubscriberService);
+    service = module.get<NewsLetterSubscriberService>(
+      NewsLetterSubscriberService,
+    );
   });
 
   afterEach(() => {
@@ -77,29 +79,38 @@ describe('NewsLetterSubscriberService', () => {
       await service.create(mockSubscriberDto);
 
       expect(repositoryMock.findOne).toHaveBeenCalledWith({
-        where: { email: mockSubscriberDto.email }
+        where: { email: mockSubscriberDto.email },
       });
       expect(repositoryMock.create).toHaveBeenCalledWith(mockSubscriberDto);
       expect(repositoryMock.save).toHaveBeenCalledWith(mockSubscriberEntity);
       expect(mailerServiceMock.sendMail).toHaveBeenCalled();
-      expect(mailerServiceMock.sendMail.mock.calls[0][0]).toHaveProperty('to', mockSubscriberDto.email);
+      expect(mailerServiceMock.sendMail.mock.calls[0][0]).toHaveProperty(
+        'to',
+        mockSubscriberDto.email,
+      );
     });
 
     it('should update firstName if subscriber exists with different name', async () => {
-      const existingSubscriber = { ...mockSubscriberEntity, firstName: 'OldName' };
+      const existingSubscriber = {
+        ...mockSubscriberEntity,
+        firstName: 'OldName',
+      };
       repositoryMock.findOne.mockResolvedValue(existingSubscriber);
-      repositoryMock.save.mockResolvedValue({ ...existingSubscriber, firstName: mockSubscriberDto.firstName });
+      repositoryMock.save.mockResolvedValue({
+        ...existingSubscriber,
+        firstName: mockSubscriberDto.firstName,
+      });
       mailerServiceMock.sendMail.mockResolvedValue({});
 
       await service.create(mockSubscriberDto);
 
       expect(repositoryMock.findOne).toHaveBeenCalledWith({
-        where: { email: mockSubscriberDto.email }
+        where: { email: mockSubscriberDto.email },
       });
       expect(repositoryMock.create).not.toHaveBeenCalled();
       expect(repositoryMock.save).toHaveBeenCalledWith({
         ...existingSubscriber,
-        firstName: mockSubscriberDto.firstName
+        firstName: mockSubscriberDto.firstName,
       });
       expect(mailerServiceMock.sendMail).toHaveBeenCalled();
     });
@@ -111,7 +122,7 @@ describe('NewsLetterSubscriberService', () => {
       await service.create(mockSubscriberDto);
 
       expect(repositoryMock.findOne).toHaveBeenCalledWith({
-        where: { email: mockSubscriberDto.email }
+        where: { email: mockSubscriberDto.email },
       });
       expect(repositoryMock.create).not.toHaveBeenCalled();
       expect(repositoryMock.save).not.toHaveBeenCalled();
@@ -123,7 +134,9 @@ describe('NewsLetterSubscriberService', () => {
       repositoryMock.findOne.mockRejectedValue(error);
 
       await expect(service.create(mockSubscriberDto)).rejects.toThrow(
-        new InternalServerErrorException(`Failed to create newsletter subscriber ${error.message}`)
+        new InternalServerErrorException(
+          `Failed to create newsletter subscriber ${error.message}`,
+        ),
       );
       expect(mailerServiceMock.sendMail).not.toHaveBeenCalled();
     });
@@ -136,7 +149,9 @@ describe('NewsLetterSubscriberService', () => {
       mailerServiceMock.sendMail.mockRejectedValue(error);
 
       await expect(service.create(mockSubscriberDto)).rejects.toThrow(
-        new InternalServerErrorException(`Failed to create newsletter subscriber Failed to send welcome email ${error.message}`)
+        new InternalServerErrorException(
+          `Failed to create newsletter subscriber Failed to send welcome email ${error.message}`,
+        ),
       );
     });
   });

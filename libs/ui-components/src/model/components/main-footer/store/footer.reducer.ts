@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { FooterState, initialFooterState } from './footer.state';
 import { FooterActions } from './footer.actions';
 
-export const FOOTER_FEATURE_KEY = 'footerState';
+export const MAIN_FOOTER_FEATURE_KEY = 'mainFooterState';
 
 const reducer = createReducer(
   initialFooterState,
@@ -44,7 +44,7 @@ const reducer = createReducer(
   })),
 );
 
-export function footerReducer(
+export function mainFooterReducer(
   state: FooterState | undefined,
   action: Action<string>,
 ) {
