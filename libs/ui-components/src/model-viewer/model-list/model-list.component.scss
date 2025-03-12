@@ -1,0 +1,34 @@
+@use '../styles/variables' as modelViewerVars;
+@use '../../styles/variables' as globalVars;
+
+.model-list {
+  padding: 32px 16px;
+  margin: 0 auto;
+  width: globalVars.$max-content-width;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+
+  .model-grid {
+    display: grid;
+    width: globalVars.$max-content-width;
+
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(modelViewerVars.$snapshot-card-width, 1fr)
+    );
+    gap: 16px;
+  }
+}

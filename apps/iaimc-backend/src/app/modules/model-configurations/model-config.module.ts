@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../../common/entities/user.entity';
+import { UserEntity, FileEntity, ModelConfigurationEntity } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { FileUploadService } from '../file-upload/file-upload.service';
-import { ModelConfigurationEntity } from './entities/configuration.entity';
-import { FileEntity } from './entities/file.entity';
 import { ModelConfigController } from './model-config.controller';
 import { ModelConfigService } from './model-config.service';
 import { CacheModule } from '@nestjs/cache-manager';
@@ -20,4 +18,4 @@ import { CacheModule } from '@nestjs/cache-manager';
   controllers: [ModelConfigController],
   providers: [ModelConfigService, FileUploadService],
 })
-export class ModelConfigModule {}
+export class ModelConfigModule { }

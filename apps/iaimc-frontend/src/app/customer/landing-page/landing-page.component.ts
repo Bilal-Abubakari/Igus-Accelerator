@@ -5,8 +5,8 @@ import {
   ScheduleCallComponent,
   HowItWorksComponent,
   StayUpdatedComponent,
+  FooterComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { FooterComponent } from '../../../../../../libs/ui-components/src/landing-page/footer/footer.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -14,12 +14,12 @@ import { FooterComponent } from '../../../../../../libs/ui-components/src/landin
     StageComponent,
     ScheduleCallComponent,
     FooterComponent,
-    MaterialSelectionComponent,
     HowItWorksComponent,
     StayUpdatedComponent,
+    MaterialSelectionComponent
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageComponent {}
+export class LandingPageComponent { }

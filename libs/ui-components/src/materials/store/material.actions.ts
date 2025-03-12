@@ -9,6 +9,6 @@ export const MaterialActions = createActionGroup({
       materials: InjectionMoldingMaterial[];
     }>(),
     'Load Materials Failure': props<{ materialFetchError: string }>(),
-    'Toggle Material Selection': props<{ materialId: string }>(),
+    'Toggle Material Selection': props<{ materialId: string; colorHex: string }>(),
   },
 });

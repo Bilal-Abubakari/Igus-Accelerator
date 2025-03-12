@@ -1,4 +1,4 @@
-import { ReviewStatus } from '../../../common/types/general.types';
+import { ReviewStatus } from "@igus-accelerator-injection-molding-configurator/libs/shared";
 
 export interface ModelConfiguration {
   id: string;

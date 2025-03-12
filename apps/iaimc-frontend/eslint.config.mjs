@@ -87,7 +87,7 @@ export default [
         'error',
         { maxComplexity: 10 },
       ],
-      '@angular-eslint/template/no-call-expression': 'error',
+      '@angular-eslint/template/no-call-expression': 'off',
     },
   },
 ];

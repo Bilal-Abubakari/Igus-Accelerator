@@ -1,20 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialInfoDialogComponent } from './material-info-dialog.component';
-import { Store } from '@ngrx/store';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { signal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   translocoConfig,
-  TranslocoService,
-  TranslocoTestingModule,
+  TranslocoTestingModule
 } from '@jsverse/transloco';
+import { Store } from '@ngrx/store';
+import { MaterialInfoDialogComponent } from './material-info-dialog.component';
 
 describe('MaterialInfoDialogComponent', () => {
   let component: MaterialInfoDialogComponent;
   let fixture: ComponentFixture<MaterialInfoDialogComponent>;
   let mockStore: { selectSignal: jest.Mock };
   let mockDialogRef: { close: jest.Mock };
-  let translocoService: TranslocoService;
 
   const mockMaterial = {
     id: '1',
@@ -58,7 +56,6 @@ describe('MaterialInfoDialogComponent', () => {
 
     fixture = TestBed.createComponent(MaterialInfoDialogComponent);
     component = fixture.componentInstance;
-    translocoService = TestBed.inject(TranslocoService);
     fixture.detectChanges();
   });
 

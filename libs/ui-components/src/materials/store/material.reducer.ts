@@ -26,18 +26,19 @@ const reducer = createReducer(
     triggerMaterialFetch: false,
     materialFetchError,
   })),
-  on(MaterialActions.toggleMaterialSelection, (state, { materialId }) => {
-    const selectedMaterial =
-      state.selectedMaterial?.id === materialId
-        ? null
-        : state.materials.find((material) => material.id === materialId) ||
-          null;
+  on(MaterialActions.toggleMaterialSelection, (state, { materialId, colorHex }) => {
+  const selectedMaterial =
+    state.selectedMaterial?.id === materialId
+      ? null
+      : state.materials.find((material) => material.id === materialId) || null;
 
-    return {
-      ...state,
-      selectedMaterial,
-    };
-  }),
+  return {
+    ...state,
+    selectedMaterial: selectedMaterial
+      ? { ...selectedMaterial, colorHex }
+      : null,
+  };
+}),
 );
 
 export function materialReducer(

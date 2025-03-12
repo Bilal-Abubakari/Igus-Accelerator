@@ -1,0 +1,15 @@
+<div class="model-list">
+  @if (errorFetchingModel()) {
+    <p class="error-message">Error fetching models. Please try again later.</p>
+  } @else if (models().length) {
+    <!-- <h2>Select model }})</h2> -->
+
+    <div class="model-grid">
+      @for (model of models(); track model.id) {
+        <app-model-card [modelConfiguration]="model"></app-model-card>
+      }
+    </div>
+  } @else {
+    <p>No models available.</p>
+  }
+</div>

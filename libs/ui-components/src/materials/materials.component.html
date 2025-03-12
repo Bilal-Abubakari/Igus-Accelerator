@@ -6,12 +6,12 @@
   <div class="material-grid">
     @for (material of materials(); track material.id) {
       <app-materials-card
-        [material]="material"
-        [selectedMaterialId]="selectedMaterialId()"
-        (click)="toggleSelection(material.id)"
-        (keydown.enter)="toggleSelection(material.id)"
-        (keydown.space)="toggleSelection(material.id)"
-        tabindex="0"
+       [material]="material"
+  [selectedMaterialId]="selectedMaterialId()"
+  (click)="toggleSelection(material.id, material.colorHex)"
+  (keydown.enter)="toggleSelection(material.id, material.colorHex)"
+  (keydown.space)="toggleSelection(material.id, material.colorHex)"
+  tabindex="0"
       ></app-materials-card>
     } @empty {
       <p>{{ 'materialCard.EMPTY_STATE' | transloco }}.</p>

@@ -1,0 +1,46 @@
+@use '@angular/material' as mat;
+@use './../../styles/variables' as vars;
+
+$snapshot-image-height: 220px;
+
+.model-snapshot {
+  width: vars.$snapshot-card-width;
+  height: vars.$snapshot-card-height;
+  background: none;
+  border: none;
+
+  .snapshot-image {
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    width: vars.$snapshot-card-width;
+    height: $snapshot-image-height;
+    display: block;
+  }
+
+  .file-name {
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .review-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #363636;
+    margin-bottom: 5px;
+  }
+
+  .material,
+  .date-added {
+    font-size: 12px;
+    color: #545454;
+  }
+
+  .material {
+    margin-bottom: 5px;
+  }
+}

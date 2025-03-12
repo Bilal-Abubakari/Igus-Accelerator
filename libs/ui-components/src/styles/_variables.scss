@@ -19,6 +19,8 @@ $subscription-background: #262626;
 $subscription-primary-color: #a1a1a1;
 $footer-icon-background-color: #606060;
 
+$max-content-width: 1133px;
+
 //Global Mixins
 @mixin flex-center {
   display: flex;

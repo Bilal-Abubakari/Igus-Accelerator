@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { LocalStorageKeys, LocalStorageService } from './local-storage.service';
+import { LocalStorageKeys, LocalStorageService } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 @Injectable({ providedIn: 'root' })
 export class ModelUploadState {

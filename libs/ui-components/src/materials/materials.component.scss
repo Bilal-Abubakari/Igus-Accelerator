@@ -6,6 +6,8 @@ $material-card-border-radius: 8px;
 $material-card-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 $material-card-hover-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 $material-header-height: 10px;
+$toolbar-height: 50px;
+$navbar-height: 64px;
 $tolerance-container-bg: #f5f3f3;
 
 .loading-container {
@@ -34,7 +36,10 @@ mat-icon {
   padding: 16px;
   width: calc(100vw - #{$canvas-width});
   overflow-x: auto;
-
+  height: calc(100vh - #{$toolbar-height} - #{$navbar-height} );
+    &::-webkit-scrollbar {
+    display: none;
+  }
   @media (max-width: 1024px) {
     width: calc(100vw - 16px);
   }
