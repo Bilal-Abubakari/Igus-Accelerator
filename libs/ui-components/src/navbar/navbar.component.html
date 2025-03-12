@@ -9,7 +9,7 @@
   </button>
 
   <div [class.open]="isMenuOpened()">
-    @if (hasUploadedModel()) {
+    <!-- @if (hasUploadedModel()) {
       <nav mat-tab-nav-bar [tabPanel]="tabPanel">
         <a
           mat-tab-link
@@ -37,7 +37,7 @@
           {{ 'nav.PRODUCIBILITY' | transloco }}
         </a>
       </nav>
-    }
+    } -->
     <mat-tab-nav-panel #tabPanel> </mat-tab-nav-panel>
   </div>
 </mat-toolbar>

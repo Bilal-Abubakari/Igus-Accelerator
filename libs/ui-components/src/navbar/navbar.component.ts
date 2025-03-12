@@ -1,18 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  signal,
-} from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTabsModule } from '@angular/material/tabs';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { NAVIGATION_ROUTES } from './constants';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { ModelUploadState } from '../model/components/model-upload/services/model-upload-state.service';
+import { NAVIGATION_ROUTES } from './constants';
 
 @Component({
   selector: 'app-navbar',
@@ -31,8 +24,6 @@ import { ModelUploadState } from '../model/components/model-upload/services/mode
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  private modelUploadState = inject(ModelUploadState);
-
   public homeRoute = signal(NAVIGATION_ROUTES.LIBRARY);
   public configurationsRoute = signal([
     '/',
@@ -46,10 +37,6 @@ export class NavbarComponent {
   ]);
 
   public isMenuOpened = signal(false);
-
-  public hasUploadedModel = computed(() =>
-    this.modelUploadState.hasUploadedModel(),
-  );
 
   public toggleMenu(): void {
     this.isMenuOpened.set(!this.isMenuOpened());

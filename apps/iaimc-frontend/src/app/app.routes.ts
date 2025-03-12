@@ -4,7 +4,6 @@ import { MoldingConfigurationComponent } from './customer/molding-configuration/
 import { LibraryComponent } from './customer/library/library.component';
 import { ConfigurationComponent } from './customer/molding-configuration/pages/configuration/configuration.component';
 import { ProducibilityComponent } from './customer/molding-configuration/pages/producibility/producibility.component';
-import { ModelUploadGuard } from './guards/upload.guard';
 import { LandingPageComponent } from './customer/landing-page/landing-page.component';
 
 export const appRoutes: Route[] = [
@@ -20,7 +19,6 @@ export const appRoutes: Route[] = [
   {
     path: NAVIGATION_ROUTES.MOLDING_CONFIGURATION,
     component: MoldingConfigurationComponent,
-    canActivate: [ModelUploadGuard],
     children: [
       {
         path: '',

@@ -2,12 +2,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   FooterComponent,
   ModelListComponent,
+  ModelUploadComponent,
+  NavbarComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { NavbarComponent } from '../../../../../../libs/ui-components/src/navbar/navbar.component';
 
 @Component({
   selector: 'app-library',
-  imports: [FooterComponent, ModelListComponent, NavbarComponent],
+  imports: [
+    FooterComponent,
+    ModelUploadComponent,
+    NavbarComponent,
+    ModelListComponent,
+  ],
   templateUrl: './library.component.html',
   styleUrl: './library.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

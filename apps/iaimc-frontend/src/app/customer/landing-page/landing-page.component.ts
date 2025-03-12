@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   StageComponent,
   MaterialSelectionComponent,
+  ModelUploadComponent,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { ModelUploadComponent } from '../../../../../../libs/ui-components/src/model/components/model-upload/model-upload.component';
 
 @Component({
   selector: 'app-landing-page',

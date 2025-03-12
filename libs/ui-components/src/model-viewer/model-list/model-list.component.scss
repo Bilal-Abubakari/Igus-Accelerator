@@ -1,0 +1,27 @@
+@use '../styles/variables' as vars;
+
+.model-list {
+  padding: 32px 16px;
+  margin: 0 auto;
+  max-width: 90vw;
+
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(vars.$snapshot-card-width, 1fr)
+    );
+    gap: 16px;
+  }
+}

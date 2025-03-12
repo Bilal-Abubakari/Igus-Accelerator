@@ -16,7 +16,7 @@ import { Language, LanguageCode } from './types';
 import {
   LocalStorageKeys,
   LocalStorageService,
-} from '../model/components/model-upload/services/local-storage.service';
+} from '@igus-accelerator-injection-molding-configurator/libs/shared';
 
 @Component({
   selector: 'app-lang-switcher',
