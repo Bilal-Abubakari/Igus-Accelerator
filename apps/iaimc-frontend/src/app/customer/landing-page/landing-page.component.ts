@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   StageComponent,
   MaterialSelectionComponent,
+  ScheduleCallComponent,
   HowItWorksComponent,
   StayUpdatedComponent,
   FooterComponent,
@@ -11,10 +12,11 @@ import {
   selector: 'app-landing-page',
   imports: [
     StageComponent,
-    MaterialSelectionComponent,
+    ScheduleCallComponent,
     FooterComponent,
     HowItWorksComponent,
     StayUpdatedComponent,
+    MaterialSelectionComponent
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

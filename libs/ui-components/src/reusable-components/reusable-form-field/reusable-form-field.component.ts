@@ -1,14 +1,11 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-
-export interface SelectOption {
-  value: string;
-  label: string;
-}
+import { SelectOption } from '../../contact-form/contact-form.interface';
+import { DEFAULT_ERROR_MESSAGES } from '../../utilities/error-messages';
 
 @Component({
   selector: 'app-reusable-form-field',
@@ -28,12 +25,14 @@ export class ReusableFormFieldComponent {
   @Input() label = '';
   @Input() optional?: boolean;
   @Input() errorMessages: { [key: string]: string } = {};
+  @Input() customErrorMessages: { [key: string]: string } = {};
   @Input() className = '';
   @Input() isInFooter = false;
   @Input() isSelect = false;
   @Input() isTextarea = false;
   @Input() inputType = 'text';
   @Input() selectOptions: SelectOption[] = [];
+  @Input() checkboxLabel = '';
 
   getErrorMessages(): string[] {
     if (!this.control?.errors) return [];
@@ -42,10 +41,11 @@ export class ReusableFormFieldComponent {
     if (errorKeys.length === 0) return [];
 
     const firstErrorKey = errorKeys[0];
-    if (this.errorMessages[firstErrorKey]) {
-      return [this.errorMessages[firstErrorKey]];
-    }
+    const errorMessage =
+      this.errorMessages[firstErrorKey] ||
+      DEFAULT_ERROR_MESSAGES[firstErrorKey] ||
+      `Validation error: ${firstErrorKey}`;
 
-    return [`Validation error: ${firstErrorKey}`];
+    return [errorMessage];
   }
 }

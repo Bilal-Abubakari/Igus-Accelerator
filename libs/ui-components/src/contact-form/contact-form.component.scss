@@ -1,4 +1,8 @@
 @use '@angular/material' as mat;
+@use '../../../../apps/iaimc-frontend/src/styles/stylestheme.scss' as var;
+@use '../contact-form/ui-shared.scss' as shared;
+
+@include shared.material-form-overrides;
 
 .full-screen-modal {
   width: var(--full-screen-width);
@@ -7,12 +11,30 @@
   position: relative;
   margin-bottom: 400px;
 
+  .direct-close-btn {
+    position: absolute;
+    top: 70px;
+    right: 410px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+
+    mat-icon {
+      font-size: 25px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   .form-wrapper {
-    width: 100%;
-    max-width: var(--max-form-wrapper-width);
-    margin: 15px auto;
-    padding: 25px;
-    border-radius: 0;
+    @include shared.form-container;
   }
 }
 
@@ -22,117 +44,106 @@
   max-height: 100vh !important;
   width: 100vw;
   height: 100vh;
-
-  @include mat.dialog-overrides(
-    (
-      container-shape: 0px,
-      container-color: white,
-    )
-  );
 }
 
 h1.contact {
   color: var(--color-contact);
-  margin-bottom: 0;
+  margin: 20px 0;
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 }
 
 p.intro {
   font-size: var(--font-size-intro);
-  font-weight: 400;
   line-height: var(--line-height-intro);
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  letter-spacing: normal;
   margin-bottom: var(--margin-bottom-intro);
   color: var(--color-intro);
-}
-
-.attach-file-title {
-  color: var(--color-intro);
-  margin: var(--gap-standard) 0;
-}
-
-:host {
-  --close-btn-top: 24px;
-  --close-btn-right: 24px;
-  --error-font-size: 12px;
-  --error-line-height: 1.33;
-}
-.email-company-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-flex);
-  justify-content: space-between;
-  @media (max-width: 600px) {
-    flex-direction: column;
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 }
 
 .name-fields-container {
-  display: flex;
-  width: 100%;
+  @include shared.responsive-flex;
   gap: var(--gap-standard);
   > * {
     flex: 1;
   }
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
+}
+
+.email-company-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-flex);
 }
 
 .postal-country-container {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--gap-standard);
+  @include shared.grid-responsive(5fr 8fr);
   width: 100%;
+
   @media (max-width: 600px) {
-    flex-direction: column;
-  }
-}
-
-app-reusable-form-field {
-  flex: 1;
-  min-width: 0;
-}
-
-mat-form-field {
-  width: 100%;
-  margin-bottom: var(--margin-bottom-field);
-
-  .mat-mdc-form-field-subscript-wrapper {
-    padding-top: var(--subscript-padding-top);
-    height: var(--subscript-height);
+    .postal-code {
+      order: 1;
+    }
+    .country {
+      order: 2;
+    }
   }
 }
 
 .telephone {
   width: var(--telephone-width);
 }
-
 textarea {
   height: var(--textarea-height) !important;
 }
 
-.mat-mdc-form-field-error {
-  font-size: var(--error-font-size) !important;
-  line-height: var(--error-line-height) !important;
-  display: block;
-  min-height: 0;
-  transition: var(--error-min-height-transition);
-
-  &:empty {
-    min-height: 0 !important;
-  }
+.attach-file-title {
+  color: var(--color-intro);
+  margin: var(--gap-standard) 0;
+  font-size: var(--font-size-intro);
 }
 
 .upload-container {
-  margin-bottom: var(--gap-standard);
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
+
+  .selected-file-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    word-break: break-word;
+  }
 }
 
-.select-file-btn {
+.terms-agreement {
   display: flex;
-  align-items: center;
-  gap: var(--select-file-btn-gap);
-  transition: var(--select-file-btn-transition);
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+
+  mat-checkbox {
+    margin-top: -13px;
+  }
+  p.agreement {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.terms-error {
+  font-size: 12px !important;
+  margin: -16px 0 16px 50px;
 }
 
 .mat-mdc-button {
@@ -140,94 +151,59 @@ textarea {
   border-radius: var(--button-radius);
 }
 
-.terms-agreement {
-  display: flex;
-  flex-direction: row;
-  gap: var(--select-file-container-gap);
-  align-items: center;
-}
-
-.terms-error {
-  padding-left: var(--padding-left-error);
-  font-size: var(--error-font-size) !important;
-  line-height: var(--error-line-height) !important;
-  color: rgb(200, 53, 53);
-  margin: 4px 0 0 0;
-}
-p.agreement {
-  font-size: var(--font-size-agreement);
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
-}
-
 .form-btns {
-  padding-top: var(--padding-top-form-btns);
+  padding-top: 32px;
   display: flex;
-  gap: var(--gap-form-btns);
+  gap: 16px;
   justify-content: flex-end;
-  height: var(--form-btns-height);
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-.cancel-btn,
-.submit-btn {
-  width: var(--btn-width);
-  height: var(--btn-height);
-  border-radius: var(--button-radius);
+  min-height: 50px;
+  margin-top: 8px;
 }
 
 .submit-btn {
-  @include mat.button-overrides(
-    (
-      filled-container-shape: 0px,
-    )
-  );
+  @include shared.base-button;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color) !important;
+  font-weight: 500;
 }
 
 .cancel-btn {
-  border: 1px solid var(--mat-sys-primary);
-  @include mat.button-overrides(
-    (
-      filled-container-shape: 0px,
-      filled-container-color: var(--mat-sys-on-primary),
-      filled-label-text-color: var(--mat-sys-primary),
-      protected-container-color: var(--mat-sys-primary),
-    )
-  );
+  @include shared.base-button;
+  border: 1px solid var(--cancel-border-color);
+  background-color: var(--cancel-bg-color);
+  color: var(--cancel-text-color);
 }
 
-.close-btn {
-  position: absolute;
-  top: var(--close-btn-top);
-  right: var(--close-btn-right);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--close-btn-color);
+.select-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
 
-  &:hover {
-    color: var(--close-btn-hover-color);
+.delete-file-btn,
+.clear-selection-button {
+  @include shared.icon-button;
+}
+
+.clear-selection-button {
+  margin-right: 8px;
+  mat-icon {
+    color: #666;
+  }
+  &:hover mat-icon {
+    color: #333;
+  }
+}
+
+.country {
+  .mdc-text-field__input,
+  .mat-mdc-select-value-text,
+  .mat-mdc-option {
+    font-size: 14px !important;
   }
 
-  @media (max-width: 600px) {
-    top: 15px;
-    right: 15px;
-  }
-
-  @media (min-width: 601px) and (max-width: 1024px) {
-    top: 20px;
-    right: 20px;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    top: 25px;
-    right: 25px;
+  .mat-mdc-option {
+    line-height: 1.5;
   }
 }

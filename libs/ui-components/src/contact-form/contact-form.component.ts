@@ -4,6 +4,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -32,7 +33,9 @@ import {
 import { ReusableButtonComponent } from '../reusable-components/reusable-button/reusable-button.component';
 import { ReusableFormFieldComponent } from '../reusable-components/reusable-form-field/reusable-form-field.component';
 import { SelectOption } from './contact-form.interface';
+import { MatInputModule } from '@angular/material/input';
 import { TextOnlyValidators } from '../validators/input-field.validator';
+import { DEFAULT_ERROR_MESSAGES } from '../utilities/error-messages';
 
 @Component({
   selector: 'app-contact-form',
@@ -47,12 +50,16 @@ import { TextOnlyValidators } from '../validators/input-field.validator';
     MatSnackBarModule,
     ReusableFormFieldComponent,
     ReusableButtonComponent,
+    MatInputModule,
   ],
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ContactFormComponent implements OnInit, OnDestroy {
+  public readonly customErrorMessages = DEFAULT_ERROR_MESSAGES;
+
   private static readonly ALLOWED_FILE_TYPES = [
     'application/step',
     'application/stp',
@@ -64,17 +71,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   public static readonly MAX_FILE_SIZE_MB = 10;
   public destroy$ = new Subject<void>();
 
-  public readonly errorMessages = {
-    required: 'This field is required',
-    textOnly: 'Invalid text format',
-    email: 'Invalid email format',
-    invalidPostalCode: 'Invalid postal code format',
-    invalidPhone: 'Invalid phone number format',
-    invalidCompanyName: 'Invalid company name format',
-    invalidCountrySelection: 'Please select a country',
-    invalidMessage: 'Invalid message format',
-    requiredTrue: 'You must accept the data protection regulations',
-    invalidFileType: 'Invalid file type',
+  public readonly customFileSizeErrorMessages = {
     fileSize: `File size exceeds maximum of ${ContactFormComponent.MAX_FILE_SIZE_MB}MB`,
   };
 
@@ -181,5 +178,10 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 
   public closeDialog(): void {
     this.dialogRef.close(false);
+  }
+
+  public clearCountrySelection(event: Event): void {
+    event.stopPropagation();
+    this.contactForm.get('country')?.setValue(null);
   }
 }

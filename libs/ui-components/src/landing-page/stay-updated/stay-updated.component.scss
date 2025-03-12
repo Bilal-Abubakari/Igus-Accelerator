@@ -12,7 +12,7 @@ section {
   color: white;
   border-radius: 20px;
   padding: 6rem 4rem;
-  margin: 0 10%;
+  margin: 0 2%;
   gap: 40px;
 
   &::after {
@@ -42,8 +42,11 @@ section {
   border: 1px solid variables.$footer-border-color;
   padding: 20px;
   width: 100%;
-  max-width: 420px;
+  max-width: 56%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 }
 .notifications-info {
   flex: 1;

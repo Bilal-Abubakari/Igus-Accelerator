@@ -9,6 +9,7 @@ import * as toolbarI18n from './landing-page/toolbar/toolbar.i18n.json';
 import * as materialsI18n from './materials/components/materials-card/materials-card.i18n.json';
 import * as materialInfoI18n from './materials/components/material-info-dialog/material-info-dialog.i18n.json';
 import * as materialSelectionI18n from './landing-page/material-selection/material-selection.i18n.json';
+import * as scheduleCallI18n from './landing-page/schedule-call/schedule-call.i18n.json';
 import * as stayUpdatedI18n from './landing-page/stay-updated/stay-updated.i18n.json';
 import * as howItWorks18n from './landing-page/how-it-works/how-it-works.i18n.json';
 
@@ -35,6 +36,8 @@ export * from './language-switcher/constants';
 export * from './language-switcher/language-switcher.component';
 export * from './landing-page/footer/footer.component';
 
+export * from './landing-page/schedule-call/schedule-call.component';
+
 
 // EXPORT CONSTANTS
 export * from './navbar/constants';
@@ -54,5 +57,6 @@ export {
     materialsI18n,
     materialInfoI18n,
     howItWorks18n,
-    stayUpdatedI18n
+    stayUpdatedI18n,
+    scheduleCallI18n
 };

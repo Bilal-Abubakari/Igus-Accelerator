@@ -18,8 +18,12 @@ export class TextOnlyValidators {
   }
 
   static phoneNumber(): ValidatorFn {
-    return (control: AbstractControl) =>
-      /^\+?[\d-]+$/.test(control.value) ? null : { invalidPhone: true };
+    return (control: AbstractControl) => {
+      if (!control.value || control.value.trim() === '') {
+        return null;
+      }
+      return /^\+?[\d-]+$/.test(control.value) ? null : { invalidPhone: true };
+    };
   }
 
   static companyName(): ValidatorFn {
