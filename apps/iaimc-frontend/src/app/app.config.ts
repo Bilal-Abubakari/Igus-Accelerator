@@ -23,12 +23,12 @@ import {
   LANGUAGE_LOCALE_MAPPING,
 } from 'libs/ui-components/src/language-switcher/constants';
 import { environment } from '../../environments/environment';
-import { appEffects } from './app.effects';
 import { appRoutes } from './app.routes';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
-import { appReducer } from './app.reducer';
 import { excludeKeys } from '@ngrx-addons/common';
-import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/footer/store/reducers/footer.reducer';
+import { FOOTER_FEATURE_KEY } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
+import { appReducer } from './app.reducer';
+import { appEffects } from './app.effects';
 import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/reducer/contact-form.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -45,7 +45,13 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(
-              excludeKeys(['isEmailUpdated', 'isFeedbackSubmitted', 'message']),
+              excludeKeys([
+                'isEmailUpdated',
+                'isFeedbackSubmitted',
+                'message',
+                'isFeedbackLoading',
+                'isFeedbackSubmitted',
+              ]),
             ),
           skip: 1,
         },

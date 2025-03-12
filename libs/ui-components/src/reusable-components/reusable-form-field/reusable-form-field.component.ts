@@ -29,6 +29,7 @@ export class ReusableFormFieldComponent {
   @Input() optional?: boolean;
   @Input() errorMessages: { [key: string]: string } = {};
   @Input() className = '';
+  @Input() isInFooter = false;
   @Input() isSelect = false;
   @Input() isTextarea = false;
   @Input() inputType = 'text';

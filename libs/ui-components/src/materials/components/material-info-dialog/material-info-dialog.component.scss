@@ -1,0 +1,120 @@
+@use '@angular/material' as mat;
+
+main {
+  header {
+    text-align: start;
+    font-size: 4.5rem;
+    font-weight: bold;
+    padding: 4rem 18rem;
+    font-family: 'Roboto', sans-serif;
+
+    @media (max-width: 1024px) {
+      font-size: 3rem;
+      padding: 3rem 8rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+      padding: 2rem 4rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+      padding: 2rem;
+    }
+  }
+
+  mat-dialog-content {
+    padding: 2rem 18rem;
+    font-family: 'Roboto', sans-serif;
+
+    @media (max-width: 1024px) {
+      padding: 2rem 8rem;
+    }
+
+    @media (max-width: 768px) {
+      padding: 1.5rem 4rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1rem;
+    }
+
+    .properties_grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    h3 {
+      margin: 32px 0 16px;
+      padding-bottom: 4px;
+    }
+
+    .key {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .value {
+      text-align: right;
+      font-family: 'Roboto', sans-serif;
+
+      @media (max-width: 768px) {
+        text-align: left;
+      }
+    }
+
+    @include mat.table-overrides(
+      (
+        background-color: white,
+      )
+    );
+
+    .resistance-icons {
+      text-align: center;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .resistant {
+      background-color: #2d2d6a;
+    }
+
+    .conditionally-resistant {
+      background-color: #b8b8d0;
+    }
+
+    .non-resistant {
+      background-color: #aaa;
+    }
+
+    mat-dialog-content {
+      padding: 24px;
+
+      @media (max-width: 768px) {
+        padding: 16px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 12px;
+      }
+    }
+
+    mat-dialog-actions {
+      padding: 16px;
+
+      @media (max-width: 480px) {
+        padding: 12px;
+      }
+    }
+  }
+}

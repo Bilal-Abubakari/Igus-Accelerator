@@ -19,10 +19,12 @@ body {
   margin: 0;
   height: 8px;
 }
+
 *::-webkit-scrollbar-thumb {
   background-color: var(--mat-sys-primary-container);
   border-radius: 8px;
 }
+
 *::-webkit-scrollbar-track {
   background-color: var(var(--mat-sys-primary));
 }
@@ -39,6 +41,14 @@ body {
     --mat-mdc-snack-bar-button-color: var(--mat-sys-on-error);
     --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error);
   }
+}
+
+mat-form-field.small {
+  --mat-form-field-container-height: 42px;
+  --mat-form-field-container-vertical-padding: 8px;
+}
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 0.5625rem !important;
 }
 
 @media (max-width: 600px) {
@@ -62,6 +72,13 @@ body {
     }
   }
 }
+
+@include mat.dialog-overrides(
+  (
+    container-color: #fff,
+    container-shape: none,
+  )
+);
 
 .full-screen-dialog {
   border-radius: 0 !important;

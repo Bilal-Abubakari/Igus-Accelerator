@@ -1,0 +1,78 @@
+<mat-toolbar>
+  <footer>
+    <form>
+      <section class="model-container">
+        <div class="model-container__logo">
+          <app-model-logo />
+          <p>{{ 'footer.LOGO_TEXT' | transloco }}</p>
+        </div>
+        <p>
+          {{ 'footer.MODEL_DESCRIPTION' | transloco }}
+        </p>
+      </section>
+      <section class="subscription-container">
+        <h4>{{ 'footer.SUBSCRIPTION_HEADER' | transloco }}</h4>
+        <div class="form-fields">
+          <div>
+            <app-reusable-form-field
+              [isInFooter]="true"
+              [control]="getField('firstName')"
+              [label]="'footer.FIRST_NAME' | transloco"
+              [optional]="false"
+              [inputType]="'text'"
+              className="small"
+              [errorMessages]="errorMessages"
+            ></app-reusable-form-field>
+          </div>
+
+          <div>
+            <app-reusable-form-field
+              [isInFooter]="true"
+              [control]="getField('email')"
+              [label]="'footer.EMAIL' | transloco"
+              [optional]="false"
+              [inputType]="'text'"
+              className="small"
+              [errorMessages]="errorMessages"
+            ></app-reusable-form-field>
+          </div>
+          <app-reusable-button
+            [className]="'custom-button'"
+            [isInFooter]="true"
+          >
+            <span>{{ 'footer.SUBSCRIBE_TEXT' | transloco }}</span>
+            @if (isSubscriptionLoading()) {
+              <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
+            }
+          </app-reusable-button>
+        </div>
+      </section>
+    </form>
+    <section class="footer-links">
+      <div class="footer-links__terms-and-condition">
+        <p>© {{ currentYear }} IMDesigner</p>
+        <a routerLink="#">Terms of Service</a>
+        <a routerLink="#">Privacy & Cookies policy</a>
+      </div>
+      <div class="icons-group">
+        <a routerLink="#">
+          <button mat-icon-button class="icons-group__button">
+            <mat-icon><img src="assets/images/github.svg" alt="" /></mat-icon>
+          </button>
+        </a>
+        <a routerLink="#">
+          <button mat-icon-button class="icons-group__button">
+            <mat-icon><img src="assets/images/x.svg" alt="" /></mat-icon>
+          </button>
+        </a>
+        <a routerLink="#">
+          <button mat-icon-button class="icons-group__button">
+            <mat-icon
+              ><img src="assets/images/linked-in.svg" alt=""
+            /></mat-icon>
+          </button>
+        </a>
+      </div>
+    </section>
+  </footer>
+</mat-toolbar>

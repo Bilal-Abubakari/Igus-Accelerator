@@ -1,0 +1,50 @@
+@import '../../styles/variables.scss';
+
+:host {
+  display: inline-block;
+}
+
+button {
+  &.footer {
+    border-radius: 0.75rem;
+    border: none;
+    height: 42px;
+    width: 100%;
+    padding: 0 1.19113rem;
+    color: $footer-main-background;
+    background-color: var(--mat-sys-surface-container-lowest);
+  }
+  &.mat-icon-button {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+
+    &.close-btn {
+      position: absolute;
+      top: var(--close-btn-top, 25px);
+      right: var(--close-btn-right, 25px);
+    }
+  }
+
+  &.mat-flat-button,
+  &.mat-button {
+    &.cancel-btn {
+      background-color: white;
+      color: var(--mat-sys-primary, #005691);
+      border: 1px solid var(--mat-sys-primary, #005691);
+    }
+
+    &.submit-btn {
+      background-color: var(--mat-sys-primary, #005691);
+      color: white;
+    }
+
+    &.select-file-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}

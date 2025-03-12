@@ -1,5 +1,16 @@
 import { ContactFormDto } from './dto/contact-form.dto';
-import { Express } from 'express';
+
+interface MockFile {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  size: number;
+  buffer: Buffer;
+  destination: string;
+  filename: string;
+  path: string;
+}
 
 export const mockContactFormDto: ContactFormDto = {
   firstName: 'John',
@@ -11,7 +22,7 @@ export const mockContactFormDto: ContactFormDto = {
   agreement: true,
 };
 
-export const mockFile = {
+export const mockFile: MockFile = {
   fieldname: 'file',
   originalname: 'dummy.txt',
   encoding: '7bit',
@@ -21,7 +32,7 @@ export const mockFile = {
   destination: '',
   filename: '',
   path: '',
-} as unknown as Express.Multer.File;
+};
 
 export const errorContactFormDto: ContactFormDto = {
   firstName: 'Error',
