@@ -3,6 +3,7 @@
 
 .fixed-cart-container {
   position: fixed;
+  height: 80px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -14,10 +15,11 @@
   @media (max-width: 767px) {
     position: relative;
     bottom: 0;
+    height: 60%;
     left: 0;
     right: 0;
     width: 100%;
-    padding: 10% 16px;
+    padding: 1% 16px;
     box-shadow: none;
     @include mixins.flex-option;
   }
@@ -41,8 +43,11 @@
 
 .card-content {
   @include mixins.flex-center;
+  align-items: center;
   width: 100%;
   gap: 16px;
+  margin-bottom: 2.5%;
+
 
   @media (min-width: 768px) {
     justify-content: space-between;
@@ -58,10 +63,8 @@
 .quantity-content {
   @include mixins.flex-column;
   align-items: center;
-  margin-top: 20px;
 
   @media (min-width: 768px) {
-    width: 20%;
     align-items: flex-start;
     padding-top: 16px;
   }
@@ -70,14 +73,14 @@
 .quantity-section {
   @include mixins.flex-center;
   margin-bottom: 12px;
-  width: 100%;
-  max-width: 160px;
+  width: 75%;
+  max-width: 100px;
 
   @media (min-width: 768px) {
     @include mixins.flex-option(flex, flex-start, start);
     flex-direction: column;
     margin-bottom: 0;
-    margin-right: 24px;
+    margin-right: 20px;
     min-width: 120px;
   }
 
@@ -103,7 +106,7 @@
 
 .quantity-input-container {
   position: relative;
-  width: 120px;
+  width: 100px;
   height: 40px;
 
   .quantity-input {
@@ -127,7 +130,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  margin-bottom: 0;
+  //margin-bottom: 3%;
   width: 100%;
   text-align: center;
   gap: 10px;
@@ -204,53 +207,5 @@ body {
 
   @media (max-width: 767px) {
     padding-bottom: 180px;
-  }
-}
-
-.floating-cart-icon {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  z-index: 1100;
-  display: none; // Hidden by default
-
-  @media (max-width: 767px) {
-    display: flex; // Only show on mobile
-  }
-
-  button {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: var(--mat-sys-on-primary-container);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-
-    &:hover,
-    &:focus {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    i {
-      font-size: 24px;
-    }
-  }
-}
-
-// Adjust your existing .mobile-only class
-.mobile-only {
-  display: none;
-
-  @media (max-width: 767px) {
-    display: flex;
   }
 }
