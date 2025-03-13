@@ -17,7 +17,7 @@
       </div>
 
       <div class="product-info">
-        @if (!price) {
+        @if (price === -1) {
           <div class="product-availability">
             {{ 'cartInfo.REQUEST' | transloco }}
           </div>

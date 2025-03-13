@@ -19,6 +19,6 @@ import { ReusableButtonComponent } from '../reusable-components/reusable-button/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopCartInfoComponent {
-  public readonly price = 0;
+  public readonly price = -1;
   public readonly quantity = 1;
 }
