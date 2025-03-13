@@ -1,6 +1,6 @@
 <div class="fixed-cart-container">
   <div class="fixed-cart">
-    <div class="cart-content">
+    <div class="quantity-content">
       <div class="quantity-section">
         <label for="quantity">{{ 'cartInfo.QUANTITY' | transloco }}</label>
         <div class="quantity-input-container">
@@ -15,7 +15,8 @@
           />
         </div>
       </div>
-
+    </div>
+    <div class="card-content">
       <div class="product-info">
         @if (price === -1) {
           <div class="product-availability">
@@ -27,23 +28,22 @@
           <span>{{ 'cartInfo.DELIVERY' | transloco }}</span>
         </div>
       </div>
-    </div>
-
-    <div class="submit-section">
-      <app-reusable-button
-        [type]="'submit'"
-        [className]="'submit-button'"
-        [flat]="false"
-        [styles]="{
+      <div class="submit-section">
+        <app-reusable-button
+          [type]="'submit'"
+          [className]="'submit-button'"
+          [flat]="false"
+          [styles]="{
           'background-color': 'var(--mat-sys-on-primary-container)',
           color: 'white',
           'border-radius': '12px',
           width: '150px',
           height: '45px',
         }"
-      >
-        {{ 'cartInfo.SUBMIT' | transloco }}
-      </app-reusable-button>
+        >
+          {{ 'cartInfo.SUBMIT' | transloco }}
+        </app-reusable-button>
+      </div>
     </div>
   </div>
 </div>
