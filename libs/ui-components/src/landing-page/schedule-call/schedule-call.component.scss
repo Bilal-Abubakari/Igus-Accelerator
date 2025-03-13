@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use 'libs/ui-components/src/styles/_variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
 
 .injection-model-container {
   width: 100%;
@@ -54,7 +55,7 @@
 .option-card {
   flex: 1;
   padding: 2rem;
-  @include variables.flex-column;
+  @include mixins.flex-column;
   align-items: flex-start;
 
   &:first-child {
@@ -120,7 +121,7 @@
 }
 
 .upload-button {
-  @include variables.flex-center;
+  @include mixins.flex-center;
   flex-direction: row-reverse;
   align-items: center;
   gap: 1rem;
