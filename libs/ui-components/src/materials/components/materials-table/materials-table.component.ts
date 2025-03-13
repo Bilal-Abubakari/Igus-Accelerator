@@ -35,7 +35,7 @@ export class MaterialsTableComponent {
 
   @Input() materials: InjectionMoldingMaterial[] = [];
 
-  public displayedColumns: string[] = MATERIAL_COLUMNS;
+  public readonly displayedColumns: string[] = MATERIAL_COLUMNS;
 
   public getTolerancePercentage(shrinkage: number): number {
     return tolerancePercentage(shrinkage);
