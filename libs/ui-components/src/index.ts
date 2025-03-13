@@ -13,6 +13,7 @@ import * as materialSelectionI18n from './landing-page/material-selection/materi
 import * as scheduleCallI18n from './landing-page/schedule-call/schedule-call.i18n.json';
 import * as stayUpdatedI18n from './landing-page/stay-updated/stay-updated.i18n.json';
 import * as howItWorks18n from './landing-page/how-it-works/how-it-works.i18n.json';
+import * as configInformationI18n from './config-information/config-information.i18n.json';
 export * from './navbar/navbar.component';
 
 export * from './landing-page/toolbar/toolbar.component';
@@ -44,6 +45,9 @@ export { materialInfoI18n };
 export { materialSelectionI18n };
 export { scheduleCallI18n };
 export { howItWorks18n };
+export { configInformationI18n };
 
 export * from './landing-page/schedule-call/schedule-call.component';
 export { stayUpdatedI18n };
+
+export * from './config-information/config-information.component';
