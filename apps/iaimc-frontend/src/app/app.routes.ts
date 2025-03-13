@@ -20,7 +20,7 @@ export const appRoutes: Route[] = [
   {
     path: NAVIGATION_ROUTES.MOLDING_CONFIGURATION,
     component: MoldingConfigurationComponent,
-    canActivate: [ModelUploadGuard],
+    // canActivate: [ModelUploadGuard],
     children: [
       {
         path: '',
