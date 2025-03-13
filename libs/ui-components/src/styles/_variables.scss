@@ -19,28 +19,3 @@ $subscription-background: #262626;
 $subscription-primary-color: #a1a1a1;
 $footer-icon-background-color: #606060;
 
-//Global Mixins
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-}
-
-@mixin align-center {
-  display: flex;
-  align-items: center;
-}
-
-@mixin flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-@mixin flex-option(
-  $display: flex,
-  $justify-content: center,
-  $align-items: center
-) {
-  display: $display;
-  justify-content: $justify-content;
-  align-items: $align-items;
-}
