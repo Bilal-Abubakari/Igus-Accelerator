@@ -2,18 +2,15 @@
   <div class="fixed-cart">
     <div class="quantity-content">
       <div class="quantity-section">
-        <label for="quantity">{{ 'cartInfo.QUANTITY' | transloco }}</label>
-        <div class="quantity-input-container">
-          <input
-            matInput
-            type="number"
-            id="quantity"
-            name="quantity"
-            [(ngModel)]="quantity"
-            min="1"
-            class="quantity-input"
-          />
+        <div class="quantity-section">
+          <app-reusable-form-field
+            class="quantity-field"
+            [control]="quantityControl"
+            [label]="'cartInfo.QUANTITY' | transloco"
+            [inputType]="'number'"
+          ></app-reusable-form-field>
         </div>
+
       </div>
     </div>
     <div class="card-content">

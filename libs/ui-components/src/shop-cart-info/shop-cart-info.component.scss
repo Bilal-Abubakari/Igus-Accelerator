@@ -51,8 +51,9 @@
 
 .quantity-content {
   @include mixins.flex-column;
-  width: 100%;
+  //width: 100%;
   align-items: center;
+  padding-top: 16px;
 
   @media (min-width: 768px) {
     width: 20%;
@@ -165,6 +166,10 @@
     justify-content: flex-end;
     width: auto;
   }
+}
+
+.quantity-field{
+  width: 120px;
 }
 
 .mobile-only {

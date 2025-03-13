@@ -13,4 +13,5 @@ export const DEFAULT_ERROR_MESSAGES: { [key: string]: string } = {
   pattern: 'Invalid format',
   minlength: 'Input is too short',
   maxlength: 'Input is too long',
+  invalidPrice: 'The value must be between 1 and 10000',
 };
