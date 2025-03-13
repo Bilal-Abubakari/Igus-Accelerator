@@ -20,5 +20,5 @@ import { ReusableButtonComponent } from '../reusable-components/reusable-button/
 })
 export class ShopCartInfoComponent {
   public readonly price = -1;
-  public readonly quantity = 1;
+  public quantity = 1;
 }
