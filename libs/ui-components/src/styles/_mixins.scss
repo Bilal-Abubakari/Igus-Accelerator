@@ -23,3 +23,11 @@
   justify-content: $justify-content;
   align-items: $align-items;
 }
+
+@mixin flex-row(
+  $direction: column,
+  $justify: center,
+){
+  flex-direction: $direction;
+  justify-content: $justify;
+}
