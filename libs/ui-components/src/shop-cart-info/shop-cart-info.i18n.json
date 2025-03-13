@@ -1,0 +1,48 @@
+{
+  "cartInfo": {
+    "QUANTITY": {
+      "ar": "الكمية",
+      "de": "Menge",
+      "en": "Quantity",
+      "es": "cantidad",
+      "fr": "quantité",
+      "jp": "数量",
+      "pt": "quantidade",
+      "ru": "количество",
+      "zh": "数量"
+    },
+    "REQUEST": {
+      "ar": "عند الطلب",
+      "de": "Auf Anfrage",
+      "en": "Upon request",
+      "es": "Previa solicitud",
+      "fr": "Sur demande",
+      "jp": "ご要望に応じて",
+      "pt": "Mediante solicitação",
+      "ru": "По запросу",
+      "zh": "根据要求"
+    },
+    "DELIVERY": {
+      "ar": "وقت التسليم عند الطلب - اتصل بنا",
+      "de": "Lieferzeiten auf Anfrage - kontaktieren Sie uns",
+      "en": "Delivery time upon request – contact us",
+      "es": "Plazo de entrega a petición - póngase en contacto con nosotros",
+      "fr": "Délai de livraison sur demande - nous contacter",
+      "jp": "納期はお問い合わせください。",
+      "pt": "Prazo de entrega mediante solicitação - entre em contato conosco",
+      "ru": "Время доставки по запросу - свяжитесь с нами",
+      "zh": "根据要求的交货时间 - 联系我们"
+    },
+    "SUBMIT": {
+      "ar": "إرسال الطلب",
+      "de": "Antrag einreichen",
+      "en": "Submit request",
+      "es": "Enviar solicitud",
+      "fr": "Soumettre une demande",
+      "jp": "リクエストを送信",
+      "pt": "Enviar solicitação",
+      "ru": "Отправить запрос",
+      "zh": "提交申请"
+    }
+  }
+}
