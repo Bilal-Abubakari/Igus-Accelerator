@@ -1,4 +1,5 @@
 @use 'libs/ui-components/src/styles/_variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
 
 section {
   background-color: variables.$mat-selection-background-color;
@@ -7,7 +8,7 @@ section {
 }
 
 .notifications-container {
-  @include variables.flex-center;
+  @include mixins.flex-center;
   background-color: variables.$footer-main-background;
   color: white;
   border-radius: 20px;
@@ -94,7 +95,7 @@ section {
 }
 
 .notifications-cards {
-  @include variables.flex-column;
+  @include mixins.flex-column;
   flex-direction: column;
   gap: 16px;
   z-index: 1;
@@ -112,7 +113,7 @@ section {
   }
 }
 .check-icon {
-  @include variables.flex-option;
+  @include mixins.flex-option;
   width: 24px;
   height: 24px;
   border-radius: 50%;

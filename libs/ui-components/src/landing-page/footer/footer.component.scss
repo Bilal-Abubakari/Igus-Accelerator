@@ -1,11 +1,12 @@
 @use '@angular/material' as mat;
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
 
 mat-toolbar {
   height: auto;
   @include mat.toolbar-overrides(
     (
-      container-background-color: $footer-main-background,
+      container-background-color: variables.$footer-main-background,
       container-text-color: var(--mat-sys-surface-container-lowest),
     )
   );
@@ -13,12 +14,12 @@ mat-toolbar {
     width: 100%;
     padding: 5rem 7rem 0;
     form {
-      font-size: $font-size-footer;
+      font-size: variables.$font-size-footer;
       margin-bottom: 2.5rem;
-      @include flex-option(flex, space-between, left);
+      @include mixins.flex-option(flex, space-between, left);
       .model-container {
         width: 20%;
-        @include flex-option(flex, left, left);
+        @include mixins.flex-option(flex, left, left);
         gap: 1.5rem;
         flex-direction: column;
         white-space: normal;
@@ -29,19 +30,19 @@ mat-toolbar {
         }
       }
       .subscription-container {
-        @include flex-option(flex, left, left);
+        @include mixins.flex-option(flex, left, left);
         flex-direction: column;
         gap: 1.2rem;
-        border: 1px solid $footer-border-color;
+        border: 1px solid variables.$footer-border-color;
         border-radius: 1.5rem;
         padding: 1.5rem 0.5rem 1.5rem 1.5rem;
-        background-color: $subscription-background;
+        background-color: variables.$subscription-background;
         h4 {
           font-size: 1rem;
-          color: $subscription-primary-color;
+          color: variables.$subscription-primary-color;
         }
         .form-fields {
-          @include flex-option(flex, left, left);
+          @include mixins.flex-option(flex, left, left);
           gap: 0.5rem;
           .small {
             border-radius: 2px;
@@ -51,25 +52,25 @@ mat-toolbar {
             }
           }
           .button-content {
-            @include flex-option(flex, center, center);
+            @include mixins.flex-option(flex, center, center);
             cursor: pointer;
-            @include flex-option(flex, center, center);
+            @include mixins.flex-option(flex, center, center);
             gap: 0.5rem;
           }
         }
       }
     }
     .footer-links {
-      @include flex-option(flex, space-between, left);
+      @include mixins.flex-option(flex, space-between, left);
       font-size: 0.75rem;
-      border-top: 1px solid $footer-border-color;
+      border-top: 1px solid variables.$footer-border-color;
       padding: 3.8rem 0;
-      color: $footer-links-color;
+      color: variables.$footer-links-color;
       &__terms-and-condition {
-        @include flex-option(flex, left, left);
+        @include mixins.flex-option(flex, left, left);
         gap: 1.4rem;
         a {
-          color: $footer-links-color;
+          color: variables.$footer-links-color;
           text-decoration: none;
           &:hover {
             text-decoration: underline;
@@ -77,13 +78,13 @@ mat-toolbar {
         }
       }
       .icons-group {
-        @include flex-option(flex, left, left);
+        @include mixins.flex-option(flex, left, left);
         gap: 0.5rem;
         &__button {
           padding: 0.3rem;
           border-radius: 0.5rem;
-          background-color: $subscription-background;
-          border: 1px solid $footer-border-color;
+          background-color: variables.$subscription-background;
+          border: 1px solid variables.$footer-border-color;
           cursor: pointer;
         }
       }
@@ -114,7 +115,7 @@ mat-toolbar {
     }
     form {
       width: 100% !important;
-      @include flex-option(flex, left, center);
+      @include mixins.flex-option(flex, left, center);
       gap: 0.5rem;
       flex-direction: column;
       .model-container {

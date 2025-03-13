@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use 'libs/ui-components/src/styles/_variables.scss' as variables;
+@use '../../styles/mixins.scss' as mixins;
 
 .material-selection {
   padding: 70px 6%;
@@ -45,7 +46,7 @@
   );
 
   &__checkbox {
-    @include variables.flex-center;
+    @include mixins.flex-center;
     width: 24px;
     height: 24px;
     border-radius: 4px;
@@ -55,7 +56,7 @@
   }
 
   &__checkmark {
-    @include variables.flex-center;
+    @include mixins.flex-center;
     color: #2e5235;
     font-size: 20px;
     height: 20px;
@@ -72,7 +73,7 @@
   }
 
   &__features {
-    @include variables.flex-column;
+    @include mixins.flex-column;
     gap: 8px;
   }
 
