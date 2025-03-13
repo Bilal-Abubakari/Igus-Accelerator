@@ -1,0 +1,49 @@
+<div class="fixed-cart-container">
+  <div class="fixed-cart">
+    <div class="cart-content">
+      <div class="quantity-section">
+        <label for="quantity">{{ 'cartInfo.QUANTITY' | transloco }}</label>
+        <div class="quantity-input-container">
+          <input
+            matInput
+            type="number"
+            id="quantity"
+            name="quantity"
+            [(ngModel)]="quantity"
+            min="1"
+            class="quantity-input"
+          />
+        </div>
+      </div>
+
+      <div class="product-info">
+        @if (!price) {
+          <div class="product-availability">
+            {{ 'cartInfo.REQUEST' | transloco }}
+          </div>
+        }
+        <div class="delivery-info mobile-only">
+          <i class="material-icons delivery-icon">access_time_filled</i>
+          <span>{{ 'cartInfo.DELIVERY' | transloco }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <app-reusable-button
+        [type]="'submit'"
+        [className]="'submit-button'"
+        [flat]="false"
+        [styles]="{
+          'background-color': 'var(--mat-sys-on-primary-container)',
+          color: 'white',
+          'border-radius': '12px',
+          width: '150px',
+          height: '45px',
+        }"
+      >
+        {{ 'cartInfo.SUBMIT' | transloco }}
+      </app-reusable-button>
+    </div>
+  </div>
+</div>
