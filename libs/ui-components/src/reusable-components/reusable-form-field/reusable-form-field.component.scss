@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 :host {
   display: block;
   margin-bottom: var(--margin-bottom-field, 15px);
@@ -7,7 +7,7 @@
 mat-form-field {
   width: 100%;
   .footer {
-    color: $subscription-primary-color !important;
+    color: variables.$subscription-primary-color !important;
   }
   &.telephone {
     width: var(--telephone-width, 100%);
