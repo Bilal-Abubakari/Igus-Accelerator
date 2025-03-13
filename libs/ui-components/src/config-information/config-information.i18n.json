@@ -1,0 +1,26 @@
+{
+  "config-information": {
+    "TITLE": {
+      "ar": "التكوين",
+      "de": "Konfiguration",
+      "en": "Configuration",
+      "es": "Configuración",
+      "fr": "Configuration",
+      "jp": "構成",
+      "pt": "Configuração",
+      "ru": "Конфигурация",
+      "zh": "配置"
+    },
+    "DESCRIPTION": {
+      "ar": "قم بتصفية المواد وفرزها وفقًا لمتطلباتك. احسب عمر الخدمة واختر المادة المناسبة لمشروعك.",
+      "de": "Filtern und sortieren Sie Materialien nach Ihren Anforderungen. Berechnen Sie die Lebensdauer und wählen Sie ein geeignetes Material für Ihr Projekt aus.",
+      "en": "Filter and sort materials according to your requirements. Calculate the service life and select a suitable material for your project.",
+      "es": "Filtre y clasifique los materiales según sus necesidades. Calcule la vida útil y seleccione un material adecuado para su proyecto.",
+      "fr": "Filtrez et triez les matériaux en fonction de vos besoins. Calculez la durée de vie et sélectionnez un matériau adapté à votre projet.",
+      "jp": "お客様のご要望に応じて材料を選別します。耐用年数を計算し、プロジェクトに適した材料を選択します。",
+      "pt": "Filtre e classifique os materiais de acordo com suas necessidades. Calcule a vida útil e selecione um material adequado para seu projeto.",
+      "ru": "Фильтруйте и сортируйте материалы в соответствии с вашими требованиями. Рассчитайте срок службы и выберите подходящий материал для вашего проекта.",
+      "zh": "根据您的要求对材料进行筛选和分类。计算使用寿命，为您的项目选择合适的材料。"
+    }
+  }
+}

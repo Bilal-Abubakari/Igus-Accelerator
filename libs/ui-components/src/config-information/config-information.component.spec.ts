@@ -51,7 +51,7 @@ describe('ConfigurationCardComponent', () => {
   });
 
   describe('responsive behavior', () => {
-    let originalMatchMedia: any;
+    let originalMatchMedia: (query: string) => MediaQueryList;
 
     beforeEach(() => {
       originalMatchMedia = window.matchMedia;
