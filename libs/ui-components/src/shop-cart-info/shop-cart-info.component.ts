@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
@@ -19,12 +19,6 @@ import { ReusableButtonComponent } from '../reusable-components/reusable-button/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopCartInfoComponent {
-  @Input() price = 0;
-  @Input() currencyCode = 'USD';
-
-  quantity = 1;
-
-  submitRequest() {
-    console.log(this.price);
-  }
+  private readonly price = 0;
+  private readonly quantity = 1;
 }
