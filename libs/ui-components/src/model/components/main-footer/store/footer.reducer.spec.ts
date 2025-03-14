@@ -1,5 +1,5 @@
 import { FooterActions } from './footer.actions';
-import { footerReducer } from './footer.reducer';
+import { mainFooterReducer } from './footer.reducer';
 import { initialFooterState } from './footer.state';
 
 describe('Footer Reducer', () => {
@@ -7,14 +7,14 @@ describe('Footer Reducer', () => {
     const action = FooterActions.beginSubmitFeedback({
       feedback: { email: 'test@example.com' },
     });
-    const newState = footerReducer(initialFooterState, action);
+    const newState = mainFooterReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(true);
   });
 
   it('should handle successful feedback submission', () => {
     const action = FooterActions.submitFeedbackSuccess({ id: '12345' });
-    const newState = footerReducer(initialFooterState, action);
+    const newState = mainFooterReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(false);
     expect(newState.isFeedbackSubmitted).toBe(true);
@@ -23,7 +23,7 @@ describe('Footer Reducer', () => {
 
   it('should handle feedback submission failure', () => {
     const action = FooterActions.submitFeedbackFailure();
-    const newState = footerReducer(initialFooterState, action);
+    const newState = mainFooterReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(false);
     expect(newState.isFeedbackSubmitted).toBe(false);
@@ -33,14 +33,14 @@ describe('Footer Reducer', () => {
     const action = FooterActions.beginUpdateFeedback({
       email: 'test@example.com',
     });
-    const newState = footerReducer(initialFooterState, action);
+    const newState = mainFooterReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(true);
   });
 
   it('should handle successful feedback update', () => {
     const action = FooterActions.updateFeedbackSuccess();
-    const newState = footerReducer(initialFooterState, action);
+    const newState = mainFooterReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(false);
     expect(newState.isEmailUpdated).toBe(true);
@@ -51,7 +51,7 @@ describe('Footer Reducer', () => {
     const action = FooterActions.updateFeedbackFailure({
       message: errorMessage,
     });
-    const newState = footerReducer(initialFooterState, action);
+    const newState = mainFooterReducer(initialFooterState, action);
 
     expect(newState.isFeedbackLoading).toBe(false);
     expect(newState.isEmailUpdated).toBe(false);

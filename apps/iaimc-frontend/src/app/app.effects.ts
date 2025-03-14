@@ -2,10 +2,13 @@ import { MaterialEffects } from 'libs/ui-components/src/materials/store/material
 import { FooterEffects } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.effects';
 import { ContactFormEffects } from 'libs/ui-components/src/contact-form/store/contact-form.effects';
 import { ModelListEffects } from 'libs/ui-components/src/model-viewer/store/model-list.effects';
+import { NewsletterEffects } from 'libs/ui-components/src/landing-page/footer/store/footer.effects';
 
 export const appEffects = [
-    FooterEffects,
-    MaterialEffects,
-    ContactFormEffects,
-    ModelListEffects
+  FooterEffects,
+  MaterialEffects,
+  ContactFormEffects,
+  ModelListEffects,
+  NewsletterEffects,
+
 ];

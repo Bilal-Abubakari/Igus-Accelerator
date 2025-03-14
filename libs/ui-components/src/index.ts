@@ -43,6 +43,8 @@ export * from './materials/materials.component';
 // EXPORT SERVICES
 export * from './model-viewer/services/model-config.service';
 
+export * from './landing-page/schedule-call/schedule-call.component';
+
 
 // EXPORT CONSTANTS
 export * from './navbar/constants';

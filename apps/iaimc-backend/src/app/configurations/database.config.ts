@@ -3,6 +3,7 @@ import { DatabaseConfig } from '../common/types/general.types';
 import { FeedbackEntity } from '../modules/feedback/feedback.entity';
 import { ModelConfigurationEntity, UserEntity, FileEntity, RoleEntity } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { ContactFormEntity } from '../modules/contact-form/entity/contact-form.entity';
+import { NewsLetterSubscriberEntity } from '../modules/news-letter-subscriber/entities/new-letter-subscriber.entity';
 
 export default (): DatabaseConfig => ({
   database: {
@@ -17,6 +18,7 @@ export default (): DatabaseConfig => ({
       ContactFormEntity,
       FileEntity,
       ModelConfigurationEntity,
+      NewsLetterSubscriberEntity,
       RoleEntity,
       UserEntity,
     ],

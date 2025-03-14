@@ -19,7 +19,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { FOOTER_FEATURE_KEY } from 'libs/ui-components/src/model/components/main-footer/store/footer.reducer';
+import { MAIN_FOOTER_FEATURE_KEY } from 'libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import {
   AVAILABLE_LANGUAGE_CODES,
   LANGUAGE_LOCALE_MAPPING,
@@ -32,6 +32,7 @@ import { httpReqInterceptor } from './interceptors/http.interceptor';
 import { PrebuiltTranslocoLoader } from './transloco-loader';
 import { MODEL_LIST_FEATURE_KEY } from 'libs/ui-components/src/model-viewer/store/model-list.state';
 import { CONTACT_FORM_FEATURE_KEY } from 'libs/ui-components/src/contact-form/store/reducer/contact-form.reducer';
+import { NEWS_LETTER_SUBSCRIBER_FEATURE_KEY } from 'libs/ui-components/src/landing-page/footer/store/footer.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,7 +42,7 @@ export const appConfig: ApplicationConfig = {
     providePersistStore({
       states: [
         {
-          key: FOOTER_FEATURE_KEY,
+          key: MAIN_FOOTER_FEATURE_KEY,
           storage: localStorageStrategy,
           runGuard: () => typeof window !== 'undefined',
           migrations: [],
@@ -73,6 +74,15 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(excludeKeys(['loading', 'errorFetchingModel', 'triggerModelFetch'])),
+          skip: 1,
+        },
+        {
+          key: NEWS_LETTER_SUBSCRIBER_FEATURE_KEY,
+          storage: localStorageStrategy,
+          runGuard: () => typeof window !== 'undefined',
+          migrations: [],
+          source: (state) =>
+            state.pipe(excludeKeys(['isSubscriptionLoading', 'message'])),
           skip: 1,
         },
       ],
