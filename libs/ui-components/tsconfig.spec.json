@@ -3,8 +3,19 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "target": "es2016",
-    "types": ["jest", "node"]
+    "target": "ES2022",
+    "types": ["jest", "node"],
+    "paths": {
+      "@igus-accelerator-injection-molding-configurator/services": [
+        "apps/iaimc-frontend/src/app/services/index.ts"
+      ],
+      "@igus-accelerator-injection-molding-configurator/libs/shared": [
+        "libs/shared/src/index.ts"
+      ],
+      "@igus-accelerator-injection-molding-configurator/ui-components": [
+        "libs/ui-components/src/index.ts"
+      ]
+    }
   },
   "files": ["src/test-setup.ts"],
   "include": [

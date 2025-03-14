@@ -21,11 +21,6 @@ export type ThrottlerConfig = {
 
 export type LOGGER_TYPE = 'log' | 'warn' | 'error' | 'debug';
 
-export enum Role {
-  Admin = 'Admin',
-  Customer = 'Customer',
-}
-
 export type JwtUserPayload = {
   id: string;
   anonymous: boolean;

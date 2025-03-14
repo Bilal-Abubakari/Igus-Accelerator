@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Role } from '../../../apps/iaimc-backend/src/app/common/types/general.types';
+import { Role } from '../enums/general.enums';
 
 @Entity('roles')
 export class RoleEntity {

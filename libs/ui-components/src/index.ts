@@ -40,6 +40,9 @@ export * from './model-viewer/services/model-viewer.service';
 export * from './materials/materials.component';
 
 
+// EXPORT SERVICES
+export * from './model-viewer/services/model-config.service';
+
 
 // EXPORT CONSTANTS
 export * from './navbar/constants';

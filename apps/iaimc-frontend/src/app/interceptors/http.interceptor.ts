@@ -11,7 +11,7 @@ import { environment } from 'apps/iaimc-frontend/environments/environment';
 import {
   LocalStorageKeys,
   LocalStorageService,
-} from 'libs/shared/services/local-storage.service';
+} from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
 

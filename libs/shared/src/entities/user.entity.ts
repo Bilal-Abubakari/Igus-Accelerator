@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ModelConfigurationEntity } from '@igus-accelerator-injection-molding-configurator/libs/shared';
+import { ModelConfigurationEntity } from './configuration.entity';
 import { RoleEntity } from './role.entity';
 
 @Entity('users')

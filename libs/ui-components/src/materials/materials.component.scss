@@ -35,26 +35,23 @@ mat-icon {
   padding: 16px 24px;
   overflow-x: auto;
   height: calc(100vh - var(--toolbar-height) - var(--navbar-height));
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 
-  @include bp.xxl {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @include bp.lg {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  @include bp.md-only {
+  @include bp.max-md {
     grid-template-columns: 1fr;
   }
 
+  @include bp.max-lg {
+    grid-template-columns: 1fr 1fr;
+  }
 
+  @include bp.max-xl {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-
-
-
-
+  @include bp.xxl {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

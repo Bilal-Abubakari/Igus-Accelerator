@@ -10,16 +10,14 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { ModelConfigurationEntity } from '@igus-accelerator-injection-molding-configurator/libs/shared';
-import { MaterialsComponent, ModelViewerService } from '@igus-accelerator-injection-molding-configurator/ui-components';
-import { Store } from '@ngrx/store';
-
-import {
+import { 
+  ModelConfigurationEntity,
   LocalStorageKeys,
   LocalStorageService,
-} from 'libs/shared/services/local-storage.service';
+} from '@igus-accelerator-injection-molding-configurator/libs/shared';
+import { MaterialsComponent, ModelViewerService, ModelConfigService } from '@igus-accelerator-injection-molding-configurator/ui-components';
+import { Store } from '@ngrx/store';
 import { selectMaterial } from 'libs/ui-components/src/materials/store/material.selectors';
-import { ModelConfigService } from 'libs/ui-components/src/model-viewer/services/model-config.service';
 import { NAVIGATION_ROUTES } from 'libs/ui-components/src/navbar/constants';
 
 @Component({

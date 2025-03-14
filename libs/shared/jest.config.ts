@@ -1,9 +1,9 @@
 export default {
-  displayName: 'iaimc-frontend',
+  displayName: 'shared',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coverageDirectory: '../../coverage/libs/shared',
   testEnvironment: 'jsdom',
-  coverageDirectory: '../../coverage/apps/iaimc-frontend',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
