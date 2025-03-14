@@ -1,0 +1,59 @@
+<table mat-table [dataSource]="materials">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let material">
+      <div class="material-name-container">
+        <div
+          class="material-code-circle"
+          [ngStyle]="{
+            'background-color': material.colorHex,
+            'border-color': material.colorHex,
+          }"
+        >
+          {{ material.code }}
+        </div>
+        <span class="material-name">{{ material.name }}</span>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="moreInfo">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let material">
+      <button
+        mat-icon-button
+        (click)="showMoreInfo(material, $event)"
+        aria-label="More information"
+      >
+        <mat-icon>info</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="deliveryTime">
+    <th mat-header-cell *matHeaderCellDef>Delivery Time</th>
+    <td mat-cell *matCellDef="let material">Upon Request</td>
+  </ng-container>
+
+  <ng-container matColumnDef="tolerance">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ 'materialCard.TOLERANCE' | transloco }}
+    </th>
+    <td mat-cell *matCellDef="let material">
+      <p class="tolerance-value">
+        ± {{ material.shrinkage | percent: '1.0-2' }}
+      </p>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="getTolerancePercentage(material.shrinkage)"
+      ></mat-progress-bar>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let material">Upon Request</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

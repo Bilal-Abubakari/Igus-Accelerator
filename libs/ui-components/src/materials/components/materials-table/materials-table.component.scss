@@ -1,0 +1,72 @@
+.material-name-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.material-code-circle {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+
+.material-name {
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+.mat-mdc-header-row .mat-mdc-header-cell {
+  color: #fff;
+  background-color: #410b83;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+}
+
+.tolerance-value {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+mat-progress-bar {
+  width: 100%;
+  height: 6px;
+  margin-top: 4px;
+}
