@@ -108,6 +108,8 @@
 
           <app-reusable-button
             className="select-file-btn"
+            [color]="buttonStyles.color"
+            [btnWidth]="buttonStyles.width"
             (buttonClick)="fileInput.click()"
           >
             <mat-icon>upload_file</mat-icon>
@@ -158,6 +160,8 @@
         <div class="form-btns">
           <app-reusable-button
             className="cancel-btn"
+            [color]="buttonStyles.color"
+            [btnPadding]="buttonStyles.padding"
             (buttonClick)="closeDialog()"
           >
             Cancel
@@ -166,6 +170,7 @@
           <app-reusable-button
             className="submit-btn"
             type="submit"
+            [btnPadding]="buttonStyles.padding"
             [disabled]="!!(isSubmitting$ | async)"
           >
             @if (isSubmitting$ | async) {
