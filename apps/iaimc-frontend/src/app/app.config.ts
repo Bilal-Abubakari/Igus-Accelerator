@@ -41,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     providePersistStore({
       states: [
         {
-          key: FOOTER_FEATURE_KEY,
+          key: MAIN_FOOTER_FEATURE_KEY,
           storage: localStorageStrategy,
           runGuard: () => typeof window !== 'undefined',
           migrations: [],
@@ -73,6 +73,15 @@ export const appConfig: ApplicationConfig = {
           migrations: [],
           source: (state) =>
             state.pipe(excludeKeys(['loading', 'errorFetchingModel', 'triggerModelFetch'])),
+          skip: 1,
+        },
+        {
+          key: NEWS_LETTER_SUBSCRIBER_FEATURE_KEY,
+          storage: localStorageStrategy,
+          runGuard: () => typeof window !== 'undefined',
+          migrations: [],
+          source: (state) =>
+            state.pipe(excludeKeys(['isSubscriptionLoading', 'message'])),
           skip: 1,
         },
       ],

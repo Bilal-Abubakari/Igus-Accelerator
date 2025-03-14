@@ -4,8 +4,8 @@ import {
   MATERIAL_FEATURE_KEY,
 } from 'libs/ui-components/src/materials/store/material.reducer';
 import {
-  FOOTER_FEATURE_KEY,
-  footerReducer,
+  MAIN_FOOTER_FEATURE_KEY,
+  mainFooterReducer,
 } from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { MaterialState } from 'libs/ui-components/src/materials/store/material.state';
 
@@ -20,14 +20,15 @@ import { CONTACT_FORM_FEATURE_KEY, contactFormReducer } from 'libs/ui-components
 
 export interface AppState {
   [MATERIAL_FEATURE_KEY]: MaterialState;
-  [FOOTER_FEATURE_KEY]: FooterState;
+  [NEWS_LETTER_SUBSCRIBER_FEATURE_KEY]: NewLetterState;
+  [MAIN_FOOTER_FEATURE_KEY]: FooterState;
   [CONTACT_FORM_FEATURE_KEY]: ContactFormState;
   [MODEL_LIST_FEATURE_KEY]: ModelListState
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
   [MATERIAL_FEATURE_KEY]: materialReducer,
-  [FOOTER_FEATURE_KEY]: footerReducer,
+  [MAIN_FOOTER_FEATURE_KEY]: mainFooterReducer,
   [CONTACT_FORM_FEATURE_KEY]: contactFormReducer,
   [MODEL_LIST_FEATURE_KEY]: modelListReducer,
  

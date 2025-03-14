@@ -18,6 +18,7 @@ import { FeedbackModule } from './modules/feedback/feedback.module';
 import { FileUploadModule } from './modules/file-upload/file-upload.module';
 import { MaterialsModule } from './modules/materials/materials.module';
 import { ModelConfigModule } from './modules/model-configurations/model-config.module';
+import { NewsLetterSubscriberModule } from './modules/news-letter-subscriber/news-letter-subscriber.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ModelConfigModule } from './modules/model-configurations/model-config.m
     MaterialsModule,
     AuthModule,
     ModelConfigModule,
+    NewsLetterSubscriberModule,
     CacheModule.register(),
     ConfigModule.forRoot(envConfig),
     TypeOrmModule.forRoot(databaseConfig().database),

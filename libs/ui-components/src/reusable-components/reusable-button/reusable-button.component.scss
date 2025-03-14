@@ -13,6 +13,9 @@ button {
     padding: 0 1.19113rem;
     color: $footer-main-background;
     background-color: var(--mat-sys-surface-container-lowest);
+    &:hover {
+      background-color: var(--mat-sys-background);
+    }
   }
   &.mat-icon-button {
     width: 40px;
