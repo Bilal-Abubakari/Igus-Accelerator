@@ -29,15 +29,13 @@
       <div class="submit-section">
         <app-reusable-button
           [type]="'submit'"
-          [className]="'submit-button'"
+          className="submit-button"
           [flat]="false"
-          [styles]="{
-            'background-color': 'var(--mat-sys-on-primary-container)',
-            color: 'white',
-            'border-radius': '12px',
-            width: '150px',
-            height: '45px',
-          }"
+          [backgroundColor]="buttonStyles.backgroundColor"
+          [color]="buttonStyles.color"
+          [borderRadius]="buttonStyles.borderRadius"
+          [btnHeight]="buttonStyles.height"
+          [btnWidth]="buttonStyles.width"
         >
           {{ 'cartInfo.SUBMIT' | transloco }}
         </app-reusable-button>

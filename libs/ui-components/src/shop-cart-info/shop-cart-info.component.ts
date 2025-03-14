@@ -22,6 +22,14 @@ export class ShopCartInfoComponent {
   private readonly translocoService = inject(TranslocoService);
   public readonly price = -1;
 
+  public readonly buttonStyles = {
+    backgroundColor: 'var(--mat-sys-on-primary-container)',
+    color: 'white',
+    borderRadius: '12px',
+    height: '45px',
+    width: '150px',
+  };
+
   public quantityControl = new FormControl(1, [
     Validators.required,
     Validators.min(1),

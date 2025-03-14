@@ -23,6 +23,17 @@ import { RouterLink } from '@angular/router';
 export class ScheduleCallComponent {
   private readonly dialog = inject(MatDialog);
 
+  public readonly buttonStyles = {
+    backgroundColor: 'var(--mat-sys-on-primary-container)',
+    color: 'white',
+    borderRadius: '12px',
+    height: '45px',
+    width: '165.75px',
+    upload: {
+      padding: ' 0px 0 5% 0',
+    },
+  };
+
   openContactForm() {
     this.dialog.open(ContactFormComponent, {
       panelClass: ['full-screen-dialog'],
