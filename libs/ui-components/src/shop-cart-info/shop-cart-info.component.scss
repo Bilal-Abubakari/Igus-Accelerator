@@ -62,6 +62,7 @@
 .quantity-content {
   @include mixins.flex-column;
   align-items: center;
+  width: 20%;
 
   @media (min-width: 768px) {
     align-items: flex-start;
@@ -72,7 +73,6 @@
 .quantity-section {
   @include mixins.flex-center;
   margin-bottom: 12px;
-  width: 75%;
   max-width: 100px;
 
   @media (min-width: 768px) {
