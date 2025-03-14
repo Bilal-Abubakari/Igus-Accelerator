@@ -1,19 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import {
-  translocoConfig,
-  TranslocoPipe,
-  TranslocoTestingModule,
-} from '@jsverse/transloco';
 import { HowItWorksComponent } from './how-it-works.component';
 import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-
-class MockTranslocoPipe {
-  transform(key: string) {
-    return `en.${key}`;
-  }
-}
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 describe('HowItWorksComponent', () => {
   let component: HowItWorksComponent;
@@ -44,16 +34,12 @@ describe('HowItWorksComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HowItWorksComponent,
-        TranslocoTestingModule.forRoot({
-          langs: {},
-          translocoConfig: translocoConfig({}),
-        }),
+        getTranslocoModule(),
         CommonModule,
         MatCard,
         MatCardContent,
         MatCardTitle,
       ],
-      providers: [{ provide: TranslocoPipe, useClass: MockTranslocoPipe }],
     }).compileComponents();
     fixture = TestBed.createComponent(HowItWorksComponent);
     component = fixture.componentInstance;
@@ -99,14 +85,10 @@ describe('HowItWorksComponent', () => {
   it('should render titles and descriptions through the transloco pipe', () => {
     fixture.detectChanges();
     const componentHtml = fixture.nativeElement.textContent;
-    expect(componentHtml).toContain('en.how-it-works.MAIN_TITLE');
+    expect(componentHtml).toContain('how-it-works.MAIN_TITLE');
     component.cardContent.forEach((card) => {
-      expect(componentHtml).toContain(
-        new MockTranslocoPipe().transform(card.titleKey),
-      );
-      expect(componentHtml).toContain(
-        new MockTranslocoPipe().transform(card.description),
-      );
+      expect(componentHtml).toContain(card.titleKey);
+      expect(componentHtml).toContain(card.description);
     });
   });
   it(

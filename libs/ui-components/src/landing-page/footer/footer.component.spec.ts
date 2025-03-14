@@ -5,11 +5,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-  translocoConfig,
-  TranslocoService,
-  TranslocoTestingModule,
-} from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ReusableButtonComponent } from '../../reusable-components/reusable-button/reusable-button.component';
@@ -20,12 +15,12 @@ import { FooterService } from './service/footer/footer.service';
 import { NewsletterActions } from './store/footer.actions';
 import { provideMockStore } from '@ngrx/store/testing';
 import { selectIsSubscriptionLoading } from './store/footer.selectors';
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
   let store: Store;
-  let translocoService: TranslocoService;
   let footerService: FooterService;
 
   beforeEach(async () => {
@@ -42,15 +37,7 @@ describe('FooterComponent', () => {
         ReusableFormFieldComponent,
         ReusableButtonComponent,
         ModelLogoComponent,
-        TranslocoTestingModule.forRoot({
-          langs: {
-            en: { languageSwitcher: { languageLabel: 'English' } },
-            es: { languageSwitcher: { languageLabel: 'Spanish' } },
-          },
-          translocoConfig: translocoConfig({
-            defaultLang: 'en',
-          }),
-        }),
+        getTranslocoModule(),
       ],
       providers: [
         FormBuilder,
@@ -69,7 +56,6 @@ describe('FooterComponent', () => {
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(Store);
-    translocoService = TestBed.inject(TranslocoService);
     footerService = TestBed.inject(FooterService);
     fixture.detectChanges();
   });
@@ -153,11 +139,11 @@ describe('FooterComponent', () => {
   });
 
   it('should get the correct error messages', () => {
-    expect(component.errorMessages.required).toBe('en.footer.REQUIRED_FIELD');
-    expect(component.errorMessages.pattern).toBe('en.footer.ENTER_VALID_NAME');
-    expect(component.errorMessages.email).toBe('en.footer.ENTER_VALID_EMAIL');
-    expect(component.errorMessages.minlength).toBe('en.footer.NAME_TOO_SHORT');
-    expect(component.errorMessages.maxlength).toBe('en.footer.NAME_TOO_LONG');
+    expect(component.errorMessages.required).toBe('footer.REQUIRED_FIELD');
+    expect(component.errorMessages.pattern).toBe('footer.ENTER_VALID_NAME');
+    expect(component.errorMessages.email).toBe('footer.ENTER_VALID_EMAIL');
+    expect(component.errorMessages.minlength).toBe('footer.NAME_TOO_SHORT');
+    expect(component.errorMessages.maxlength).toBe('footer.NAME_TOO_LONG');
   });
 
   it('should get the current year', () => {

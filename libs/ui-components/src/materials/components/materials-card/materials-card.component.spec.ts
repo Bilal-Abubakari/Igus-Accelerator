@@ -5,16 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import {
-  TranslocoPipe,
-  TranslocoService,
-  TranslocoTestingModule,
-  translocoConfig,
-} from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { By } from '@angular/platform-browser';
 import { createMockMaterial } from '../../store/mocks/mock-material';
 import { MaterialInfoDialogComponent } from '../material-info-dialog/material-info-dialog.component';
 import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
+import { getTranslocoModule } from '../../../transloco-test-config/transloco-testing.module';
 
 describe('MaterialCardComponent', () => {
   let component: MaterialsCardComponent;
@@ -54,15 +50,7 @@ describe('MaterialCardComponent', () => {
         MatIcon,
         TranslocoPipe,
         MaterialsCardComponent,
-        TranslocoTestingModule.forRoot({
-          langs: {
-            en: { languageSwitcher: { languageLabel: 'English' } },
-            es: { languageSwitcher: { languageLabel: 'Spanish' } },
-          },
-          translocoConfig: translocoConfig({
-            defaultLang: 'en',
-          }),
-        }),
+        getTranslocoModule(),
       ],
       providers: [{ provide: MatDialog, useValue: mockDialog }],
     }).compileComponents();
