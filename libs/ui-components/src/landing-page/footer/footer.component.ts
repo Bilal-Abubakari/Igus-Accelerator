@@ -58,6 +58,14 @@ export class FooterComponent implements OnInit, OnDestroy {
     selectIsSubscriptionLoading,
   );
 
+  public readonly buttonStyles = {
+    color: '#131313',
+    borderRadius: '12px',
+    height: '42px',
+    width: '100%',
+    padding: '20px',
+  };
+
   public subscriptionForm = this.fb.group({
     firstName: this.fb.control<string>('', [
       Validators.pattern(/^[A-Za-z\s'-]+$/),

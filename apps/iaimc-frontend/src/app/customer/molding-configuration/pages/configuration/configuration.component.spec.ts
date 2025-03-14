@@ -3,6 +3,7 @@ import { ConfigurationComponent } from './configuration.component';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { MaterialsComponent } from '../../../../../../../../libs/ui-components/src/materials/materials.component';
+import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 
 const mockMaterials = [
   {
@@ -32,7 +33,14 @@ describe('ConfigurationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfigurationComponent, MaterialsComponent],
+      imports: [
+        ConfigurationComponent,
+        MaterialsComponent,
+        TranslocoTestingModule.forRoot({
+          langs: {},
+          translocoConfig: translocoConfig({}),
+        }),
+      ],
       providers: [{ provide: Store, useValue: mockStore }],
     }).compileComponents();
 

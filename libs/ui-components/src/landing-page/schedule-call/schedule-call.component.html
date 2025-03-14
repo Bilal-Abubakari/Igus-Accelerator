@@ -10,12 +10,11 @@
       <app-reusable-button
         [className]="'upload-button'"
         (buttonClick)="openContactForm()"
-        [styles]="{
-          'background-color': 'var(--mat-sys-on-primary-container)',
-          color: 'white',
-          'border-radius': '25px',
-          'font-weight': 'semi-bold',
-        }"
+        [backgroundColor]="buttonStyles.backgroundColor"
+        [color]="buttonStyles.color"
+        [borderRadius]="buttonStyles.borderRadius"
+        [btnHeight]="buttonStyles.height"
+        [btnWidth]="buttonStyles.width"
       >
         <span>{{ 'cta.SCHEDULE.BUTTON' | transloco }}</span>
       </app-reusable-button>
@@ -27,17 +26,13 @@
         {{ 'cta.TRY_IT.DESCRIPTION' | transloco }}
       </p>
       <app-reusable-button
-        [className]="'upload-button'"
         [routerLink]="['/library']"
-        [styles]="{
-          'background-color': 'var(--mat-sys-on-primary-container)',
-          color: 'white',
-          'border-radius': '25px',
-          'font-weight': 'semi-bold',
-          display: 'flex',
-          'align-items': 'start',
-          'justify-content': 'center',
-        }"
+        [backgroundColor]="buttonStyles.backgroundColor"
+        [color]="buttonStyles.color"
+        [borderRadius]="buttonStyles.borderRadius"
+        [btnHeight]="buttonStyles.height"
+        [btnWidth]="buttonStyles.width"
+        [btnPadding]="buttonStyles.upload.padding"
       >
         {{ 'cta.TRY_IT.BUTTON' | transloco }}
         <mat-icon class="arrow-icon">arrow_forward</mat-icon>

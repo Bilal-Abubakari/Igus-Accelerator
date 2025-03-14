@@ -1,0 +1,45 @@
+<div class="fixed-cart-container" #cartContainer>
+  <div class="fixed-cart">
+    <div class="quantity-content">
+      <div class="quantity-section">
+        <div class="quantity-section">
+          <app-reusable-form-field
+            class="quantity-field"
+            [control]="quantityControl"
+            [label]="'cartInfo.QUANTITY' | transloco"
+            [inputType]="'number'"
+            [errorMessages]="errorMessages"
+            [errorAlignment]="'center'"
+          ></app-reusable-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="product-info">
+        @if (price === -1) {
+          <div class="product-availability">
+            {{ 'cartInfo.REQUEST' | transloco }}
+          </div>
+        }
+        <div class="delivery-info mobile-only">
+          <i class="material-icons delivery-icon">access_time_filled</i>
+          <span>{{ 'cartInfo.DELIVERY' | transloco }}</span>
+        </div>
+      </div>
+      <div class="submit-section">
+        <app-reusable-button
+          [type]="'submit'"
+          className="submit-button"
+          [flat]="false"
+          [backgroundColor]="buttonStyles.backgroundColor"
+          [color]="buttonStyles.color"
+          [borderRadius]="buttonStyles.borderRadius"
+          [btnHeight]="buttonStyles.height"
+          [btnWidth]="buttonStyles.width"
+        >
+          {{ 'cartInfo.SUBMIT' | transloco }}
+        </app-reusable-button>
+      </div>
+    </div>
+  </div>
+</div>

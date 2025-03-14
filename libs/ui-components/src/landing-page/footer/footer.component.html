@@ -39,6 +39,11 @@
           <app-reusable-button
             [className]="'custom-button'"
             [isInFooter]="true"
+            [color]="buttonStyles.color"
+            [borderRadius]="buttonStyles.borderRadius"
+            [btnHeight]="buttonStyles.height"
+            [btnWidth]="buttonStyles.width"
+            [btnPadding]="buttonStyles.padding"
             (buttonClick)="onSubscribe()"
             [disabled]="isSubscriptionLoading()"
           >

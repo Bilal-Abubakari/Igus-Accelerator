@@ -60,6 +60,12 @@ import { DEFAULT_ERROR_MESSAGES } from '../utilities/error-messages';
 export class ContactFormComponent implements OnInit, OnDestroy {
   public readonly customErrorMessages = DEFAULT_ERROR_MESSAGES;
 
+  public readonly buttonStyles = {
+    color: 'var(--cancel-border-color)',
+    width: '150px',
+    padding: '12px 24px',
+  };
+
   private static readonly ALLOWED_FILE_TYPES = [
     'application/step',
     'application/stp',

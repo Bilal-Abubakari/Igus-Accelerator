@@ -20,7 +20,7 @@
   }
 
   @if (control.touched) {
-    <mat-error>
+    <mat-error [style.text-align]="errorAlignment">
       @for (error of getErrorMessages(); track error) {
         <span>{{ error }}</span>
       }

@@ -17,7 +17,17 @@ export class ReusableButtonComponent {
   @Input() flat = false;
   @Input() ariaLabel = '';
   @Input() isIconButton = false;
-  @Input() styles: { [key: string]: string } = {};
+  @Input() backgroundColor = '';
+  @Input() color = 'white';
+  @Input() btnWidth = '100%';
+  @Input() btnHeight = '51px';
+  @Input() borderRadius = '0';
+  @Input() enablePadding = false;
+  @Input() btnPadding = '0';
+  @Input() displayBtnLabels = '';
+  @Input() justifyBtnLabels = '';
+  @Input() alignBtnLabels = '';
+  @Input() styles: { [key: string]: string } = {}; //deprecated (refer to shop-cart-info.component to see new usage)
 
   @Output() buttonClick = new EventEmitter<MouseEvent>();
 }
