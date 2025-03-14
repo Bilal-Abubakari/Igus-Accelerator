@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule
-import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { StageComponent } from './stage.component';
 import { Location } from '@angular/common';
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 describe('StageComponent', () => {
   let component: StageComponent;
@@ -13,10 +13,7 @@ describe('StageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        TranslocoTestingModule.forRoot({
-          langs: {},
-          translocoConfig: translocoConfig({}),
-        }),
+        getTranslocoModule(),
         RouterTestingModule.withRoutes([
           { path: 'library', component: StageComponent },
         ]),

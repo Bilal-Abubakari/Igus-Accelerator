@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { By } from '@angular/platform-browser';
-import { TranslocoTestingModule, translocoConfig } from '@jsverse/transloco';
 import { LanguageOverlayService } from '../../language-switcher/services/language-overlay/language-overlay.service';
 import { ToolbarComponent } from './toolbar.component';
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -13,14 +13,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MatIconModule,
-        MatToolbarModule,
-        TranslocoTestingModule.forRoot({
-          langs: {},
-          translocoConfig: translocoConfig({}),
-        }),
-      ],
+      imports: [MatIconModule, MatToolbarModule, getTranslocoModule()],
       providers: [LanguageOverlayService],
     }).compileComponents();
 

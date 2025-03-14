@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScheduleCallComponent } from './schedule-call.component';
 import { By } from '@angular/platform-browser';
-import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 // Mock ReusableButtonComponent as standalone
 @Component({
@@ -34,12 +34,9 @@ describe('ScheduleCallComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        ScheduleCallComponent, // Import as standalone component
-        MockReusableButtonComponent, // Import mock as standalone
-        TranslocoTestingModule.forRoot({
-          langs: {},
-          translocoConfig: translocoConfig({}),
-        }),
+        ScheduleCallComponent,
+        MockReusableButtonComponent,
+        getTranslocoModule(),
         RouterTestingModule.withRoutes([]),
       ],
     }).compileComponents();
@@ -55,7 +52,7 @@ describe('ScheduleCallComponent', () => {
 
   it('should render the title correctly', () => {
     const titleElement = fixture.debugElement.query(By.css('.title'));
-    expect(titleElement.nativeElement.textContent.trim()).toBe('en.cta.TITLE');
+    expect(titleElement.nativeElement.textContent.trim()).toBe('cta.TITLE');
   });
 
   it('should display two option cards', () => {
@@ -69,10 +66,10 @@ describe('ScheduleCallComponent', () => {
     );
 
     expect(descriptions[0].nativeElement.textContent.trim()).toBe(
-      'en.cta.SCHEDULE.DESCRIPTION',
+      'cta.SCHEDULE.DESCRIPTION',
     );
     expect(descriptions[1].nativeElement.textContent.trim()).toBe(
-      'en.cta.TRY_IT.DESCRIPTION',
+      'cta.TRY_IT.DESCRIPTION',
     );
   });
 
@@ -83,10 +80,10 @@ describe('ScheduleCallComponent', () => {
     expect(buttons.length).toBe(2);
 
     const scheduleButtonContent = buttons[0].nativeElement.textContent.trim();
-    expect(scheduleButtonContent).toContain('en.cta.SCHEDULE.BUTTON');
+    expect(scheduleButtonContent).toContain('cta.SCHEDULE.BUTTON');
 
     const tryItButtonContent = buttons[1].nativeElement.textContent.trim();
-    expect(tryItButtonContent).toContain('en.cta.TRY_IT.BUTTON');
+    expect(tryItButtonContent).toContain('cta.TRY_IT.BUTTON');
   });
 
   it('should have arrow icon in the try it button', () => {
