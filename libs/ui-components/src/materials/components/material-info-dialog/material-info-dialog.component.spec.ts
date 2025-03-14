@@ -1,20 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialInfoDialogComponent } from './material-info-dialog.component';
 import { Store } from '@ngrx/store';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { signal } from '@angular/core';
-import {
-  translocoConfig,
-  TranslocoService,
-  TranslocoTestingModule,
-} from '@jsverse/transloco';
+import { getTranslocoModule } from '../../../transloco-test-config/transloco-testing.module';
 
 describe('MaterialInfoDialogComponent', () => {
   let component: MaterialInfoDialogComponent;
   let fixture: ComponentFixture<MaterialInfoDialogComponent>;
   let mockStore: { selectSignal: jest.Mock };
   let mockDialogRef: { close: jest.Mock };
-  let translocoService: TranslocoService;
 
   const mockMaterial = {
     id: '1',
@@ -37,18 +32,7 @@ describe('MaterialInfoDialogComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [
-        MaterialInfoDialogComponent,
-        TranslocoTestingModule.forRoot({
-          langs: {
-            en: { languageSwitcher: { languageLabel: 'English' } },
-            es: { languageSwitcher: { languageLabel: 'Spanish' } },
-          },
-          translocoConfig: translocoConfig({
-            defaultLang: 'en',
-          }),
-        }),
-      ],
+      imports: [MaterialInfoDialogComponent, getTranslocoModule()],
       providers: [
         { provide: Store, useValue: mockStore },
         { provide: MatDialogRef, useValue: mockDialogRef },
@@ -58,7 +42,6 @@ describe('MaterialInfoDialogComponent', () => {
 
     fixture = TestBed.createComponent(MaterialInfoDialogComponent);
     component = fixture.componentInstance;
-    translocoService = TestBed.inject(TranslocoService);
     fixture.detectChanges();
   });
 

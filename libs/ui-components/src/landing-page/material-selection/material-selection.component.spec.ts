@@ -1,20 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialSelectionComponent } from './material-selection.component';
-import {
-  translocoConfig,
-  TranslocoPipe,
-  TranslocoTestingModule,
-} from '@jsverse/transloco';
+import { TRANSLOCO_SCOPE } from '@jsverse/transloco';
 import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { By } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
-
-class MockTranslocoPipe {
-  transform(key: string) {
-    return `en.${key}`;
-  }
-}
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 describe('MaterialSelectionComponent', () => {
   let component: MaterialSelectionComponent;
@@ -22,29 +11,11 @@ describe('MaterialSelectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MaterialSelectionComponent,
-        TranslocoTestingModule.forRoot({
-          langs: {},
-          translocoConfig: translocoConfig({}),
-        }),
+      imports: [MaterialSelectionComponent, getTranslocoModule()],
+      providers: [
+        { provide: TRANSLOCO_SCOPE, useValue: 'materialSelectionI18n' },
       ],
-      providers: [{ provide: TranslocoPipe, useClass: MockTranslocoPipe }],
-    })
-      .overrideComponent(MaterialSelectionComponent, {
-        set: {
-          imports: [
-            CommonModule,
-            MatCard,
-            MatCardContent,
-            MatIcon,
-            MatCardTitle,
-            TranslocoPipe,
-          ],
-          providers: [{ provide: TranslocoPipe, useClass: MockTranslocoPipe }],
-        },
-      })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MaterialSelectionComponent);
     component = fixture.componentInstance;
@@ -59,7 +30,6 @@ describe('MaterialSelectionComponent', () => {
     expect(component.materials).toBeDefined();
     expect(component.materials.length).toBe(3);
 
-    // Test first material
     expect(component.materials[0].titleKey).toBe('material.ABS.TITLE');
     expect(component.materials[0].features.length).toBe(3);
     expect(component.materials[0].features).toContain(
@@ -111,9 +81,9 @@ describe('MaterialSelectionComponent', () => {
 
     const componentHtml = fixture.nativeElement.textContent;
 
-    expect(componentHtml).toContain('en.material.ABS.TITLE');
-    expect(componentHtml).toContain('en.material.POLYPROPYLENE.TITLE');
-    expect(componentHtml).toContain('en.material.CUSTOM.TITLE');
+    expect(componentHtml).toContain('material.ABS.TITLE');
+    expect(componentHtml).toContain('material.POLYPROPYLENE.TITLE');
+    expect(componentHtml).toContain('material.CUSTOM.TITLE');
   });
 
   it('should render features for each material', () => {
@@ -121,24 +91,17 @@ describe('MaterialSelectionComponent', () => {
 
     const componentHtml = fixture.nativeElement.textContent;
 
-    expect(componentHtml).toContain('en.material.ABS.FEATURES.IMPACT');
-    expect(componentHtml).toContain('en.material.ABS.FEATURES.HEAT');
-    expect(componentHtml).toContain('en.material.ABS.FEATURES.FINISH');
+    expect(componentHtml).toContain('material.ABS.FEATURES.IMPACT');
+    expect(componentHtml).toContain('material.ABS.FEATURES.HEAT');
+    expect(componentHtml).toContain('material.ABS.FEATURES.FINISH');
 
-    expect(componentHtml).toContain(
-      'en.material.POLYPROPYLENE.FEATURES.CHEMICAL',
-    );
-    expect(componentHtml).toContain(
-      'en.material.POLYPROPYLENE.FEATURES.FLEXIBLE',
-    );
-    expect(componentHtml).toContain(
-      'en.material.POLYPROPYLENE.FEATURES.DENSITY',
-    );
+    expect(componentHtml).toContain('material.POLYPROPYLENE.FEATURES.CHEMICAL');
+    expect(componentHtml).toContain('material.POLYPROPYLENE.FEATURES.FLEXIBLE');
+    expect(componentHtml).toContain('material.POLYPROPYLENE.FEATURES.DENSITY');
 
-    // Check for Custom features with "en." prefix
-    expect(componentHtml).toContain('en.material.CUSTOM.FEATURES.SPECIAL');
-    expect(componentHtml).toContain('en.material.CUSTOM.FEATURES.PROPERTIES');
-    expect(componentHtml).toContain('en.material.CUSTOM.FEATURES.CONSULTATION');
+    expect(componentHtml).toContain('material.CUSTOM.FEATURES.SPECIAL');
+    expect(componentHtml).toContain('material.CUSTOM.FEATURES.PROPERTIES');
+    expect(componentHtml).toContain('material.CUSTOM.FEATURES.CONSULTATION');
   });
 
   it('should use the right Material components in the template', () => {
@@ -166,11 +129,8 @@ describe('MaterialSelectionComponent', () => {
       ...component.materials[2].features,
     ];
 
-    const mockPipe = new MockTranslocoPipe();
-
-    allFeatures.forEach((featureKey) => {
-      const translatedFeature = mockPipe.transform(featureKey);
-      expect(componentHtml).toContain(translatedFeature);
-    });
+    allFeatures.forEach((featureKey) =>
+      expect(componentHtml).toContain(featureKey),
+    );
   });
 });

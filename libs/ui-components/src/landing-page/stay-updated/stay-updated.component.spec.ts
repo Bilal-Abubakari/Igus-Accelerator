@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StayUpdatedComponent } from './stay-updated.component';
-import { translocoConfig, TranslocoTestingModule } from '@jsverse/transloco';
+import { getTranslocoModule } from '../../transloco-test-config/transloco-testing.module';
 
 describe('StayUpdatedComponent', () => {
   let component: StayUpdatedComponent;
@@ -8,13 +8,7 @@ describe('StayUpdatedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        StayUpdatedComponent,
-        TranslocoTestingModule.forRoot({
-          langs: {},
-          translocoConfig: translocoConfig({}),
-        }),
-      ],
+      imports: [StayUpdatedComponent, getTranslocoModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StayUpdatedComponent);

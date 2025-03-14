@@ -2,11 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LanguageSwitcherComponent } from './language-switcher.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import {
-  translocoConfig,
-  TranslocoService,
-  TranslocoTestingModule,
-} from '@jsverse/transloco';
+import { TRANSLOCO_SCOPE, TranslocoService } from '@jsverse/transloco';
 import { LanguageOverlayService } from './services/language-overlay/language-overlay.service';
 import { By } from '@angular/platform-browser';
 import { DEFAULT_LANGUAGE } from './constants';
@@ -14,6 +10,7 @@ import {
   LocalStorageKeys,
   LocalStorageService,
 } from '../model/components/model-upload/services/local-storage.service';
+import { getTranslocoModule } from '../transloco-test-config/transloco-testing.module';
 
 describe('LanguageSwitcherComponent', () => {
   let component: LanguageSwitcherComponent;
@@ -30,20 +27,12 @@ describe('LanguageSwitcherComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [],
-      imports: [
-        MatIconModule,
-        MatMenuModule,
-        TranslocoTestingModule.forRoot({
-          langs: {
-            en: { languageSwitcher: { languageLabel: 'English' } },
-            es: { languageSwitcher: { languageLabel: 'Spanish' } },
-          },
-          translocoConfig: translocoConfig({
-            defaultLang: 'en',
-          }),
-        }),
+      imports: [MatIconModule, MatMenuModule, getTranslocoModule()],
+      providers: [
+        LanguageOverlayService,
+        LocalStorageService,
+        { provide: TRANSLOCO_SCOPE, useValue: 'langSwticherI18n' },
       ],
-      providers: [LanguageOverlayService, LocalStorageService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LanguageSwitcherComponent);
@@ -91,7 +80,7 @@ describe('LanguageSwitcherComponent', () => {
     const labelElement = fixture.debugElement.query(
       By.css('.active-lang div'),
     ).nativeElement;
-    expect(labelElement.textContent).toContain('en');
+    expect(labelElement.textContent).toContain('langswitcher.LANGUAGE_LABEL');
   });
 
   it('should toggle language overlay on click', () => {
