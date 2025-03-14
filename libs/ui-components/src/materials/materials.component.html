@@ -1,20 +1,37 @@
+<div class="view-toggle">
+  <mat-button-toggle-group [(ngModel)]="viewMode" aria-label="View Mode">
+    <mat-button-toggle value="grid">
+      <mat-icon>grid_view</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="table">
+      <mat-icon>table_chart</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
 @if (loading()) {
   <div class="loading-container">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 } @else {
-  <div class="material-grid">
-    @for (material of materials(); track material.id) {
-      <app-materials-card
-        [material]="material"
-        [selectedMaterialId]="selectedMaterialId()"
-        (click)="toggleSelection(material.id)"
-        (keydown.enter)="toggleSelection(material.id)"
-        (keydown.space)="toggleSelection(material.id)"
-        tabindex="0"
-      ></app-materials-card>
-    } @empty {
-      <p>{{ 'materialCard.EMPTY_STATE' | transloco }}.</p>
-    }
-  </div>
+  @if (viewMode === 'grid') {
+    <div class="material-grid">
+      @for (material of materials(); track material.id) {
+        <app-materials-card
+          [material]="material"
+          [selectedMaterialId]="selectedMaterialId()"
+          (click)="toggleSelection(material.id)"
+          (keydown.enter)="toggleSelection(material.id)"
+          (keydown.space)="toggleSelection(material.id)"
+          tabindex="0"
+        />
+      } @empty {
+        <p>{{ 'materialCard.EMPTY_STATE' | transloco }}.</p>
+      }
+    </div>
+  } @else {
+    <div class="app-materials-table-container">
+      <app-materials-table [materials]="materials()"></app-materials-table>
+    </div>
+  }
 }
