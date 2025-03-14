@@ -1,14 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
-import {
-  TranslocoService,
-  TranslocoTestingModule,
-  translocoConfig,
-} from '@jsverse/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 import { LanguageOverlayService } from '../../services/language-overlay/language-overlay.service';
 import { LanguageOverlayComponent } from './language-overlay.component';
 import { AVAILABLE_LANGUAGES } from '../../constants';
+import { getTranslocoModule } from '../../../transloco-test-config/transloco-testing.module';
 
 describe('LanguageOverlayComponent', () => {
   let component: LanguageOverlayComponent;
@@ -18,29 +15,8 @@ describe('LanguageOverlayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MatIconModule,
-        TranslocoTestingModule.forRoot({
-          langs: {
-            en: {
-              languageSwitcher: {
-                pageTitle: 'Select Language',
-                close: 'Close',
-              },
-            },
-            es: {
-              languageSwitcher: {
-                pageTitle: 'Seleccionar idioma',
-                close: 'Cerrar',
-              },
-            },
-          },
-          translocoConfig: translocoConfig({
-            availableLangs: ['en', 'es'],
-            defaultLang: 'en',
-          }),
-        }),
-      ],
+      imports: [MatIconModule, getTranslocoModule()],
+
       providers: [LanguageOverlayService],
     }).compileComponents();
 
