@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, Validators } from '@angular/forms';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { ReusableButtonComponent } from '../reusable-components/reusable-button/reusable-button.component';
 import { ReusableFormFieldComponent } from '../reusable-components/reusable-form-field/reusable-form-field.component';
 
@@ -19,6 +19,7 @@ import { ReusableFormFieldComponent } from '../reusable-components/reusable-form
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopCartInfoComponent {
+  private readonly translocoService = inject(TranslocoService);
   public readonly price = -1;
 
   public quantityControl = new FormControl(1, [
@@ -27,6 +28,6 @@ export class ShopCartInfoComponent {
   ]);
 
   public readonly errorMessages = {
-    min: 'Value must not be below 1',
+    min: this.translocoService.translate('cartInfo.MIN_ERROR'),
   };
 }

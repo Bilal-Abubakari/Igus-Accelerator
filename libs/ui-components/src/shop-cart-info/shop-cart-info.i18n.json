@@ -43,6 +43,17 @@
       "pt": "Enviar solicitação",
       "ru": "Отправить запрос",
       "zh": "提交申请"
+    },
+    "MIN_ERROR": {
+      "ar": "يجب ألا تقل القيمة عن 1",
+      "de": "Der Wert darf nicht unter 1 liegen",
+      "en": "Value must not be below 1",
+      "es": "El valor no debe ser inferior a 1",
+      "fr": "La valeur ne doit pas être inférieure à 1",
+      "jp": "値が1を下回ってはならない",
+      "pt": "O valor não deve ser inferior a 1",
+      "ru": "Значение не должно быть меньше 1",
+      "zh": "数值不得低于 1"
     }
   }
 }
