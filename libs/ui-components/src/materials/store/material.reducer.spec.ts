@@ -2,6 +2,7 @@ import { materialReducer } from './material.reducer';
 import { MaterialActions } from './material.actions';
 import { createMockMaterial } from '../store/mocks/mock-material';
 import { initialMaterialState } from './material.state';
+import { ViewMode } from '../types';
 
 jest.mock('../../utilities/color.utils', () => ({
   getTextColor: jest.fn().mockReturnValue('#FFFFFF'),
@@ -65,4 +66,31 @@ describe('MaterialReducer', () => {
     state = materialReducer(state, action);
     expect(state.selectedMaterial).toBeNull();
   });
+});
+it('should update viewMode when setViewMode action is dispatched', () => {
+  const initialState = {
+    ...initialMaterialState,
+    viewMode: 'grid' as ViewMode,
+  };
+
+  const action = MaterialActions.setViewMode({ viewMode: 'grid' });
+  const state = materialReducer(initialState, action);
+
+  expect(state.viewMode).toBe('grid');
+});
+it('should update materials and set textColor on loadMaterialsSuccess', () => {
+  const materials = [
+    createMockMaterial({ id: '1', name: 'Material A', colorHex: '#FF0000' }),
+    createMockMaterial({ id: '2', name: 'Material B', colorHex: '#00FF00' }),
+  ];
+
+  const action = MaterialActions.loadMaterialsSuccess({ materials });
+  const state = materialReducer(initialMaterialState, action);
+
+  expect(state.triggerMaterialFetch).toBe(false);
+  expect(state.materialFetchError).toBeNull();
+  expect(state.materials.length).toBe(2);
+  expect(state.materials[0].textColor).toBe('#FFFFFF');
+  expect(state.materials[0].id).toBe('1');
+  expect(state.materials[1].id).toBe('2');
 });
