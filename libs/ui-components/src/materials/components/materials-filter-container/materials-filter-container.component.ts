@@ -19,51 +19,37 @@ import { MaterialsFilterMenuComponent } from '../materials-filter-menu/materials
 export class MaterialsFilterContainerComponent {
   private readonly filterOverlayService = inject(FilterOverlayService);
 
+  private createFilter(name: string, options: string[]) {
+    return {
+      name,
+      options: options.map((label) => ({ label, selected: false })),
+    };
+  }
+
   protected filters = [
-    {
-      name: 'PFAS/PTFE',
-      options: [
-        { label: 'PFAS-free ', selected: false },
-        { label: 'PTFE-free', selected: false },
-      ],
-    },
-    {
-      name: 'Temperature',
-      options: [
-        { label: 'Below 0°C', selected: false },
-        { label: '0-100°C', selected: false },
-        { label: '100-200°C', selected: false },
-        { label: 'Above 200°C', selected: false },
-      ],
-    },
-    {
-      name: 'Food conformity',
-      options: [
-        { label: 'FDA-Compliant', selected: false },
-        { label: 'Conformity according to EU 10/2011', selected: false },
-      ],
-    },
-    {  
-      name: 'Environment',
-      options: [
-        { label: 'Dirt resistance', selected: false },
-        { label: 'High chemical resistance', selected: false },
-        { label: 'Low moisture absorption', selected: false },
-        { label: 'Underwater use', selected: false },
-      ],
-    },
-    {
-      name: 'Electricity',
-      options: [{ label: 'Electrically conductive', selected: false }],
-    },
-    {
-      name: 'Surface pressure',
-      options: [
-        { label: 'Low pressure', selected: false },
-        { label: 'Medium pressure', selected: false },
-        { label: 'High pressure', selected: false },
-      ],
-    },
+    this.createFilter('PFAS/PTFE', ['PFAS-free', 'PTFE-free']),
+    this.createFilter('Temperature', [
+      'Below 0°C',
+      '0-100°C',
+      '100-200°C',
+      'Above 200°C',
+    ]),
+    this.createFilter('Food conformity', [
+      'FDA-Compliant',
+      'Conformity according to EU 10/2011',
+    ]),
+    this.createFilter('Environment', [
+      'Dirt resistance',
+      'High chemical resistance',
+      'Low moisture absorption',
+      'Underwater use',
+    ]),
+    this.createFilter('Electricity', ['Electrically conductive']),
+    this.createFilter('Surface pressure', [
+      'Low pressure',
+      'Medium pressure',
+      'High pressure',
+    ]),
   ];
 
   @HostListener('document:click', ['$event'])
