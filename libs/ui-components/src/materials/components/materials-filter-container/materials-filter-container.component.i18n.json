@@ -1,0 +1,270 @@
+{
+  "filters": {
+    "PFAS_PTFE": {
+      "name": {
+        "ar": "PFAS و PTFE",
+        "de": "PFAS und PTFE",
+        "en": "PFAS and PTFE",
+        "es": "PFAS y PTFE",
+        "fr": "PFAS et PTFE",
+        "jp": "PFASとPTFE",
+        "pt": "PFAS e PTFE",
+        "ru": "PFAS и PTFE",
+        "zh": "PFAS和PTFE"
+      },
+      "options": {
+        "PFAS_free": {
+          "ar": "خالٍ من PFAS",
+          "de": "PFAS-frei",
+          "en": "PFAS-free",
+          "es": "Libre de PFAS",
+          "fr": "Sans PFAS",
+          "jp": "PFASフリー",
+          "pt": "Livre de PFAS",
+          "ru": "Без PFAS",
+          "zh": "无PFAS"
+        },
+        "PTFE_free": {
+          "ar": "خالٍ من PTFE",
+          "de": "PTFE-frei",
+          "en": "PTFE-free",
+          "es": "Libre de PTFE",
+          "fr": "Sans PTFE",
+          "jp": "PTFEフリー",
+          "pt": "Livre de PTFE",
+          "ru": "Без PTFE",
+          "zh": "无PTFE"
+        }
+      }
+    },
+    "Temperature": {
+      "name": {
+        "ar": "درجة الحرارة",
+        "de": "Temperatur",
+        "en": "Temperature",
+        "es": "Temperatura",
+        "fr": "Température",
+        "jp": "温度",
+        "pt": "Temperatura",
+        "ru": "Температура",
+        "zh": "温度"
+      },
+      "options": {
+        "Below_0C": {
+          "ar": "أقل من 0°C",
+          "de": "Unter 0°C",
+          "en": "Below 0°C",
+          "es": "Por debajo de 0°C",
+          "fr": "En dessous de 0°C",
+          "jp": "0°C以下",
+          "pt": "Abaixo de 0°C",
+          "ru": "Ниже 0°C",
+          "zh": "低于0°C"
+        },
+        "0_100C": {
+          "ar": "0-100°C",
+          "de": "0-100°C",
+          "en": "0-100°C",
+          "es": "0-100°C",
+          "fr": "0-100°C",
+          "jp": "0-100°C",
+          "pt": "0-100°C",
+          "ru": "0-100°C",
+          "zh": "0-100°C"
+        },
+        "100_200C": {
+          "ar": "100-200°C",
+          "de": "100-200°C",
+          "en": "100-200°C",
+          "es": "100-200°C",
+          "fr": "100-200°C",
+          "jp": "100-200°C",
+          "pt": "100-200°C",
+          "ru": "100-200°C",
+          "zh": "100-200°C"
+        },
+        "Above_200C": {
+          "ar": "أعلى من 200°C",
+          "de": "Über 200°C",
+          "en": "Above 200°C",
+          "es": "Por encima de 200°C",
+          "fr": "Au-dessus de 200°C",
+          "jp": "200°C以上",
+          "pt": "Acima de 200°C",
+          "ru": "Выше 200°C",
+          "zh": "高于200°C"
+        }
+      }
+    },
+    "Food_conformity": {
+      "name": {
+        "ar": "مطابقة الطعام",
+        "de": "Lebensmittelkonformität",
+        "en": "Food conformity",
+        "es": "Conformidad alimentaria",
+        "fr": "Conformité alimentaire",
+        "jp": "食品適合性",
+        "pt": "Conformidade alimentar",
+        "ru": "Соответствие пищевым стандартам",
+        "zh": "食品合规性"
+      },
+      "options": {
+        "FDA_Compliant": {
+          "ar": "متوافق مع FDA",
+          "de": "FDA-konform",
+          "en": "FDA-Compliant",
+          "es": "Cumple con FDA",
+          "fr": "Conforme FDA",
+          "jp": "FDA準拠",
+          "pt": "Conforme FDA",
+          "ru": "Соответствует FDA",
+          "zh": "符合FDA"
+        },
+        "EU_10_2011": {
+          "ar": "متوافق مع EU 10/2011",
+          "de": "Konformität gemäß EU 10/2011",
+          "en": "Conformity according to EU 10/2011",
+          "es": "Conformidad según EU 10/2011",
+          "fr": "Conformité selon EU 10/2011",
+          "jp": "EU 10/2011に準拠",
+          "pt": "Conformidade segundo EU 10/2011",
+          "ru": "Соответствие EU 10/2011",
+          "zh": "符合EU 10/2011"
+        }
+      }
+    },
+    "Environment": {
+      "name": {
+        "ar": "البيئة",
+        "de": "Umwelt",
+        "en": "Environment",
+        "es": "Medio ambiente",
+        "fr": "Environnement",
+        "jp": "環境",
+        "pt": "Meio ambiente",
+        "ru": "Окружающая среда",
+        "zh": "环境"
+      },
+      "options": {
+        "Dirt_resistance": {
+          "ar": "مقاومة الأوساخ",
+          "de": "Schmutzbeständigkeit",
+          "en": "Dirt resistance",
+          "es": "Resistencia a la suciedad",
+          "fr": "Résistance à la saleté",
+          "jp": "耐汚れ性",
+          "pt": "Resistência à sujeira",
+          "ru": "Устойчивость к грязи",
+          "zh": "抗污性"
+        },
+        "High_chemical_resistance": {
+          "ar": "مقاومة عالية للمواد الكيميائية",
+          "de": "Hohe chemische Beständigkeit",
+          "en": "High chemical resistance",
+          "es": "Alta resistencia química",
+          "fr": "Haute résistance chimique",
+          "jp": "高い耐化学性",
+          "pt": "Alta resistência química",
+          "ru": "Высокая химическая стойкость",
+          "zh": "高化学耐性"
+        },
+        "Low_moisture_absorption": {
+          "ar": "امتصاص منخفض للرطوبة",
+          "de": "Geringe Feuchtigkeitsaufnahme",
+          "en": "Low moisture absorption",
+          "es": "Baja absorción de humedad",
+          "fr": "Faible absorption d'humidité",
+          "jp": "低湿気吸収",
+          "pt": "Baixa absorção de umidade",
+          "ru": "Низкое поглощение влаги",
+          "zh": "低吸湿性"
+        },
+        "Underwater_use": {
+          "ar": "الاستخدام تحت الماء",
+          "de": "Unterwassereinsatz",
+          "en": "Underwater use",
+          "es": "Uso bajo el agua",
+          "fr": "Utilisation sous l'eau",
+          "jp": "水中使用",
+          "pt": "Uso subaquático",
+          "ru": "Использование под водой",
+          "zh": "水下使用"
+        }
+      }
+    },
+    "Electricity": {
+      "name": {
+        "ar": "الكهرباء",
+        "de": "Elektrizität",
+        "en": "Electricity",
+        "es": "Electricidad",
+        "fr": "Électricité",
+        "jp": "電気",
+        "pt": "Eletricidade",
+        "ru": "Электричество",
+        "zh": "电力"
+      },
+      "options": {
+        "Electrically_conductive": {
+          "ar": "موصل كهربائياً",
+          "de": "Elektrisch leitfähig",
+          "en": "Electrically conductive",
+          "es": "Conductor eléctrico",
+          "fr": "Conducteur électrique",
+          "jp": "導電性",
+          "pt": "Condutor elétrico",
+          "ru": "Электропроводный",
+          "zh": "导电性"
+        }
+      }
+    },
+    "Surface_pressure": {
+      "name": {
+        "ar": "ضغط السطح",
+        "de": "Oberflächendruck",
+        "en": "Surface pressure",
+        "es": "Presión superficial",
+        "fr": "Pression de surface",
+        "jp": "表面圧力",
+        "pt": "Pressão da superfície",
+        "ru": "Поверхностное давление",
+        "zh": "表面压力"
+      },
+      "options": {
+        "Low_pressure": {
+          "ar": "ضغط منخفض",
+          "de": "Niedriger Druck",
+          "en": "Low pressure",
+          "es": "Baja presión",
+          "fr": "Basse pression",
+          "jp": "低圧",
+          "pt": "Baixa pressão",
+          "ru": "Низкое давление",
+          "zh": "低压"
+        },
+        "Medium_pressure": {
+          "ar": "ضغط متوسط",
+          "de": "Mittlerer Druck",
+          "en": "Medium pressure",
+          "es": "Presión media",
+          "fr": "Pression moyenne",
+          "jp": "中圧",
+          "pt": "Pressão média",
+          "ru": "Среднее давление",
+          "zh": "中压"
+        },
+        "High_pressure": {
+          "ar": "ضغط مرتفع",
+          "de": "Hoher Druck",
+          "en": "High pressure",
+          "es": "Alta presión",
+          "fr": "Haute pression",
+          "jp": "高圧",
+          "pt": "Alta pressão",
+          "ru": "Высокое давление",
+          "zh": "高压"
+        }
+      }
+    }
+  }
+}
