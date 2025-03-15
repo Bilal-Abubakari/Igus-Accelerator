@@ -1,4 +1,9 @@
-import { ActionReducerMap } from '@ngrx/store';
+import {
+  Action,
+  ActionReducer,
+  ActionReducerMap,
+  MetaReducer,
+} from '@ngrx/store';
 import {
   materialReducer,
   MATERIAL_FEATURE_KEY,
@@ -6,9 +11,8 @@ import {
 import {
   MAIN_FOOTER_FEATURE_KEY,
   mainFooterReducer,
-} from '../../../../libs/ui-components/src/model/components/main-footer/store/footer.reducer';
+} from 'libs/ui-components/src/model/components/main-footer/store/footer.reducer';
 import { MaterialState } from 'libs/ui-components/src/materials/store/material.state';
-
 import { ContactFormState } from 'libs/ui-components/src/contact-form/store/contact-form.models';
 import { FooterState } from 'libs/ui-components/src/model/components/main-footer/store/footer.state';
 import {
@@ -18,8 +22,9 @@ import {
 import {
   NEWS_LETTER_SUBSCRIBER_FEATURE_KEY,
   newsLetterSubscriberReducer,
-} from '../../../../libs/ui-components/src/landing-page/footer/store/footer.reducers';
+} from 'libs/ui-components/src/landing-page/footer/store/footer.reducers';
 import { NewLetterState } from 'libs/ui-components/src/landing-page/footer/store/footer.state';
+import { materialMetaReducers } from 'libs/ui-components/src/materials/store/material.metareducer';
 
 export interface AppState {
   [MATERIAL_FEATURE_KEY]: MaterialState;
@@ -34,3 +39,24 @@ export const appReducer: ActionReducerMap<AppState> = {
   [CONTACT_FORM_FEATURE_KEY]: contactFormReducer,
   [NEWS_LETTER_SUBSCRIBER_FEATURE_KEY]: newsLetterSubscriberReducer,
 };
+
+export function materialMetaReducerWrapper(
+  reducer: ActionReducer<AppState>,
+): ActionReducer<AppState> {
+  return (state, action) => {
+    const materialState = state?.[MATERIAL_FEATURE_KEY];
+    const modifiedMaterialReducer = materialMetaReducers.reduce(
+      (acc, metaReducer) => metaReducer(acc),
+      (s: MaterialState | undefined, a: Action) => materialReducer(s, a),
+    );
+    const nextState = reducer(state, action);
+    return {
+      ...nextState,
+      [MATERIAL_FEATURE_KEY]: modifiedMaterialReducer(materialState, action),
+    };
+  };
+}
+
+export const metaReducers: MetaReducer<AppState>[] = [
+  materialMetaReducerWrapper,
+];

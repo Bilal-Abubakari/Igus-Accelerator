@@ -38,6 +38,10 @@ const reducer = createReducer(
       selectedMaterial,
     };
   }),
+  on(MaterialActions.setViewMode, (state, { viewMode }) => ({
+    ...state,
+    viewMode,
+  })),
 );
 
 export function materialReducer(

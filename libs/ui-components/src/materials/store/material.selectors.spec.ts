@@ -4,6 +4,7 @@ import {
   selectAllMaterials,
   selectLoading,
   selectError,
+  selectViewMode,
 } from './material.selectors';
 import { createMockMaterial } from '../store/mocks/mock-material';
 
@@ -14,6 +15,7 @@ describe('Material Selectors', () => {
     triggerMaterialFetch: true,
     materialFetchError: 'Error fetching materials',
     selectedMaterial: mockMaterial,
+    viewMode: 'grid',
   };
 
   it('should select the material state', () => {
@@ -30,5 +32,8 @@ describe('Material Selectors', () => {
 
   it('should select the error state', () => {
     expect(selectError.projector(mockState)).toBe('Error fetching materials');
+  });
+  it('should select the view mode', () => {
+    expect(selectViewMode.projector(mockState)).toBe('grid');
   });
 });
