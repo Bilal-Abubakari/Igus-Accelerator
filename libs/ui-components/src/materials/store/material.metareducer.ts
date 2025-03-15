@@ -1,7 +1,7 @@
 import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
 import { MaterialState } from './material.state';
 
-const STORAGE_KEY = 'materialState';
+export const STORAGE_KEY = 'materialState';
 
 export function loadState(): MaterialState | undefined {
   try {

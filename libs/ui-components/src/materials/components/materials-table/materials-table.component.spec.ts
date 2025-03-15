@@ -108,4 +108,79 @@ describe('MaterialsTableComponent', () => {
     );
     expect(priceCells[0].nativeElement.textContent.trim()).toBe('Upon Request');
   });
+  it('should toggle selection when a row is clicked', () => {
+    const rows = fixture.debugElement.queryAll(By.css('tr[mat-row]'));
+
+    rows[0].triggerEventHandler('click', {});
+    expect(component.selectedMaterialId).toBe('1');
+
+    rows[0].triggerEventHandler('click', {});
+    expect(component.selectedMaterialId).toBeNull();
+
+    rows[1].triggerEventHandler('click', {});
+    expect(component.selectedMaterialId).toBe('2');
+  });
+
+  it('should toggle selection when Enter key is pressed on a row', () => {
+    const rows = fixture.debugElement.queryAll(By.css('tr[mat-row]'));
+
+    rows[0].triggerEventHandler('keydown.enter', {});
+    expect(component.selectedMaterialId).toBe('1');
+
+    rows[0].triggerEventHandler('keydown.enter', {});
+    expect(component.selectedMaterialId).toBeNull();
+  });
+
+  it('should toggle selection when Space key is pressed on a row', () => {
+    const rows = fixture.debugElement.queryAll(By.css('tr[mat-row]'));
+
+    rows[0].triggerEventHandler('keydown.space', {});
+    expect(component.selectedMaterialId).toBe('1');
+
+    rows[0].triggerEventHandler('keydown.space', {});
+    expect(component.selectedMaterialId).toBeNull();
+  });
+
+  it('should apply active-row class to selected row', () => {
+    const rows = fixture.debugElement.queryAll(By.css('tr[mat-row]'));
+
+    rows[0].triggerEventHandler('click', {});
+    fixture.detectChanges();
+
+    expect(rows[0].nativeElement.classList.contains('active-row')).toBeTruthy();
+
+    rows[1].triggerEventHandler('click', {});
+    fixture.detectChanges();
+
+    expect(rows[0].nativeElement.classList.contains('active-row')).toBeFalsy();
+
+    expect(rows[1].nativeElement.classList.contains('active-row')).toBeTruthy();
+  });
+
+  it('should display material name and color circle', () => {
+    const nameCell = fixture.debugElement.query(By.css('.material-name'));
+    const colorCircle = fixture.debugElement.query(
+      By.css('.material-code-circle'),
+    );
+
+    expect(nameCell.nativeElement.textContent).toBe('Test Material 1');
+    expect(colorCircle.nativeElement.style.backgroundColor).toBe(
+      'rgb(255, 0, 0)',
+    );
+  });
+
+  it('should update selectedMaterial when showMoreInfo is called', () => {
+    component.showMoreInfo(mockMaterials[1]);
+    expect(component.selectedMaterial).toBe(mockMaterials[1]);
+  });
+
+  it('should pass the correct material to dialog service', () => {
+    const mockEvent = { stopPropagation: jest.fn() } as unknown as MouseEvent;
+    component.showMoreInfo(mockMaterials[1], mockEvent);
+
+    expect(materialDialogService.openMaterialDialog).toHaveBeenCalledWith(
+      mockMaterials[1],
+      mockEvent,
+    );
+  });
 });
