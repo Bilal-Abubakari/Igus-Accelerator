@@ -1,5 +1,9 @@
 <div class="view-toggle">
-  <mat-button-toggle-group [(ngModel)]="viewMode" aria-label="View Mode">
+  <mat-button-toggle-group
+    [value]="viewMode()"
+    (change)="changeViewMode($event.value)"
+    aria-label="View Mode"
+  >
     <mat-button-toggle value="grid">
       <mat-icon>grid_view</mat-icon>
     </mat-button-toggle>
@@ -14,7 +18,7 @@
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 } @else {
-  @if (viewMode === 'grid') {
+  @if (viewMode() === 'grid') {
     <div class="material-grid">
       @for (material of materials(); track material.id) {
         <app-materials-card
@@ -30,8 +34,8 @@
       }
     </div>
   } @else {
-    <div class="app-materials-table-container">
-      <app-materials-table [materials]="materials()"></app-materials-table>
+    <div class="materials-table-container">
+      <app-materials-table [materials]="materials()" />
     </div>
   }
 }

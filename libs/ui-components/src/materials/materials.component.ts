@@ -12,6 +12,7 @@ import {
   selectLoading,
   selectError,
   selectMaterial,
+  selectViewMode,
 } from './store/material.selectors';
 import { MaterialActions } from './store/material.actions';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -49,8 +50,8 @@ export class MaterialsComponent implements OnInit {
   public readonly loading = this.store.selectSignal(selectLoading);
   public readonly error = this.store.selectSignal(selectError);
   public readonly selectedMaterialId = this.store.selectSignal(selectMaterial);
+  public readonly viewMode = this.store.selectSignal(selectViewMode);
   public readonly hasError: Signal<boolean> = computed(() => !!this.error());
-  public readonly viewMode: ViewMode = 'grid';
 
   ngOnInit(): void {
     this.store.dispatch(MaterialActions.loadMaterials());
@@ -60,5 +61,9 @@ export class MaterialsComponent implements OnInit {
     this.store.dispatch(
       MaterialActions.toggleMaterialSelection({ materialId }),
     );
+  }
+
+  public changeViewMode(viewMode: ViewMode): void {
+    this.store.dispatch(MaterialActions.setViewMode({ viewMode }));
   }
 }

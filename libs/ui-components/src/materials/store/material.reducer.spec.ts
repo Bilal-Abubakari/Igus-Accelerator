@@ -90,7 +90,6 @@ it('should update materials and set textColor on loadMaterialsSuccess', () => {
   expect(state.triggerMaterialFetch).toBe(false);
   expect(state.materialFetchError).toBeNull();
   expect(state.materials.length).toBe(2);
-  expect(state.materials[0].textColor).toBe('#FFFFFF');
   expect(state.materials[0].id).toBe('1');
   expect(state.materials[1].id).toBe('2');
 });

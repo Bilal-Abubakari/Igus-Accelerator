@@ -12,6 +12,7 @@ $tolerance-container-bg: #f5f3f3;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 16px;
+  padding: 1.6rem;
 }
 
 mat-button-toggle-group {
@@ -56,15 +57,20 @@ mat-button-toggle {
   }
 }
 
-.app-materials-table-container {
+.materials-table-container {
   width: 60%;
   overflow-x: auto;
 
+  @media (max-width: 1024px) {
+    width: calc(100vw - 16px);
+  }
+
   @media (max-width: 768px) {
-    width: 80%;
+    width: calc(100vw - 16px);
   }
 
   @media (max-width: 480px) {
+    width: calc(100vw - 16px);
     width: 95%;
   }
 }
