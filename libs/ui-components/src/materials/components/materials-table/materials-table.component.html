@@ -1,7 +1,9 @@
 <div class="table-container">
   <table mat-table [dataSource]="materials">
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'materialsTable.NAME' | transloco }}
+      </th>
       <td mat-cell *matCellDef="let material">
         <div class="material-name-container">
           <div
@@ -32,8 +34,12 @@
     </ng-container>
 
     <ng-container matColumnDef="deliveryTime">
-      <th mat-header-cell *matHeaderCellDef>Delivery Time</th>
-      <td mat-cell *matCellDef="let material">Upon Request</td>
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'materialsTable.DELIVERY_TIME' | transloco }}
+      </th>
+      <td mat-cell *matCellDef="let material">
+        {{ 'materialsTable.UPON_REQUEST' | transloco }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="tolerance">
@@ -52,8 +58,12 @@
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>Price</th>
-      <td mat-cell *matCellDef="let material">Upon Request</td>
+      <th mat-header-cell *matHeaderCellDef>
+        {{ 'materialsTable.PRICE' | transloco }}
+      </th>
+      <td mat-cell *matCellDef="let material">
+        {{ 'materialsTable.UPON_REQUEST' | transloco }}
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

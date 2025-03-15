@@ -26,6 +26,7 @@ import { tolerancePercentage } from '../../../utilities/materials.utils';
     MatIcon,
     NgStyle,
     NgClass,
+    TranslocoPipe,
   ],
   templateUrl: './materials-table.component.html',
   styleUrl: './materials-table.component.scss',

@@ -32,7 +32,18 @@ describe('MaterialsTableComponent', () => {
   ];
 
   const mockTranslocoService = {
-    translate: jest.fn((key: string) => key),
+    translate: jest.fn((key: string) => {
+      if (key === 'materialsTable.UPON_REQUEST') {
+        return 'Upon Request';
+      }
+      return key;
+    }),
+    selectTranslate: jest.fn((key: string) => {
+      if (key === 'materialsTable.UPON_REQUEST') {
+        return 'Upon Request';
+      }
+      return key;
+    }),
   };
 
   beforeEach(async () => {
@@ -95,18 +106,20 @@ describe('MaterialsTableComponent', () => {
     expect(toleranceCell[0].nativeElement.textContent).toContain('± ');
   });
 
-  it('should display "Upon Request" for delivery time and price', () => {
+  it('should display "materialsTable.UPON_REQUEST" for delivery time and price', () => {
     const deliveryTimeCells = fixture.debugElement.queryAll(
       By.css('td[mat-cell]:nth-child(3)'),
     );
     expect(deliveryTimeCells[0].nativeElement.textContent.trim()).toBe(
-      'Upon Request',
+      'materialsTable.UPON_REQUEST',
     );
 
     const priceCells = fixture.debugElement.queryAll(
       By.css('td[mat-cell]:nth-child(5)'),
     );
-    expect(priceCells[0].nativeElement.textContent.trim()).toBe('Upon Request');
+    expect(priceCells[0].nativeElement.textContent.trim()).toBe(
+      'materialsTable.UPON_REQUEST',
+    );
   });
   it('should toggle selection when a row is clicked', () => {
     const rows = fixture.debugElement.queryAll(By.css('tr[mat-row]'));

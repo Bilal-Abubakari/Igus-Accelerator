@@ -18,6 +18,7 @@ import {
   howItWorks18n,
   footerSubscriptionI18n,
   stayUpdatedI18n,
+  materialsTableI18n,
 } from '@igus-accelerator-injection-molding-configurator/ui-components';
 
 const componentTranslations = [
@@ -36,6 +37,7 @@ const componentTranslations = [
   scheduleCallI18n,
   howItWorks18n,
   stayUpdatedI18n,
+  materialsTableI18n,
 ];
 
 @Injectable({ providedIn: 'root' })

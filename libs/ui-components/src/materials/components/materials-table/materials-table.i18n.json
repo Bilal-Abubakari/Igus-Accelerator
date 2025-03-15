@@ -1,0 +1,59 @@
+{
+  "materialsTable": {
+    "NAME": {
+      "ar": "الاسم",
+      "de": "Name",
+      "en": "Name",
+      "es": "Nombre",
+      "fr": "Nom",
+      "jp": "名前",
+      "pt": "Nome",
+      "ru": "Название",
+      "zh": "名稱"
+    },
+    "DELIVERY_TIME": {
+      "ar": "وقت التسليم",
+      "de": "Lieferzeit",
+      "en": "Delivery time",
+      "es": "Tiempo de entrega",
+      "fr": "Délai de livraison",
+      "jp": "納期",
+      "pt": "Prazo de entrega",
+      "ru": "Срок поставки",
+      "zh": "交貨時間"
+    },
+    "PRICE": {
+      "ar": "السعر",
+      "de": "Preis",
+      "en": "Price",
+      "es": "Precio",
+      "fr": "Prix",
+      "jp": "価格",
+      "pt": "Preço",
+      "ru": "Цена",
+      "zh": "價格"
+    },
+    "TOLERANCE": {
+      "ar": " التسامح",
+      "de": "Toleranz",
+      "en": "Tolerance",
+      "es": "Tolerancia",
+      "fr": "Tolérance",
+      "jp": "寛容",
+      "pt": "Tolerância",
+      "ru": "Толерантность",
+      "zh": "容忍度"
+    },
+    "UPON_REQUEST": {
+      "ar": "عند الطلب",
+      "de": "Auf Anfrage",
+      "en": "Upon request",
+      "es": "A petición",
+      "fr": "Sur demande",
+      "jp": "リクエストに応じて",
+      "pt": "Sob consulta",
+      "ru": "По запросу",
+      "zh": "根據要求"
+    }
+  }
+}
