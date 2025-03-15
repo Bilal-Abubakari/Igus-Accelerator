@@ -1,5 +1,6 @@
 import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { createActionGroup, props, emptyProps } from '@ngrx/store';
+import { ViewMode } from '../types';
 
 export const MaterialActions = createActionGroup({
   source: 'Material',
@@ -10,5 +11,6 @@ export const MaterialActions = createActionGroup({
     }>(),
     'Load Materials Failure': props<{ materialFetchError: string }>(),
     'Toggle Material Selection': props<{ materialId: string }>(),
+    'Set View Mode': props<{ viewMode: ViewMode }>(),
   },
 });
