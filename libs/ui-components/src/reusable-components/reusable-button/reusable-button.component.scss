@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 :host {
   display: inline-block;
@@ -6,12 +6,12 @@
 
 button {
   &.footer {
-    border-radius: 0.75rem;
+    border-radius: variables.$footer-border-radius;
     border: none;
     height: 42px;
     width: 100%;
     padding: 0 1.19113rem;
-    color: $footer-main-background;
+    color: variables.$footer-main-background;
     background-color: var(--mat-sys-surface-container-lowest);
     &:hover {
       background-color: var(--mat-sys-background);

@@ -11,6 +11,7 @@ mat-toolbar {
     )
   );
   footer {
+    font-weight: normal;
     width: 100%;
     padding: 5rem 7rem 0;
     form {
@@ -35,7 +36,7 @@ mat-toolbar {
         gap: 1.2rem;
         border: 1px solid variables.$footer-border-color;
         border-radius: 1.5rem;
-        padding: 1.5rem 0.5rem 1.5rem 1.5rem;
+        padding: 1.53rem 0.4rem 1.5rem 1.5rem !important;
         background-color: variables.$subscription-background;
         h4 {
           font-size: 1rem;
@@ -43,7 +44,7 @@ mat-toolbar {
         }
         .form-fields {
           @include mixins.flex-option(flex, left, left);
-          gap: 0.5rem;
+          gap: 1.2rem !important;
           .small {
             border-radius: 2px;
             color: var(--mat-sys-outline);
@@ -64,7 +65,7 @@ mat-toolbar {
       @include mixins.flex-option(flex, space-between, left);
       font-size: 0.75rem;
       border-top: 1px solid variables.$footer-border-color;
-      padding: 3.8rem 0;
+      padding: 2.5rem 0;
       color: variables.$footer-links-color;
       &__terms-and-condition {
         @include mixins.flex-option(flex, left, left);
