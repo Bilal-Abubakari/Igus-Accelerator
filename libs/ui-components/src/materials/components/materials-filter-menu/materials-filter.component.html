@@ -1,0 +1,65 @@
+<section>
+  <app-reusable-button
+    class="filter-button"
+    (buttonClick)="toggleOverlay()"
+    [class.active]="showFilterOverlay()"
+  >
+    {{ filterName }}{{ selectedCount() > 0 ? ' · ' + selectedCount() : '' }}
+  </app-reusable-button>
+  <div class="filter-menu" [class.visible]="showFilterOverlay()">
+    @if (filterName === 'Temperature') {
+      <div class="temperature-filter">
+        <h3>Long-term application temperature</h3>
+        <div class="temperature-inputs">
+          <div class="temp-input">
+            <input type="number" placeholder="Low" [(ngModel)]="tempLow" />
+            <span>°C</span>
+          </div>
+          <span class="separator">–</span>
+          <div class="temp-input">
+            <input type="number" placeholder="High" [(ngModel)]="tempHigh" />
+            <span>°C</span>
+          </div>
+        </div>
+      </div>
+    } @else if (filterName === 'Surface pressure') {
+      <div class="pressure-filter">
+        <h3>Surface pressure</h3>
+        <div class="pressure-inputs">
+          <div class="pressure-input">
+            <input type="number" placeholder="Low" [(ngModel)]="pressureLow" />
+            <span>MPa</span>
+          </div>
+          <span class="separator">–</span>
+          <div class="pressure-input">
+            <input
+              type="number"
+              placeholder="High"
+              [(ngModel)]="pressureHigh"
+            />
+            <span>MPa</span>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="filter-content">
+        <div class="filter-options">
+          @for (option of filterOptions; track option.label) {
+            <div class="filter-option">
+              <mat-checkbox
+                [(ngModel)]="option.selected"
+                (ngModelChange)="updateSelectedCount()"
+              >
+                {{ option.label }}
+              </mat-checkbox>
+            </div>
+          }
+        </div>
+      </div>
+    }
+    <div class="filter-actions">
+      <button class="clear-button" (click)="clearFilter()">Reset</button>
+      <button class="apply-button" (click)="applyFilter()">Apply</button>
+    </div>
+  </div>
+</section>

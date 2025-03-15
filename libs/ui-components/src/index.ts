@@ -13,11 +13,7 @@ import * as materialSelectionI18n from './landing-page/material-selection/materi
 import * as scheduleCallI18n from './landing-page/schedule-call/schedule-call.i18n.json';
 import * as stayUpdatedI18n from './landing-page/stay-updated/stay-updated.i18n.json';
 import * as howItWorks18n from './landing-page/how-it-works/how-it-works.i18n.json';
-export * from './navbar/navbar.component';
-
-export * from './landing-page/toolbar/toolbar.component';
-export * from './landing-page/how-it-works/how-it-works.component';
-
+import * as materialsFilterContainerI18n from './materials/components/materials-filter-container/materials-filter-container.component.i18n.json';
 // EXPORT TRANSLOCO
 
 export { toolbarI18n };
@@ -27,6 +23,7 @@ export { feedBackI18n };
 export { footerI18n, footerSubscriptionI18n };
 export { navBarI18n };
 export { modelListI18n, modelUploadI18n };
+export { materialsFilterContainerI18n };
 
 // EXPORT COMPONENT
 export * from './model/components/model-list/model-list.component';
@@ -47,3 +44,8 @@ export { howItWorks18n };
 
 export * from './landing-page/schedule-call/schedule-call.component';
 export { stayUpdatedI18n };
+export * from './navbar/navbar.component';
+
+export * from './landing-page/toolbar/toolbar.component';
+export * from './landing-page/how-it-works/how-it-works.component';
+export * from './materials/components/materials-filter-container/materials-filter-container.component';

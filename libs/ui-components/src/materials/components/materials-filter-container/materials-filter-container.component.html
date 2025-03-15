@@ -1,0 +1,8 @@
+<section class="filter-container">
+  @for (filter of filters; track filter.name) {
+    <app-materials-filter-menu
+      [filterName]="filter.name"
+      [filterOptions]="filter.options"
+    ></app-materials-filter-menu>
+  }
+</section>
