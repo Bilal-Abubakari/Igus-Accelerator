@@ -61,6 +61,9 @@
       mat-row
       *matRowDef="let row; columns: displayedColumns"
       (click)="toggleSelection(row.id)"
+      (keydown.enter)="toggleSelection(row.id)"
+      (keydown.space)="toggleSelection(row.id)"
+      tabindex="0"
       [ngClass]="{ 'active-row': selectedMaterialId === row.id }"
     ></tr>
   </table>
