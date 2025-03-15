@@ -5,8 +5,8 @@
 }
 
 button {
+  border-radius: variables.$footer-border-radius;
   &.footer {
-    border-radius: variables.$footer-border-radius;
     border: none;
     height: 42px;
     width: 100%;

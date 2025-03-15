@@ -39,6 +39,7 @@ mat-toolbar {
         padding: 1.53rem 0.4rem 1.5rem 1.5rem !important;
         background-color: variables.$subscription-background;
         h4 {
+          white-space: normal;
           font-size: 1rem;
           color: variables.$subscription-primary-color;
         }
@@ -108,7 +109,7 @@ mat-toolbar {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   mat-toolbar {
     footer {
       padding: 5rem 2rem 0;
