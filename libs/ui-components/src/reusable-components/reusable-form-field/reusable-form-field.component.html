@@ -1,4 +1,4 @@
-<mat-form-field [class]="className">
+<mat-form-field [class.footer-form-field]="isInFooter" [class]="className">
   <mat-label>{{ label }}{{ optional ? ' (optional)' : '' }}</mat-label>
   @if (isSelect) {
     <mat-select [formControl]="control">
