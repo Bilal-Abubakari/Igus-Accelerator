@@ -45,22 +45,6 @@ describe('MaterialsTableComponent', () => {
       declarations: [
         MaterialsTableComponent,
         MockPipe(TranslocoPipe, (key: string) => key),
-        // MockPipe(
-        //   PercentPipe,
-        //   (
-        //     value: string | number | null | undefined,
-        //     digitsInfo?: string,
-        //     locale?: string,
-        //   ): string | null => {
-        //     if (value === null || value === undefined) {
-        //       return null;
-        //     }
-        //     if (typeof value === 'number') {
-        //       return `${value * 100}%`;
-        //     }
-        //     return `${parseFloat(value) * 100}%`;
-        //   },
-        // ),
       ],
       providers: [
         { provide: MaterialDialogService, useValue: materialDialogService },

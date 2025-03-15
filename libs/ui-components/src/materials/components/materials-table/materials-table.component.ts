@@ -7,7 +7,7 @@ import {
 import { MatTableModule } from '@angular/material/table';
 import { InjectionMoldingMaterial } from '@igus-accelerator-injection-molding-configurator/libs/shared';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { NgStyle, PercentPipe } from '@angular/common';
+import { NgClass, NgStyle, PercentPipe } from '@angular/common';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -25,17 +25,19 @@ import { tolerancePercentage } from '../../../utilities/materials.utils';
     MatIconButton,
     MatIcon,
     NgStyle,
+    NgClass,
   ],
   templateUrl: './materials-table.component.html',
   styleUrl: './materials-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialsTableComponent {
-  private readonly materialDialogService = inject(MaterialDialogService);
-
   @Input() materials: InjectionMoldingMaterial[] = [];
 
+  private readonly materialDialogService = inject(MaterialDialogService);
+  public selectedMaterial: InjectionMoldingMaterial | null = null;
   public readonly displayedColumns: string[] = MATERIAL_COLUMNS;
+  public selectedMaterialId: string | null = null;
 
   public getTolerancePercentage(shrinkage: number): number {
     return tolerancePercentage(shrinkage);
@@ -45,6 +47,12 @@ export class MaterialsTableComponent {
     material: InjectionMoldingMaterial,
     event?: MouseEvent,
   ): void {
+    this.selectedMaterial = material;
     this.materialDialogService.openMaterialDialog(material, event);
+  }
+
+  public toggleSelection(materialId: string): void {
+    this.selectedMaterialId =
+      this.selectedMaterialId === materialId ? null : materialId;
   }
 }
