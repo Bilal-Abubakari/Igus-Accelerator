@@ -5,4 +5,4 @@ export const MATERIAL_COLUMNS = [
   'deliveryTime',
   'tolerance',
   'price',
-];
+] as const;

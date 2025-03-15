@@ -182,11 +182,6 @@ describe('MaterialsTableComponent', () => {
     );
   });
 
-  it('should update selectedMaterial when showMoreInfo is called', () => {
-    component.showMoreInfo(mockMaterials[1]);
-    expect(component.selectedMaterial).toBe(mockMaterials[1]);
-  });
-
   it('should pass the correct material to dialog service', () => {
     const mockEvent = { stopPropagation: jest.fn() } as unknown as MouseEvent;
     component.showMoreInfo(mockMaterials[1], mockEvent);

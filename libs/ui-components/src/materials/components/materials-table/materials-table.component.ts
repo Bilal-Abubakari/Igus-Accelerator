@@ -36,8 +36,7 @@ export class MaterialsTableComponent {
   @Input() materials: InjectionMoldingMaterial[] = [];
 
   private readonly materialDialogService = inject(MaterialDialogService);
-  public selectedMaterial: InjectionMoldingMaterial | null = null;
-  public readonly displayedColumns: string[] = MATERIAL_COLUMNS;
+  public readonly displayedColumns: readonly string[] = MATERIAL_COLUMNS;
   public selectedMaterialId: string | null = null;
 
   public getTolerancePercentage(shrinkage: number): number {
@@ -48,7 +47,6 @@ export class MaterialsTableComponent {
     material: InjectionMoldingMaterial,
     event?: MouseEvent,
   ): void {
-    this.selectedMaterial = material;
     this.materialDialogService.openMaterialDialog(material, event);
   }
 
