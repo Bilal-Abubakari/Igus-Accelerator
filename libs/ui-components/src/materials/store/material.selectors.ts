@@ -24,3 +24,8 @@ export const selectMaterial = createSelector(
   selectMaterialState,
   (state) => state.selectedMaterial,
 );
+
+export const selectViewMode = createSelector(
+  selectMaterialState,
+  (state) => state.viewMode,
+);

@@ -14,6 +14,7 @@ describe('Material Selectors', () => {
     triggerMaterialFetch: true,
     materialFetchError: 'Error fetching materials',
     selectedMaterial: mockMaterial,
+    viewMode: 'grid',
   };
 
   it('should select the material state', () => {
